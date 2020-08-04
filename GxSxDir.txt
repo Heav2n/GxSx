@@ -1,9 +1,9 @@
-ÇÁ·ÎÁ§Æ®ÆÄÀÏ¸í: GxSx
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½Ï¸ï¿½: GxSx
 
 src
-   main
+   main í•´ë¸Œë¹ˆí•˜ì´
 	java
-	   sansil(°¢ÀÚÀÌ¸§ÀÏµí) sansil.gxsx.controller
+	   sansil(ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½Ïµï¿½) sansil.gxsx.controller
 	       gxsx
 		  controller
 			Question.java
