@@ -1,7 +1,9 @@
 프로젝트파일명: GxSx
 src
-   main
+ 
+  main
 	java
+ 
 	   sansil(각자이름일듯) sansil.gxsx.controller
 	       gxsx
 		  controller
