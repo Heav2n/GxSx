@@ -4,18 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
    <typeAliases>
-<<<<<<< HEAD
-          
-   </typeAliases>
-   <mappers>
-         
-=======
         <!-- <typeAlias alias="Address"  type="test.md.domain.Address"/>-->
    </typeAliases>
    <mappers>
        <!--  <mapper resource="test/md/mapper/AddressMapper1.xml"/>
           <mapper resource="test/md/mapper/AddressMapper2.xml"/>
           <mapper resource="test/md/mapper/AddressAjaxMapper.xml"/> -->
->>>>>>> branch 'test' of https://github.com/Heav2n/GxSx.git
    </mappers>
 </configuration>
