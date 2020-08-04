@@ -1,7 +1,7 @@
 ������Ʈ���ϸ�: GxSx
 
 src
-   main 해브빈하이
+   main 해브빈하이1234
 	java
 	   sansil(�����̸��ϵ�) sansil.gxsx.controller
 	       gxsx
