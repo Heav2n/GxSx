@@ -15,20 +15,17 @@ import sansil.gxsx.service.TempService;
 @RequestMapping("/temp/")
 @Controller
 public class TempController {
-	@Resource(name="TempItemMapper")
+	@Resource(name="TempService")
 	private TempService service;
 	
 //	@Resource(name="FindItemMapper")
 //	private FindItemservice fservice;
 	
-	@RequestMapping("/domain.do")
+	@RequestMapping("domain.do")
 	public ModelAndView list() { 
 		List<LostItem> lostResult = service.listS();
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("temp/domain");
-		mv.addObject("lostResult", lostResult);
+		ModelAndView mv = new ModelAndView("temp/domain", "lostResult", lostResult);
 		
 		return mv;
 	}
-	
 }

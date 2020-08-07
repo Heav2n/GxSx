@@ -3,12 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
    <typeAliases>
-        <!-- <typeAlias alias="Address"  type="test.md.domain.Address"/>-->
+         <typeAlias alias="LostItem" type="sansil.gxsx.domain.LostItem"/>
+		 <typeAlias alias="LostItemVo" type="sansil.gxsx.domain.LostItemVo"/>
    </typeAliases>
+   
    <mappers>
-       <!--  <mapper resource="test/md/mapper/AddressMapper1.xml"/>
-          <mapper resource="test/md/mapper/AddressMapper2.xml"/>
-          <mapper resource="test/md/mapper/AddressAjaxMapper.xml"/> -->
+         <mapper resource="sansil/gxsx/mapper/LostItemMapper.xml"/>
+         <mapper resource="sansil/gxsx/mapper/TempMapper.xml"/>
    </mappers>
+   
 </configuration>

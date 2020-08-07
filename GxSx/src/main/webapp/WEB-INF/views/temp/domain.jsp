@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,12 +13,12 @@
 		<link rel="icon" href="favicon.ico">
 		<title>Sanza - Onepage Multipurpose Bootstrap HTML by MOOZThemes.com</title>
 		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="../css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		<!-- Custom styles for this template -->
-		<link href="css/owl.carousel.css" rel="stylesheet">
-		<link href="css/owl.theme.default.min.css"  rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
+		<link href="../css/owl.carousel.css" rel="stylesheet">
+		<link href="../css/owl.theme.default.min.css"  rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
 	</head>
 	<body id="page-top">
 		<!-- Navigation -->
@@ -33,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top"><img src="images/logo.png" alt="Sanza theme logo"></a>
+					<a class="navbar-brand page-scroll" href="#page-top"><img src="../images/logo.png" alt="Sanza theme logo"></a>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -85,14 +84,14 @@
 						<td colspan="5">데이터가 하나도 없음</td>
 					</tr>
 				</c:if>
-			<c:forEach items="${lostResult.list}" var="lostitem">
+			<c:forEach items="${lostResult}" var="lostitem">
 				<div class="col-md-4 col-0-gutter">
 					<div class="ot-portfolio-item">
 						<figure class="effect-bubba">
-							<img src="images/demo/portfolio-1.jpg" alt="img02" class="img-responsive" />
+							<img src="../images/lostitem/COS.jpg" alt="img02" class="img-responsive" />
 							<figcaption>
-								<h2>Dean & Letter</h2>
-								<p>Branding, Design</p>
+								<h2>${lostitem.losub}</h2>
+								<p>${lostitem.loplace}</p>
 								<a href="#" data-toggle="modal" data-target="#Modal-1">View more</a>
 							</figcaption>
 						</figure>
@@ -195,7 +194,7 @@
 					</div>
 				</div>
 			</div>
-		</section>	카운팅하는거~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->	
+		</section>	ī�����ϴ°�~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->	
 		
 		
 		<footer>
@@ -336,12 +335,12 @@
 		<!-- Placed at the end of the document so the pages load faster -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/owl.carousel.min.js"></script>
-		<script src="js/cbpAnimatedHeader.js"></script>
-		<script src="js/jquery.appear.js"></script>
-		<script src="js/SmoothScroll.min.js"></script>
-		<script src="js/mooz.themes.scripts.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/owl.carousel.min.js"></script>
+		<script src="../js/cbpAnimatedHeader.js"></script>
+		<script src="../js/jquery.appear.js"></script>
+		<script src="../js/SmoothScroll.min.js"></script>
+		<script src="../js/mooz.themes.scripts.js"></script>
 	</body>
 </html>
 	

@@ -9,7 +9,7 @@
  * http://www.codrops.com
  */
 var cbpAnimatedHeader = (function() {
-
+console.log('aaabbbaa');
 	var docElem = document.documentElement,
 		header = document.querySelector( '.navbar-default' ),
 		didScroll = false,
