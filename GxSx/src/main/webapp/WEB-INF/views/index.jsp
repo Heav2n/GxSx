@@ -8,9 +8,9 @@
 </head>
 
 <body style="text-align:center">
-	<h1>Controller with Spring5</h1>
+	<h1>adsdsadsa5</h1>
 	
-	<a href="address/list.do">주소록</a>
+	<a href="temp/domain.do">주소록</a>
 	
 	
 	
