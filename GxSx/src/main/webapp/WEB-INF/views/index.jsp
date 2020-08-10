@@ -1,18 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>CodePen - Animated Search Form With Micro Interactions | #1</title>
+  
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'/>
+  <link rel='stylesheet' href='css/indexpage.css'/> 
 </head>
+<body>
 
-<body style="text-align:center">
-	<h1>adsdsadsa5</h1>
-	
-	<a href="temp/domain.do">주소록</a>
-	
-	
-	
+<!-- partial:index.partial.html -->
+	<div id="app-cover">
+	  <div id="app">
+	    <form method="get" action="temp/ficontent.do">
+	      <div id="f-element">
+	        <div id="inp-cover"><input type="text" name="query" placeholder="search your AXE" autocomplete="off"></div>
+	      </div>
+	      <button type="submit" class="shadow"><i class="fas fa-search"></i></button>
+	    </form>
+	  </div>
+	  <div id="layer" title="Click the blue area to hide the form"></div>
+	  <div id="init"></div>
+	</div>
+
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src='js/indexpage.js'></script>
+ 
 </body>
 </html>
