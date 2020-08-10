@@ -55,6 +55,9 @@
 						<li>
 							<a class="page-scroll" href="#support">Support</a>
 						</li>
+						<li>
+							<a class="page-scroll" href="login.do">Login</a>
+						</li>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -65,7 +68,9 @@
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
-        
+
+
+
 		<section id="portfolio" style="padding-bottom:30px; margin-top:100px">
 			<div class="container">
 			<div class="row">
@@ -84,15 +89,15 @@
 						<td colspan="5">데이터가 하나도 없음</td>
 					</tr>
 				</c:if>
-			<c:forEach items="${lostResult}" var="lostitem">
+			<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
 				<div class="col-md-4 col-0-gutter">
 					<div class="ot-portfolio-item">
 						<figure class="effect-bubba">
-							<img src="../images/lostitem/COS.jpg" alt="img02" class="img-responsive" />
+							<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="img02" class="img-responsive" />
 							<figcaption>
 								<h2>${lostitem.losub}</h2>
 								<p>${lostitem.loplace}</p>
-								<a href="#" data-toggle="modal" data-target="#Modal-1">View more</a>
+								<a href="#" data-toggle="modal" data-target="#"+"${lostitem.losub}">View more</a>
 							</figcaption>
 						</figure>
 					</div>
@@ -102,7 +107,12 @@
 			</div>
 			</div><!-- end container -->
 		</section>
-        
+		
+         
+<!--         <div id="kakao_id_login" style="text-align: center">  -->
+<%--         <a href="${kakao_url}">  --%>
+<!--         <img width="223" src="../images/logo.png" /></a>  -->
+<!--         </div> -->
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
@@ -236,12 +246,12 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="Modal-label-1">Dean & Letter</h4>
+						<h4 class="modal-title" id="Modal-label-1">${lostResult[0].losub}</h4>
 					</div>
 					<div class="modal-body">
-						<img src="images/demo/portfolio-1.jpg" alt="img01" class="img-responsive" />
-						<div class="modal-works"><span>Branding</span><span>Web Design</span></div>
-						<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
+						<img src="../images/lostitem/${lostpicResult[0].lopicname}" alt="img01" class="img-responsive" />
+						<div class="modal-works"><span>${lostResult[0].lodate}</span><span>${lostResult[0].loplace}</span></div>
+						<p>${lostResult[0].locon}</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -251,17 +261,17 @@
 		</div>
 
 		<!-- Modal for portfolio item 2 -->
-		<div class="modal fade" id="Modal-2" tabindex="-1" role="dialog" aria-labelledby="Modal-label-2">
+		<div class="modal fade" id="Modal-2" tabindex="-1" role="dialog" aria-labelledby="Modal-label-1">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="Modal-label-2">Startup Framework</h4>
+						<h4 class="modal-title" id="Modal-label-1">${lostResult[0].losub}</h4>
 					</div>
 					<div class="modal-body">
-						<img src="images/demo/portfolio-2.jpg" alt="img01" class="img-responsive" />
-						<div class="modal-works"><span>Branding</span><span>Web Design</span></div>
-						<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
+						<img src="../images/lostitem/${lostpicResult[0].lopicname}" alt="img01" class="img-responsive" />
+						<div class="modal-works"><span>${lostResult[0].lodate}</span><span>${lostResult[0].loplace}</span></div>
+						<p>${lostResult[0].locon}</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -280,46 +290,6 @@
 					</div>
 					<div class="modal-body">
 						<img src="images/demo/portfolio-3.jpg" alt="img01" class="img-responsive" />
-						<div class="modal-works"><span>Branding</span><span>Web Design</span></div>
-						<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal for portfolio item 4 -->
-		<div class="modal fade" id="Modal-4" tabindex="-1" role="dialog" aria-labelledby="Modal-label-4">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="Modal-label-4">Smart Name</h4>
-					</div>
-					<div class="modal-body">
-						<img src="images/demo/portfolio-4.jpg" alt="img01" class="img-responsive" />
-						<div class="modal-works"><span>Branding</span><span>Web Design</span></div>
-						<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal for portfolio item 5 -->
-		<div class="modal fade" id="Modal-5" tabindex="-1" role="dialog" aria-labelledby="Modal-label-5">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="Modal-label-5">Fast People</h4>
-					</div>
-					<div class="modal-body">
-						<img src="images/demo/portfolio-5.jpg" alt="img01" class="img-responsive" />
 						<div class="modal-works"><span>Branding</span><span>Web Design</span></div>
 						<p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe</p>
 					</div>

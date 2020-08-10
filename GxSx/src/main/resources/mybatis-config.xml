@@ -7,11 +7,14 @@
    <typeAliases>
          <typeAlias alias="LostItem" type="sansil.gxsx.domain.LostItem"/>
 		 <typeAlias alias="LostItemVo" type="sansil.gxsx.domain.LostItemVo"/>
+		 <typeAlias alias="FindItem" type="sansil.gxsx.domain.FindItem"/>
+		 <typeAlias alias="LostPic" type="sansil.gxsx.domain.LostPic"/>
    </typeAliases>
    
    <mappers>
          <mapper resource="sansil/gxsx/mapper/LostItemMapper.xml"/>
          <mapper resource="sansil/gxsx/mapper/TempMapper.xml"/>
+         
    </mappers>
    
 </configuration>

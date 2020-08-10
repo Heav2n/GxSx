@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.LostItem;
+import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.mapper.TempMapper;
 
 @Service("TempService")
@@ -15,8 +16,19 @@ public class TempServiceImpl implements TempService {
 	private TempMapper tempMapper;
 	
 	@Override
-	public List<LostItem> listS() {
-		return tempMapper.list();
+	public List<LostItem> listloS() {
+		return tempMapper.listlo();
 	}
+	
+	@Override
+	public List<FindItem> listfiS() {
+		return tempMapper.listfi();
+	}
+	
+	@Override
+	public List<LostPic> listlopicS() {
+		return tempMapper.listlopic();
+	}
+	
 
 }

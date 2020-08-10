@@ -4,10 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sansil.gxsx.mapper.TempMapper">
 
-	<select id="list" resultType="LostItem">
+	<select id="listlo" resultType="LostItem">
 		<![CDATA[
-			select * from (select * from LostItem order by LONO desc) where ROWNUM <=3
+			select * from (select * from LostItems order by LONO desc) where ROWNUM <=3
 		]]>
 	</select>
-	
+	<select id="listfi" resultType="FindItem">
+		<![CDATA[
+			select * from (select * from FindItem order by FINO desc) where ROWNUM <=3
+		]]>
+	</select>
+	<select id="listlopic" resultType="LostPic">
+		<![CDATA[
+			select * from LostPic where LOPNO IN (select LONO from (select * from LostItems order by LONO desc) where ROWNUM <=3)
+		]]>
+	</select>
 </mapper>
