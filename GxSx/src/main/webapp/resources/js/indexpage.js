@@ -1,6 +1,5 @@
 $(function()
 {
-	console.log('aaaaaaa');
     var app = $('#app'), init = $('#init'), layer = $('#layer'), input = $('#inp-cover input'), button = $('button');
 
     function toggleApp()

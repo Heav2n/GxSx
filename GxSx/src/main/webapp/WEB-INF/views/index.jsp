@@ -14,16 +14,22 @@
 <!-- partial:index.partial.html -->
 	<div id="app-cover">
 	  <div id="app">
-	    <form method="get" action="temp/ficontent.do">
+	    <form method="get" action="lostitem/ficontentsearch.do">
 	      <div id="f-element">
-	        <div id="inp-cover"><input type="text" name="query" placeholder="search your AXE" autocomplete="off"></div>
+	        <div id="inp-cover">
+	        	<input type="text" name="query" placeholder="search your AXE" autocomplete="off">
+	        	<a href="temp/domain.do"><img src="images/arrow2.png" alt="#" style="position:fixed; right:150px; top:46%"></a>
+	        </div>
+	        
 	      </div>
-	      <button type="submit" class="shadow"><i class="fas fa-search"></i></button>
-	    </form>
+	      <button type="submit" class="shadow"><i class="fas fa-search"></i></button>	      
+	    </form>	    
+
 	  </div>
 	  <div id="layer" title="Click the blue area to hide the form"></div>
 	  <div id="init"></div>
 	</div>
+	
 
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>

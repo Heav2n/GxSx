@@ -25,10 +25,11 @@ public class LostItemserviceImpl implements LostItemservice {
 	}
 
 	@Override
-	public LostItemResult getLostItemResultByKeyword(String keyword, int page, int pageSize) {
+	public LostItemResult getLostItemResultByKeyword(String query, int page, int pageSize) {
+		List<LostItem> list = selectByNameS(query);
 		long totalCount = lostitemMapper.selectCount();
-		LostItemVo lostitemvo = new LostItemVo(keyword, page, pageSize);
-		List<LostItem> list = lostitemMapper.selectByWriter(lostitemvo);
+//		LostItemVo lostitemvo = new LostItemVo(query, page, pageSize);
+//		List<LostItem> list = lostitemMapper.selectByWriter(lostitemvo);
 		
 		return new LostItemResult(page, pageSize, totalCount, list);
 	}

@@ -18,4 +18,6 @@ public interface LostItemMapper {
 	//for Ajax
 	LostItem selectBySeq(long lono);
 	List<LostItem> selectByName(String losub);
+	
+	List<LostItem> selectByName2(String query);
 }

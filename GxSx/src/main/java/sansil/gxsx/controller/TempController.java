@@ -85,16 +85,6 @@ public class TempController {
 		return mv;
 	}
 	
-	@RequestMapping("ficontent.do")
-	public void ficontent(String query) { 
-		System.out.println("1dsadsadsadasdad");
-		System.out.println(query);
-//		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
-//		
-//		ModelAndView mv = new ModelAndView();		
-//		mv.setViewName("temp/login");		
-//		mv.addObject("ddd", ddd);
-//		return mv;
-	}
+
 
 }
