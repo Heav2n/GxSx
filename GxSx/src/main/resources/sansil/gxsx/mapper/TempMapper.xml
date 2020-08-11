@@ -6,7 +6,7 @@
 
 	<select id="listlo" resultType="LostItem">
 		<![CDATA[
-			select * from (select * from LostItems order by LONO desc) where ROWNUM <=3
+			select * from (select * from LostItem order by LONO desc) where ROWNUM <=3
 		]]>
 	</select>
 	<select id="listfi" resultType="FindItem">
@@ -16,7 +16,7 @@
 	</select>
 	<select id="listlopic" resultType="LostPic">
 		<![CDATA[
-			select * from LostPic where LOPNO IN (select LONO from (select * from LostItems order by LONO desc) where ROWNUM <=3)
+			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3)
 		]]>
 	</select>
 </mapper>

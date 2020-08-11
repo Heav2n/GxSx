@@ -6,12 +6,12 @@
 
 	<select id="selectPerPage" resultType="LostItem" parameterType="LostItemVo">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from LOSTITEMS order by LONO desc) aa)
+		select * from (select ROWNUM rnum, aa.* from (select * from LOSTITEM order by LONO desc) aa)
 		where rnum>#{startRow} and rnum<=#{endRow}
 		]]>
 	</select>
 	<select id="selectCount" resultType="long">
-		select COUNT(lono) from LOSTITEMS
+		select COUNT(lono) from LOSTITEM
 	</select>
 	<select id="selectByWriter" resultType="LostItem" parameterType="LostItemVo">
 		<![CDATA[
@@ -38,10 +38,10 @@
 	
 	<!-- for Ajax -->
 	<select id="selectByName" resultType="LostItem" parameterType="String">
-	     select * from LOSTITEMS where LOSUB like '%'||#{losub}||'%' order by lono desc
+	     select * from LOSTITEM where LOSUB like '%'||#{losub}||'%' order by lono desc
 	</select>
 	
 	<select id="selectByName2" resultType="LostItem" parameterType="String">
-	     select * from LOSTITEMS where LOSUB like '%'||#{query}||'%' order by lono desc
+	     select * from LOSTITEM where LOSUB like '%'||#{query}||'%' order by lono desc
 	</select>
 </mapper>

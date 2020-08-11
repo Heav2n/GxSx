@@ -85,6 +85,11 @@ public class TempController {
 		return mv;
 	}
 	
+	@RequestMapping("signupform.do")
+	public String signup() {
+		return "temp/signup";
+	}
+	
 
 
 }
