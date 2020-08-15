@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
+import sansil.gxsx.domain.Users;
 import sansil.gxsx.mapper.TempMapper;
 
 @Service("TempService")
@@ -30,5 +31,9 @@ public class TempServiceImpl implements TempService {
 		return tempMapper.listlopic();
 	}
 	
+	@Override
+	public void signupS(Users users) {
+		tempMapper.signup(users);
+	}
 
 }

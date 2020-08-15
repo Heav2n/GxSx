@@ -9,6 +9,7 @@
 		 <typeAlias alias="LostItemVo" type="sansil.gxsx.domain.LostItemVo"/>
 		 <typeAlias alias="FindItem" type="sansil.gxsx.domain.FindItem"/>
 		 <typeAlias alias="LostPic" type="sansil.gxsx.domain.LostPic"/>
+		 <typeAlias alias="Users" type="sansil.gxsx.domain.Users"/>
    </typeAliases>
    
    <mappers>

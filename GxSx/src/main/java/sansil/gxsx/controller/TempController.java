@@ -9,15 +9,19 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.JsonNode;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
+import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.TempService;
 
+@Log4j
 @RequestMapping("/temp/")
 @Controller
 public class TempController {
@@ -50,6 +54,7 @@ public class TempController {
 			JsonNode node = KakaoController.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음 
 			JsonNode accessToken = node.get("access_token"); // 사용자의 정보 
 			JsonNode userInfo = KakaoController.getKakaoUserInfo(accessToken); 
+			String token = node.get("access_token").toString();
 			String kemail = null; 
 			String kname = null; 
 			String kgender = null; 
@@ -64,6 +69,7 @@ public class TempController {
 			kgender = kakao_account.path("gender").asText(); 
 			kbirthday = kakao_account.path("birthday").asText(); 
 			kage = kakao_account.path("age_range").asText(); 
+			session.setAttribute("token", token); 
 			session.setAttribute("kemail", kemail); 
 			session.setAttribute("kname", kname); 
 			session.setAttribute("kimage", kimage); 
@@ -78,18 +84,31 @@ public class TempController {
 	@RequestMapping("login.do")
 	public ModelAndView login(HttpSession session) { 
 		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
-		
 		ModelAndView mv = new ModelAndView();		
 		mv.setViewName("temp/login");		
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
 	
+	@RequestMapping(value = "logout.do", produces = "application/json")
+	public String Logout(HttpSession session) {
+        //노드에 로그아웃한 결과값음 담아줌 매개변수는 세션에 잇는 token을 가져와 문자열로 변환
+        JsonNode node = KakaoController.Logout(session.getAttribute("token").toString());
+        //결과 값 출력
+        System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
+        return "redirect:domain.do";
+    }
+	
 	@RequestMapping("signupform.do")
-	public String signup() {
+	public String signupform() {
 		return "temp/signup";
 	}
 	
+	@PostMapping("signup.do")
+	public String signup(Users users, HttpSession session) {
+		service.signupS(users);
+		return "redirect:domain.do";
+	}
 
 
 }

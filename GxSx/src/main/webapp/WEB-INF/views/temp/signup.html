@@ -10,105 +10,96 @@
 		<link rel="stylesheet" type="text/css" href="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\css/util.css">
 		<link rel="stylesheet" type="text/css" href="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\css/main.css">
 	<!--===============================================================================================-->
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script
-  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-  crossorigin="anonymous"></script>
-
-    <script src="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\js\bulma-validator.js"></script>
-
-      <script defer src="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\js\app.js"></script>
-        <style>
-        .section { margin: 150px auto; }
-      </style>
+        <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="./css/signupmain.css">
 <!--==============================================================================================-->
 	</head>
-	<body>
-		
+
+	<body>		
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-					<form class="login100-form validate-form">
-						<span class="login100-form-title p-b-55">
-							Sign up
-						</span>
-	                   <form>
-<div class="field">
-  <label class="label">Name</label>
-  <div class="control has-icons-right">
-    <input class="input" type="text" placeholder="Name input" data-validation="uname">
-  </div>
-  <p class="help is-danger">Type Your Username Here!</p>
-</div>
+				<span class="login100-form-title p-b-55"> Sign up </span>
+				
+			<form action="" id="form-row">
+				<div class="row form-group">
+					<label for="input0">Name</label>
+					<input class="form-control" name="input0" type="text" data-bvStrict="notEmpty" data-bvSwitch="Fill your name">
+					<div class="help-block error-message">Fill your name</div>
+				</div>
+				<div class="row form-group">
+					<label for="input1">E-mail address</label>
+					<input class="form-control" name="input1" type="text" data-bvStrict="email" data-bvEmpty="@">
+					<div class="help-block error-message">Fill valid e-mail address</div>
+				</div>
+				<div class="row checkbox">
+					<label for="car">
+						<input type="checkbox" name="car"> Do you have a car?
+					</label>
+				</div>
+				<div class="row form-group">
+					<label for="input5">Power</label>
+					<input class="form-control" name="input5" type="text" data-bvStrict="if:car:checked:number" data-bvAppend=" kW">
+					<span class="help-block error-message">Fill power of your car, if have one</span>
+				</div>
+				<div class="row form-group">
+					<label for="input3">Password</label>
+					<input class="form-control" name="input3" type="password" data-bvStrict="reg:^.{5,}">
+					<span class="help-block error-message">Password must have at least 5 letters</span>
+				</div>
+				<div class="row form-group">
+					<label for="input4">Password again</label>
+					<input class="form-control" name="input4" type="password" data-bvStrict="same:input3">
+					<span class="help-block error-message">Password does not match</span>
+				</div>
+				<div class="row checkbox">
+					<label for="cond">
+						<input type="checkbox" name="cond" data-bvStrict="checked"> Checkbox
+						<span class="help-block error-message">You have to check me</span>
+					</label>
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+                    
+                    
+            <form action="" id="form-direct">
 
-<div class="field">
-  <label class="label">ID</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" type="text" placeholder="Text input" data-validation="userid">
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </div>
-  <p class="help is-success">This ID is available</p>
-</div>
-                           
-<div class="field">
-  <label class="label">Password</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" type="password" placeholder="Password input"  data-validation="upwd">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-  </div>
-  <p class="help is-danger">This Password is invalid</p>
-</div>
+				<label for="input1">E-mail or phone (Czech localization - 9 digits)</label>
+				<input class="form-control" name="input1" type="text" data-bvStrict="email|phone">
 
-<div class="field">
-  <label class="label">Email</label>
-  <div class="control has-icons-left has-icons-right">
-    <input class="input" type="email" placeholder="Email input"  data-validation="uemail">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
+				<label for="input2">Number or nothing</label>
+				<input class="form-control" name="input2" type="text" data-bvStrict="number|empty">
 
-  </div>
-  <p class="help is-danger">This email is invalid</p>
-</div>
-                           
-<div class="field">
-  <label class="label">Phone Number</label>
-  <div class="control has-icons-right">
-    <input class="input" type="text" placeholder="Text input" data-validation="upnum">
-  </div>
-  <p class="help is-danger">Type Your PhoneNumber Here!</p>
-</div>
+				<label for="input3">Write some sentence</label>
+				<input class="form-control" name="input3" type="text" data-bvStrict="true" data-bvTransform="noSpaces">
 
+				<div class="row checkbox">
+					<label for="cond">
+						<input type="checkbox" name="cond" data-bvStrict="checked"> Checkbox
+					</label>
+				</div>
 
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input type="checkbox">
-      I agree to the <a href="#">terms and conditions</a>
-    </label>
-  </div>
-</div>
+				<button type="submit" class="btn btn-default">Submit</button>
 
-<div class="container-login100-form-btn p-t-25">
-  <div class="container-login100-form-btn p-t-25">
-    <button class="login100-form-btn" type="submit">Submit</button>
-  </div>    
-  <div class="container-login100-form-btn p-t-25">
-    <button class="login100-form-btn">Cancel</button>
-  </div>
-</div>					
-					
-</form>
+				<div class="help-block error-message error-input1">Fill e-mail or phone</div>
+				<span class="help-block error-message error-input2">Number is not valid</span>
+				<span class="help-block error-message error-cond">You have to check it</span>
+			</form>
+
+			<form action="" id="form-row-other">
+				<h2>Other examples in form with row structure</h2>
+				<div class="row form-group">
+					<label for="input0">String</label>
+					<input class="form-control" name="input0" type="text" data-bvStrict="string" data-bvSwitch="Enter string">
+					<div class="help-block error-message">This must be a string</div>
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+			</form>
+				
+				</div>
+			</div>
+		</div>
 
 	<!--===============================================================================================-->	
 		<script src="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -119,6 +110,55 @@
 		<script src=".C:\GitHub\GxSx\GxSx\src\main\webapp\resources\vendor/select2/select2.min.js"></script>
 	<!--===============================================================================================-->
 		<script src="C:\GitHub\GxSx\GxSx\src\main\webapp\resources\js/main.js"></script>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="../bvalidator.jquery.js"></script>
 	
+        <script type="text/javascript">
+			$(function(){
+				$('#form-row').bValidator();
+
+				$('#form-row-other').bValidator();
+
+				$('#form-direct').bValidator({
+					onFocusHideError: 	true,
+					domType: 			'direct',
+					onValid: 			function(form, element) {
+						console.log('Input with name ' + element.attr('name') + ' is valid');
+					},
+					onInvalid:       	function(form, element) {
+						console.log('Input with name ' + element.attr('name') + ' is invalid');
+					},
+					beforeSubmit: 		function(form, event) {
+						alert('Form is valid');
+					},
+					onSubmitFail:       function(form, event) {
+						alert('Form is NOT valid');
+					},
+					onFocusIn: function(form, element) {
+						console.log('Input focused in');
+					},
+					onFocusOut: function(form, element) {
+						console.log('Input focused out');
+					},
+					onKeyUp: function(form, element) {
+						console.log('Key pressed over input');
+					}
+				});
+			});
+		</script><script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 	</body>
 </html>

@@ -55,9 +55,18 @@
 						<li>
 							<a class="page-scroll" href="#support">Support</a>
 						</li>
-						<li>
-							<a class="page-scroll" href="login.do">Login</a>
-						</li>
+					<c:choose>
+						<c:when test="${sessionScope.kemail}!=null">
+							<li>
+								<a class="page-scroll" href="login.do">Mypage</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a class="page-scroll" href="login.do">Login</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->
@@ -68,9 +77,7 @@
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
-
-
-
+		
 		<section id="portfolio" style="padding-bottom:30px; margin-top:100px">
 			<div class="container">
 			<div class="row">
@@ -81,7 +88,7 @@
 				</div>
                 <p1 style="float: right"><a href=index.do>more ></a></p1>
 			</div>
-                
+         
 			<div class="row row-0-gutter" style="padding-top:10px">                
 				<!-- start portfolio item -->
 				<c:if test="${empty lostResult}">
@@ -113,6 +120,9 @@
 <%--         <a href="${kakao_url}">  --%>
 <!--         <img width="223" src="../images/logo.png" /></a>  -->
 <!--         </div> -->
+			<a href="logout.do">
+			<img width="223" src="../images/logo.png" /></a>
+			<div>여기 ${kname}</div>
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
    <!-- ******************************************************************************************** -->
@@ -316,3 +326,6 @@
 	
 </body>
 </html>
+
+
+
