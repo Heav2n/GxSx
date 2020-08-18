@@ -149,20 +149,14 @@
 		<!-- ******************************************************************************************** -->
 		<section id="portfolio"
 			style="padding-bottom: 30px; margin-top: 10px">
+			
+		<!-- 본문 화살표 -->
+			<a href="#" style="position:relative;left:130px;top:600px"><i class="icon-arrow-up"></i></a>
+			<a href="#" style="position:relative;left:1350px;top:600px"><i class="icon-arrow-up"></i></a>
+			
 			<div class="container" style="margin-top: 100px">
-				
-				
-		<!-- 카테고리분류 -->
-<!-- 				<div class="featured__controls"> -->
-<!--                         <ul> -->
-<!--                             <li class="active" data-filter="*">All</li> -->
-<!--                             <li data-filter=".oranges">Oranges</li> -->
-<!--                             <li data-filter=".fresh-meat">Fresh Meat</li> -->
-<!--                             <li data-filter=".vegetables">Vegetables</li> -->
-<!--                             <li data-filter=".fastfood">Fastfood</li> -->
-<!--                         </ul>                                                -->
-<!--                  </div> -->
-                    
+						
+		<!-- 카테고리분류 -->                    
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-6 col-md-3">
