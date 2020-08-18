@@ -137,5 +137,10 @@ public class TempController {
 	public String lostitem() {
 		return "temp/lostitem";
 	}
+	
+	@RequestMapping("finditem.do")
+	public String finditem() {
+		return "temp/finditem";
+	}
 
 }

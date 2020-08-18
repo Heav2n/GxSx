@@ -136,7 +136,7 @@
 	            <div class="row">
 	                <div class="col-lg-12 text-center">
 	                    <div class="breadcrumb__text">
-	                        <h21 style="font-size: 34px;color:white; font-weight:900">LOSTITEM</h21>	               
+	                        <h21 style="font-size: 34px;color:white; font-weight:900">FINDITEM</h21>	               
 	                    </div>
 	                </div>
 	            </div>
@@ -166,7 +166,7 @@
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-6 col-md-3">
-                                <div class="featured__controls2" style="margin-bottom:10px">
+                                <div class="featured__controls" style="margin-bottom:10px">
 				                        <ul>
 				                            <li class="active" data-filter="*">All</li>
 				                            <li data-filter=".oranges">Oranges</li>
@@ -182,7 +182,7 @@
 	                            </div>
                             </div>
                             <div class="col-lg-2 col-md-3" >
-                                <div class="filter__option2" >
+                                <div class="filter__option" >
                                     <span class="icon_grid-2x2"></span>
                                     <span class="icon_ul"></span>
                                 </div>
