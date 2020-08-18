@@ -23,4 +23,8 @@
 	<insert id="signup" parameterType="Users">
 		insert into Users values(#{userid}, #{upwd}, #{uname}, #{uemail}, #{upnum}, null)
 	</insert>
+	
+	<select id="login" resultType="Users" parameterType="String">
+		select * from users where userid = #{userid}
+	</select>
 </mapper>

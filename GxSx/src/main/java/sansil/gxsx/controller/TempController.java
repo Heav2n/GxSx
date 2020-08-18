@@ -81,6 +81,7 @@ public class TempController {
 			return mav; 
 	}
 	
+	
 	@RequestMapping("login.do")
 	public ModelAndView login(HttpSession session) { 
 		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
@@ -88,6 +89,28 @@ public class TempController {
 		mv.setViewName("temp/login");		
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
+	}
+	
+	@RequestMapping("logincheck.do")
+	public ModelAndView logincheck(HttpSession session) { 		
+		String userid = session.getAttribute("userid").toString();
+		String tempupwd = session.getAttribute("upwd").toString();
+		
+		Users users = service.loginS(userid);
+		String realupwd = users.getUpwd();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		if(tempupwd.equals(realupwd)) {					
+			mv.setViewName("temp/login");		
+			mv.addObject("loginuser", users);
+			return mv;
+		}
+		else {			
+			mv.setViewName("temp/loginerror");
+			return mv;
+		}
+		
 	}
 	
 	@RequestMapping(value = "logout.do", produces = "application/json")
@@ -109,6 +132,10 @@ public class TempController {
 		service.signupS(users);
 		return "redirect:domain.do";
 	}
-
+	
+	@RequestMapping("lostitem.do")
+	public String lostitem() {
+		return "temp/lostitem";
+	}
 
 }

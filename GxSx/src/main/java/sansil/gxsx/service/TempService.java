@@ -13,4 +13,5 @@ public interface TempService {
 	List<FindItem> listfiS();
 	List<LostPic> listlopicS();
 	void signupS(Users users);
+	Users loginS(String userid);
 }

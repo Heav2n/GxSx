@@ -12,4 +12,5 @@ public interface TempMapper {
 	List<FindItem> listfi();
 	List<LostPic> listlopic();
 	void signup(Users users);
+	Users login(String userid);
 }

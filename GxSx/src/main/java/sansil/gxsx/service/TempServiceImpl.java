@@ -35,5 +35,10 @@ public class TempServiceImpl implements TempService {
 	public void signupS(Users users) {
 		tempMapper.signup(users);
 	}
+	
+	@Override
+	public Users loginS(String userid) {
+		return tempMapper.login(userid);	
+	};
 
 }

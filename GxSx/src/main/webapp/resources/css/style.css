@@ -96,7 +96,7 @@ ul li {
     list-style: none;
     padding-bottom: 10px;
     font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 23px;
     letter-spacing: 0.2px;
@@ -111,7 +111,7 @@ section ul li:before {
 	text-decoration: inherit;
 	content: "\f105";
 	padding-right: 7px;
-	color: #23AD21;
+	color: #ffffff;
 }
 
 /*--------------------
