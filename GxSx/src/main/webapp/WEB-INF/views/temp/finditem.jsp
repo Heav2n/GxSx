@@ -116,6 +116,12 @@
 										<li><a href="#">jQuery</a></li>
 									</ul></li>
 								<li><a href="contact.do">Contact</a></li>
+								<li class="has-dropdown"><a href="mypage.do">Mypage</a>
+									<ul class="dropdown">
+										<li><a href="#">Myboard</a></li>
+										<li><a href="#">Modify</a></li>
+									</ul>
+								</li>
 								<c:if test="${ empty Users}">
 									<li><a href="login.do">Login</a></li>
 								</c:if>

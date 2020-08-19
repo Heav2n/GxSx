@@ -103,15 +103,23 @@
 										<li><a href="#">eCommerce</a></li>
 										<li><a href="#">Branding</a></li>
 										<li><a href="#">API</a></li>
-									</ul></li>
+									</ul>
+								</li>
 								<li class="has-dropdown"><a href="lostitem.do">LostItem</a>
 									<ul class="dropdown">
 										<li><a href="#">HTML5</a></li>
 										<li><a href="#">CSS3</a></li>
 										<li><a href="#">Sass</a></li>
 										<li><a href="#">jQuery</a></li>
-									</ul></li>
+									</ul>
+								</li>
 								<li><a href="contact.do">Contact</a></li>
+								<li class="has-dropdown"><a href="mypage.do">Mypage</a>
+									<ul class="dropdown">
+										<li><a href="#">Myboard</a></li>
+										<li><a href="#">Modify</a></li>
+									</ul>
+								</li>
 								<c:if test="${ empty Users}">
 									<li><a href="login.do">Login</a></li>
 								</c:if>
