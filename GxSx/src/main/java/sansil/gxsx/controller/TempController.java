@@ -142,5 +142,15 @@ public class TempController {
 	public String finditem() {
 		return "temp/finditem";
 	}
+	
+	@RequestMapping("contact.do")
+	public String contact() {
+		return "temp/contact";
+	}
+	
+	@RequestMapping("myboard.do")
+	public String myboard() {
+		return "temp/myboard";
+	}
 
 }

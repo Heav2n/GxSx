@@ -68,6 +68,10 @@
 		<script src="../js/church/modernizr-2.6.2.min.js"></script>
 	<!-- /church -->
 	
+	<!-- organi -->
+		<link rel="stylesheet" href="../css/organi/elegant-icons.css">
+	<!-- /organi -->
+	
 		<link rel="icon" href="favicon.ico">
 		<title>Sanza - Onepage Multipurpose Bootstrap HTML by MOOZThemes.com</title>
 		<!-- Bootstrap core CSS -->
@@ -77,89 +81,9 @@
 		<link href="../css/owl.carousel.css" rel="stylesheet">
 		<link href="../css/owl.theme.default.min.css"  rel="stylesheet">
 		<link href="../css/style.css" rel="stylesheet">
-		
-	<!-- popup -->
-		<style> 
-		/* 마스크 뛰우기 */
-		#mask {  
-		    position:absolute;  
-		    z-index:9000;  
-		    background-color:#fff;  
-		    display:none;  
-		    left:0;
-		    top:0;
-		} 
-		/* 팝업으로 뜨는 윈도우 css  */ 
-		.window{
-		    display: none;
-		    position:relative;  
-		    float:right;
-		    right:2%;
-		    bottom:20px;
-		    margin-left: -500px;
-		    width:300px;
-		    height:400px;
-		    background-color:#FFF;
-		    z-index:10000; 
-		    border-radius: 7px;
-		    border: 0.5px solid #B5B5B5;
-		    box-shadow: 0px 0px 7px 1px #B5B5B5;
-		 }
-		 
-		</style>
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script type="text/javascript"> 
-		//<![CDATA[
-		    function wrapWindowByMask(){
-		 
-		        //화면의 높이와 너비를 구한다.
-		        var maskHeight = $(document).height();  
-		        var maskWidth = $(window).width();  
-		 
-		        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
-		        $("#mask").css({"width":maskWidth,"height":maskHeight});  
-		 
-		        //애니메이션 효과 - 일단 0초동안 까맣게 됐다가 60% 불투명도로 간다.
-		 
-		        $("#mask").fadeIn(0);      
-		        $("#mask").fadeTo("slow",0.0);    
-		 
-		        //윈도우 같은 거 띄운다.
-		        $(".window").show();
-		 
-		    }
-		 
-		    $(document).ready(function(){
-		        //검은 막 띄우기
-		        $(".openMask").click(function(e){
-		            e.preventDefault();
-		            wrapWindowByMask();
-		        });
-		 
-		        //닫기 버튼을 눌렀을 때
-		        $(".window .close").click(function (e) {  
-		            //링크 기본동작은 작동하지 않도록 한다.
-		            e.preventDefault();  
-		            $("#mask, .window").hide();  
-		        });       
-		 
-		        //검은 막을 눌렀을 때
-		        $("#mask").click(function () {  
-		            $(this).hide();  
-		            $(".window").hide();  
-		 
-		        });      
-		 
-		    });
-		 
-		//]]>
-		</script>
-	<!-- /popup -->
-	
 	</head>
 	
 	<body>
-	
 	<!--  berryllium 맨위 메뉴-->
 		<div class="gtco-loader"></div>
 		<div id="page">
@@ -183,20 +107,18 @@
 										<li><a href="#">eCommerce</a></li>
 										<li><a href="#">Branding</a></li>
 										<li><a href="#">API</a></li>
-									</ul>
-								</li>
+									</ul></li>
 								<li class="has-dropdown"><a href="lostitem.do">LostItem</a>
 									<ul class="dropdown">
 										<li><a href="#">HTML5</a></li>
 										<li><a href="#">CSS3</a></li>
 										<li><a href="#">Sass</a></li>
 										<li><a href="#">jQuery</a></li>
-									</ul>
-								</li>
+									</ul></li>
 								<li><a href="contact.do">Contact</a></li>
-								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a>
+								<li class="has-dropdown"><a href="mypage.do">Mypage</a>
 									<ul class="dropdown">
-										<li><a href="myboard.do">Myboard</a></li>
+										<li><a href="#">Myboard</a></li>
 										<li><a href="#">Modify</a></li>
 									</ul>
 								</li>
@@ -213,196 +135,149 @@
 				</div>
 			</nav>
 			
-		<!-- popup -->
-			<div id ="wrap"> 
-		        <div id = "container">  
-		            <div id="mask"></div>
-		            <div class="window">
-		                <p style="width:280px;height:380px;margin:20px;text-align:center;vertical-align:middle;">
-		                	팝업 내용 입력</br>mmsad</br><hr>
-		                </p>
-		                <p style="text-align:center; background:#ffffff;"><a href="#" class="close">닫기X</a></p>
-		            </div>
-		        </div>
-		    </div>
-		<!-- /popup -->
-			
 		<!-- /berryllium -->	
-		
-		<!-- berryllium 메뉴 바로 밑  사진 -->
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="owl-carousel owl-carousel-fullwidth">
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_1.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
-						</div>
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_2.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
-						</div>
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_3.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /berryllium -->
+
+		<section class="breadcrumb-section" style="background-image:url(../images/breadcrumb.jpg);background-size: cover">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12 text-center">
+	                    <div class="breadcrumb__text">
+	                        <h21 style="font-size: 34px;color:white; font-weight:900">MYBOARD</h21>	               
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+   		 </section>
+
 		
 		<!-- 습득물******************************************************************************************** -->
-		<!-- ******************************************************************************************** -->
+		
+
 		<section id="portfolio"
 			style="padding-bottom: 30px; margin-top: 10px">
-			<div class="container">
+						
+			<div class="container" style="margin-top: 100px">
+						
+		<!-- 카테고리분류 -->                    
+                    <div class="filter__item">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-3">
+                                <div class="featured__controls2" style="margin-bottom:10px">
+				                        <ul>
+				                            <li class="active" data-filter="*">All</li>
+				                            <li data-filter=".oranges">Lostitem</li>
+				                            <li data-filter=".fresh-meat">Finditem</li>
+				                        </ul>                                               
+				                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-3">
+	                            <div class="filter__option">
+	                                  &nbsp
+	                            </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3" >
+                                <div class="filter__option2" >
+                                    <span class="icon_grid-2x2"></span>
+                                    <span class="icon_ul"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+		<!-- 아이템 -->
 				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="section-title">
-							<h21 style="float: left">FINDITEM</h21>
+				
+				<div id="fh5co-news" class="fh5co-light-grey" style="padding-bottom:20px">
+			
+			<div class="row">
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-1.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Live News</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 						</div>
 					</div>
-					<p1 style="float: right">
-					<a href=index.do>more ></a></p1>
 				</div>
-				
-				<!-- church -->
-				<div class="row">
-				<c:if test="${empty lostResult}">
-						<tr align="center" noshade>
-							<td colspan="5">데이터가 하나도 없음</td>
-						</tr>
-				</c:if>
-				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
-					<div class="col-md-4 animate-box">
-						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="분실물" ></a>
-								<div class="events-entry">
-									<span class="date">${lostitem.lodate}</span>
-									<h3>
-										<a href="#">${lostitem.losub}</a>
-									</h3>
-									<p>${lostitem.loplace}</p>
-								</div>
-							</div>
-					</div>
-				</c:forEach>
-				<div class="col-md-4 animate-box">
-					<div class="services">
+				<div class="col-md-3 animate-box">
+					<div class="news">
 						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
 						<div class="desc">
+							<span class="date">March 30, 2017</span>
 							<h3><a href="#">Biblical Counseling</a></h3>
 							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-							<a href="#">Read More <i class="icon-arrow-right3"></i></a>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 animate-box">
-					<div class="services">
+				<div class="col-md-3 animate-box">
+					<div class="news">
 						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
 						<div class="desc">
+							<span class="date">March 30, 2017</span>
 							<h3><a href="#">Helping Children</a></h3>
 							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-							<a href="#">Read More <i class="icon-arrow-right3"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-4.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Helping Children</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-1.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Live News</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Biblical Counseling</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Helping Children</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 animate-box">
+					<div class="news">
+						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-4.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+						<div class="desc">
+							<span class="date">March 30, 2017</span>
+							<h3><a href="#">Helping Children</a></h3>
+							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /church -->
 			
 				</div>
 			</div>
 			<!-- end container -->
 		</section>
 
-
-		<!--         <div id="kakao_id_login" style="text-align: center">  -->
-		<%--         <a href="${kakao_url}">  --%>
-		<!--         <img width="223" src="../images/logo.png" /></a>  -->
-		<!--         </div> -->
-
-		<!-- 분실물******************************************************************************************** -->
 		<!-- ******************************************************************************************** -->
-
-		<section id="portfolio" style="padding-top: 20px">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="section-title">
-							<h22 style="float: left">LOSTITEM</h22>
-						</div>
-					</div>
-					<p1 style="float: right">
-					<a href=index.do>more ></a></p1>
-				</div>
-
-				<div class="row row-0-gutter" style="padding-top: 10px">
-					<!-- start portfolio item -->
-					<div class="col-md-4 col-0-gutter">
-						<div class="ot-portfolio-item">
-							<figure class="effect-bubba">
-								<img src="images/demo/portfolio-1.jpg" alt="img02"
-									class="img-responsive" />
-								<figcaption>
-									<h2>Dean & Letter</h2>
-									<p>Branding, Design</p>
-									<a href="#" data-toggle="modal" data-target="#Modal-1">View
-										more</a>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<!-- end portfolio item -->
-					<!-- start portfolio item -->
-					<div class="col-md-4 col-0-gutter">
-						<div class="ot-portfolio-item">
-							<figure class="effect-bubba">
-								<img src="images/demo/portfolio-2.jpg" alt="img02"
-									class="img-responsive" />
-								<figcaption>
-									<h2>Startup Framework</h2>
-									<p>Branding, Web Design</p>
-									<a href="#" data-toggle="modal" data-target="#Modal-2">View
-										more</a>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<!-- end portfolio item -->
-					<!-- start portfolio item -->
-					<div class="col-md-4 col-0-gutter">
-						<div class="ot-portfolio-item">
-							<figure class="effect-bubba">
-								<img src="images/demo/portfolio-3.jpg" alt="img02"
-									class="img-responsive" />
-								<figcaption>
-									<h2>Lamp & Velvet</h2>
-									<p>Branding, Web Design</p>
-									<a href="#" data-toggle="modal" data-target="#Modal-3">View
-										more</a>
-								</figcaption>
-							</figure>
-						</div>
-					</div>
-					<!-- end portfolio item -->
-				</div>
-			</div>
-			<!-- end container -->
-		</section>
-
 
 		<footer>
 			<section id="contact" class="dark-bg" style="padding: 20px">
@@ -487,11 +362,12 @@
 		<script src="../js/beryllium/owl.carousel.min.js"></script>
 		<!-- Main -->
 		<script src="../js/beryllium/main.js"></script>
-	<!-- beryllium --></body>
-</html>
+	<!-- beryllium -->
 	
-</body>
+	<!-- organi -->
+		<!-- Main -->
+		<script src="../js/organi/main.js"></script>
+	<!-- /organi -->
+	
+	</body>
 </html>
-
-
-
