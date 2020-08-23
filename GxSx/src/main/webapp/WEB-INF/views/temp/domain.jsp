@@ -159,6 +159,7 @@
 	</head>
 	
 	<body>
+
 	
 	<!--  berryllium 맨위 메뉴-->
 		<div class="gtco-loader"></div>
@@ -197,14 +198,17 @@
 								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a>
 									<ul class="dropdown">
 										<li><a href="myboard.do">Myboard</a></li>
-										<li><a href="#">Modify</a></li>
+										<li><a href="modifyform.do">Modify</a></li>
 									</ul>
 								</li>
-								<c:if test="${ empty Users}">
+								<c:if test="${ empty loginuser && empty klogin}">
 									<li><a href="login.do">Login</a></li>
 								</c:if>
-								<c:if test="${ !empty Users}">
+								<c:if test="${ !empty loginuser}">
 									<li><a href="logout.do">Logout</a></li>
+								</c:if>
+								<c:if test="${!empty klogin}">
+									<li><a href="${kakaologout_url}">Logout</a></li>
 								</c:if>
 							</ul>
 						</div>

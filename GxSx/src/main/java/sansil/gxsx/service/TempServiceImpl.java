@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,8 @@ public class TempServiceImpl implements TempService {
 	}
 	
 	@Override
-	public Users loginS(String userid) {
-		return tempMapper.login(userid);	
+	public Users loginS(HashMap loginmap) {
+		return tempMapper.login(loginmap);	
 	};
 
 }

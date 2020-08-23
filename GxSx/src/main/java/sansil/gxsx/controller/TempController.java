@@ -1,5 +1,6 @@
 package sansil.gxsx.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.JsonNode;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ public class TempController {
 //	private FindItemservice fservice;
 	
 	@RequestMapping("domain.do")
-	public ModelAndView list() { 
+	public ModelAndView list(HttpSession session) { 
 		List<LostItem> lostResult = service.listloS();
 		List<FindItem> findResult = service.listfiS();
 		List<LostPic> lostpicResult = service.listlopicS();
@@ -44,41 +46,52 @@ public class TempController {
 		mv.addObject("lostResult", lostResult);
 		mv.addObject("findResult", findResult);
 		mv.addObject("lostpicResult", lostpicResult);
+		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
+		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
+		
+		if(session.getAttribute("klogin")!=null) {
+			if(service.kakaologinS(session.getAttribute("kid").toString())==null) {
+				
+			}
+			else {
+				
+			}			
+		}
+		
 		return mv;
 	}
 	
 	@RequestMapping(value = "kakaologin.do", produces = "application/json") 
 	public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response, HttpSession session) 
 			throws Exception { 
-		    ModelAndView mav = new ModelAndView(); // 결과값을 node에 담아줌 
+		    ModelAndView mv = new ModelAndView(); // 결과값을 node에 담아줌 
 			JsonNode node = KakaoController.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음 
 			JsonNode accessToken = node.get("access_token"); // 사용자의 정보 
+			JsonNode scope = node.get("scope"); // 사용자의 정보 
 			JsonNode userInfo = KakaoController.getKakaoUserInfo(accessToken); 
 			String token = node.get("access_token").toString();
-			String kemail = null; 
-			String kname = null; 
-			String kgender = null; 
-			String kbirthday = null; 
-			String kage = null; 
-			String kimage = null; // 유저정보 카카오에서 가져오기 Get properties 
+			String temp2 = scope.get("account_email").toString();
+			String kemail = null;
+			String kname = null;
+			String kid = null;
 			JsonNode properties = userInfo.path("properties"); 
 			JsonNode kakao_account = userInfo.path("kakao_account"); 
+			kid = userInfo.findPath("id").asText();
 			kemail = kakao_account.path("email").asText(); 
 			kname = properties.path("nickname").asText(); 
-			kimage = properties.path("profile_image").asText(); 
-			kgender = kakao_account.path("gender").asText(); 
-			kbirthday = kakao_account.path("birthday").asText(); 
-			kage = kakao_account.path("age_range").asText(); 
 			session.setAttribute("token", token); 
 			session.setAttribute("kemail", kemail); 
-			session.setAttribute("kname", kname); 
-			session.setAttribute("kimage", kimage); 
-			session.setAttribute("kgender", kgender); 
-			session.setAttribute("kbirthday", kbirthday); 
-			session.setAttribute("kage", kage); 
-			mav.setViewName("temp/domain"); 
+			session.setAttribute("kname", kname);
+			session.setAttribute("kid", kid);
+			session.setAttribute("klogin", "klogin");
 			
-			return mav; 
+			System.out.println("kemail: " + kakao_account.path("email") + kemail + "kname: " + kname + kid + " :ddd: " + " / " + temp2);
+			
+			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);	//로그아웃가능하게 주소 미리 받아줌
+			mv.setViewName("temp/domain");		
+			mv.addObject("kakaologout_url", kakaologoutUrl);
+			
+			return mv;
 	}
 	
 	
@@ -90,39 +103,53 @@ public class TempController {
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
-	
-	@RequestMapping("logincheck.do")
-	public ModelAndView logincheck(HttpSession session) { 		
-		String userid = session.getAttribute("userid").toString();
-		String tempupwd = session.getAttribute("upwd").toString();
-		
-		Users users = service.loginS(userid);
-		String realupwd = users.getUpwd();
-		
-		ModelAndView mv = new ModelAndView();
-		
-		if(tempupwd.equals(realupwd)) {					
-			mv.setViewName("temp/login");		
-			mv.addObject("loginuser", users);
-			return mv;
+
+	@PostMapping("logincheck.do")
+	public String logincheck(HttpServletRequest request, HttpSession session) { 
+		String userid = request.getParameter("userid");
+		String upwd = request.getParameter("upwd");
+
+		HashMap<String, String> loginmap = new HashMap<String, String>(); 
+		loginmap.put("userid", userid);
+		loginmap.put("upwd", upwd);
+		Users users = service.loginS(loginmap);
+
+		if(users == null || users.getUoutdate()!=null) {
+			System.out.println("dldldldldl!!!! : null");
+			session.setAttribute("loginuser", null);
 		}
-		else {			
-			mv.setViewName("temp/loginerror");
-			return mv;
+		else { //users 비어져있지 않고 탈퇴날짜없음 -> login
+			System.out.println("dldldldldl!!!! : login");
+			session.setAttribute("loginuser", users);
 		}
-		
+
+		return "redirect:domain.do";
 	}
 	
-	@RequestMapping(value = "logout.do", produces = "application/json")
-	public String Logout(HttpSession session) {
-        //노드에 로그아웃한 결과값음 담아줌 매개변수는 세션에 잇는 token을 가져와 문자열로 변환
-        JsonNode node = KakaoController.Logout(session.getAttribute("token").toString());
-        //결과 값 출력
-        System.out.println("로그인 후 반환되는 아이디 : " + node.get("id"));
+	@RequestMapping("logout.do")
+	public String Logout(HttpSession session) {		
+		
+			System.out.println("일반유저 로그아웃");
+//			session.setAttribute("loginuser", null); //일반 로그인시 로그아웃 하고 user비워줌
+			session.invalidate();
+			
         return "redirect:domain.do";
     }
 	
-	@RequestMapping("signupform.do")
+	@RequestMapping(value = "kakaologout.do", produces = "application/json")
+	public String kakaologout(HttpSession session) {		
+		
+			System.out.println("카카오유저 로그아웃");
+	        
+	        KakaoController.Logout((String)session.getAttribute("access_Token"));
+	        session.invalidate();	        
+
+        return "redirect:domain.do";
+    }
+	
+	
+	
+	@GetMapping("signupform.do")
 	public String signupform() {
 		return "temp/signup";
 	}
@@ -151,6 +178,16 @@ public class TempController {
 	@RequestMapping("myboard.do")
 	public String myboard() {
 		return "temp/myboard";
+	}
+	
+	@RequestMapping("modifyform.do")
+	public String modifyform() {
+		return "temp/modifyform";
+	}
+	
+	@RequestMapping("modify.do")
+	public String modify() {
+		return "temp/modify";
 	}
 
 }

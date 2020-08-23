@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import sansil.gxsx.domain.FindItem;
@@ -13,5 +14,6 @@ public interface TempService {
 	List<FindItem> listfiS();
 	List<LostPic> listlopicS();
 	void signupS(Users users);
-	Users loginS(String userid);
+	Users loginS(HashMap loginmap);
+	Users kakaologinS(String kid);
 }

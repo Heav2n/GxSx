@@ -23,13 +23,20 @@ import org.springframework.stereotype.Controller;
 public class KakaoController {
 	private final static String K_CLIENT_ID = "1b172907c75e31d1b0b32730ffc05e8c"; //이런식으로 REDIRECT_URI를 써넣는다. 
 	 
-	private final static String K_REDIRECT_URI = "http://127.0.0.1:8080/test/temp/kakaologin.do"; 
+	private final static String K_REDIRECT_URI = "http://127.0.0.1:8080/test/temp/kakaologin.do"; //로그인
 	public static String getAuthorizationUrl(HttpSession session) { 
 		String kakaoUrl = "https://kauth.kakao.com/oauth/authorize?" + "client_id=" + K_CLIENT_ID 
 				+ "&redirect_uri=" + K_REDIRECT_URI + "&response_type=code"; 
-		return kakaoUrl; 
+		return kakaoUrl;
 				} 
-	
+
+	private final static String K_REDIRECT_URI2 = "http://127.0.0.1:8080/test/temp/kakaologout.do";  //로그아웃
+	public static String getAuthorizationUrl2(HttpSession session) { 
+		String kakaoUrl = "https://kauth.kakao.com/oauth/logout?" + "client_id=" + K_CLIENT_ID 
+				+ "&logout_redirect_uri=" + K_REDIRECT_URI2; 
+		return kakaoUrl;
+				}
+
 	public static JsonNode getAccessToken(String autorize_code) { 
 		final String RequestUrl = "https://kauth.kakao.com/oauth/token"; 
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>(); 

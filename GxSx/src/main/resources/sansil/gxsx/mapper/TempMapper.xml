@@ -24,7 +24,7 @@
 		insert into Users values(#{userid}, #{upwd}, #{uname}, #{uemail}, #{upnum}, null)
 	</insert>
 	
-	<select id="login" resultType="Users" parameterType="String">
-		select * from users where userid = #{userid}
+	<select id="login" resultType="Users" parameterType="HashMap">
+		select * from users where userid = #{userid} and upwd = #{upwd}
 	</select>
 </mapper>

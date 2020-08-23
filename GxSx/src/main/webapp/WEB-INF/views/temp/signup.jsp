@@ -17,7 +17,46 @@
 		<link rel="stylesheet" href="../css/signupmain.css">
 <!--==============================================================================================-->
 	</head>
-
+	<!-- <script type="text/javascript">
+		$(document).ready(function(){
+			// 취소
+			$("#cancel").on("click", function(){
+				location.href = "/signupform.do";	    
+			})		
+			$("#submit").on("click", function(){
+				if($("#userid").val()==""){
+					alert("아이디를 입력해주세요.");
+					$("#userid").focus();
+					return false;
+				}
+				if($("#upwd").val()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#upwd").focus();
+					return false;
+				}
+				if($("#upwdagain").val()==""){
+					alert("비밀번호를 다시입력해주세요.");
+					$("#upwdagain").focus();
+					return false;
+				}
+				if($("#uname").val()==""){
+					alert("성명을 입력해주세요.");
+					$("#uname").focus();
+					return false;
+				}
+				if($("#uemail").val()==""){
+					alert("성명을 입력해주세요.");
+					$("#uemail").focus();
+					return false;
+				}
+				if($("#upnum").val()==""){
+					alert("핸드폰번호를 입력해주세요.");
+					$("#upnum").focus();
+					return false;
+				}
+			});			
+		})
+	</script> -->
 	<body>		
 		<div class="limiter">
 			<div class="container-login100">
@@ -27,36 +66,36 @@
 			<form action="signup.do" name="input" id="form-row" method="post">
 				<div class="row form-group">
 					<label for="input0">ID</label>
-					<input class="form-control" name="userid" type="text" data-bvStrict="notEmpty" data-bvSwitch="ID">
+					<input class="form-control" id="userid" name="userid" type="text" data-bvStrict="notEmpty" data-bvSwitch="ID">
 					<div class="help-block error-message">Fill your ID</div>
 				</div>
 				
 				<div class="row form-group">
 					<label for="input3">Password</label>
-					<input class="form-control" name="upwd" type="password" data-bvStrict="reg:^.{5,}">
+					<input class="form-control" id="upwd" name="upwd" type="password" data-bvStrict="reg:^.{5,}">
 					<span class="help-block error-message">Password must have at least 5 letters</span>
 				</div>
 				<div class="row form-group">
 					<label for="input4">Password again</label>
-					<input class="form-control" name="upwdagain" type="password" data-bvStrict="same:upwd" >
+					<input class="form-control" id="upwdagain" name="upwdagain" type="password" data-bvStrict="same:upwd" >
 					<span class="help-block error-message" style ="color:red">Password does not match</span>
 				</div>
 				
 				<div class="row form-group">
 					<label for=-"input0">Name</label>
-					<input class="form-control" name="uname" type="text" data-bvStrict="string" data-bvSwitch="Your Name">
+					<input class="form-control" id="uname" name="uname" type="text" data-bvStrict="string" data-bvSwitch="Your Name">
 					<div class="help-block error-message">This must be a string</div>
 				</div>
 				
 				<div class="row form-group">
 					<label for="input1">E-mail address</label>
-					<input class="form-control" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
+					<input class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
 					<div class="help-block error-message">Fill valid e-mail address</div>
 				</div>
 				
 				<div class="row form-group">
 					<label for="input2">Phone Number</label>
-					<input class="form-control" name="upnum" type="text" data-bvStrict="phone" data-bvSwitch="000-0000-0000">
+					<input class="form-control" id="upnum" name="upnum" type="text" data-bvStrict="phone" data-bvSwitch="000-0000-0000">
 					<div class="help-block error-message">(-)를 포함한 다음의 형태로 입력해주세요(000-0000-0000)</div>
 				</div>
 				
@@ -68,6 +107,7 @@
 				</div>
 				
 				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="button" id="cancel" class="btn btn-default">Submit</button>
 			</form>
 			
 			<!-- Modal -->
