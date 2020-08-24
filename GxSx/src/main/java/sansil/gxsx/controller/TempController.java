@@ -34,7 +34,7 @@ public class TempController {
 //	private FindItemservice fservice;
 	
 	@RequestMapping("domain.do")
-	public ModelAndView list(HttpSession session) { 
+	public ModelAndView list(HttpServletRequest request, HttpSession session) { 
 		List<LostItem> lostResult = service.listloS();
 		List<FindItem> findResult = service.listfiS();
 		List<LostPic> lostpicResult = service.listlopicS();
@@ -49,12 +49,20 @@ public class TempController {
 		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
 		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
 		
+
 		if(session.getAttribute("klogin")!=null) { //kakao로 로그인 했을때
-			if(service.kakaologinS(session.getAttribute("kid").toString())==null) { //kakao로 회원계정이 등록되어있지않으면 -> 등록하게해야함
-				
+			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);
+			mv.addObject("kakaologout_url", kakaologoutUrl);
+			
+			Users usercheck = service.kakaologinS(session.getAttribute("kid").toString());
+			if(usercheck==null) { //kakao로 회원계정이 등록되어있지않으면 -> 등록하게해야함
+				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 되 지 않 은 회 원 %%%%%%%%%%%%%%%%%%%%");
 			}
 			else { //kakao로 로그인했고 & 회원계정이 등록 되어있음 -> 그 계정으로 로그인 한번더(session에 넘겨줌)
-				
+				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 된 회 원 %%%%%%%%%%%%%%%%%%%%");
+				mv.addObject("userid", usercheck.getUserid());
+				mv.addObject("userid", usercheck.getUpwd());
+				logincheck(request,session);
 			}			
 		}
 		
@@ -62,7 +70,7 @@ public class TempController {
 	}
 	
 	@RequestMapping(value = "kakaologin.do", produces = "application/json") 
-	public ModelAndView kakaoLogin(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response, HttpSession session) 
+	public String kakaoLogin(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response, HttpSession session) 
 			throws Exception { 
 		    ModelAndView mv = new ModelAndView(); // 결과값을 node에 담아줌 
 			JsonNode node = KakaoController.getAccessToken(code); // accessToken에 사용자의 로그인한 모든 정보가 들어있음 
@@ -70,7 +78,6 @@ public class TempController {
 			JsonNode scope = node.get("scope"); // 사용자의 정보 
 			JsonNode userInfo = KakaoController.getKakaoUserInfo(accessToken); 
 			String token = node.get("access_token").toString();
-			String temp2 = scope.get("account_email").toString();
 			String kemail = null;
 			String kname = null;
 			String kid = null;
@@ -85,13 +92,13 @@ public class TempController {
 			session.setAttribute("kid", kid);
 			session.setAttribute("klogin", "klogin");
 			
-			System.out.println("kemail: " + kakao_account.path("email") + kemail + "kname: " + kname + kid + " :ddd: " + " / " + temp2);
+			System.out.println("kemail: " + kemail + "kname: " + kname + kid + " :ddd: " + " / ");
 			
 			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);	//로그아웃가능하게 주소 미리 받아줌
 			mv.setViewName("temp/domain");		
 			mv.addObject("kakaologout_url", kakaologoutUrl);
 			
-			return mv;
+			return "redirect:domain.do";
 	}
 	
 	
@@ -115,11 +122,11 @@ public class TempController {
 		Users users = service.loginS(loginmap);
 
 		if(users == null || users.getUoutdate()!=null) {
-			System.out.println("dldldldldl!!!! : null");
+			System.out.println("로그인 실패 :탈퇴날짜!!!! : null");
 			session.setAttribute("loginuser", null);
 		}
 		else { //users 비어져있지 않고 탈퇴날짜없음 -> login
-			System.out.println("dldldldldl!!!! : login");
+			System.out.println("로그인 성공!!!! : login");
 			session.setAttribute("loginuser", users);
 		}
 
@@ -132,7 +139,7 @@ public class TempController {
 			System.out.println("일반유저 로그아웃");
 //			session.setAttribute("loginuser", null); //일반 로그인시 로그아웃 하고 user비워줌
 			session.invalidate();
-			
+			System.out.println("access_token:!!!!!!!!!!!!!!!!!!!!!!!!!!!!:"+(String)session.getAttribute("access_Token"));
         return "redirect:domain.do";
     }
 	
@@ -188,6 +195,11 @@ public class TempController {
 	@RequestMapping("modify.do")
 	public String modify() {
 		return "temp/modify";
+	}
+	
+	@RequestMapping("temptemp.do")
+	public String temptemp() {
+		return "temp/temptemp";
 	}
 
 }

@@ -40,6 +40,11 @@ public class TempServiceImpl implements TempService {
 	@Override
 	public Users loginS(HashMap loginmap) {
 		return tempMapper.login(loginmap);	
-	};
+	}
+	
+	@Override
+	public Users kakaologinS(String kid) {		
+		return tempMapper.usercheck(kid);
+	}
 
 }

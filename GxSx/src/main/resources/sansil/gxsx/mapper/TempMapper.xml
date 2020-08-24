@@ -27,4 +27,9 @@
 	<select id="login" resultType="Users" parameterType="HashMap">
 		select * from users where userid = #{userid} and upwd = #{upwd}
 	</select>
+	
+	<select id="usercheck" resultType="Users" parameterType="String">
+		select * from users where userid = #{kid}
+	</select>
+	
 </mapper>

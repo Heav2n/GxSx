@@ -14,4 +14,5 @@ public interface TempMapper {
 	List<LostPic> listlopic();
 	void signup(Users users);
 	Users login(HashMap loginmap);
+	Users usercheck(String kid);
 }

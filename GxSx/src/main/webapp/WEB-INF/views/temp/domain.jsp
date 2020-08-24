@@ -77,12 +77,14 @@
 		<link href="../css/owl.carousel.css" rel="stylesheet">
 		<link href="../css/owl.theme.default.min.css"  rel="stylesheet">
 		<link href="../css/style.css" rel="stylesheet">
-		
-	<!-- -------------- -->
-		<link rel="stylesheet" href="../css/styles/index2.scss">
-		<link rel="stylesheet" href="../css/styles/index3.scss">
-		<link rel="stylesheet" href="../css/styles/index4.scss">
-		<link rel="stylesheet" href="../css/styles/index5.scss">
+	
+	<!-- /// -->
+			<link href="../css/admi/index.scss" rel="stylesheet">
+			
+			<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 		
 	<!-- popup -->
 		<style> 
@@ -159,6 +161,123 @@
           opacity: 0;
         }
       }
+/*       admi */
+
+.dropdown-menu.notify-drop {
+  min-width: 330px;
+  background-color: #fff;
+  max-height: 360px;
+}
+.dropdown-menu.notify-drop .notify-drop-title {
+  border-bottom: 1px solid #e2e2e2;
+  padding: 5px 15px 10px 15px;
+}
+.dropdown-menu.notify-drop .drop-content {
+  min-height: 280px;
+  max-height: 280px;
+  overflow-y: scroll;
+}
+.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-track
+{
+  background-color: #F5F5F5;
+}
+
+.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar
+{
+  width: 8px;
+  background-color: #F5F5F5;
+}
+
+.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-thumb
+{
+  background-color: #ccc;
+}
+.dropdown-menu.notify-drop .drop-content > li {
+  border-bottom: 1px solid #e2e2e2;
+  padding: 10px 0px 5px 0px;
+}
+.dropdown-menu.notify-drop .drop-content > li:nth-child(2n+0) {
+  background-color: #fafafa;
+}
+.dropdown-menu.notify-drop .drop-content > li:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.dropdown-menu.notify-drop .drop-content > li:hover {
+  background-color: #fcfcfc;
+}
+.dropdown-menu.notify-drop .drop-content > li:last-child {
+  border-bottom: none;
+}
+.dropdown-menu.notify-drop .drop-content > li .notify-img {
+  float: left;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  margin: 0px 0px 8px 0px;
+}
+.dropdown-menu.notify-drop .allRead {
+  margin-right: 7px;
+}
+.dropdown-menu.notify-drop .rIcon {
+  float: right;
+  color: #999;
+}
+.dropdown-menu.notify-drop .rIcon:hover {
+  color: #333;
+}
+.dropdown-menu.notify-drop .drop-content > li a {
+  font-size: 12px;
+  font-weight: normal;
+}
+.dropdown-menu.notify-drop .drop-content > li {
+  font-weight: bold;
+  font-size: 11px;
+}
+.dropdown-menu.notify-drop .drop-content > li hr {
+  margin: 5px 0;
+  width: 70%;
+  border-color: #e2e2e2;
+}
+.dropdown-menu.notify-drop .drop-content .pd-l0 {
+  padding-left: 0;
+}
+.dropdown-menu.notify-drop .drop-content > li p {
+  font-size: 11px;
+  color: #666;
+  font-weight: normal;
+  margin: 3px 0;
+}
+.dropdown-menu.notify-drop .drop-content > li p.time {
+  font-size: 10px;
+  font-weight: 600;
+  top: -6px;
+  margin: 8px 0px 0px 0px;
+  padding: 0px 3px;
+  border: 1px solid #e2e2e2;
+  position: relative;
+  background-image: linear-gradient(#fff,#f2f2f2);
+  display: inline-block;
+  border-radius: 2px;
+  color: #B97745;
+}
+.dropdown-menu.notify-drop .drop-content > li p.time:hover {
+  background-image: linear-gradient(#fff,#fff);
+}
+.dropdown-menu.notify-drop .notify-drop-footer {
+  border-top: 1px solid #e2e2e2;
+  bottom: 0;
+  position: relative;
+  padding: 8px 15px;
+}
+.dropdown-menu.notify-drop .notify-drop-footer a {
+  color: #777;
+  text-decoration: none;
+}
+.dropdown-menu.notify-drop .notify-drop-footer a:hover {
+  color: #333;
+}
 		 
 		</style>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -210,14 +329,6 @@
 		</script>
 	<!-- /popup -->
 		
-		<script>
-			window.addEventListener('load', function load() {
-				const loader = document.getElementById('loader');
-				setTimeout(function() {
-					loader.classList.add('fadeOut');
-				}, 300);
-			});
-		</script>
 		
 </head>
 	
@@ -237,268 +348,102 @@
 								<a href="domain.do">Beryllium
 							</div>
 						</div>
-<!-- 						<div class="col-xs-10 text-right menu-1"> -->
-<!-- 							<ul> -->
-<!-- 								<li class="active"><a href="domain.do">Home</a></li> -->
-<!-- 								<li><a href="notice.do">Notice</a></li> -->
-<!-- 								<li class="has-dropdown"><a href="finditem.do">FindItem</a> -->
-<!-- 									<ul class="dropdown"> -->
-<!-- 										<li><a href="#">Web Design</a></li> -->
-<!-- 										<li><a href="#">eCommerce</a></li> -->
-<!-- 										<li><a href="#">Branding</a></li> -->
-<!-- 										<li><a href="#">API</a></li> -->
-<!-- 									</ul> -->
-<!-- 								</li> -->
-<!-- 								<li class="has-dropdown"><a href="lostitem.do">LostItem</a> -->
-<!-- 									<ul class="dropdown"> -->
-<!-- 										<li><a href="#">HTML5</a></li> -->
-<!-- 										<li><a href="#">CSS3</a></li> -->
-<!-- 										<li><a href="#">Sass</a></li> -->
-<!-- 										<li><a href="#">jQuery</a></li> -->
-<!-- 									</ul> -->
-<!-- 								</li> -->
-<!-- 								<li><a href="contact.do">Contact</a></li> -->
+						<div class="col-xs-10 text-right menu-1">
+							<ul>
+								<li class="active"><a href="domain.do">Home</a></li>
+								<li><a href="notice.do">Notice</a></li>
+								<li class="has-dropdown"><a href="finditem.do">FindItem</a>
+									<ul class="dropdown">
+										<li><a href="#">Web Design</a></li>
+										<li><a href="#">eCommerce</a></li>
+										<li><a href="#">Branding</a></li>
+										<li><a href="#">API</a></li>
+									</ul>
+								</li>
+								<li class="has-dropdown"><a href="lostitem.do">LostItem</a>
+									<ul class="dropdown">
+										<li><a href="#">HTML5</a></li>
+										<li><a href="#">CSS3</a></li>
+										<li><a href="#">Sass</a></li>
+										<li><a href="#">jQuery</a></li>
+									</ul>
+								</li>
+								
+								<li><a href="contact.do">Contact</a></li>
+	<li class="dropdown">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+          <ul class="dropdown-menu notify-drop">
+            <!-- end notify title -->
+            <!-- notify content -->
+            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+           		<li>
+           			</br>
+           		</li>
+            	<li>
+            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+            		<p>Lorem ipsum sit dolor amet consilium.</p>
+            		<p class="time">1 Saat önce</p>
+            		</div>
+            	</li>
+            	<hr>
+            	<li>
+            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+            		<p>Lorem ipsum sit dolor amet consilium.</p>
+            		<p class="time">1 Saat önce</p>
+            		</div>
+            	</li>
+            	<hr>
+            	<li>
+            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+            		<p>Lorem ipsum sit dolor amet consilium.</p>
+            		<p class="time">29 Dakika önce</p>
+            		</div>
+            	</li>
+            	<li>
+            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+            		<p>Lorem ipsum sit dolor amet consilium.</p>
+            		<p class="time">Dün 13:18</p>
+            		</div>
+            	</li>
+            	<li>
+            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+            		<p>Lorem ipsum sit dolor amet consilium.</p>
+            		<p class="time">2 Hafta önce</p>
+            		</div>
+            	</li>
+            </div>
+          </ul>
+        </li>
+</li>
+								
 <!-- 								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a> -->
 <!-- 									<ul class="dropdown"> -->
 <!-- 										<li><a href="myboard.do">Myboard</a></li> -->
 <!-- 										<li><a href="modifyform.do">Modify</a></li> -->
 <!-- 									</ul> -->
 <!-- 								</li> -->
-<%-- 								<c:if test="${ empty loginuser && empty klogin}"> --%>
-<!-- 									<li><a href="login.do">Login</a></li> -->
-<%-- 								</c:if> --%>
-<%-- 								<c:if test="${ !empty loginuser}"> --%>
-<!-- 									<li><a href="logout.do">Logout</a></li> -->
-<%-- 								</c:if> --%>
-<%-- 								<c:if test="${!empty klogin}"> --%>
-<%-- 									<li><a href="${kakaologout_url}">Logout</a></li> --%>
-<%-- 								</c:if> --%>
+								
+								<c:if test="${ empty loginuser && empty klogin}">
+									<li><a href="login.do">Login</a></li>
+								</c:if>
+								<c:if test="${ !empty loginuser}">
+									<li><a href="logout.do">Logout</a></li>
+								</c:if>
+								<c:if test="${!empty klogin}">
+									<li><a href="${kakaologout_url}">Logout</a></li>
+								</c:if>
+			
+       
+								
+							</ul>
+						</div>
 
-									
-<!-- 							</ul> -->
-<!-- 						</div> -->
-
-							<!-- ### $Topbar ### -->
-        <div class="header navbar">
-          <div class="header-container">
-            <ul class="nav-left">
-              <li>
-                <a id='sidebar-toggle' class="sidebar-toggle" href="javascript:void(0);">
-                  <i class="ti-menu"></i>
-                </a>
-              </li>
-              <li class="search-box">
-                <a class="search-toggle no-pdd-right" href="javascript:void(0);">
-                  <i class="search-icon ti-search pdd-right-10"></i>
-                  <i class="search-icon-close ti-close pdd-right-10"></i>
-                </a>
-              </li>
-              <li class="search-input">
-                <input class="form-control" type="text" placeholder="Search...">
-              </li>
-            </ul>
-            <ul class="nav-right">
-              <li class="notifications dropdown">
-                <span class="counter bgc-red">3</span>
-                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
-                  <i class="ti-bell"></i>
-                </a>
-
-                <ul class="dropdown-menu">
-                  <li class="pX-20 pY-15 bdB">
-                    <i class="ti-bell pR-10"></i>
-                    <span class="fsz-sm fw-600 c-grey-900">Notifications</span>
-                  </li>
-                  <li>
-                    <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <span>
-                              <span class="fw-500">John Doe</span>
-                              <span class="c-grey-600">liked your <span class="text-dark">post</span>
-                              </span>
-                            </span>
-                            <p class="m-0">
-                              <small class="fsz-xs">5 mins ago</small>
-                            </p>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <span>
-                              <span class="fw-500">Moo Doe</span>
-                              <span class="c-grey-600">liked your <span class="text-dark">cover image</span>
-                              </span>
-                            </span>
-                            <p class="m-0">
-                              <small class="fsz-xs">7 mins ago</small>
-                            </p>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/3.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <span>
-                              <span class="fw-500">Lee Doe</span>
-                              <span class="c-grey-600">commented on your <span class="text-dark">video</span>
-                              </span>
-                            </span>
-                            <p class="m-0">
-                              <small class="fsz-xs">10 mins ago</small>
-                            </p>
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="pX-20 pY-15 ta-c bdT">
-                    <span>
-                      <a href="" class="c-grey-600 cH-blue fsz-sm td-n">View All Notifications <i class="ti-angle-right fsz-xs mL-10"></i></a>
-                    </span>
-                  </li>
-                </ul>
-              </li>
-              <li class="notifications dropdown">
-                <span class="counter bgc-blue">3</span>
-                <a href="" class="dropdown-toggle no-after" data-toggle="dropdown">
-                  <i class="ti-email"></i>
-                </a>
-
-                <ul class="dropdown-menu">
-                  <li class="pX-20 pY-15 bdB">
-                    <i class="ti-email pR-10"></i>
-                    <span class="fsz-sm fw-600 c-grey-900">Emails</span>
-                  </li>
-                  <li>
-                    <ul class="ovY-a pos-r scrollable lis-n p-0 m-0 fsz-sm">
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/1.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <div>
-                              <div class="peers jc-sb fxw-nw mB-5">
-                                <div class="peer">
-                                  <p class="fw-500 mB-0">John Doe</p>
-                                </div>
-                                <div class="peer">
-                                  <small class="fsz-xs">5 mins ago</small>
-                                </div>
-                              </div>
-                              <span class="c-grey-600 fsz-sm">
-                                Want to create your own customized data generator for your app...
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/2.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <div>
-                              <div class="peers jc-sb fxw-nw mB-5">
-                                <div class="peer">
-                                  <p class="fw-500 mB-0">Moo Doe</p>
-                                </div>
-                                <div class="peer">
-                                  <small class="fsz-xs">15 mins ago</small>
-                                </div>
-                              </div>
-                              <span class="c-grey-600 fsz-sm">
-                                Want to create your own customized data generator for your app...
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="" class='peers fxw-nw td-n p-20 bdB c-grey-800 cH-blue bgcH-grey-100'>
-                          <div class="peer mR-15">
-                            <img class="w-3r bdrs-50p" src="https://randomuser.me/api/portraits/men/3.jpg" alt="">
-                          </div>
-                          <div class="peer peer-greed">
-                            <div>
-                              <div class="peers jc-sb fxw-nw mB-5">
-                                <div class="peer">
-                                  <p class="fw-500 mB-0">Lee Doe</p>
-                                </div>
-                                <div class="peer">
-                                  <small class="fsz-xs">25 mins ago</small>
-                                </div>
-                              </div>
-                              <span class="c-grey-600 fsz-sm">
-                                Want to create your own customized data generator for your app...
-                              </span>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="pX-20 pY-15 ta-c bdT">
-                    <span>
-                      <a href="email.html" class="c-grey-600 cH-blue fsz-sm td-n">View All Email <i class="fs-xs ti-angle-right mL-10"></i></a>
-                    </span>
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown">
-                  <div class="peer mR-10">
-                    <img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
-                  </div>
-                  <div class="peer">
-                    <span class="fsz-sm c-grey-900">John Doe</span>
-                  </div>
-                </a>
-                <ul class="dropdown-menu fsz-sm">
-                  <li>
-                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                      <i class="ti-settings mR-10"></i>
-                      <span>Setting</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                      <i class="ti-user mR-10"></i>
-                      <span>Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="email.html" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                      <i class="ti-email mR-10"></i>
-                      <span>Messages</span>
-                    </a>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <a href="" class="d-b td-n pY-5 bgcH-grey-100 c-grey-700">
-                      <i class="ti-power-off mR-10"></i>
-                      <span>Logout</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
 					</div>
 	
 				</div>
@@ -619,12 +564,13 @@
 			<!-- end container -->
 		</section>
 
-
+<a href="temptemp.do"><button class="btn btn--primary">Toggle Popover</button></a>
 		<!--         <div id="kakao_id_login" style="text-align: center">  -->
 		<%--         <a href="${kakao_url}">  --%>
 		<!--         <img width="223" src="../images/logo.png" /></a>  -->
 		<!--         </div> -->
 
+${kid}
 		<!-- 분실물******************************************************************************************** -->
 		<!-- ******************************************************************************************** -->
 
@@ -747,7 +693,7 @@
 		<div class="gototop js-top">
 			<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 		</div>
-
+		
 		<!-- Bootstrap core JavaScript
 			================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
@@ -779,13 +725,15 @@
 		<!-- Main -->
 		<script src="../js/beryllium/main.js"></script>
 	<!-- beryllium -->
+	
+	<!-- //// -->
+		<script type="text/javascript">
+ 		    $(function () {
+ 		  $('[data-tooltip="tooltip"]').tooltip()
+ 			});
+		</script>
 		
-		<script scr="../js/scripts/sidebar/index.js"></script>
 	</body>
 </html>
-	
-</body>
-</html>
-
 
 
