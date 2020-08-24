@@ -49,11 +49,11 @@ public class TempController {
 		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
 		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
 		
-		if(session.getAttribute("klogin")!=null) {
-			if(service.kakaologinS(session.getAttribute("kid").toString())==null) {
+		if(session.getAttribute("klogin")!=null) { //kakao로 로그인 했을때
+			if(service.kakaologinS(session.getAttribute("kid").toString())==null) { //kakao로 회원계정이 등록되어있지않으면 -> 등록하게해야함
 				
 			}
-			else {
+			else { //kakao로 로그인했고 & 회원계정이 등록 되어있음 -> 그 계정으로 로그인 한번더(session에 넘겨줌)
 				
 			}			
 		}
