@@ -46,5 +46,11 @@ public class TempServiceImpl implements TempService {
 	public Users kakaologinS(String kid) {		
 		return tempMapper.usercheck(kid);
 	}
+	
+	@Override
+	public Users kakaouser(Users kakaouser) {
+		signupS(kakaouser);		
+		return kakaologinS(kakaouser.getUserid());
+	}
 
 }

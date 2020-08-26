@@ -12,28 +12,13 @@
 		<meta name="author" content="">
 		
 	<!-- beryllium -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 		<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
 		<meta name="author" content="FreeHTML5.co" />
 		
 		<link href="https://fonts.googleapis.com/css?family=Merriweather:300,400|Montserrat:400,700" rel="stylesheet">
-	
-		<!-- Animate.css -->
-		<link rel="stylesheet" href="../css/beryllium/animate.css">
-		<!-- Icomoon Icon Fonts-->
-		<link rel="stylesheet" href="../css/beryllium/icomoon.css">
-		<!-- Themify Icons-->
-		<link rel="stylesheet" href="../css/beryllium/themify-icons.css">
-		<!-- Bootstrap  -->
-		<link rel="stylesheet" href="../css/beryllium/bootstrap.css">
-	
-		<!-- Owl Carousel  -->
-		<link rel="stylesheet" href="../css/beryllium/owl.carousel.min.css">
-		<link rel="stylesheet" href="../css/beryllium/owl.theme.default.min.css">
-	
-		<!-- Theme style  -->
-		<link rel="stylesheet" href="../css/beryllium/style.css">
+
+		<link rel="stylesheet" href="../css/index.css">
 	
 		<!-- Modernizr JS -->
 		<script src="../js/beryllium/modernizr-2.6.2.min.js"></script>
@@ -41,28 +26,7 @@
 	
 	<!-- church -->
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet"
-		>
-		
-		<!-- Animate.css -->
-		<link rel="stylesheet" href="../css/church/animate.css">
-		<!-- Icomoon Icon Fonts-->
-		<link rel="stylesheet" href="../css/church/icomoon.css">
-		<!-- Bootstrap  -->
-		<link rel="stylesheet" href="../css/church/bootstrap.css">
-	
-		<!-- Magnific Popup -->
-		<link rel="stylesheet" href="../css/church/magnific-popup.css">
-	
-		<!-- Flexslider  -->
-		<link rel="stylesheet" href="../css/church/flexslider.css">
-	
-		<!-- Owl Carousel  -->
-		<link rel="stylesheet" href="../css/church/owl.carousel.min.css">
-		<link rel="stylesheet" href="../css/church/owl.theme.default.min.css">
-	
-		<!-- Theme style  -->
-		<link rel="stylesheet" href="../css/church/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
 	
 		<!-- Modernizr JS -->
 		<script src="../js/church/modernizr-2.6.2.min.js"></script>
@@ -70,24 +34,17 @@
 	
 		<link rel="icon" href="favicon.ico">
 		<title>Sanza - Onepage Multipurpose Bootstrap HTML by MOOZThemes.com</title>
-		<!-- Bootstrap core CSS -->
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
+
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<!-- Custom styles for this template -->
-		<link href="../css/owl.carousel.css" rel="stylesheet">
-		<link href="../css/owl.theme.default.min.css"  rel="stylesheet">
-		<link href="../css/style.css" rel="stylesheet">
-	
-	<!-- /// -->
-			<link href="../css/admi/index.scss" rel="stylesheet">
+
+ 	<!-- /// -->
+ 			<link href="../css/admi/index.scss" rel="stylesheet">
 			
-			<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 			<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-		
 	<!-- popup -->
-		<style> 
+	
+	<style> 
 		/* 마스크 띄우기 */
 		#mask {  
 		    position:absolute;  
@@ -113,174 +70,180 @@
 		    border: 0.5px solid #B5B5B5;
 		    box-shadow: 0px 0px 7px 1px #B5B5B5;
 		 }
+			 
+			 /*---------*/
+	      #loader {
+	        transition: all 0.3s ease-in-out;
+	        opacity: 1;
+	        visibility: visible;
+	        position: fixed;
+	        height: 100vh;
+	        width: 100%;
+	        background: #fff;
+	        z-index: 90000;
+	      }
+	
+	      #loader.fadeOut {
+	        opacity: 0;
+	        visibility: hidden;
+	      }
+	
+	      .spinner {
+	        width: 40px;
+	        height: 40px;
+	        position: absolute;
+	        top: calc(50% - 20px);
+	        left: calc(50% - 20px);
+	        background-color: #333;
+	        border-radius: 100%;
+	        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+	        animation: sk-scaleout 1.0s infinite ease-in-out;
+	      }
+	
+	      @-webkit-keyframes sk-scaleout {
+	        0% { -webkit-transform: scale(0) }
+	        100% {
+	          -webkit-transform: scale(1.0);
+	          opacity: 0;
+	        }
+	      }
+	
+	      @keyframes sk-scaleout {
+	        0% {
+	          -webkit-transform: scale(0);
+	          transform: scale(0);
+	        } 100% {
+	          -webkit-transform: scale(1.0);
+	          transform: scale(1.0);
+	          opacity: 0;
+	        }
+	      }
+		/*       admi */
+		
+		.dropdown-menu.notify-drop {
+		  min-width: 330px;
+		  background-color: #fff;
+		  max-height: 360px;
+		}
+		.dropdown-menu.notify-drop .notify-drop-title {
+		  border-bottom: 1px solid #e2e2e2;
+		  padding: 5px 15px 10px 15px;
+		}
+		.dropdown-menu.notify-drop .drop-content {
+		  min-height: 280px;
+		  max-height: 280px;
+		  overflow-y: scroll;
+		}
+		.dropdown-menu.notify-drop .drop-content {
+		  min-height: 280px;
+		  max-height: 280px;
+		  overflow-y: scroll;
+		}
+		.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-track
+		{
+		  background-color: #F5F5F5;
+		}
+		
+		.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar
+		{
+		  width: 8px;
+		  background-color: #F5F5F5;
+		}
+		
+		.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-thumb
+		{
+		  background-color: #ccc;
+		}
+		.dropdown-menu.notify-drop .drop-content > li {
+		  border-bottom: 1px solid #e2e2e2;
+		  padding: 10px 0px 5px 0px;
+		}
+		.dropdown-menu.notify-drop .drop-content > li:nth-child(2n+0) {
+		  background-color: #fafafa;
+		}
+		.dropdown-menu.notify-drop .drop-content > li:after {
+		  content: "";
+		  clear: both;
+		  display: block;
+		}
+		.dropdown-menu.notify-drop .drop-content > li:hover {
+		  background-color: #fcfcfc;
+		}
+		.dropdown-menu.notify-drop .drop-content > li:last-child {
+		  border-bottom: none;
+		}
+		.dropdown-menu.notify-drop .drop-content > li .notify-img {
+		  float: left;
+		  display: inline-block;
+		  width: 45px;
+		  height: 45px;
+		  margin: 0px 0px 8px 0px;
+		}
+		.dropdown-menu.notify-drop .allRead {
+		  margin-right: 7px;
+		}
+		.dropdown-menu.notify-drop .rIcon {
+		  float: right;
+		  color: #999;
+		}
+		.dropdown-menu.notify-drop .rIcon:hover {
+		  color: #333;
+		}
+		.dropdown-menu.notify-drop .drop-content > li a {
+		  font-size: 12px;
+		  font-weight: normal;
+		}
+		.dropdown-menu.notify-drop .drop-content > li {
+		  font-weight: bold;
+		  font-size: 11px;
+		}
+		.dropdown-menu.notify-drop .drop-content > li hr {
+		  margin: 5px 0;
+		  width: 70%;
+		  border-color: #e2e2e2;
+		}
+		.dropdown-menu.notify-drop .drop-content .pd-l0 {
+		  padding-left: 0;
+		}
+		.dropdown-menu.notify-drop .drop-content > li p {
+		  font-size: 11px;
+		  color: #666;
+		  font-weight: normal;
+		  margin: 3px 0;
+		}
+		.dropdown-menu.notify-drop .drop-content > li p.time {
+		  font-size: 10px;
+		  font-weight: 600;
+		  top: -6px;
+		  margin: 8px 0px 0px 0px;
+		  padding: 0px 3px;
+		  border: 1px solid #e2e2e2;
+		  position: relative;
+		  background-image: linear-gradient(#fff,#f2f2f2);
+		  display: inline-block;
+		  border-radius: 2px;
+		  color: #B97745;
+		}
+		.dropdown-menu.notify-drop .drop-content > li p.time:hover {
+		  background-image: linear-gradient(#fff,#fff);
+		}
+		.dropdown-menu.notify-drop .notify-drop-footer {
+		  border-top: 1px solid #e2e2e2;
+		  bottom: 0;
+		  position: relative;
+		  padding: 8px 15px;
+		}
+		.dropdown-menu.notify-drop .notify-drop-footer a {
+		  color: #777;
+		  text-decoration: none;
+		}
+		.dropdown-menu.notify-drop .notify-drop-footer a:hover {
+		  color: #333;
+		}
 		 
-		 /*---------*/
-      #loader {
-        transition: all 0.3s ease-in-out;
-        opacity: 1;
-        visibility: visible;
-        position: fixed;
-        height: 100vh;
-        width: 100%;
-        background: #fff;
-        z-index: 90000;
-      }
-
-      #loader.fadeOut {
-        opacity: 0;
-        visibility: hidden;
-      }
-
-      .spinner {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        top: calc(50% - 20px);
-        left: calc(50% - 20px);
-        background-color: #333;
-        border-radius: 100%;
-        -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-        animation: sk-scaleout 1.0s infinite ease-in-out;
-      }
-
-      @-webkit-keyframes sk-scaleout {
-        0% { -webkit-transform: scale(0) }
-        100% {
-          -webkit-transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-
-      @keyframes sk-scaleout {
-        0% {
-          -webkit-transform: scale(0);
-          transform: scale(0);
-        } 100% {
-          -webkit-transform: scale(1.0);
-          transform: scale(1.0);
-          opacity: 0;
-        }
-      }
-/*       admi */
-
-.dropdown-menu.notify-drop {
-  min-width: 330px;
-  background-color: #fff;
-  max-height: 360px;
-}
-.dropdown-menu.notify-drop .notify-drop-title {
-  border-bottom: 1px solid #e2e2e2;
-  padding: 5px 15px 10px 15px;
-}
-.dropdown-menu.notify-drop .drop-content {
-  min-height: 280px;
-  max-height: 280px;
-  overflow-y: scroll;
-}
-.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-track
-{
-  background-color: #F5F5F5;
-}
-
-.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar
-{
-  width: 8px;
-  background-color: #F5F5F5;
-}
-
-.dropdown-menu.notify-drop .drop-content::-webkit-scrollbar-thumb
-{
-  background-color: #ccc;
-}
-.dropdown-menu.notify-drop .drop-content > li {
-  border-bottom: 1px solid #e2e2e2;
-  padding: 10px 0px 5px 0px;
-}
-.dropdown-menu.notify-drop .drop-content > li:nth-child(2n+0) {
-  background-color: #fafafa;
-}
-.dropdown-menu.notify-drop .drop-content > li:after {
-  content: "";
-  clear: both;
-  display: block;
-}
-.dropdown-menu.notify-drop .drop-content > li:hover {
-  background-color: #fcfcfc;
-}
-.dropdown-menu.notify-drop .drop-content > li:last-child {
-  border-bottom: none;
-}
-.dropdown-menu.notify-drop .drop-content > li .notify-img {
-  float: left;
-  display: inline-block;
-  width: 45px;
-  height: 45px;
-  margin: 0px 0px 8px 0px;
-}
-.dropdown-menu.notify-drop .allRead {
-  margin-right: 7px;
-}
-.dropdown-menu.notify-drop .rIcon {
-  float: right;
-  color: #999;
-}
-.dropdown-menu.notify-drop .rIcon:hover {
-  color: #333;
-}
-.dropdown-menu.notify-drop .drop-content > li a {
-  font-size: 12px;
-  font-weight: normal;
-}
-.dropdown-menu.notify-drop .drop-content > li {
-  font-weight: bold;
-  font-size: 11px;
-}
-.dropdown-menu.notify-drop .drop-content > li hr {
-  margin: 5px 0;
-  width: 70%;
-  border-color: #e2e2e2;
-}
-.dropdown-menu.notify-drop .drop-content .pd-l0 {
-  padding-left: 0;
-}
-.dropdown-menu.notify-drop .drop-content > li p {
-  font-size: 11px;
-  color: #666;
-  font-weight: normal;
-  margin: 3px 0;
-}
-.dropdown-menu.notify-drop .drop-content > li p.time {
-  font-size: 10px;
-  font-weight: 600;
-  top: -6px;
-  margin: 8px 0px 0px 0px;
-  padding: 0px 3px;
-  border: 1px solid #e2e2e2;
-  position: relative;
-  background-image: linear-gradient(#fff,#f2f2f2);
-  display: inline-block;
-  border-radius: 2px;
-  color: #B97745;
-}
-.dropdown-menu.notify-drop .drop-content > li p.time:hover {
-  background-image: linear-gradient(#fff,#fff);
-}
-.dropdown-menu.notify-drop .notify-drop-footer {
-  border-top: 1px solid #e2e2e2;
-  bottom: 0;
-  position: relative;
-  padding: 8px 15px;
-}
-.dropdown-menu.notify-drop .notify-drop-footer a {
-  color: #777;
-  text-decoration: none;
-}
-.dropdown-menu.notify-drop .notify-drop-footer a:hover {
-  color: #333;
-}
-		 
-		</style>
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
+	</style>
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script type="text/javascript"> 
 		//<![CDATA[
 		    function wrapWindowByMask(){
@@ -324,15 +287,13 @@
 		        });      
 		 
 		    });
-		 
-		//]]>
+		 //]]>
 		</script>
 	<!-- /popup -->
-		
-		
+	
 </head>
 	
-	<body>
+<body>
 
 	
 	<!--  berryllium 맨위 메뉴-->
@@ -370,58 +331,107 @@
 								</li>
 								
 								<li><a href="contact.do">Contact</a></li>
-	<li class="dropdown">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
-          <ul class="dropdown-menu notify-drop">
-            <!-- end notify title -->
-            <!-- notify content -->
-            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-           		<li>
-           			</br>
-           		</li>
-            	<li>
-            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-            		<p>Lorem ipsum sit dolor amet consilium.</p>
-            		<p class="time">1 Saat önce</p>
-            		</div>
-            	</li>
-            	<hr>
-            	<li>
-            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-            		<p>Lorem ipsum sit dolor amet consilium.</p>
-            		<p class="time">1 Saat önce</p>
-            		</div>
-            	</li>
-            	<hr>
-            	<li>
-            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-            		<p>Lorem ipsum sit dolor amet consilium.</p>
-            		<p class="time">29 Dakika önce</p>
-            		</div>
-            	</li>
-            	<li>
-            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-            		<p>Lorem ipsum sit dolor amet consilium.</p>
-            		<p class="time">Dün 13:18</p>
-            		</div>
-            	</li>
-            	<li>
-            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-            		<p>Lorem ipsum sit dolor amet consilium.</p>
-            		<p class="time">2 Hafta önce</p>
-            		</div>
-            	</li>
-            </div>
-          </ul>
-        </li>
-</li>
 								
+								<c:if test="${ !empty loginuser }">
+									<li class="dropdown">
+								        <li class="dropdown">
+								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+								          <ul class="dropdown-menu notify-drop">
+								            <!-- end notify title -->
+								            <!-- notify content -->
+								            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+								           		<li>
+								           			</br>
+								           		</li>
+								            	<li>
+								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">29 Dakika önce</p>
+								            		</div>
+								            	</li>
+								            	<li>
+								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">Dün 13:18</p>
+								            		</div>
+								            	</li>
+								            	<li>
+								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">2 Hafta önce</p>
+								            		</div>
+								            	</li>
+								             </div>
+								           </ul>
+								        </li>
+									</li>
+								</c:if>
+								
+							<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+								<li class="dropdown">
+								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+								          <ul class="dropdown-menu notify-drop" style="min-width:200px">
+								            <!-- end notify title -->
+								            <!-- notify content -->
+								            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:175px;overflow:hidden">
+								           		<li>
+								           			</br>
+								           		</li>								            
+								            	<li>
+								            		<div>
+									            		&nbsp;&nbsp;
+									            		<i class="ti-bell"></i><a href="">111</a>
+								            		</div>								            		
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div>
+									            		&nbsp;&nbsp;
+									            		<i class="ti-bell"></i><a href="">222</a>
+								            		</div>								            		
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div>
+									            		&nbsp;&nbsp;
+									            		<i class="ti-bell"></i>
+									            		<c:if test="${ empty loginuser && empty klogin}">
+									            			<a href="">Logout</a>
+									            		</c:if>
+									            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
+															<a href="logout.do">Logout</a>
+														</c:if>
+														<c:if test="${!empty klogin && !empty kakaologout_url}">
+															<a href="${kakaologout_url}">Logout</a>
+														</c:if>
+								            		</div>								            		
+								            	</li>
+								             </div>
+								           </ul>
+									</li>
+								</c:if>
+								
+								
+				
 <!-- 								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a> -->
 <!-- 									<ul class="dropdown"> -->
 <!-- 										<li><a href="myboard.do">Myboard</a></li> -->
@@ -432,15 +442,13 @@
 								<c:if test="${ empty loginuser && empty klogin}">
 									<li><a href="login.do">Login</a></li>
 								</c:if>
-								<c:if test="${ !empty loginuser}">
-									<li><a href="logout.do">Logout</a></li>
-								</c:if>
-								<c:if test="${!empty klogin}">
-									<li><a href="${kakaologout_url}">Logout</a></li>
-								</c:if>
+<%-- 								<c:if test="${ !empty loginuser && empty kakaologout_url}"> --%>
+<!-- 									<li><a href="logout.do">Logout</a></li> -->
+<%-- 								</c:if> --%>
+<%-- 								<c:if test="${!empty klogin && !empty kakaologout_url}"> --%>
+<%-- 									<li><a href="${kakaologout_url}">Logout</a></li> --%>
+<%-- 								</c:if> --%>
 			
-       
-								
 							</ul>
 						</div>
 
@@ -448,6 +456,7 @@
 	
 				</div>
 			</nav>
+			
 
 		<!-- popup -->
 			<div id ="wrap"> 
@@ -529,7 +538,15 @@
 								<div class="events-entry">
 									<span class="date">${lostitem.lodate}</span>
 									<h3>
-										<a href="#">${lostitem.losub}</a>
+										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+											<a href="login.do">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+											<a href="#">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+											<a href="tempsignupform.do">${lostitem.losub}</a>
+										</c:if>
 									</h3>
 									<p>${lostitem.loplace}</p>
 								</div>
@@ -565,12 +582,7 @@
 		</section>
 
 <a href="temptemp.do"><button class="btn btn--primary">Toggle Popover</button></a>
-		<!--         <div id="kakao_id_login" style="text-align: center">  -->
-		<%--         <a href="${kakao_url}">  --%>
-		<!--         <img width="223" src="../images/logo.png" /></a>  -->
-		<!--         </div> -->
 
-${kid}
 		<!-- 분실물******************************************************************************************** -->
 		<!-- ******************************************************************************************** -->
 
@@ -639,7 +651,8 @@ ${kid}
 			</div>
 			<!-- end container -->
 		</section>
-
+		
+		
 
 		<footer>
 			<section id="contact" class="dark-bg" style="padding: 20px">

@@ -32,4 +32,8 @@
 		select * from users where userid = #{kid}
 	</select>
 	
+	<update id="kakaouser" parameterType="Users">
+		update users set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
+	</update>
+	
 </mapper>

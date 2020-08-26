@@ -16,4 +16,6 @@ public interface TempService {
 	void signupS(Users users);
 	Users loginS(HashMap loginmap);
 	Users kakaologinS(String kid);
+	
+	Users kakaouser(Users kakaouser);
 }
