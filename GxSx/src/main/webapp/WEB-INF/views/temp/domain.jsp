@@ -306,10 +306,10 @@
 					<div class="row">
 						<div class="col-sm-2 col-xs-12">
 							<div id="gtco-logo">
-								<a href="domain.do">Beryllium
+								<a href="domain.do"><img src = "../images/axe.png">
 							</div>
 						</div>
-						<div class="col-xs-10 text-right menu-1">
+						<div class="col-xs-10 text-right menu-1" style="margin-top:70px">
 							<ul>
 								<li class="active"><a href="domain.do">Home</a></li>
 								<li><a href="notice.do">Notice</a></li>
