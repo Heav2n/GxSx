@@ -121,7 +121,7 @@
 		/*       admi */
 		
 		.dropdown-menu.notify-drop {
-		  min-width: 330px;
+		  min-width: 280px;
 		  background-color: #fff;
 		  max-height: 360px;
 		}
@@ -130,12 +130,7 @@
 		  padding: 5px 15px 10px 15px;
 		}
 		.dropdown-menu.notify-drop .drop-content {
-		  min-height: 280px;
-		  max-height: 280px;
-		  overflow-y: scroll;
-		}
-		.dropdown-menu.notify-drop .drop-content {
-		  min-height: 280px;
+		  min-height: 220px;
 		  max-height: 280px;
 		  overflow-y: scroll;
 		}
@@ -295,168 +290,19 @@
 	
 <body>
 
-	
-	<!--  berryllium 맨위 메뉴-->
-		<div class="gtco-loader"></div>
-		<div id="page">
-	
-			<nav class="gtco-nav" role="navigation">
-				<div class="gtco-container">
-	
-					<div class="row">
-						<div class="col-sm-2 col-xs-12">
-							<div id="gtco-logo">
-								<a href="domain.do"><img src = "../images/axe.png">
-							</div>
-						</div>
-						<div class="col-xs-10 text-right menu-1" style="margin-top:70px">
-							<ul>
-								<li class="active"><a href="domain.do">Home</a></li>
-								<li><a href="notice.do">Notice</a></li>
-								<li class="has-dropdown"><a href="finditem.do">FindItem</a>
-									<ul class="dropdown">
-										<li><a href="#">Web Design</a></li>
-										<li><a href="#">eCommerce</a></li>
-										<li><a href="#">Branding</a></li>
-										<li><a href="#">API</a></li>
-									</ul>
-								</li>
-								<li class="has-dropdown"><a href="lostitem.do">LostItem</a>
-									<ul class="dropdown">
-										<li><a href="#">HTML5</a></li>
-										<li><a href="#">CSS3</a></li>
-										<li><a href="#">Sass</a></li>
-										<li><a href="#">jQuery</a></li>
-									</ul>
-								</li>
-								
-								<li><a href="contact.do">Contact</a></li>
-								
-								<c:if test="${ !empty loginuser }">
-									<li class="dropdown">
-								        <li class="dropdown">
-								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
-								          <ul class="dropdown-menu notify-drop">
-								            <!-- end notify title -->
-								            <!-- notify content -->
-								            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-								           		<li>
-								           			</br>
-								           		</li>
-								            	<li>
-								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-								            		</div>
-								            	</li>
-								            	<hr>
-								            	<li>
-								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-								            		</div>
-								            	</li>
-								            	<hr>
-								            	<li>
-								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">29 Dakika önce</p>
-								            		</div>
-								            	</li>
-								            	<li>
-								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">Dün 13:18</p>
-								            		</div>
-								            	</li>
-								            	<li>
-								            		<div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a> <a href="" class="rIcon"><i class="fa fa-dot-circle-o"></i></a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">2 Hafta önce</p>
-								            		</div>
-								            	</li>
-								             </div>
-								           </ul>
-								        </li>
-									</li>
-								</c:if>
-								
-							<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
-								<li class="dropdown">
-								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
-								          <ul class="dropdown-menu notify-drop" style="min-width:200px">
-								            <!-- end notify title -->
-								            <!-- notify content -->
-								            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:175px;overflow:hidden">
-								           		<li>
-								           			</br>
-								           		</li>								            
-								            	<li>
-								            		<div>
-									            		&nbsp;&nbsp;
-									            		<i class="ti-bell"></i><a href="">111</a>
-								            		</div>								            		
-								            	</li>
-								            	<hr>
-								            	<li>
-								            		<div>
-									            		&nbsp;&nbsp;
-									            		<i class="ti-bell"></i><a href="">222</a>
-								            		</div>								            		
-								            	</li>
-								            	<hr>
-								            	<li>
-								            		<div>
-									            		&nbsp;&nbsp;
-									            		<i class="ti-bell"></i>
-									            		<c:if test="${ empty loginuser && empty klogin}">
-									            			<a href="">Logout</a>
-									            		</c:if>
-									            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-															<a href="logout.do">Logout</a>
-														</c:if>
-														<c:if test="${!empty klogin && !empty kakaologout_url}">
-															<a href="${kakaologout_url}">Logout</a>
-														</c:if>
-								            		</div>								            		
-								            	</li>
-								             </div>
-								           </ul>
-									</li>
-								</c:if>
-								
-								
-				
 <!-- 								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a> -->
 <!-- 									<ul class="dropdown"> -->
 <!-- 										<li><a href="myboard.do">Myboard</a></li> -->
 <!-- 										<li><a href="modifyform.do">Modify</a></li> -->
 <!-- 									</ul> -->
 <!-- 								</li> -->
-								
-								<c:if test="${ empty loginuser && empty klogin}">
-									<li><a href="login.do">Login</a></li>
-								</c:if>
+
 <%-- 								<c:if test="${ !empty loginuser && empty kakaologout_url}"> --%>
 <!-- 									<li><a href="logout.do">Logout</a></li> -->
 <%-- 								</c:if> --%>
 <%-- 								<c:if test="${!empty klogin && !empty kakaologout_url}"> --%>
 <%-- 									<li><a href="${kakaologout_url}">Logout</a></li> --%>
 <%-- 								</c:if> --%>
-			
-							</ul>
-						</div>
-
-					</div>
-	
-				</div>
-			</nav>
-			
 
 		<!-- popup -->
 			<div id ="wrap"> 
@@ -471,10 +317,141 @@
 		        </div>
 		    </div>
 		<!-- /popup -->
-			
-		<!-- /berryllium -->	
-		
-		<!-- berryllium 메뉴 바로 밑  사진 -->
+
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	<!-- ////////////////////////////////////// 맨 위 메뉴 시작 ////////////////////////////////////// -->
+		<div class="gtco-loader"></div>
+		<div id="page"> <!-- 전체를 감싸는 div -->
+	
+			<nav class="gtco-nav" role="navigation">
+				<div class="gtco-container">
+	
+					<div class="row">
+						<div class="col-sm-2 col-xs-12">
+							<div id="gtco-logo">
+								<a href="domain.do"><img src = "../images/axe.png">
+							</div>
+						</div>
+						<div class="col-xs-10 text-right menu-1" style="margin-top:70px">
+							<ul>
+								<li class="active"><a href="domain.do">Home</a></li>
+								<li><a href="notice.do">Notice</a></li>
+<!-- 								<li class="has-dropdown"><a href="finditem.do">FindItem</a> -->
+<!-- 									<ul class="dropdown"> -->
+<!-- 										<li><a href="#">Web Design</a></li> -->
+<!-- 										<li><a href="#">eCommerce</a></li> -->
+<!-- 										<li><a href="#">Branding</a></li> -->
+<!-- 										<li><a href="#">API</a></li> -->
+<!-- 									</ul> -->
+<!-- 								</li> -->
+								<li><a href="#">FindItem</a></li>
+								<li><a href="#">LostItem</a></li>
+								
+								<c:if test="${ !empty loginuser }">
+									<li class="dropdown">
+								        <li class="dropdown">
+								          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+								          <ul class="dropdown-menu notify-drop" style="right:350px">
+								            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+								           		<li>
+								           			</br>
+								           		</li>
+								            	<li>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								            	<hr>
+								            	<li>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+								            		</div>
+								            	</li>
+								             </div>
+								           </ul>
+								        </li>
+									</li>
+								</c:if>
+								
+							<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+								<li class="dropdown">
+						          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
+						          <ul class="dropdown-menu notify-drop" style="min-width:150px">
+						            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:235px;overflow:hidden">
+						           		<li>
+						           			</br>
+						           		</li>								            
+						            	<li>
+						            		<div>
+							            		&nbsp;&nbsp;
+							            		<i class="ti-bookmark-alt"></i><a href="">Myboard</a>
+						            		</div>								            		
+						            	</li>
+						            	<hr>
+						            	<li>
+						            		<div>
+							            		&nbsp;&nbsp;
+							            		<i class="ti-id-badge"></i><a href="">Modify</a>
+						            		</div>								            		
+						            	</li>
+						            	<hr>
+						            	<li>
+						            		<div>
+							            		&nbsp;&nbsp;
+							            		<i class="ti-headphone-alt"></i><a href="">Contact</a>
+						            		</div>								            		
+						            	</li>
+						            	<hr>
+						            	<li>
+						            		<div>
+							            		&nbsp;&nbsp;
+							            		<i class="ti-power-off"></i>
+							            		<c:if test="${ empty loginuser && empty klogin}">
+							            			<a href="">Logout</a>
+							            		</c:if>
+							            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
+													<a href="logout.do">Logout</a>
+												</c:if>
+												<c:if test="${!empty klogin && !empty kakaologout_url}">
+													<a href="${kakaologout_url}">Logout</a>
+												</c:if>
+						            		</div>								            		
+						            	</li>
+						             </div>
+							        </ul>
+								</li>
+							</c:if>
+							
+								<c:if test="${ empty loginuser && empty klogin}">
+									<li><a href="login.do">Login</a></li>
+								</c:if>
+				
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+	<!-- ////////////////////////////////////// 맨 위 메뉴 종료 ////////////////////////////////////// -->
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->	
+	<!-- ///////////////////////////////////// 메뉴 바로 밑  사진 ///////////////////////////////////// -->
 		<div class="gtco-container">
 			<div class="row">
 				<div class="col-md-12">
@@ -507,12 +484,12 @@
 				</div>
 			</div>
 		</div>
-		<!-- /berryllium -->
-		
-		<!-- 습득물******************************************************************************************** -->
-		<!-- ******************************************************************************************** -->
-		<section id="portfolio"
-			style="padding-bottom: 30px; margin-top: 10px">
+	<!-- //////////////////////////////////// 메뉴 바로 밑  사진 종료 //////////////////////////////////// -->
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	<!-- /////////////////////////////////////// 습득물 시작 /////////////////////////////////////// -->
+		<section id="portfolio" style="padding-bottom: 30px; margin-top: 10px">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
@@ -526,60 +503,72 @@
 				
 				<!-- church -->
 				<div class="row">
-				<c:if test="${empty lostResult}">
-						<tr align="center" noshade>
-							<td colspan="5">데이터가 하나도 없음</td>
-						</tr>
-				</c:if>
-				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
+					<c:if test="${empty lostResult}">
+							<tr align="center" noshade>
+								<td colspan="5">데이터가 하나도 없음</td>
+							</tr>
+					</c:if>
+					
+					<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
+						<div class="col-md-4 animate-box">
+							<div class="services">
+								<a href="#" class="img-holder">
+								<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+									<a href="login.do" class="img-holder">${lostitem.losub}</a>
+								</c:if>
+								<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+									<a href="#" class="img-holder">${lostitem.losub}</a>
+								</c:if>
+								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+									<a href="tempsignupform.do" class="img-holder">${lostitem.losub}</a>
+								</c:if>
+								<img class="img-responsive" src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="분실물" >
+								</a>
+								
+									<div class="events-entry">
+										<span class="date">${lostitem.lodate}</span>
+										<h3>
+											<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+												<a href="login.do">${lostitem.losub}</a>
+											</c:if>
+											<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+												<a href="#">${lostitem.losub}</a>
+											</c:if>
+											<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+												<a href="tempsignupform.do">${lostitem.losub}</a>
+											</c:if>
+										</h3>
+										<p>${lostitem.loplace}</p>
+									</div>
+								</div>
+						</div>
+					</c:forEach>
+					
 					<div class="col-md-4 animate-box">
 						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="분실물" ></a>
-								<div class="events-entry">
-									<span class="date">${lostitem.lodate}</span>
-									<h3>
-										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-											<a href="login.do">${lostitem.losub}</a>
-										</c:if>
-										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-											<a href="#">${lostitem.losub}</a>
-										</c:if>
-										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-											<a href="tempsignupform.do">${lostitem.losub}</a>
-										</c:if>
-									</h3>
-									<p>${lostitem.loplace}</p>
-								</div>
+							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+							<div class="desc">
+								<h3><a href="#">Biblical Counseling</a></h3>
+								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
 							</div>
-					</div>
-				</c:forEach>
-				<div class="col-md-4 animate-box">
-					<div class="services">
-						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-						<div class="desc">
-							<h3><a href="#">Biblical Counseling</a></h3>
-							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-							<a href="#">Read More <i class="icon-arrow-right3"></i></a>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4 animate-box">
-					<div class="services">
-						<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-						<div class="desc">
-							<h3><a href="#">Helping Children</a></h3>
-							<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-							<a href="#">Read More <i class="icon-arrow-right3"></i></a>
+					<div class="col-md-4 animate-box">
+						<div class="services">
+							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
+							<div class="desc">
+								<h3><a href="#">Helping Children</a></h3>
+								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /church -->
-			
-				</div>
-			</div>
-			<!-- end container -->
 		</section>
+	<!-- /////////////////////////////////////// 습득물 종료 /////////////////////////////////////// -->	
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
 <a href="temptemp.do"><button class="btn btn--primary">Toggle Popover</button></a>
 
@@ -703,7 +692,7 @@
 			</section>
 		</footer>	
 		
-		<div class="gototop js-top">
+		<div class="gototop js-top"> <!-- 맨위로 가는 화살표 기능 -->
 			<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 		</div>
 		
@@ -722,9 +711,6 @@
 		<script src="../js/mooz.themes.scripts.js"></script>
 
 	<!-- beryllium -->
-		<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-		</div>
 		<!-- jQuery -->
 		<script src="../js/beryllium/jquery.min.js"></script>
 		<!-- jQuery Easing -->
