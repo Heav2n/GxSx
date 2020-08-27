@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sansil.gxsx.mapper.TempMapper">
+
+	<select id="listlo" resultType="LostItem">
+		<![CDATA[
+			select * from (select * from LostItem order by LONO desc) where ROWNUM <=3
+		]]>
+	</select>
+	<select id="listfi" resultType="FindItem">
+		<![CDATA[
+			select * from (select * from FindItem order by FINO desc) where ROWNUM <=3
+		]]>
+	</select>
+	<select id="listlopic" resultType="LostPic">
+		<![CDATA[
+			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3)
+		]]>
+	</select>
+	
+	<insert id="signup" parameterType="Users">
+		insert into Users values(#{userid}, #{upwd}, #{uname}, #{uemail}, #{upnum}, null)
+	</insert>
+	
+	<select id="login" resultType="Users" parameterType="HashMap">
+		select * from users where userid = #{userid} and upwd = #{upwd}
+	</select>
+	
+	<select id="usercheck" resultType="Users" parameterType="String">
+		select * from users where userid = #{kid}
+	</select>
+	
+	<update id="kakaouser" parameterType="Users">
+		update users set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
+	</update>
+	
+</mapper>
