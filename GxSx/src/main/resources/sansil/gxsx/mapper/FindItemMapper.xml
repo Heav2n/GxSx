@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="sansil.gxsx.mapper.FindItemMapper">
+	
+	
+	<select id="selectFinditem" resultType="FindItem">
+		select * from FINDITEM where FIUID = 'cclubley3'
+	</select>
+	
+	<select id="selectBySeq" resultType="FindItPic" parameterType="long">
+		select it.fino, it.fiuid, it.fisub, it.ficon, it.fidate, it.fiano, it.fiplace, it.fistor, it.ficname, it.fifin, pic.fipicname from finditem it left outer join findpic pic on it.fino = pic.fipno where it.fino = #{fino}
+		<!-- select * from FINDITEM, FINDPIC where FINO=#{fino} and FIPNO=#{fipno} -->
+	</select>
+	
+	<select id="area" resultType="String" parameterType="long">
+		select acity from area where ano=(select fiano from findItem where fino=#{fino})
+	</select>
+	
+	<select id="selectByWriter" resultType="FindItem" parameterType="FindListVo">
+		<![CDATA[
+ 		select * from (select ROWNUM rnum, aa.* from (select * from FINDITEM where WRITER like '%'||#{keyword}||'%' order by FINO desc)aa)
+ 		where rnum>#{startRow} and rnum<=#{endRow} 
+		]]>
+	</select>
+	
+	<insert id="insert" parameterType="FindItem">
+		insert into FindItem values(FINDITEM_SEQ_PK.nextval, #{fiuid}, #{fisub}, #{ficon}, SYSDATE, #{fiano}, #{fiplace}, #{fistor}, #{ficname}, #{fifin})
+	</insert>
+	
+	<update id="update" parameterType="FindItem">
+		update FindItem set FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FIFIN=#{fifin} where FINO=#{fino}
+	</update>
+	
+	<delete id="delete" parameterType="long">
+		delete from FINDITEM where FINO=#{fino}
+	</delete>
+	
+	<!-- ////////////////////////////////////////// -->
+	<select id="selectByName" resultType="FindItPic" parameterType="String">
+	     select * from FINDITEM join FINDPIC on finditem.fino = findpic.fipno join area on finditem.fiano = area.ano
+		 where finditem.FISUB like '%'||#{fisub}||'%' order by FINO desc
+	</select>
+	
+	<select id="selectCount" resultType="long">
+		select COUNT(FINO) from FINDITEM
+	</select>
+	
+	<select id="selectPerPage" resultType="FindItPic" parameterType="FindListVo">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on 
+		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)
+		where rnum>#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+	
+</mapper>

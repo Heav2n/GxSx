@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="sansil.gxsx.mapper.LostCommentMapper">
+	
+	
+	
+	<select id="LostCommentList" resultType="LoComments" parameterType="int">
+		select * from LOCOMMENTS where FINO = #{lono} order By PCOM desc, DEPTH asc, COMNO asc 
+	</select>
+	
+	<insert id="LostCommentInsert" parameterType="LoComments">
+		<selectKey keyProperty="comno" resultType="int" order="BEFORE">
+			select LOCOMMENTS_SEQ_PK.nextval from dual
+		</selectKey>
+		INSERT into LOCOMMENTS 
+		values(#{comno}, #{lono}, #{userid}, SYSDATE, #{contents}, 1, #{comno})
+	</insert>
+	
+	<!-- 대댓글 -->
+	<insert id="CommentReplyInsert" parameterType="LoComments">
+		insert into LOCOMMENTS values(#{comno}, #{lono}, #{userid}, SYSDATE, #{contents}, (#{depth}+1), #{comno});
+	</insert>
+	
+	<update id="LostCommentUpdate" parameterType="LoComments">
+		UPDATE LOCOMMENTS set CONTENTS = #{contents}
+		where COMNO = #{comno}
+	</update>
+	
+	<delete id="LostCommentDelete" parameterType="LoComments">
+		delete from LOCOMMENTS  where COMNO = #{comno}
+	</delete>
+	
+	<select id="reSelectComment" resultType="LoComments" parameterType="LoComments">
+		select * from LOCOMMENTS where COMNO = #{comno} order By COMNO desc
+	</select>
+</mapper>

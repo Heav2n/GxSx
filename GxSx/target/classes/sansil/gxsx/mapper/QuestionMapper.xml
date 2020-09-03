@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="sansil.gxsx.mapper.QuestionMapper">
+	
+	
+	<select id="selectQuestion" resultType="Question" parameterType="String">
+		select * from QUESTION where QUID = #{query}
+	</select>
+	
+	<select id="selectCountQuestion" resultType="Long">
+		select count(*) from QUESTION where QUID = #{query}
+	</select>
+	
+	<select id="selectPerPage" resultType="Question" parameterType="Question">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION order by QUID desc) aa) 
+		where rnum between #{start} and #{last}
+		]]>
+	</select>	
+	
+	<select id="content" parameterType="long" resultType="Question">
+	select * from QUESTION where QNO=#{query}
+	</select>
+	
+	<update id="update">
+		update QUESTION set QREPLY = #{qreply} where QNO = #{qno}
+	</update>
+	
+	<delete id="commentDelete" parameterType="int">
+		delete from QUESTION where QNO = #{qno}
+	</delete>
+	
+</mapper>

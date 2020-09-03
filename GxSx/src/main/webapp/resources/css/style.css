@@ -52,14 +52,14 @@ h6 {
 	color: #232323;
 }
 
-p {
-	font-family: 'Roboto', sans-serif;
-	font-size: 15px;
-	font-weight: 300;
-	line-height: 23px;
-	letter-spacing: 0.2px;
-	color: #797979;
-}
+		/* p { */
+		/* 	font-family: 'Roboto', sans-serif; */
+		/* 	font-size: 15px; */
+		/* 	font-weight: 300; */
+		/* 	line-height: 23px; */
+		/* 	letter-spacing: 0.2px; */
+		/* 	color: #797979; */
+		/* } */
 
 .dark-bg p {
 color: #B1B1B1;	

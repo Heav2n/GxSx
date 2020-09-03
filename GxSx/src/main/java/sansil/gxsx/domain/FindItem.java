@@ -13,6 +13,7 @@ public class FindItem {
 	private int fino;
 	private String fiuid;
 	private String fisub;
+	private String ficon;
 	private Date fidate;
 	private int fiano;
 	private String fiplace;
