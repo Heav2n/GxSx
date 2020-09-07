@@ -52,11 +52,6 @@ public class FindItemSerivceImpl implements FindItemService {
 	}
 	
 	@Override
-	public FindItPic getFindItPic(long fino) {
-		return finditemMapper.selectBySeq(fino);
-	}
-	
-	@Override
 	public void edit(FindItPic findItPic) {
 		finditemMapper.update(findItPic);
 	}
@@ -71,13 +66,7 @@ public class FindItemSerivceImpl implements FindItemService {
 		System.out.println("@@@@@@############### findItPic : " + findItPic);
 		finditemMapper.insert(findItPic);
 
-	}
-	
-	@Override
-	public String areaS(long fino) {
-		return finditemMapper.area(fino);
-
-	}
+	}	
 	
 	@Override
 	public FindItPicListResult getFindItPicListResult(int page, int pageSize) {
@@ -111,11 +100,30 @@ public class FindItemSerivceImpl implements FindItemService {
 	public FindItPicListResult listResult(int page, int pageSize) {
 		long totalCount = finditemMapper.selectCount();
 		FindItemVo findItPicVo = new FindItemVo(null, page, pageSize);
-		System.out.println("tqtqtqtqtqtq:"+page+"/"+pageSize+"/"+findItPicVo);
 		List<FindItPic> list = finditemMapper.selectPerPage(findItPicVo);
 		
-		System.out.println("list:------------------------------------------------------- " + list);
+		System.out.println("list: " + list);
 		return new FindItPicListResult(page, pageSize, totalCount, list);		
+	}
+	
+	@Override
+	public FindItPicListResult listResult(String fisub, int page, int pageSize) {
+		long totalCount = finditemMapper.selectCount2(fisub);
+		FindItemVo findItPicVo = new FindItemVo(fisub, page, pageSize);
+		List<FindItPic> list = finditemMapper.selectPerPage2(findItPicVo);
+		
+		System.out.println("list2: " + list);
+		return new FindItPicListResult(page, pageSize, totalCount, list);		
+	}
+	
+	@Override
+	public FindItPic getFindItPic(long fino) {
+		return finditemMapper.selectBySeq(fino);
+	}
+	
+	@Override
+	public String areaS(long fino) {
+		return finditemMapper.area(fino);
 	}
 
 }

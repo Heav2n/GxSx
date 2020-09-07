@@ -31,68 +31,6 @@ public class FindItemController {
 	@Resource(name="FindCommentService")
 	private FindCommentService findCommentService;
 	
-//	@RequestMapping("list.do")
-//	public ModelAndView list(HttpServletRequest request, HttpSession session) {
-//		String cpStr = request.getParameter("cp");
-//		String psStr = request.getParameter("ps");
-//		
-//		//(1) cp 
-//		int cp = 1;
-//		if(cpStr == null) {
-//			Object cpObj = session.getAttribute("cp");
-//			if(cpObj != null) {
-//				cp = (Integer)cpObj;
-//			}
-//		}else {
-//			cpStr = cpStr.trim();
-//			cp = Integer.parseInt(cpStr);
-//		}
-//		session.setAttribute("cp", cp);
-//		
-//		//(2) ps 
-//		int ps = 3;
-//		if(psStr == null) {
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				ps = (Integer)psObj;
-//			}
-//		}else {
-//			psStr = psStr.trim();
-//			int psParam = Integer.parseInt(psStr);
-//			
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				int psSession = (Integer)psObj;
-//				if(psSession != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}else {
-//				if(ps != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}
-//			
-//			ps = psParam;
-//		}
-//		session.setAttribute("ps", ps);
-//		
-//		//(3) ModelAndView
-//		FindItPicListResult listResult = service.getFindItPicListResult(cp, ps);
-//		ModelAndView mv = new ModelAndView("findItPic/list", "listResult", listResult);
-//		
-//		if(listResult.getList().size() == 0) {
-//			if(cp > 1) {
-//				return new ModelAndView("redirect:list.do?cp="+(cp-1));
-//			}else {
-//				return new ModelAndView("redirect:list.do", "listResult", null);
-//			}
-//		}else {
-//			return mv; 
-//		}
-//	}
-	
 	@GetMapping("write2.do")
 	public String write() {
 		return "findItPic/write2";
@@ -103,28 +41,28 @@ public class FindItemController {
 		service.write(findItPic);
 		return "redirect:list.do";
 	}
-	@GetMapping("content.do")
-	public ModelAndView content(long fino) {
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		log.info("@@@@@@@@@@@@@@@@@@@@@ fino : " +fino);
-		FindItPic findItPic = service.getFindItPic(fino);
-		String area = service.areaS(fino);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("findItPic/content");
-		mv.addObject("content", findItPic);
-		
-		int finoInt = (int)fino;
-		List<FiComments> ficomment = findCommentService.FindCommentList(finoInt);
-		
-		mv.addObject("ficomment", ficomment);
-		
-		mv.addObject("area", area);
-		return mv;
-	}
+//	@GetMapping("content.do")
+//	public ModelAndView content(long fino) {
+//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+//		log.info("@@@@@@@@@@@@@@@@@@@@@ fino : " +fino);
+//		FindItPic findItPic = service.getFindItPic(fino);
+//		String area = service.areaS(fino);
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("findItPic/content");
+//		mv.addObject("content", findItPic);
+//		
+//		int finoInt = (int)fino;
+//		List<FiComments> ficomment = findCommentService.FindCommentList(finoInt);
+//		
+//		mv.addObject("ficomment", ficomment);
+//		
+//		mv.addObject("area", area);
+//		return mv;
+//	}
 	@GetMapping("update.do")
 	public ModelAndView update(FiComments ficomments) {
 		FindItPic findItPic = service.UpdatefS(ficomments);
@@ -168,7 +106,7 @@ public class FindItemController {
 		}
 		session.setAttribute("cp", cp);
 		
-		int ps = 3;
+		int ps = 8;
 		if(psStr == null) {
 			Object psObj = session.getAttribute("ps");
 			if(psObj != null) {
@@ -291,5 +229,99 @@ public class FindItemController {
 			return mv; 
 		}
 	}
+	
+	@RequestMapping("slist.do")
+	public ModelAndView slist(String query, HttpServletRequest request, HttpSession session) {
+		System.out.println("nullroQkrclsek:" + query);
+		String cpStr = request.getParameter("cp");
+		String psStr = request.getParameter("ps");
+		
+		int cp = 1;
+		if(cpStr == null) {
+			Object cpObj = session.getAttribute("cp");
+			if(cpObj != null) {
+				cp = (Integer)cpObj;
+			}
+		}else {
+			cpStr = cpStr.trim();
+			cp = Integer.parseInt(cpStr);
+		}
+		session.setAttribute("cp", cp);
+		
+		int ps = 8;
+		if(psStr == null) {
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				ps = (Integer)psObj;
+			}
+		}else {
+			psStr = psStr.trim();
+			int psParam = Integer.parseInt(psStr);
+			
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				int psSession = (Integer)psObj;
+				if(psSession != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}else {
+				if(ps != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}
+			
+			ps = psParam;
+		}
+		session.setAttribute("ps", ps);
+		
+		FindItPicListResult listResult;
+		
+		if(query.length()!=0) {
+			listResult = service.listResult(query, cp, ps);
+		}
+		else {
+			listResult = service.listResult(cp, ps);
+		}
+		
+		ModelAndView mv = new ModelAndView();		
+		mv.setViewName("gxsx/fislist");		
+		mv.addObject("findResult", listResult);
+		mv.addObject("query", query);
+		
+		if(listResult.getList().size() == 0) {
+			if(cp > 1) {
+				return new ModelAndView("redirect:slist.do?cp="+(cp-1)+"&query="+query);
+			}else {
+				return new ModelAndView("redirect:slist.do?cp=1&query="+query, "findResult", null);
+			}
+		}else {
+			return mv; 
+		}
+	}
+	
+	@GetMapping("content.do")
+	public ModelAndView content(long fino) {
+		FindItPic findItPic = service.getFindItPic(fino);
+		String area = service.areaS(fino);
+		int finoInt = (int)fino;
+		List<FiComments> ficomment = findCommentService.FindCommentList(finoInt);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/ficontent");
+		mv.addObject("content", findItPic);		
+		mv.addObject("ficomment", ficomment);
+		mv.addObject("area", area);
+		
+		return mv;
+	}
+	
+//	@GetMapping("content.do")
+//	public String contents(long fino) {
+//		System.out.println("@@@@@@@@@@@@@@@@@@@@@ fino : " +fino);
+//		return "gxsx/ficontent";
+//		return "added/findItPic/content";
+//	}
 	
 }

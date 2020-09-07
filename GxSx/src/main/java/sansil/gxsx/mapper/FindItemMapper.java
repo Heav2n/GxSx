@@ -11,8 +11,6 @@ import sansil.gxsx.domain.LostItem;
 public interface FindItemMapper {
 	List<FindItem> selectFinditem();
 		
-	FindItPic selectBySeq(long fino);
-	String area(long fino);
 	List<FindItPic> selectByWriter(FindItem findItPicVo);
 	List<FindItPic> selectBySeq(FindItPic findItPic);
 	void insert(FindItPic findItPic);
@@ -24,6 +22,11 @@ public interface FindItemMapper {
 	List<FindItPic> selectByName(String fisub);
 	
 	long selectCount();
+	long selectCount2(String fisub);
 	List<FindItPic> selectPerPage(FindItemVo findItPicVo);
+	List<FindItPic> selectPerPage2(FindItemVo findItPicVo);
+	
+	FindItPic selectBySeq(long fino);
+	String area(long fino);
 }
 

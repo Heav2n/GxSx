@@ -366,7 +366,7 @@
 						
 					<!-- Search product -->
 						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do?">
+							<form method="post" action="slist.do">
 								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
 									<i class="zmdi zmdi-search"></i>
 								</button>
@@ -393,7 +393,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<a href="../finditem/content.do?fino=${finditem.fino}"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
+							<img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT">
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -403,7 +403,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<span class="m-r-3">
-									<a href="../finditem/content.do"><span class="cl5">${finditem.fisub}</span></a>
+									<span class="cl5">${finditem.fisub}</span>
 								</span>
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
 
@@ -430,7 +430,7 @@
 			<!-- Pagination -->
 			<div class="flex-c-m flex-w w-full p-t-38">
 				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i">
-			        <a href="list.do?cp=${i}">
+			        <a href="slist.do?cp=${i}&query=${query}">
 			   			<c:choose>
 			   			    <c:when test="${i==findResult.page}">
 			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>

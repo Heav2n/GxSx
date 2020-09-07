@@ -11,13 +11,11 @@ import sansil.gxsx.domain.FindItemResult;
 public interface FindItemService {
 	List<FindItem> finditem();
 
-	FindItPic getFindItPic(long fino);
 	void insertS(FindItPic findItPic);
 	void deleteS(long fino);
 	FindItPic selectBySeqS(long fino);
 	FindItPic UpdatefS(FiComments ficomments);
 	boolean UpdateS(FindItPic findItPic);
-	String areaS(long fino);
 	
 	void write(FindItPic findItPic);
 	void edit(FindItPic findItPic);
@@ -33,6 +31,9 @@ public interface FindItemService {
 	List<FindItPic> selectByNameS(String fisub);
 	
 	FindItPicListResult listResult(int cp, int ps);
-
+	FindItPicListResult listResult(String fisub, int cp, int ps);
+	
+	FindItPic getFindItPic(long fino);
+	String areaS(long fino);	
 	
 }
