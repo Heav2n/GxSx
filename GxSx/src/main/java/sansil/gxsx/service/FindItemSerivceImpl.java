@@ -2,6 +2,9 @@ package sansil.gxsx.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +15,10 @@ import sansil.gxsx.domain.FindItPicListResult;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.FindItemVo;
 import sansil.gxsx.domain.LostItem;
+import sansil.gxsx.domain.LostItemPicVo;
+import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.mapper.FindItemMapper;
+import sansil.gxsx.utils.PagingUtil;
 
 @Log4j
 @Service("FindItem")
@@ -68,15 +74,15 @@ public class FindItemSerivceImpl implements FindItemService {
 
 	}	
 	
-	@Override
-	public FindItPicListResult getFindItPicListResult(int page, int pageSize) {
-		long totalCount = finditemMapper.selectCount();
-		FindItemVo findItPicVo = new FindItemVo(null, page, pageSize);
-		List<FindItPic> list = finditemMapper.selectPerPage(findItPicVo);
-		
-		System.out.println("list:------------------------------------------------------- " + list);
-		return new FindItPicListResult(page, pageSize, totalCount, list);		
-	}
+//	@Override
+//	public FindItPicListResult getFindItPicListResult(int page, int pageSize) {
+//		long totalCount = finditemMapper.selectCount();
+//		FindItemVo findItPicVo = new FindItemVo(null, page, pageSize);
+//		List<FindItPic> list = finditemMapper.selectPerPage(findItPicVo);
+//		
+//		System.out.println("list:------------------------------------------------------- " + list);
+//		return new FindItPicListResult(page, pageSize, totalCount, list);		
+//	}
 
 	@Override
 	public FindItPic UpdatefS(FiComments ficomments) {
@@ -97,14 +103,32 @@ public class FindItemSerivceImpl implements FindItemService {
 	}
 	
 	@Override
-	public FindItPicListResult listResult(int page, int pageSize) {
-		long totalCount = finditemMapper.selectCount();
-		FindItemVo findItPicVo = new FindItemVo(null, page, pageSize);
-		List<FindItPic> list = finditemMapper.selectPerPage(findItPicVo);
+	public Pagination getPagination(HttpServletRequest request, HttpSession session) {
+		String cpStr = request.getParameter("cp");
+		String psStr = request.getParameter("ps");
 		
-		System.out.println("list: " + list);
-		return new FindItPicListResult(page, pageSize, totalCount, list);		
+		FindItPic query = new FindItPic();
+		PagingUtil pagingutil = new PagingUtil(cpStr, psStr, session);
+
+		Long listCount = finditemMapper.selectCountFinditem();
+
+		return new Pagination(listCount, pagingutil.getCp(),pagingutil.getPs());
 	}
+	
+	@Override
+	public List<FindItPic> getlist(Pagination page) {
+		return finditemMapper.selectPerPage(page);
+	}
+	
+//	@Override
+//	public FindItPicListResult listResult(int page, int pageSize) {
+//		long totalCount = finditemMapper.selectCount();
+//		FindItemVo findItPicVo = new FindItemVo(null, page, pageSize);
+//		List<FindItPic> list = finditemMapper.selectPerPage(findItPicVo);
+//		
+//		System.out.println("list: " + list);
+//		return new FindItPicListResult(page, pageSize, totalCount, list);		
+//	}
 	
 	@Override
 	public FindItPicListResult listResult(String fisub, int page, int pageSize) {
@@ -124,6 +148,16 @@ public class FindItemSerivceImpl implements FindItemService {
 	@Override
 	public String areaS(long fino) {
 		return finditemMapper.area(fino);
+	}
+	
+	@Override
+	public List<FindItPic> getFindRelated(){
+		return finditemMapper.getFindRelated();
+	}
+	
+	////////////////////////////////////////////////////////////////////////ÄÚ¸àÆ®
+	public List<FiComments> FindCommentList(int fino) {
+		return finditemMapper.FindCommentList(fino);
 	}
 
 }

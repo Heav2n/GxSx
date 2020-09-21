@@ -39,10 +39,30 @@ function commentList(fino){
 	    });
 	}
 //댓글 등록
+//function commentInsert(fino){
+//	let newInput_html = "";
+//	console.log("fino : "+fino);
+//	let content = document.getElementById('comments').value;
+//	console.log("content : "+content);
+//	$.ajax({
+//		url : "../FindComment/insert.json",
+//		type : 'post',
+//		dataType : 'HTML',
+//		data : {
+//			'content': content,
+//			'fino': fino
+//			},
+//		success : function(data){ //list로 받음, 뽑을땐 반복문 돌려야함(for)
+//			$('#comment-table').html(data);
+//			console.log("기모리1");
+//		}
+//	});
+//}
+
 function commentInsert(fino){
 	let newInput_html = "";
 	console.log("fino : "+fino);
-	let content = document.getElementById('comments').value;
+	let content = document.getElementById('review').value;
 	console.log("content : "+content);
 	$.ajax({
 		url : "../FindComment/insert.json",
@@ -58,6 +78,7 @@ function commentInsert(fino){
 		}
 	});
 }
+
 var prevInput;
 var click=0;
 ////댓글수정

@@ -14,7 +14,7 @@
 <!-- partial:index.partial.html -->
 	<div id="app-cover">
 	  <div id="app">
-	    <form method="get" action="finditem/fisearch.do">
+	    <form method="get" action="finditem/slist.do">
 	      <div id="f-element">
 	        <div id="inp-cover">
 	        	<input type="text" name="query" placeholder="search your AXE" autocomplete="off">

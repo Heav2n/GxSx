@@ -10,12 +10,19 @@
 		select * from FICOMMENTS where FINO = #{fino} order By PCOM desc, DEPTH asc, COMNO asc 
 	</select>
 	
+<!-- 	<insert id="FindCommentInsert" parameterType="FiComments"> 경빈-->
+<!-- 		<selectKey keyProperty="comno" resultType="int" order="BEFORE"> -->
+<!-- 			select FINDCOMMENTS_SEQ_PK.nextval from dual -->
+<!-- 		</selectKey> -->
+<!-- 		INSERT into FICOMMENTS  -->
+<!-- 		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 1, #{comno}) -->
+<!-- 	</insert> -->
 	<insert id="FindCommentInsert" parameterType="FiComments">
 		<selectKey keyProperty="comno" resultType="int" order="BEFORE">
 			select FINDCOMMENTS_SEQ_PK.nextval from dual
 		</selectKey>
 		INSERT into FICOMMENTS 
-		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 1, #{comno})
+		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 0, null, #{comno})
 	</insert>
 	
 	<!-- 대댓글 -->

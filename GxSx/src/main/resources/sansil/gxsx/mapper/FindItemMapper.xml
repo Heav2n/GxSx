@@ -42,11 +42,22 @@
 		select COUNT(FINO) from FINDITEM where FISUB like '%'||#{fisub}||'%' order by FINO desc
 	</select>
 	
-	<select id="selectPerPage" resultType="FindItPic" parameterType="FindListVo">
+<!-- 	<select id="selectPerPage" resultType="FindItPic" parameterType="FindListVo"> -->
+<!-- 		<![CDATA[ -->
+<!--  		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on   -->
+<!--  		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)  -->
+<!--  		where rnum>#{startRow} and rnum<=#{endRow}  -->
+<!--  		]]> -->
+<!-- 	</select> -->
+	
+	<select id="selectCountFinditem" resultType="Long">
+		select count(*) from FINDITEM
+	</select>
+	
+	<select id="selectPerPage" resultType="FindItPic" parameterType="Pagination">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on 
-		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)
-		where rnum>#{startRow} and rnum<=#{endRow}
+		select * from (select ROWNUM rnum, aa.* from (select * from finditem join findpic on finditem.fino = findpic.fipno join area on finditem.fiano = area.ano
+		 order by FINO desc) aa) where rnum between #{startRow} and #{endRow}
 		]]>
 	</select>
 	
@@ -64,6 +75,19 @@
 	
 	<select id="area" resultType="String" parameterType="long">
 		select acity from area where ano=(select fiano from findItem where fino=#{fino})
+	</select>
+		
+	<select id="getFindRelated" resultType="FindItPic">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on 
+		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)
+		where ROWNUM <=8
+		]]>	
+	</select>
+	
+	<!-- /////////////////////////////////////코멘트 -->
+	<select id="FindCommentList" resultType="FiComments" parameterType="int">
+		select * from FICOMMENTS where FINO = #{fino} order by COGROUP, CODATE
 	</select>
 	
 </mapper>

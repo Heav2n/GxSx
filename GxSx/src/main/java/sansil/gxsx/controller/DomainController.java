@@ -45,8 +45,8 @@ public class DomainController {
 		mv.addObject("findResult", findResult);
 		mv.addObject("lostpicResult", lostpicResult);
 		mv.addObject("findpicResult", findpicResult);
-//		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
-//		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
+		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
+		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
 		
 		if(session.getAttribute("klogin")!=null) { //kakao로 로그인 했을때
 			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);
@@ -83,7 +83,7 @@ public class DomainController {
 			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);	//로그아웃가능하게 주소 미리 받아줌
 			
 		    ModelAndView mv = new ModelAndView(); // 결과값을 node에 담아줌 
-			mv.setViewName("temp/domain");		
+			mv.setViewName("gxsx/domain");		
 			mv.addObject("kakaologout_url", kakaologoutUrl);
 			
 			Users usercheck = service.kakaologinS(session.getAttribute("kid").toString()); //DB에 카카오아이디가 등록된 회원인지 확인
@@ -138,7 +138,7 @@ public class DomainController {
 	public ModelAndView login(HttpSession session) { 
 		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
 		ModelAndView mv = new ModelAndView();		
-		mv.setViewName("temp/login");		
+		mv.setViewName("gxsx/login");		
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
@@ -190,7 +190,7 @@ public class DomainController {
 	
 	@GetMapping("signupform.do")
 	public String signupform() {
-		return "temp/signup";
+		return "gxsx/signup";
 	}
 	
 	@PostMapping("signup.do")
@@ -199,19 +199,9 @@ public class DomainController {
 		return "redirect:domain.do";
 	}
 	
-	@RequestMapping("lostitem.do")
-	public String lostitem() {
-		return "temp/lostitem";
-	}
-	
-	@RequestMapping("finditem.do")
-	public String finditem() {
-		return "temp/fislist";
-	}
-	
 	@RequestMapping("contact.do")
 	public String contact() {
-		return "temp/contact";
+		return "gxsx/contact";
 	}
 	
 	@RequestMapping("myboard.do")
@@ -234,7 +224,7 @@ public class DomainController {
 	public ModelAndView tempsignupform(HttpSession session) {
 		Users kakaouser = (Users)session.getAttribute("kakaouser");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("temp/tempsign");		
+		mv.setViewName("gxsx/tempsign");		
 		mv.addObject("kakaouser", kakaouser);
 		System.out.println("77777 : " + kakaouser);
 		return mv;

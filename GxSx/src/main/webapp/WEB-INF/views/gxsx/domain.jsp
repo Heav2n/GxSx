@@ -63,7 +63,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -87,7 +87,7 @@
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -149,7 +149,7 @@
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../mypage/account.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
@@ -266,7 +266,7 @@
 				<h3 class="ltext-105 cl5 txt-center respon1" style="float:center">
 					FindItem
 				</h3>
-				<a href="finditem/list.do" style="float:right">more></a>
+				<a href="../finditem/list.do" style="float:right">more></a>
 			</div>
 
 			<div class="row">
@@ -333,7 +333,7 @@
 				<h3 class="ltext-105 cl5 txt-center respon1" style="float:center">
 					LostItem
 				</h3>
-				<a href="lostitem/list.do" style="float:right">more></a>
+				<a href="../lostitem/list.do" style="float:right">more></a>
 			</div>
 
 			<div class="row">

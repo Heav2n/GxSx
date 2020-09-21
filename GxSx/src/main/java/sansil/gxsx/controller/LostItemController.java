@@ -30,72 +30,13 @@ public class LostItemController {
 	@Resource(name="LostItem")
 	private LostItemService service;
 	
-//	@RequestMapping("list.do")
-//	public ModelAndView list(HttpServletRequest request, HttpSession session) {
-//		String cpStr = request.getParameter("cp");
-//		String psStr = request.getParameter("ps");
-//		
-//		int cp = 1;
-//		if(cpStr == null) {
-//			Object cpObj = session.getAttribute("cp");
-//			if(cpObj != null) {
-//				cp = (Integer)cpObj;
-//			}
-//		}else {
-//			cpStr = cpStr.trim();
-//			cp = Integer.parseInt(cpStr);
-//		}
-//		session.setAttribute("cp", cp);
-//		
-//		int ps = 3;
-//		if(psStr == null) {
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				ps = (Integer)psObj;
-//			}
-//		}else {
-//			psStr = psStr.trim();
-//			int psParam = Integer.parseInt(psStr);
-//			
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				int psSession = (Integer)psObj;
-//				if(psSession != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}else {
-//				if(ps != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}
-//			
-//			ps = psParam;
-//		}
-//		session.setAttribute("ps", ps);
-//		
-//		LostItemResult lostResult = service.getLostItemResult(cp, ps);
-//		ModelAndView mv = new ModelAndView("lostitem/list", "lostResult", lostResult);
-//		if(lostResult.getList().size() == 0) {
-//			if(cp > 1) {
-//				return new ModelAndView("redirect:list.do?cp="+(cp-1));
-//			}else {
-//				return new ModelAndView("redirect:list.do", "lostResult", null);
-//			}
-//		}else {
-//			return mv;
-//		}
-//	}
-	
 //////////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpServletRequest request, HttpSession session) {
 		Pagination listpage = service.getPagination(request, session);
 		List<LostItemPicVo> list = service.getlist(listpage);
-		log.info("#> list size : "+list.size());
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("temp/lolist");
+		mv.setViewName("gxsx/lolist");
 		mv.addObject("lostResult", list);
 		mv.addObject("listpage", listpage);
 

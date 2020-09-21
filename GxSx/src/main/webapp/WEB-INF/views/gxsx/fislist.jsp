@@ -62,7 +62,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="../gxsx/domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -70,7 +70,7 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="domain.do">Home</a>
+								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
 							<li>
@@ -99,7 +99,7 @@
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
-										<a href="login.do">Login</a></li>
+										<a href="../gxsx/login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
@@ -162,7 +162,7 @@
 						            			&nbsp;<a href="">Logout</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">Logout</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
 												&nbsp;<a href="${kakaologout_url}">Logout</a>
@@ -393,7 +393,12 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT">
+							<c:if test="${ empty loginuser && empty klogin}">
+		            			<a href="../gxsx/login.do"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
+		            		</c:if>
+		            		<c:if test="${ (!empty loginuser && empty kakaologout_url) || (!empty klogin && !empty kakaologout_url)}">
+								<a href="../finditem/content.do?fino=${finditem.fino}"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
+							</c:if>
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -428,19 +433,47 @@
 			</div>
 
 			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38">
-				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i">
-			        <a href="slist.do?cp=${i}&query=${query}">
+			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
+				<c:if test="${findResult.totalCount>10}">
+					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
+				    	onclick="selectlostitemPage(${listpage.startPage-1})">
+				    		Previous</p>
+				 </c:if>
+				 
+				 <c:forEach begin="1" end="10" var="i">
+			        <a href="list.do?cp=${i}">
 			   			<c:choose>
-			   			    <c:when test="${i==findResult.page}">
+			   			    <c:when test="${i==findResult.page && i<=findResult.totalCount}">
 			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
 			                </c:when>
-			                <c:otherwise>
+			                <c:when test="${i!=findResult.page && i<=findResult.totalCount}">
 			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
+			                </c:when>
+			                <c:otherwise>
+			                    <p></p>
 			                </c:otherwise>
 						</c:choose>
 			    	</a>&nbsp;
 			    </c:forEach>
+				 
+<%-- 				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i"> --%>
+<%-- 			        <a href="slist.do?cp=${i}&query=${query}"> --%>
+<%-- 			   			<c:choose> --%>
+<%-- 			   			    <c:when test="${i==findResult.page}"> --%>
+<%-- 			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p> --%>
+<%-- 			                </c:when> --%>
+<%-- 			                <c:otherwise> --%>
+<%-- 			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p> --%>
+<%-- 			                </c:otherwise> --%>
+<%-- 						</c:choose> --%>
+<!-- 			    	</a>&nbsp; -->
+<%-- 			    </c:forEach> --%>
+			    
+			    <c:if test="${findResult.totalCount>10}">
+				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
+				    	onclick="selectlostitemPage(${listpage.endPage+1})">
+				      		Next</p>
+			    </c:if>
 			</div>
 			
 		</div>
