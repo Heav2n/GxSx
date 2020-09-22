@@ -12,7 +12,7 @@
 	</select>
 	
 	<select id="listLostitem" resultType="Users">
-		select * from lostitem where LOUID = 'mondaygirl'
+		select * from lostitem where LOUID = 'mondaygirl' order by FINO desc
 	</select>
 	
 	<select id="selectCount" resultType="long">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="listFinditem" resultType="Users">
-		select * from finditem where FIUID = 'mondaygirl'
+		select * from finditem where FIUID = 'mondaygirl' order by FINO desc
 	</select>
 	
 	<delete id="delete" parameterType="String">
@@ -33,12 +33,12 @@
 	
 	<select id="selectCountLostItem" resultType="long" parameterType="String">
 		select count(*) from LOSTITEM item join LOSTPIC pic on item.LONO = pic.LOPNO where
-		LOUID=#{query}
+		LOUID=#{query} order by LONO desc
 	</select>
 	
 	<select id="selectCountFindItem" resultType="long" parameterType="String">
 		select count(*) from FINDITEM item join FINDPIC pic on item.FINO = pic.FIPNO where
-		FIUID=#{query}
+		FIUID=#{query} order by FINO desc
 	</select>
 	
 	<select id="lostList" resultType="LostListVo" parameterType="LostListVo">
@@ -53,4 +53,13 @@
 		FIUID=#{fiuid}) aa) where rnum between #{paging.startRow} and #{paging.endRow}
 	</select>
 	
+	<select id="fselectByName" resultType="FindListVo" parameterType="HashMap">
+	     select * from FINDITEM join FINDPIC on finditem.fino = findpic.fipno join area on finditem.fiano = area.ano
+		 where finditem.FISUB like '%'||#{fisub}||'%' AND FIUID = #{userid} order by FINO desc
+	</select>
+	
+	<select id="lselectByName" resultType="LostListVo" parameterType="HashMap">
+	     select * from LOSTITEM join LOSTPIC on lostitem.lono = lostpic.lopno join area on lostitem.loano = area.ano
+		 where lostitem.LOSUB like '%'||#{losub}||'%' AND LOUID = #{userid} order by LONO desc
+	</select>
 </mapper>

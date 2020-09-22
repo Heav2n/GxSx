@@ -1,5 +1,6 @@
 package sansil.gxsx.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import sansil.gxsx.domain.FindListVo;
@@ -19,5 +20,8 @@ public interface UsersMapper {
 	List<LostListVo> lostList(LostListVo query);
 	long selectCountFindItem(String query);
 	List<FindListVo> findList(FindListVo query);
+	
+	List<FindListVo> fselectByName(HashMap searchmap);
+	List<LostListVo> lselectByName(HashMap searchmap);
 	
 }

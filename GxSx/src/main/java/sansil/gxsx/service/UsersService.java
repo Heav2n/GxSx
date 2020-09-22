@@ -1,10 +1,12 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindListVo;
 import sansil.gxsx.domain.LostListVo;
 import sansil.gxsx.domain.Pagination;
@@ -40,4 +42,7 @@ public interface UsersService {
 	
 	Pagination getAjaxFindPagination(int selectedPage, String fiuid, HttpServletRequest request, HttpSession session);
 	List<FindListVo> getFindListVo(Pagination page, String fiuid);
+	
+	List<FindListVo> fselectByNameS(HashMap searchmap);
+	List<LostListVo> lselectByNameS(HashMap searchmap);
 }

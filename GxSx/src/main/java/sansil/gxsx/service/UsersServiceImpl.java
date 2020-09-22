@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindListVo;
 import sansil.gxsx.domain.LostListVo;
 import sansil.gxsx.domain.Pagination;
@@ -86,13 +88,7 @@ public class UsersServiceImpl implements UsersService {
 		log.info("#> controller lostList : "+lostList);
 		for(LostListVo lost : lostList) {
 			log.info("#> query "+ query.getPaging());
-			/*
-			log.info("currentPage : "+query.getPaging().getCurrentPage()+
-					"currentRange : "+query.getPaging().getCurrentRange()+
-					"endPage : "+query.getPaging().getEndPage()+
-					"" ...
-					);
-			*/
+			
 		}
 		return lostList;
 	}
@@ -170,5 +166,15 @@ public class UsersServiceImpl implements UsersService {
 		query.setPaging(page);
 		
 		return usersMapper.findList(query);
+	}
+	
+	@Override
+	public List<FindListVo> fselectByNameS(HashMap searchmap){
+		return usersMapper.fselectByName(searchmap);
+	}
+	
+	@Override
+	public List<LostListVo> lselectByNameS(HashMap searchmap){
+		return usersMapper.lselectByName(searchmap);
 	}
 }

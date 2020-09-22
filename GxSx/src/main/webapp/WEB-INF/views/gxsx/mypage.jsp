@@ -47,26 +47,170 @@
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
 	</style>
+	
+	<script type="text/javascript" language="javascript" 
+		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">	
+		$(function() {
+			$("#fiboard").on("click", function(){
+				$.ajax({
+				   url: "../Users/fiboard.json", 
+				   type: "POST",
+				   dataType: "json",
+				   data: { fisub: $("#fisub").val()},				
+				   success: function(responseData){
+					 if(!responseData){
+						 alert("존재하지 않는 제목");
+						 return false;
+					 }
+					 var html= "<div class='wrap-table-shopping-cart'>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
+						 html += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+					 if(responseData.length != 0){
+ 						 for(var i=0; i<responseData.length; i++){
+							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
+							html += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+							html += "<td class='column-2'>"+responseData[i].fisub+"</td>";
+							html += "<td class='column-3'>"+responseData[i].ficname+"\</td>";
+							html += "<td class='column-4'>"+responseData[i].fidate+"</td>";
+							html += "<td class='column-5'>"+responseData[i].fifin+"</td></tr>";
+						 }
+ 					 }else{
+ 						 html += "<tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr></table></div>";
+ 					 }
+  					 html += "</table>";
+					 html += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+					 html += "<div class='flex-w flex-m m-r-20 m-tb-5'></div>";
+					 html += "<form method='post' action='fiboard.do?'>"
+					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisitem' id='fisitem' placeholder='Search item'>";
+					 html += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='fiboard'>";
+					 html += "Search</div></form></div>";
+  						
+  					 $("#boardcontent").html(html);
+				   }
+			   });
+		   });
+		})//start-end
+		
+		$(function() {
+			$("#loboard").on("click", function(){
+				$.ajax({
+				   url: "../Users/loboard.json", 
+				   type: "POST",
+				   dataType: "json",
+				   data: { losub: $("#losub").val()},				
+				   success: function(responseData){
+					 if(!responseData){
+						 alert("존재하지 않는 제목");
+						 return false;
+					 }
+					 var html= "<div class='wrap-table-shopping-cart'>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
+						 html += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+					 if(responseData.length != 0){
+ 						 for(var i=0; i<responseData.length; i++){
+							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
+							html += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+							html += "<td class='column-2'>"+responseData[i].losub+"</td>";
+							html += "<td class='column-3'>"+responseData[i].locname+"\</td>";
+							html += "<td class='column-4'>"+responseData[i].lodate+"</td>";
+							html += "<td class='column-5'>"+responseData[i].lofin+"</td></tr>";
+						 }
+ 					 }else{
+ 						 html += "<tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr></table></div>";
+ 					 }
+  					 html += "</table>";
+					 html += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+					 html += "<div class='flex-w flex-m m-r-20 m-tb-5'></div>";
+					 html += "<form method='post' action='loboard.do?'>"
+					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='lositem' id='lositem' placeholder='Search item'>";
+					 html += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='loboard'>";
+					 html += "Search</div></form></div>";
+  						
+  					 $("#boardcontent").html(html);
+				   }
+			   });
+		   });
+		})//start-end
+	</script>
 
 	<script type="text/javascript">
-	function lostfunc() {
-		//alert("성공");
-		//document.getElementsByName("name");  //태그의 name 속성이 name인 태그를 모두 찾음(name은 중복가능)
-		//document.getElementById("test");  //id가 test인 태그를 찾음 (id는 중복불가)
-		var tag1 = "1";
-
-		//.innerHTML = "str" : 해당 태그 안에  str를 덮어씌움
-		
-		document.getElementById("contentchange").innerHTML = tag1;
-	}	
-
+	
 	function findfunc() {
 		//alert("성공2");
-		var str1 = "2";
+		var str1 = "";
+			str1 += "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent'>";
+			str1 += "<div class='wrap-table-shopping-cart'><table class='table-shopping-cart'>";
+			str1 += "<tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
+			str1 += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			str1 += "<c:if test='${empty find}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
+			str1 += "<c:forEach items='${find}' var='find' varStatus='status'>";
+			str1 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
+			str1 += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+			str1 += "<td class='column-2'>${find.fisub}</td><td class='column-3'>${find.ficname}</td><td class='column-4'>${find.fidate}</td>";
+			str1 += "<c:if test='${find.fifin==0}'><td class='column-5'>미완료</td></c:if>";
+			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
+
+			str1 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+			str1 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div><form method='post' action='fiboard.do?'>";
+			str1 += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisub' id='fisub' placeholder='Search item'>";
+			str1 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='fiboard'>Search</div></form></div></div>";
+				
 		document.getElementById("contentchange").innerHTML = str1;
 			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
 			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
 	}
+	
+	function lostfunc() {
+		var str2 = "";
+			str2 += "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent'>";
+			str2 += "<div class='wrap-table-shopping-cart'><table class='table-shopping-cart'>";
+			str2 += "<tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
+			str2 += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			str2 += "<c:if test='${empty lost}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
+			str2 += "<c:forEach items='${lost}' var='lost' varStatus='status'>";
+			str2 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
+			str2 += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+			str2 += "<td class='column-2'>${lost.losub}</td><td class='column-3'>${lost.locname}</td><td class='column-4'>${lost.lodate}</td>";
+			str2 += "<c:if test='${lost.lofin==0}'><td class='column-5'>미완료</td></c:if>";
+			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
+	
+			str2 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+			str2 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div><form method='post' action='loboard.do?'>";
+			str2 += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='losub' id='losub' placeholder='Search item'>";
+			str2 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='loboard'>Search</div></form></div></div>";
+
+		document.getElementById("contentchange").innerHTML = str2;
+	}
+	
+	function profilefunc() {
+		var str3 = "";
+		document.getElementById("contentchange").innerHTML = str3;
+			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
+			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
+	}
+	
+	function pwdfunc() {
+		//alert("성공2");
+		var str4 = "";
+		document.getElementById("contentchange").innerHTML = str4;
+			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
+			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
+	}
+	
+	function CheckPassword(inputtxt) { 
+		var passw=  /^[A-Za-z]\w{7,14}$/;
+		if(inputtxt.value.match(passw)){ 
+			alert('Correct')
+			return true;
+		}
+		else{ 
+			alert('Wrong!')
+			return false;
+		}
+	}
+
+
 </script>
 
 </head>
@@ -256,7 +400,44 @@
 				
 				
 				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
-					<jsp:include page='mylostitem.jsp'></jsp:include>
+<%-- 					<jsp:include page='mylostitem.jsp'></jsp:include> --%>
+	
+			<div class="row">
+					<div class="m-l-25 m-r--38 m-lr-0-xl" style="margin-left:100px">
+						</br></br>
+								<!-- form card change password -->
+								<div class="table-shopping-cart">
+									<div class="card-header">
+										<h3 class="mb-0">Password Change</h3>
+									</div>
+									<div class="card-body">
+										<form class="form" role="form" autocomplete="off">
+											<div class="form-group">
+												<label for="inputPasswordOld">Current Password</label>
+												<input type="password" class="form-control" id="inputPasswordOld" required="">
+											</div>
+											<div class="form-group">
+												<label for="inputPasswordNew">New Password</label>
+												<input type="password" class="form-control" id="newPwd" required="">
+												<span class="form-text small text-muted">
+														The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.
+												</span>
+											</div>
+											<div class="form-group">
+												<label for="inputPasswordNewVerify">Verify</label>
+												<input type="password" class="form-control" id="newPwdVerify" required="">
+												<span class="form-text small text-muted">
+														To confirm, type the new password again.
+													</span>
+											</div>
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
+												id='submit' name="submit" onclick="CheckPassword(document.form.newPwd)">Save</div>
+										</form>
+									</div>
+								</div>
+								<!-- /form card change password -->
+						</div>
+						</div>
 				</div>
 				
 			</div>

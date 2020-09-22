@@ -149,7 +149,7 @@
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../mypage/account.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
