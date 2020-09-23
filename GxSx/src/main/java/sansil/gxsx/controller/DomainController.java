@@ -128,9 +128,7 @@ public class DomainController {
 					System.out.println("카카오 비우고 로그인" + users);
 				}
 			}
-			
 			return "redirect:domain.do"; //로그인 완료되었으니 domain.do 돌아감 (!@#추후에 이전페이지로 수정해야함)
-		
 	}
 	
 	

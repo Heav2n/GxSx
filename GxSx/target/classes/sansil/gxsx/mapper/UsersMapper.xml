@@ -62,4 +62,9 @@
 	     select * from LOSTITEM join LOSTPIC on lostitem.lono = lostpic.lopno join area on lostitem.loano = area.ano
 		 where lostitem.LOSUB like '%'||#{losub}||'%' AND LOUID = #{userid} order by LONO desc
 	</select>
+	
+	<update id="editPwd" parameterType="HashMap">
+		update USERS set upwd = #{upwd} where userid = #{userid}
+	</update>
+	
 </mapper>

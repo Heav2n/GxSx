@@ -24,4 +24,6 @@ public interface UsersMapper {
 	List<FindListVo> fselectByName(HashMap searchmap);
 	List<LostListVo> lselectByName(HashMap searchmap);
 	
+	void editPwd(HashMap editmap);
+	
 }
