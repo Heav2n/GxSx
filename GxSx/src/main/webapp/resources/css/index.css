@@ -11,15 +11,15 @@
 /* @import "beryllium/style.css.map"; */
 @import "beryllium/themify-icons.css"; 
 
-@import "church/animate.css";
-@import "church/bootstrap.css";
+		@import "church/animate.css";
+		@import "church/bootstrap.css";
 /* @import "church/bootstrap.css.map"; */
-@import "church/flexslider.css";
-@import "church/icomoon.css";
-@import "church/magnific-popip.css";
-@import "church/owl.carousel.min.css";
-@import "church/owl.theme.default.min.css";
-@import "church/style.css";
+		@import "church/flexslider.css";
+		@import "church/icomoon.css";
+		@import "church/magnific-popip.css";
+		@import "church/owl.carousel.min.css";
+		@import "church/owl.theme.default.min.css";
+/* 		@import "church/style.css"; */
 /* @import "church/style.css.map"; */
 
 /* @import "organi/bootstrap.min.css"; */

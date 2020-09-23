@@ -14,4 +14,6 @@ public class Question {
 	private String qsub;
 	private String qcon;
 	private String qreply;
+	private Pagination paging;
+	private String content;
 }

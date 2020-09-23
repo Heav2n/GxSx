@@ -13,60 +13,62 @@
 		<meta name="author" content="sansillyung">
 		
 		<title>GxSx</title>
+		
+	<link rel="stylesheet" href="../css/beryllium/style.css">
+	<link rel="stylesheet" href="../css/beryllium/themify-icons.css">
+			<link rel="stylesheet" href="../css/topmenu.css">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../images/coza/icons/favicon.png"/>
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/coza/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/coza/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/coza/linearicons-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/animate/animate.css">	
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/MagnificPopup/magnific-popup.css">
+	<link rel="stylesheet" type="text/css" href="../vendor/coza/perfect-scrollbar/perfect-scrollbar.css">
+	<link rel="stylesheet" type="text/css" href="../css/coza/util.css">
+	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
-		<link href="https://fonts.googleapis.com/css?family=Merriweather:300,400|Montserrat:400,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
-
-		<link rel="icon" href="favicon.ico">
-		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="../css/admi/index.scss">
-		<link rel="stylesheet" href="../css/index.css">
-		<link rel="stylesheet" href="../css/topmenu.css">
-		
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		<script src="../js/beryllium/modernizr-2.6.2.min.js"></script>
-		<script src="../js/church/modernizr-2.6.2.min.js"></script>
+	<style>
+		#tophr {
+		  width:68%;
+		  margin-left:300px;
+		  opacity:10%;
+		  height: 1px;
+		  background: #bbb;
+		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
+		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
+		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
+		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
+		}
+	</style>
+	
 </head>
+<body class="animsition">
 	
-<body>
-
-<!-- 								<li class="has-dropdown"><a href="#" class="openMask">Mypage</a> -->
-<!-- 									<ul class="dropdown"> -->
-<!-- 										<li><a href="myboard.do">Myboard</a></li> -->
-<!-- 										<li><a href="modifyform.do">Modify</a></li> -->
-<!-- 									</ul> -->
-<!-- 								</li> -->
-
-<%-- 								<c:if test="${ !empty loginuser && empty kakaologout_url}"> --%>
-<!-- 									<li><a href="logout.do">Logout</a></li> -->
-<%-- 								</c:if> --%>
-<%-- 								<c:if test="${!empty klogin && !empty kakaologout_url}"> --%>
-<%-- 									<li><a href="${kakaologout_url}">Logout</a></li> --%>
-<%-- 								</c:if> --%>
-
+	<!-- Header -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- ////////////////////////////////////// 맨 위 메뉴 시작 ////////////////////////////////////// -->
-		<div class="gtco-loader"></div>
-		<div id="page"> <!-- 전체를 감싸는 div -->
 	
 			<nav class="gtco-nav" role="navigation">
 				<div class="gtco-container">
-					<div class="row">
+					<div class="row" style="margin-right: -1100px">
 						<div class="col-sm-2 col-xs-12">
-							<div id="gtco-logo">
+							<div id="gtco-logo" style="margin-left: -100px">
 								<a href="domain.do"><img src = "../images/axe.png"> <!-- 메인메뉴 로고 -->
 							</div>
 						</div>
-						<div class="col-xs-10 text-right menu-1" style="margin-top:70px">
+						<div class="col-xs-10" style="margin-top:70px;margin-left:400px">
 							<ul>
 								<li class="active"><a href="domain.do">Home</a></li> <!-- 메인메뉴 목록 시작 -->
 								<li><a href="notice.do">Notice</a></li>
 								<li><a href="#">FindItem</a></li>
-								<li><a href="#">LostItem</a></li>
+								<li><a href="../lostitem/list.do">LostItem</a></li>
 								
 								<c:if test="${ !empty loginuser }">
 									<li class="dropdown">
@@ -78,32 +80,39 @@
 								           			</br>
 								           		</li>
 								            	<li>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+									            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+									            		<p>Lorem ipsum sit dolor amet consilium.</p>
+									            		<p class="time">1 Saat önce</p>
 								            		</div>
 								            	</li>
 								            	<hr>
 								            	<li>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+									            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+									            		<p>Lorem ipsum sit dolor amet consilium.</p>
+									            		<p class="time">1 Saat önce</p>
 								            		</div>
 								            	</li>
 								            	<hr>
 								            	<li>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+									            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+									            		<p>Lorem ipsum sit dolor amet consilium.</p>
+									            		<p class="time">1 Saat önce</p>
 								            		</div>
 								            	</li>
 								            	<hr>
 								            	<li>
-								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px"><a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
+								            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+									            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+									            		<p>Lorem ipsum sit dolor amet consilium.</p>
+									            		<p class="time">1 Saat önce</p>
 								            		</div>
 								            	</li>
+								            	<li>
+								           			</br>
+								           		</li>
 								             </div>
 								           </ul>
 								        </li>
@@ -150,297 +159,593 @@
 						</div>
 					</div>
 				</div>
+				<hr id="tophr">									
 			</nav>
 	<!-- ////////////////////////////////////// 맨 위 메뉴 종료 ////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-	
-	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->	
-	<!-- ///////////////////////////////////// 메뉴 바로 밑  사진 ///////////////////////////////////// -->
-		<div class="gtco-container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="owl-carousel owl-carousel-fullwidth">
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_1.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
+
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	<!-- ////////////////////////////////////// 광고 배너 시작  ////////////////////////////////////// -->
+	<div class="sec-banner bg0">
+		<div class="flex-w flex-c-m">
+			<div class="size-202 m-lr-auto respon4" style="margin-left:15%">
+				<!-- Block1 -->
+				<div class="block1 wrap-pic-w">
+					<img src="../images/coza/banner-05.jpg" alt="IMG-BANNER">
+					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
+								Men
+							</span>
+							<span class="block1-info stext-102 trans-04">
+								Spring 2018
+							</span>
 						</div>
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_2.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
+								Shop Now
+							</div>
 						</div>
-						<div class="item">
-							<a href="#">
-								<img src="../images/slider_3.jpg" alt="Free Website Template by FreeHTML5.co">
-								<div class="slider-copy">
-									<h2>Architecture #1</h2>
-								</div>
-							</a>
+					</a>
+				</div>
+			</div>
+			
+			<div class="size-202 m-lr-auto respon4">
+				<!-- Block1 -->
+				<div class="block1 wrap-pic-w">
+					<img src="../images/coza/banner-05.jpg" alt="IMG-BANNER">
+					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
+								Men
+							</span>
+							<span class="block1-info stext-102 trans-04">
+								Spring 2018
+							</span>
 						</div>
-					</div>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
+								Shop Now
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="size-202 m-lr-auto respon4" style="margin-right:15%">
+				<!-- Block1 -->
+				<div class="block1 wrap-pic-w">
+					<img src="../images/coza/banner-06.jpg" alt="IMG-BANNER">
+					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+						<div class="block1-txt-child1 flex-col-l">
+							<span class="block1-name ltext-102 trans-04 p-b-8">
+								Bags
+							</span>
+							<span class="block1-info stext-102 trans-04">
+								New Trend
+							</span>
+						</div>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">
+								Shop Now
+							</div>
+						</div>
+					</a>
 				</div>
 			</div>
 		</div>
-	<!-- //////////////////////////////////// 메뉴 바로 밑  사진 종료 //////////////////////////////////// -->
+	</div>
+
+	<!-- ////////////////////////////////////// 광고 배너 종료  ////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-	<!-- /////////////////////////////////////// 습득물 시작 /////////////////////////////////////// -->
-		<section id="portfolio" style="padding-bottom: 30px; margin-top: 10px">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="section-title">
-							<h21 style="float: left">FINDITEM</h21>
-						</div>
-					</div>
-					<p1 style="float: right">
-					<a href=index.do>more ></a></p1>
-				</div>
-				
-				<!-- church -->
-				<div class="row">
-					<c:if test="${empty lostResult}">
-							<tr align="center" noshade>
-								<td colspan="5">데이터가 하나도 없음</td>
-							</tr>
-					</c:if>
-					
-					<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
-						<div class="col-md-4 animate-box">
-							<div class="services">
-								<a href="#" class="img-holder">
-								<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-									<a href="login.do" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-									<a href="#" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-									<a href="tempsignupform.do" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<img class="img-responsive" src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="분실물" >
-								</a>
-								
-									<div class="events-entry">
-										<span class="date">${lostitem.lodate}</span>
-										<h3>
-											<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-												<a href="login.do">${lostitem.losub}</a>
-											</c:if>
-											<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-												<a href="#">${lostitem.losub}</a>
-											</c:if>
-											<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-												<a href="tempsignupform.do">${lostitem.losub}</a>
-											</c:if>
-										</h3>
-										<p>${lostitem.loplace}</p>
-									</div>
-								</div>
-						</div>
-					</c:forEach>
-					
-					<div class="col-md-4 animate-box">
-						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-							<div class="desc">
-								<h3><a href="#">Biblical Counseling</a></h3>
-								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-							<div class="desc">
-								<h3><a href="#">Helping Children</a></h3>
-								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	<!-- /////////////////////////////////////// 습득물 종료 /////////////////////////////////////// -->	
-	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	<!-- /////////////////////////////////////// 습득물 시작  /////////////////////////////////////// -->
 
-	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-	<!-- /////////////////////////////////////// 분실물 시작 /////////////////////////////////////// -->
-		<section id="portfolio" style="padding-top: 20px">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 text-center">
-						<div class="section-title">
-							<h22 style="float: left">LOSTITEM</h22>
-						</div>
-					</div>
-					<p1 style="float: right">
-					<a href=index.do>more ></a></p1>
-				</div>
-				
-				<!-- church -->
-				<div class="row">
-					<c:if test="${empty lostResult}">
-							<tr align="center" noshade>
-								<td colspan="5">데이터가 하나도 없음</td>
-							</tr>
-					</c:if>
-					
-					<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
-						<div class="col-md-4 animate-box">
-							<div class="services">
-								<a href="#" class="img-holder">
-								<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-									<a href="login.do" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-									<a href="#" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-									<a href="tempsignupform.do" class="img-holder">${lostitem.losub}</a>
-								</c:if>
-								<img class="img-responsive" src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="분실물" >
-								</a>
-								
-									<div class="events-entry">
-										<span class="date">${lostitem.lodate}</span>
-										<h3>
-											<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-												<a href="login.do">${lostitem.losub}</a>
-											</c:if>
-											<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-												<a href="#">${lostitem.losub}</a>
-											</c:if>
-											<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-												<a href="tempsignupform.do">${lostitem.losub}</a>
-											</c:if>
-										</h3>
-										<p>${lostitem.loplace}</p>
-									</div>
-								</div>
-						</div>
-					</c:forEach>
-					
-					<div class="col-md-4 animate-box">
-						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-3.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-							<div class="desc">
-								<h3><a href="#">Biblical Counseling</a></h3>
-								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 animate-box">
-						<div class="services">
-							<a href="#" class="img-holder"><img class="img-responsive" src="../images/img-2.jpg" alt="Free HTML5 Website Template by freehtml5.co"></a>
-							<div class="desc">
-								<h3><a href="#">Helping Children</a></h3>
-								<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
-								<a href="#">Read More <i class="icon-arrow-right3"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
+	<section class="sec-blog bg0 p-t-60 p-b-90">
+		<div class="container">
+			<div class="p-b-66">
+				<h3 class="ltext-105 cl5 txt-center respon1">
+					FindItem
+				</h3>
 			</div>
-		</section>
-	<!-- /////////////////////////////////////// 분실물 종료 /////////////////////////////////////// -->	
+
+			<div class="row">
+				<c:if test="${empty lostResult}">
+					데이터가 하나도 없음
+				</c:if>
+				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
+					<div class="col-sm-6 col-md-4 p-b-40">
+						<div class="blog-item">
+							<div class="hov-img0">
+								<a href="blog-detail.html">
+									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
+								</a>
+							</div>
+	
+							<div class="p-t-15">
+								<div class="stext-107 flex-w p-b-14">
+									<span class="m-r-3">
+										<span class="cl5">${lostitem.lodate}</span>
+										<span class="cl4">${lostitem.loplace}</span>
+									</span>
+								</div>
+	
+								<h4 class="p-b-12">
+									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="#">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${lostitem.losub}</a>
+										</c:if>
+									</a>
+								</h4>
+	
+								<p class="stext-108 cl6">
+									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+										<a class="stext-108 cl6" href="login.do">${lostitem.locon}</a>
+									</c:if>
+									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+										<a class="stext-108 cl6" href="#">${lostitem.locon}</a>
+									</c:if>
+									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+										<a class="stext-108 cl6" href="tempsignupform.do">${lostitem.locon}</a>
+									</c:if>
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</section>	
+	<!-- /////////////////////////////////////// 습득물 종료  /////////////////////////////////////// -->
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+	<!-- /////////////////////////////////////// 분실물 시작  /////////////////////////////////////// -->
+	<section class="sec-blog bg0 p-t-60 p-b-90">
+		<div class="container">
+			<div class="p-b-66">
+				<h3 class="ltext-105 cl5 txt-center respon1">
+					LostItem
+				</h3>
+			</div>
+
+			<div class="row">
+				<c:if test="${empty lostResult}">
+					데이터가 하나도 없음
+				</c:if>
+				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
+					<div class="col-sm-6 col-md-4 p-b-40">
+						<div class="blog-item">
+							<div class="hov-img0">
+								<a href="blog-detail.html">
+									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-LOST">
+								</a>
+							</div>
+	
+							<div class="p-t-15">
+								<div class="stext-107 flex-w p-b-14">
+									<span class="m-r-3">
+										<span class="cl5">${lostitem.lodate}</span>
+										<span class="cl4">${lostitem.loplace}</span>
+									</span>
+								</div>
+	
+								<h4 class="p-b-12">
+									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="#">${lostitem.losub}</a>
+										</c:if>
+										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${lostitem.losub}</a>
+										</c:if>
+									</a>
+								</h4>
+	
+								<p class="stext-108 cl6">
+									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+										<a class="stext-108 cl6" href="login.do">${lostitem.locon}</a>
+									</c:if>
+									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+										<a class="stext-108 cl6" href="#">${lostitem.locon}</a>
+									</c:if>
+									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+										<a class="stext-108 cl6" href="tempsignupform.do">${lostitem.locon}</a>
+									</c:if>
+								</p>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</section>
+	<!-- /////////////////////////////////////// 분실물 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- ////////////////////////////////////// footer 시작 ////////////////////////////////////// -->
 
-		<footer>
-			<section id="contact" class="dark-bg" style="padding: 20px">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 text-center">
-							<div class="section-title">
-								<h2>Contact Us</h2>
-								<p style="text-align: left">
-									If you have some Questions or need Help! Please Contact Us!<br>We
-									make Cool and Clean Design for your Business
-								</p>
+	<footer class="bg3 p-t-75 p-b-32">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-6 col-lg-3 p-b-50">
+						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
+							GxSx
+						</h4>
+	
+					</div>
+				
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						CATEGORIES
+					</h4>
+					
+						<ul>
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Finditem
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Lostitem
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Shoes
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Watches
+								</a>
+							</li>
+						</ul> 
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						CONTACT US
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
+						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor
+					</p>
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-phone"></i> +101 377 655 22125
+					</p>
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-envelope"></i> mail@yourcompany.com
+					</p>
+
+					<div class="p-t-27">
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
+						</a>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						BUSINESS HOURS
+					</h4>
+
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
+						<span>9am to 8pm</span>
+					</p>
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
+						<span>9am to 2pm</span>
+					</p>
+					<p class="stext-107 cl7 size-201">
+						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
+						<span>Closed</span>
+					</p>
+				</div>
+			</div>
+			
+			
+
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+				</p>
+			</div>
+		</div>
+	</footer>
+	
+	<!-- ////////////////////////////////////// footer 종료 ////////////////////////////////////// -->	
+	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
+
+
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
+
+	<!-- Modal1 -->
+	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+		<div class="overlay-modal1 js-hide-modal1"></div>
+
+		<div class="container">
+			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
+					<img src="images/icons/icon-close.png" alt="CLOSE">
+				</button>
+
+				<div class="row">
+					<div class="col-md-6 col-lg-7 p-b-30">
+						<div class="p-l-25 p-r-30 p-lr-0-lg">
+							<div class="wrap-slick3 flex-sb flex-w">
+								<div class="wrap-slick3-dots"></div>
+								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+								<div class="slick3 gallery-lb">
+									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+
+									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+										<div class="wrap-pic-w pos-relative">
+											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
+
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="section-text">
-								<h4>Our Business Office</h4>
-								<p>3422 Street, Barcelona 432, Spain, New Building North,
-									15th Floor</p>
-								<p>
-									<i class="fa fa-phone"></i> +101 377 655 22125
-								</p>
-								<p>
-									<i class="fa fa-envelope"></i> mail@yourcompany.com
-								</p>
+					
+					<div class="col-md-6 col-lg-5 p-b-30">
+						<div class="p-r-50 p-t-5 p-lr-0-lg">
+							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+								Lightweight Jacket
+							</h4>
+
+							<span class="mtext-106 cl2">
+								$58.79
+							</span>
+
+							<p class="stext-102 cl3 p-t-23">
+								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+							</p>
+							
+							<!--  -->
+							<div class="p-t-33">
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Size
+									</div>
+
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="time">
+												<option>Choose an option</option>
+												<option>Size S</option>
+												<option>Size M</option>
+												<option>Size L</option>
+												<option>Size XL</option>
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-203 flex-c-m respon6">
+										Color
+									</div>
+
+									<div class="size-204 respon6-next">
+										<div class="rs1-select2 bor8 bg0">
+											<select class="js-select2" name="time">
+												<option>Choose an option</option>
+												<option>Red</option>
+												<option>Blue</option>
+												<option>White</option>
+												<option>Grey</option>
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="flex-w flex-r-m p-b-10">
+									<div class="size-204 flex-w flex-m respon6-next">
+										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+
+										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											Add to cart
+										</button>
+									</div>
+								</div>	
 							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="section-text">
-								<h4>Business Hours</h4>
-								<p>
-									<i class="fa fa-clock-o"></i> <span class="day">Weekdays:</span><span>9am
-										to 8pm</span>
-								</p>
-								<p>
-									<i class="fa fa-clock-o"></i> <span class="day">Saturday:</span><span>9am
-										to 2pm</span>
-								</p>
-								<p>
-									<i class="fa fa-clock-o"></i> <span class="day">Sunday:</span><span>Closed</span>
-								</p>
+
+							<!--  -->
+							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+								<div class="flex-m bor9 p-r-10 m-r-11">
+									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+										<i class="zmdi zmdi-favorite"></i>
+									</a>
+								</div>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+									<i class="fa fa-facebook"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+									<i class="fa fa-twitter"></i>
+								</a>
+
+								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+									<i class="fa fa-google-plus"></i>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</section>
-		</footer>
-	<!-- ////////////////////////////////////// footer 종료 ////////////////////////////////////// -->	
-	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-		
-		<!-- 스크롤이 맨위로 가는 4~5시방향 화살표 기능 -->
-		<div class="gototop js-top"> 
-			<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+			</div>
 		</div>
-		
-		<!-- Bootstrap core JavaScript -->
-		<!-- Placed at the end of the document so the pages load faster -->
-		<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script	src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-		<script src="../js/bootstrap.min.js"></script>
-		<script src="../js/owl.carousel.min.js"></script>
-		<script src="../js/cbpAnimatedHeader.js"></script>
-		<script src="../js/jquery.appear.js"></script>
-		<script src="../js/SmoothScroll.min.js"></script>
-		<script src="../js/mooz.themes.scripts.js"></script>
-
-	<!-- beryllium -->
-		<script src="../js/beryllium/jquery.min.js"></script>
-		<script src="../js/beryllium/jquery.easing.1.3.js"></script>
-		<script src="../js/beryllium/bootstrap.min.js"></script>
-		<script src="../js/beryllium/jquery.waypoints.min.js"></script>
-		<script src="../js/beryllium/owl.carousel.min.js"></script>
-		<script src="../js/beryllium/main.js"></script>
+	</div>
 	
-	<!-- 메뉴에서 누르면 바로밑에 뜨는 애들 -->
-		<script type="text/javascript">
- 		    $(function () {
- 		  $('[data-tooltip="tooltip"]').tooltip()
- 			});
-		</script>
-		
-	</body>
+<!--===============================================================================================-->	
+	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/bootstrap/js/popper.js"></script>
+	<script src="../vendor/coza/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/daterangepicker/moment.min.js"></script>
+	<script src="../vendor/coza/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/slick/slick.min.js"></script>
+	<script src="../js/coza/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/parallax100/parallax100.js"></script>
+	<script>
+        $('.parallax100').parallax100();
+	</script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script>
+		$('.gallery-lb').each(function() { // the containers for all your galleries
+			$(this).magnificPopup({
+		        delegate: 'a', // the selector for gallery item
+		        type: 'image',
+		        gallery: {
+		        	enabled:true
+		        },
+		        mainClass: 'mfp-fade'
+		    });
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-addwish-b2').on('click', function(e){
+			e.preventDefault();
+		});
+
+		$('.js-addwish-b2').each(function(){
+			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-b2');
+				$(this).off('click');
+			});
+		});
+
+		$('.js-addwish-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+
+				$(this).addClass('js-addedwish-detail');
+				$(this).off('click');
+			});
+		});
+
+		/*---------------------------------------------*/
+
+		$('.js-addcart-detail').each(function(){
+			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="../vendor/coza/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="../js/coza/main.js"></script>
+
+</body>
 </html>

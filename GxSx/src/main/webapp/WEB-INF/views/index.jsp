@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Animated Search Form With Micro Interactions | #1</title>
+  <title>GxSx indexpage</title>
   
   <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'/>
   <link rel='stylesheet' href='css/indexpage.css'/> 
@@ -14,11 +14,11 @@
 <!-- partial:index.partial.html -->
 	<div id="app-cover">
 	  <div id="app">
-	    <form method="get" action="lostitem/ficontentsearch.do">
+	    <form method="get" action="finditem/slist.do">
 	      <div id="f-element">
 	        <div id="inp-cover">
 	        	<input type="text" name="query" placeholder="search your AXE" autocomplete="off">
-	        	<a href="temp/domain.do"><img src="images/arrow2.png" alt="#" style="position:fixed; right:150px; top:46%"></a>
+	        	<a href="gxsx/domain.do"><img src="images/arrow2.png" alt="#" style="position:fixed; right:150px; top:46%"></a>
 	        </div>
 	        
 	      </div>
