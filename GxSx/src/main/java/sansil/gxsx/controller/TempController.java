@@ -41,7 +41,7 @@ public class TempController {
 		
 		ModelAndView mv = new ModelAndView();
 		//new ModelAndView("temp/domain", "lostResult", lostResult);		
-		mv.setViewName("temp/backup1");
+		mv.setViewName("temp/domain");
 				
 		mv.addObject("lostResult", lostResult);
 		mv.addObject("findResult", findResult);
@@ -207,7 +207,7 @@ public class TempController {
 	
 	@RequestMapping("finditem.do")
 	public String finditem() {
-		return "temp/fislist";
+		return "temp/finditem";
 	}
 	
 	@RequestMapping("contact.do")
