@@ -45,4 +45,6 @@ public interface UsersService {
 	
 	List<FindListVo> fselectByNameS(HashMap searchmap);
 	List<LostListVo> lselectByNameS(HashMap searchmap);
+	
+	void editPwdS(HashMap editmap);
 }

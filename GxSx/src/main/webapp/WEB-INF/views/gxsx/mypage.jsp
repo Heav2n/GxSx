@@ -185,27 +185,59 @@
 	
 	function profilefunc() {
 		var str3 = "";
+				
 		document.getElementById("contentchange").innerHTML = str3;
-			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
-			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
 	}
 	
 	function pwdfunc() {
-		//alert("성공2");
 		var str4 = "";
+			str4 += "<div class='row'><div class='m-l-25 m-r--38 m-lr-0-xl' style='margin-left:100px'></br></br>";
+			str4 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>Password Change</h3></div>";
+			str4 += "<div class='card-body'><form class='form' name='form' role='form' autocomplete='off'>";
+			str4 += "<div class='form-group'><label for='inputPasswordOld'>Current Password</label>";
+			str4 += "<input type='password' class='form-control' id='oldPwd' required=''>";
+			str4 += "<input type='hidden' class='form-control' id='oldPwdVerify' value='${user.upwd}'></div>";
+			str4 += "<div class='form-group'><label for='inputPasswordNew'>New Password</label>";
+			str4 += "<input type='password' class='form-control' id='newPwd' required=''><span class='form-text small text-muted'>";
+			str4 += "The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.</span></div>";
+			str4 += "<div class='form-group'><label for='inputPasswordNewVerify'>Verify</label>";
+			str4 += "<input type='password' class='form-control' id='newPwdVerify' required=''>";
+			str4 += "<span class='form-text small text-muted'>To confirm, type the new password again.</span></div>";
+			str4 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit' name='submit'";
+			str4 += "onclick='CheckPassword(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)'>";
+			str4 += "Save</div></form></div></div></div></div>";
+			
 		document.getElementById("contentchange").innerHTML = str4;
-			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
-			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
 	}
-	
-	function CheckPassword(inputtxt) { 
+
+	function CheckPassword(oldPwd,oldPwdVerify,newPwd,newPwdVerify){ 
 		var passw=  /^[A-Za-z]\w{7,14}$/;
-		if(inputtxt.value.match(passw)){ 
+		var oldPwd = $("#oldPwd").val();
+		var oldPwdVerify = $("#oldPwdVerify").val();
+		var newPwd = $("#newPwd").val();
+		var newPwdVerify = $("#newPwdVerify").val();
+		console.log(oldPwd,oldPwdVerify,newPwd,newPwdVerify);
+		
+		if(oldPwd!=newPwd && newPwd.match(passw) 
+			&& newPwd==newPwdVerify && oldPwd==oldPwdVerify){
 			alert('Correct')
-			return true;
+			location.href="editPwd.do?upwd="+newPwd;
+// 			location.href="../gxsx/logout.do";
+// 			location.href="mypage.do";
 		}
-		else{ 
-			alert('Wrong!')
+		else{
+			if(oldPwd==newPwd){
+				alert('변경할 비번이 이전의 것과 같음')
+			}
+			else if(newPwd!=newPwdVerify){
+				alert('변경할 비번과 비번확인 불일치')
+			}
+			else if(oldPwd!=oldPwdVerify){
+				alert('사용중인 비번확인 불일치')
+			}
+			else{
+				alert('변경할 비번이 규칙에 맞지않음')
+			}
 			return false;
 		}
 	}
@@ -374,9 +406,11 @@
 								<li class="bor18">
 									<span class="link dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">Myboard</span>
 								    <ul class="submenu">
-								      <li onclick="findfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4" id="finditem">
+								      <li id="finditem">
+								      		<a href="#" onclick="findfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 								      		&emsp;Finditem</a></li>
-								      <li onclick="lostfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4" id="lostitem">
+								      <li id="lostitem">
+								      		<a href="#" onclick="lostfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 								      		&emsp;Lostitem</a></li>
 								    </ul>
 								</li>
@@ -388,7 +422,7 @@
 								</li>
 								
 								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a href="#" onclick="pwdfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Password Change
 									</a>
 								</li>
@@ -401,43 +435,72 @@
 				
 				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
 <%-- 					<jsp:include page='mylostitem.jsp'></jsp:include> --%>
-	
-			<div class="row">
-					<div class="m-l-25 m-r--38 m-lr-0-xl" style="margin-left:100px">
-						</br></br>
-								<!-- form card change password -->
-								<div class="table-shopping-cart">
-									<div class="card-header">
-										<h3 class="mb-0">Password Change</h3>
+					
+		<div class="row">
+			<div class="m-l-25 m-r--38 m-lr-0-xl" style="margin-left:100px">
+				</br></br>
+					<!-- form change information -->
+						<div class="table-shopping-cart">
+							<div class="card-header">
+								<h3 class="mb-0">Information Change</h3>
+							</div>
+							<div class="card-body">
+								<form class="form" name="form2" role="form" autocomplete="off">
+									<div class="form-group row">
+										<label for="noinputName" class="col-lg-3 col-form-label form-control-label">Name</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control" id="editName" value="${user.uname}" readonly="readonly">
+										</div>
 									</div>
-									<div class="card-body">
-										<form class="form" role="form" autocomplete="off">
-											<div class="form-group">
-												<label for="inputPasswordOld">Current Password</label>
-												<input type="password" class="form-control" id="inputPasswordOld" required="">
-											</div>
-											<div class="form-group">
-												<label for="inputPasswordNew">New Password</label>
-												<input type="password" class="form-control" id="newPwd" required="">
-												<span class="form-text small text-muted">
-														The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.
-												</span>
-											</div>
-											<div class="form-group">
-												<label for="inputPasswordNewVerify">Verify</label>
-												<input type="password" class="form-control" id="newPwdVerify" required="">
-												<span class="form-text small text-muted">
-														To confirm, type the new password again.
-													</span>
+									<div class="form-group row">
+										<label for="inputEmail" class="col-lg-3 col-form-label form-control-label">Email</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="text" id="editEmail" value="${user.uemail}">
+                                   		</div>
+									</div>
+									<div class="form-group row">
+										<label for="inputPnum" class="col-lg-3 col-form-label form-control-label">Phone Number</label>										
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="text" id="editPnum" value="${user.upnum}">
+                                   		</div>
+									</div>
+									<div class="form-group row">
+										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="password" id="editPwd" value="">
+                                        	<input type="hidden" class="form-control" id="oldPwd" value="${user.upwd}">
+                                   		</div>
+									</div>
+									<div class="form-group row">
+										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password Confirm</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="password" id="editPwdVerify" value="">
+                                  		</div>
+									</div>
+									
+										<div class="flex-w flex-m m-r-20 m-tb-5">
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
+												id='submit' name="submit" onclick="CheckLeave()">
+												Leave</div>
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5'>
 											</div>
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
-												id='submit' name="submit" onclick="CheckPassword(document.form.newPwd)">Save</div>
-										</form>
-									</div>
-								</div>
-								<!-- /form card change password -->
+												id='submit2' name="submit2"
+												onclick="CheckEditProfile(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)">
+												Save</div>
+											&emsp;
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
+												id='submit3' name="submit3" onclick="mypage.do">
+												Cancel</div>
+												</div>
+									
+								</form>
+							</div>
 						</div>
-						</div>
+					<!-- /form change information -->
+			</div>
+		</div>
+			
 				</div>
 				
 			</div>

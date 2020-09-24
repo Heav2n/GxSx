@@ -76,11 +76,12 @@ public class UsersController {
 		
 		List<FindListVo> findlist = service.getFindList(user.getUserid(), request, session);
 		Pagination findPage = service.getFindPagination(user.getUserid(), request, session);
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/mypage");
+		mv.addObject("user", user);		
 		mv.addObject("lost", lostList);
-		mv.addObject("lostPage", lostPage);
-		
+		mv.addObject("lostPage", lostPage);		
 		mv.addObject("find", findlist);
 		mv.addObject("findPage", findPage);
 		
@@ -111,6 +112,19 @@ public class UsersController {
 		searchmap.put("losub", losub);
 		List<LostListVo> list = service.lselectByNameS(searchmap);
 		return list;
+	}
+	
+	@RequestMapping("editPwd.do")
+	public String editPwd(HttpServletRequest request, HttpSession session, String upwd) { // 구현
+		Users user = (Users)session.getAttribute("loginuser");
+		System.out.println("dudududududu:"+ user.getUserid() + "cxcxcxcxcxcx:" + upwd);
+		HashMap<String, String> editmap = new HashMap<String, String>(); 
+		editmap.put("userid", user.getUserid());
+		editmap.put("upwd", upwd);
+		
+		service.editPwdS(editmap);
+		System.out.println("#수정??");
+		return "redirect:../gxsx/logout.do";
 	}
 	
 	@RequestMapping(value="otherPageLo",method = RequestMethod.GET) // value : URL 주소 , method : type

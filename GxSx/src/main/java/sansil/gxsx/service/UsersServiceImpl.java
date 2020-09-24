@@ -177,4 +177,11 @@ public class UsersServiceImpl implements UsersService {
 	public List<LostListVo> lselectByNameS(HashMap searchmap){
 		return usersMapper.lselectByName(searchmap);
 	}
+	
+	@Override
+	public void editPwdS(HashMap editmap){
+		System.out.println("#들어오므ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		usersMapper.editPwd(editmap);
+		System.out.println("#나오므ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+	}
 }
