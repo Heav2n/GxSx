@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
+import lombok.var;
 import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindListVo;
@@ -117,13 +118,25 @@ public class UsersController {
 	@RequestMapping("editPwd.do")
 	public String editPwd(HttpServletRequest request, HttpSession session, String upwd) { // 구현
 		Users user = (Users)session.getAttribute("loginuser");
-		System.out.println("dudududududu:"+ user.getUserid() + "cxcxcxcxcxcx:" + upwd);
 		HashMap<String, String> editmap = new HashMap<String, String>(); 
 		editmap.put("userid", user.getUserid());
 		editmap.put("upwd", upwd);
 		
 		service.editPwdS(editmap);
-		System.out.println("#수정??");
+		return "redirect:../gxsx/logout.do";
+	}
+	
+	@RequestMapping("editProfile.do")
+	public String editProfile(HttpServletRequest request, HttpSession session, Users edituser) { // 구현
+		Users editUser = (Users)edituser;
+		System.out.println("cxcxcxcxcxcx:" + edituser);
+		service.editProfileS(editUser);
+		return "redirect:mypage.do";
+	}
+	
+	@RequestMapping("leaveUser.do")
+	public String leaveUser(HttpServletRequest request, HttpSession session, String userid) { // 구현
+		service.leaveUserS(userid);
 		return "redirect:../gxsx/logout.do";
 	}
 	

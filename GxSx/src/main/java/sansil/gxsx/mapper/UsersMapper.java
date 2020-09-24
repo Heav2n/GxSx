@@ -25,5 +25,7 @@ public interface UsersMapper {
 	List<LostListVo> lselectByName(HashMap searchmap);
 	
 	void editPwd(HashMap editmap);
+	void editProfile(Users editUser);
+	void leaveUser(String userid);
 	
 }

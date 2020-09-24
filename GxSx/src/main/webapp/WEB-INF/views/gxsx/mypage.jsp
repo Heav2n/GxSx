@@ -222,8 +222,6 @@
 			&& newPwd==newPwdVerify && oldPwd==oldPwdVerify){
 			alert('Correct')
 			location.href="editPwd.do?upwd="+newPwd;
-// 			location.href="../gxsx/logout.do";
-// 			location.href="mypage.do";
 		}
 		else{
 			if(oldPwd==newPwd){
@@ -242,7 +240,19 @@
 		}
 	}
 
-
+	function CheckLeave(editId){
+		var editId = $("#editId").val();
+		
+		var leaveConfirm = confirm("탈퇴하시겠습니까?");
+			if(leaveConfirm == true){
+				location.href="leaveUser.do?userid="+editId;
+				alert('탈퇴완료')
+			}
+			else if(leaveConfirm == false){
+				alert('탈퇴취소')
+			}
+	}
+	
 </script>
 
 </head>
@@ -387,8 +397,7 @@
 		<h2 class="ltext-105 cl0 txt-center">
 			Mypage
 		</h2>
-	</section>	
-
+	</section>
 
 	<!-- Content page -->
 	<section class="bg0 p-t-62 p-b-60">
@@ -432,7 +441,6 @@
 					</div>
 				</div>
 				
-				
 				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
 <%-- 					<jsp:include page='mylostitem.jsp'></jsp:include> --%>
 					
@@ -445,54 +453,61 @@
 								<h3 class="mb-0">Information Change</h3>
 							</div>
 							<div class="card-body">
-								<form class="form" name="form2" role="form" autocomplete="off">
+								<form class="form2" name="form2" id="form2" role="form2" autocomplete="off" action="editProfile.do">
+									<div class="form-group row">
+										<label for="noinputId" class="col-lg-3 col-form-label form-control-label">ID</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control" id="editId" name="userid" value="${user.userid}" readonly="readonly">
+										</div>
+									</div>
 									<div class="form-group row">
 										<label for="noinputName" class="col-lg-3 col-form-label form-control-label">Name</label>
 										<div class="col-lg-9">
-											<input type="text" class="form-control" id="editName" value="${user.uname}" readonly="readonly">
+											<input type="text" class="form-control" id="editName" name="uname" value="${user.uname}" readonly="readonly">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="inputEmail" class="col-lg-3 col-form-label form-control-label">Email</label>
 										<div class="col-lg-9">
-                                        	<input class="form-control" type="text" id="editEmail" value="${user.uemail}">
+                                        	<input class="form-control" type="text" id="editEmail" name="uemail" value="${user.uemail}" required=''>
                                    		</div>
 									</div>
 									<div class="form-group row">
 										<label for="inputPnum" class="col-lg-3 col-form-label form-control-label">Phone Number</label>										
 										<div class="col-lg-9">
-                                        	<input class="form-control" type="text" id="editPnum" value="${user.upnum}">
+                                        	<input class="form-control" type="text" id="editPnum" name="upnum" value="${user.upnum}" required=''>
                                    		</div>
 									</div>
 									<div class="form-group row">
 										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password</label>
 										<div class="col-lg-9">
-                                        	<input class="form-control" type="password" id="editPwd" value="">
-                                        	<input type="hidden" class="form-control" id="oldPwd" value="${user.upwd}">
+                                        	<input class="form-control" type="password" id="editPwd" value="" required=''>
+                                         	<input type="hidden" class="form-control" id="oldPwd" name="upwd" value="${user.upwd}">
                                    		</div>
 									</div>
 									<div class="form-group row">
 										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password Confirm</label>
 										<div class="col-lg-9">
-                                        	<input class="form-control" type="password" id="editPwdVerify" value="">
+                                        	<input class="form-control" type="password" id="editPwdVerify" value="" required=''>
                                   		</div>
 									</div>
-									
+									</br>
 										<div class="flex-w flex-m m-r-20 m-tb-5">
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
-												id='submit' name="submit" onclick="CheckLeave()">
+												id='submit' name="submit"  onclick="CheckLeave(document.form2.editId)">
 												Leave</div>
-											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5'>
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
+												style="opacity:0; pointer-events:none">
 											</div>
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
 												id='submit2' name="submit2"
-												onclick="CheckEditProfile(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)">
+												onclick="CheckEditProfile(document.form2.editEmail,document.form2.editPnum,document.form2.editPwd,document.form2.oldPwd,document.form2.editPwdVerify)">
 												Save</div>
 											&emsp;
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
-												id='submit3' name="submit3" onclick="mypage.do">
+												id='submit3' name="submit3">
 												Cancel</div>
-												</div>
+										</div>
 									
 								</form>
 							</div>
@@ -761,6 +776,48 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		function CheckEditProfile(editEmail,editPnum,editPwd,oldPwd,editPwdVerify){ 
+			var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			var phone = /^01(?:0|1|7|9)-(?:\d{3}|\d{4})-\d{4}$/;
+			var editEmail = $("#editEmail").val();
+			var editPnum = $("#editPnum").val();
+			var editPwd = $("#editPwd").val();
+			var editPwdVerify = $("#editPwdVerify").val();
+			var oldPwd = $("#oldPwd").val();
+			
+			if(editEmail!=null && editEmail.match(email) && editPnum.match(phone)  
+				&& editPnum!=null && editPwd!=null && editPwdVerify!=null 
+				&& editPwd==oldPwd && editPwd==editPwdVerify){
+				alert('Correct')
+				document.getElementById("form2").submit();
+			}
+			else{
+				if(editEmail==null){
+					alert('이메일을 입력하세요')
+				}
+				else if(editPnum==null){
+					alert('휴대폰번호를 입력하세요')
+				}
+				else if(editPwd==null || editPwdVerify==null){
+					alert('사용중인 비번을 입력하세요')
+				}
+				else if(editPwd!=editPwdVerify || editPwd!=oldPwd){
+					alert('현재 비번과 비번확인 불일치')
+				}
+				else{
+					if(editEmail.match(email)){					
+						alert('변경할 휴대폰번호가 규칙에 맞지않음')
+					}
+					else{					
+						alert('변경할 이메일이 규칙에 맞지않음')
+					}
+				}
+				return false;
+			}
+		}
+	</script>
 	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>

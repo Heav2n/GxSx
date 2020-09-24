@@ -47,4 +47,6 @@ public interface UsersService {
 	List<LostListVo> lselectByNameS(HashMap searchmap);
 	
 	void editPwdS(HashMap editmap);
+	void editProfileS(Users editUser);
+	void leaveUserS(String userid);
 }
