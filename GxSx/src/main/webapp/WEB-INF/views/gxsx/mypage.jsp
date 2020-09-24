@@ -442,33 +442,58 @@
 					<!-- form change information -->
 						<div class="table-shopping-cart">
 							<div class="card-header">
-								<h3 class="mb-0">Password Change</h3>
+								<h3 class="mb-0">Information Change</h3>
 							</div>
 							<div class="card-body">
-								<form class="form" name="form" role="form" autocomplete="off">
-									<div class="form-group">
-										<label for="inputPasswordOld">Current Password</label>
-										<input type="password" class="form-control" id="oldPwd" required="">
-										<input type="hidden" class="form-control" id="oldPwdVerify" value="${user.upwd}">
+								<form class="form" name="form2" role="form" autocomplete="off">
+									<div class="form-group row">
+										<label for="noinputName" class="col-lg-3 col-form-label form-control-label">Name</label>
+										<div class="col-lg-9">
+											<input type="text" class="form-control" id="editName" value="${user.uname}" readonly="readonly">
+										</div>
 									</div>
-									<div class="form-group">
-										<label for="inputPasswordNew">New Password</label>
-										<input type="password" class="form-control" id="newPwd" required="">
-										<span class="form-text small text-muted">
-												The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.
-										</span>
+									<div class="form-group row">
+										<label for="inputEmail" class="col-lg-3 col-form-label form-control-label">Email</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="text" id="editEmail" value="${user.uemail}">
+                                   		</div>
 									</div>
-									<div class="form-group">
-										<label for="inputPasswordNewVerify">Verify</label>
-										<input type="password" class="form-control" id="newPwdVerify" required="">
-										<span class="form-text small text-muted">
-												To confirm, type the new password again.
-											</span>
+									<div class="form-group row">
+										<label for="inputPnum" class="col-lg-3 col-form-label form-control-label">Phone Number</label>										
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="text" id="editPnum" value="${user.upnum}">
+                                   		</div>
 									</div>
-									<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
-										id='submit' name="submit" 
-										onclick="CheckPassword(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)">
-										Save</div>
+									<div class="form-group row">
+										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="password" id="editPwd" value="">
+                                        	<input type="hidden" class="form-control" id="oldPwd" value="${user.upwd}">
+                                   		</div>
+									</div>
+									<div class="form-group row">
+										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password Confirm</label>
+										<div class="col-lg-9">
+                                        	<input class="form-control" type="password" id="editPwdVerify" value="">
+                                  		</div>
+									</div>
+									
+										<div class="flex-w flex-m m-r-20 m-tb-5">
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
+												id='submit' name="submit" onclick="CheckLeave()">
+												Leave</div>
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5'>
+											</div>
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
+												id='submit2' name="submit2"
+												onclick="CheckEditProfile(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)">
+												Save</div>
+											&emsp;
+											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
+												id='submit3' name="submit3" onclick="mypage.do">
+												Cancel</div>
+												</div>
+									
 								</form>
 							</div>
 						</div>
