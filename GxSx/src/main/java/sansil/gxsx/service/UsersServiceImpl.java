@@ -180,8 +180,17 @@ public class UsersServiceImpl implements UsersService {
 	
 	@Override
 	public void editPwdS(HashMap editmap){
-		System.out.println("#들어오므ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 		usersMapper.editPwd(editmap);
-		System.out.println("#나오므ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 	}
+	
+	@Override
+	public void editProfileS(Users editUser){
+		usersMapper.editProfile(editUser);
+	}
+	
+	@Override
+	public void leaveUserS(String userid){
+		usersMapper.leaveUser(userid);
+	}
+	
 }

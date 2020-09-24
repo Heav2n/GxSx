@@ -67,4 +67,11 @@
 		update USERS set upwd = #{upwd} where userid = #{userid}
 	</update>
 	
+	<update id="editProfile" parameterType="Users">
+		update USERS set uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
+	</update>
+	
+	<update id="leaveUser" parameterType="String">
+		update USERS set uoutdate = SYSDATE where userid = #{userid}
+	</update>
 </mapper>
