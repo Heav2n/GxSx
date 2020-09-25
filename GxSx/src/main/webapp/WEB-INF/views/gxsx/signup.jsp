@@ -17,13 +17,13 @@
 		<link rel="stylesheet" href="../css/signupmain.css">
 <!--==============================================================================================-->
 	</head>
-	<!-- <script type="text/javascript">
+	 <script type="text/javascript">
 		$(document).ready(function(){
 			// 취소
-			$("#cancel").on("click", function(){
+			$("#signupCancel").on("click", function(){
 				location.href = "/signupform.do";	    
 			})		
-			$("#submit").on("click", function(){
+			$("#signupSubmit").on("click", function(){
 				if($("#userid").val()==""){
 					alert("아이디를 입력해주세요.");
 					$("#userid").focus();
@@ -56,7 +56,7 @@
 				}
 			});			
 		})
-	</script> -->
+	</script>
 	<body>		
 		<div class="limiter">
 			<div class="container-login100">
@@ -106,8 +106,10 @@
 					</label>
 				</div>
 				
-				<button type="submit" class="btn btn-default">Submit</button>
-				<button type="button" id="cancel" class="btn btn-default">Submit</button>
+				<button type="submit" id="signupSubmit" name="signupSubmit" 
+					class="btn btn-default">Submit</button>
+				<button type="button" id="signupCancel" name="signupCancel" 
+					class="btn btn-default">Cancel</button>
 			</form>
 			
 			<!-- Modal -->
