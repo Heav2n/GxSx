@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.JsonNode;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.FindItem;
+import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
-import sansil.gxsx.domain.FindPic;
+import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.DomainService;
 import sansil.gxsx.service.MailService;
+import sansil.gxsx.service.MessageService;
 
 @Log4j
 @RequestMapping("/gxsx/")
@@ -34,14 +37,16 @@ public class DomainController {
 	@Resource(name="DomainService")
 	private DomainService service;	
 	@Resource(name="EmailService")
-	private MailService mailService;	
+	private MailService mailService;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	
 	@RequestMapping("domain.do")
 	public ModelAndView list(HttpServletRequest request, HttpSession session) { 
 		List<LostItem> lostResult = service.listloS();
 		List<FindItem> findResult = service.listfiS();
 		List<LostPic> lostpicResult = service.listlopicS();
-		List<FindPic> findpicResult = service.listfipicS();
+		List<FindPic> findpicResult = service.listfipicS();		
 		
 		ModelAndView mv = new ModelAndView();	
 		mv.setViewName("gxsx/domain");
@@ -52,6 +57,12 @@ public class DomainController {
 		mv.addObject("findpicResult", findpicResult);
 		System.out.println("로그인상태확인: "+session.getAttribute("loginuser"));
 		System.out.println("로그인상태확인2: "+session.getAttribute("klogin"));
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());
+			mv.addObject("messageResult", messageResult);
+		}
 		
 		if(session.getAttribute("klogin")!=null) { //kakao로 로그인 했을때
 			String kakaologoutUrl = KakaoController.getAuthorizationUrl2(session);
@@ -213,7 +224,7 @@ public class DomainController {
 //		return x;
 //	}
 	
-	@RequestMapping("emailCheck.do")
+	@RequestMapping(value="emailCheck.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
 	public boolean emailCheck(@RequestParam String uemail, @RequestParam int random, HttpServletRequest req){
 		//이메일 인증
@@ -228,6 +239,21 @@ public class DomainController {
 		sb.append("귀하의 인증 코드는 " + authCode + "입니다.");
 
 		return mailService.send(subject, sb.toString(), "javaoneteam@gmail.com", uemail, null);
+	}
+	
+	//ajax
+	@ResponseBody
+	@GetMapping(value="emailAuth", 
+			produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public boolean emailAuth(HttpSession session, String uemailauth){
+		String originalJoinCode = (String) session.getAttribute("authCode");
+		System.out.println("auth / num :" + originalJoinCode + " / " + uemailauth);
+		if(originalJoinCode.equals(uemailauth)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	@RequestMapping("contact.do")

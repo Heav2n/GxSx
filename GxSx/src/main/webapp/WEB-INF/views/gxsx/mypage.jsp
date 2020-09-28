@@ -185,6 +185,30 @@
 	
 	function profilefunc() {
 		var str3 = "";
+			str3 += "<div class='row'><div class='m-l-25 m-r--38 m-lr-0-xl' style='margin-left:100px'</br></br>";
+			str3 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>Information Change</h3></div>";
+			str3 += "<div class='card-body'><form class='form2' name='form2' id='form2' role='form2' autocomplete='off' action='editProfile.do'>";
+			str3 += "<div class='form-group row'><label for='noinputId' class='col-lg-3 col-form-label form-control-label'>ID</label>";
+			str3 += "<div class='col-lg-9'><input type='text' class='form-control' id='editId' name='userid' value='${user.userid}' readonly='readonly'></div></div>";
+			str3 += "<div class='form-group row'><label for='noinputName' class='col-lg-3 col-form-label form-control-label'>Name</label>";
+			str3 += "<div class='col-lg-9'><input type='text' class='form-control' id='editName' name='uname' value='${user.uname}' readonly='readonly'></div></div>";
+			str3 += "<div class='form-group row'><label for='inputEmail' class='col-lg-3 col-form-label form-control-label'>Email</label>";
+			str3 += "<div class='col-lg-9'><input class='form-control' type='text' id='editEmail' name='uemail' value='${user.uemail}' required=''></div></div>";
+			str3 += "<div class='form-group row'><label for='inputPnum' class='col-lg-3 col-form-label form-control-label'>Phone Number</label>";		
+			str3 += "<div class='col-lg-9'><input class='form-control' type='text' id='editPnum' name='upnum' value='${user.upnum}' required=''></div></div>";
+			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>Password</label>";
+			str3 += "<div class='col-lg-9'><input class='form-control' type='password' id='editPwd' value='' required=''>";
+			str3 += "<input type='hidden' class='form-control' id='oldPwd' name='oldPwd' value='${user.upwd}'></div></div>";
+			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>Password Confirm</label>";
+			str3 += "<div class='col-lg-9'><input class='form-control' type='password' id='editPwdVerify' value='' required='' data-bvStrict='same:editPwd'></div></div></br>";
+			str3 += "<div class='flex-w flex-m m-r-20 m-tb-5'>";
+			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' id='submit' name='submit'";
+			str3 += "onclick='CheckLeave(document.form2.editId,document.form2.editPwd,document.form2.editPwdVerify,document.form2.oldPwd)'>Leave</div>";
+			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' style='opacity:0; pointer-events:none'></div>";
+			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit2' name='submit2'";
+			str3 += "onclick='CheckEditProfile(document.form2.editEmail,document.form2.editPnum,document.form2.editPwd,document.form2.oldPwd,document.form2.editPwdVerify)'>";
+			str3 += "Save</div>&emsp;<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit3' name='submit3' onclick='EditCancel()'>";
+			str3 += "Cancel</div></div></form></div></div></div></div>";
 				
 		document.getElementById("contentchange").innerHTML = str3;
 	}
@@ -240,17 +264,29 @@
 		}
 	}
 
-	function CheckLeave(editId){
+	function CheckLeave(editId, editPwd, editPwdVerify, oldPwd){
 		var editId = $("#editId").val();
+		var editPwd = $("#editPwd").val();
+		var editPwdVerify = $("#editPwdVerify").val();
+		var oldPwd = $("#oldPwd").val();
 		
-		var leaveConfirm = confirm("탈퇴하시겠습니까?");
-			if(leaveConfirm == true){
-				location.href="leaveUser.do?userid="+editId;
-				alert('탈퇴완료')
-			}
-			else if(leaveConfirm == false){
-				alert('탈퇴취소')
-			}
+		if(editPwd==oldPwd){
+			var leaveConfirm = confirm("탈퇴하시겠습니까?");
+				if(leaveConfirm == true){
+					location.href="leaveUser.do?userid="+editId;
+					alert('탈퇴완료')
+				}
+				else if(leaveConfirm == false){
+					alert('탈퇴취소')
+				}
+		}
+		else{
+			alert('탈퇴불가(비밀번호를 확인해주세요)')
+		}
+	}
+	
+	function EditCancel(){
+		location.href="mypage.do";		
 	}
 	
 </script>
@@ -425,7 +461,7 @@
 								</li>
 
 								<li class="bor18">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a href="#" onclick="profilefunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Profile
 									</a>
 								</li>
@@ -442,80 +478,7 @@
 				</div>
 				
 				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
-<%-- 					<jsp:include page='mylostitem.jsp'></jsp:include> --%>
-					
-		<div class="row">
-			<div class="m-l-25 m-r--38 m-lr-0-xl" style="margin-left:100px">
-				</br></br>
-					<!-- form change information -->
-						<div class="table-shopping-cart">
-							<div class="card-header">
-								<h3 class="mb-0">Information Change</h3>
-							</div>
-							<div class="card-body">
-								<form class="form2" name="form2" id="form2" role="form2" autocomplete="off" action="editProfile.do">
-									<div class="form-group row">
-										<label for="noinputId" class="col-lg-3 col-form-label form-control-label">ID</label>
-										<div class="col-lg-9">
-											<input type="text" class="form-control" id="editId" name="userid" value="${user.userid}" readonly="readonly">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="noinputName" class="col-lg-3 col-form-label form-control-label">Name</label>
-										<div class="col-lg-9">
-											<input type="text" class="form-control" id="editName" name="uname" value="${user.uname}" readonly="readonly">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="inputEmail" class="col-lg-3 col-form-label form-control-label">Email</label>
-										<div class="col-lg-9">
-                                        	<input class="form-control" type="text" id="editEmail" name="uemail" value="${user.uemail}" required=''>
-                                   		</div>
-									</div>
-									<div class="form-group row">
-										<label for="inputPnum" class="col-lg-3 col-form-label form-control-label">Phone Number</label>										
-										<div class="col-lg-9">
-                                        	<input class="form-control" type="text" id="editPnum" name="upnum" value="${user.upnum}" required=''>
-                                   		</div>
-									</div>
-									<div class="form-group row">
-										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password</label>
-										<div class="col-lg-9">
-                                        	<input class="form-control" type="password" id="editPwd" value="" required=''>
-                                         	<input type="hidden" class="form-control" id="oldPwd" name="upwd" value="${user.upwd}">
-                                   		</div>
-									</div>
-									<div class="form-group row">
-										<label for="inputPwd" class="col-lg-3 col-form-label form-control-label">Password Confirm</label>
-										<div class="col-lg-9">
-                                        	<input class="form-control" type="password" id="editPwdVerify" value="" required=''>
-                                  		</div>
-									</div>
-									</br>
-										<div class="flex-w flex-m m-r-20 m-tb-5">
-											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
-												id='submit' name="submit" onclick="CheckLeave(document.form2.editId)">
-												Leave</div>
-											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
-												style="opacity:0; pointer-events:none">
-											</div>
-											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
-												id='submit2' name="submit2"
-												onclick="CheckEditProfile(document.form2.editEmail,document.form2.editPnum,document.form2.editPwd,document.form2.oldPwd,document.form2.editPwdVerify)">
-												Save</div>
-											&emsp;
-											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' 
-												id='submit3' name="submit3">
-												Cancel</div>
-										</div>
-									
-								</form>
-							</div>
-						</div>
-					<!-- /form change information -->
-			</div>
-		</div>
-			
+<%-- 					<jsp:include page='mylostitem.jsp'></jsp:include> --%>					
 				</div>
 				
 			</div>

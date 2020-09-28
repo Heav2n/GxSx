@@ -34,5 +34,8 @@ public interface QuestionMapper {
 	
 	//댓글 삭제
 	public long Delete(long qno);
+	
+	//메세지용
+	List<Question> messageQuestion(String userid);
 
 }

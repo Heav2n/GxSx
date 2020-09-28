@@ -18,136 +18,70 @@
 <!--==============================================================================================-->
 
 	 <script type="text/javascript">
-		$(document).ready(function(){
-			// 취소
-			$("#signupCancel").on("click", function(){
-				location.href = "/signupform.do";	    
-			})	
-			$("#signupSubmit").on("click", function(){
-				if($("#userid").val()==""){
-					alert("아이디를 입력해주세요.");
-					$("#userid").focus();
-					return false;
-				}
-				if($("#upwd").val()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#upwd").focus();
-					return false;
-				}
-				if($("#upwdagain").val()==""){
-					alert("비밀번호를 다시입력해주세요.");
-					$("#upwdagain").focus();
-					return false;
-				}
-				if($("#uname").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#uname").focus();
-					return false;
-				}
-				if($("#uemail").val()==""){
-					alert("성명을 입력해주세요.");
-					$("#uemail").focus();
-					return false;
-				}
-				if($("#upnum").val()==""){
-					alert("핸드폰번호를 입력해주세요.");
-					$("#upnum").focus();
-					return false;
-				}
-			});			
-		})
+
+		function FormCancel(){
+			location.href = "../gxsx/login.do"
+		}
+		
+		function CheckForm(authconfirm){
+			var confirm = $("#authconfirm").val();
+			console.log(confirm);
+			if(confirm=="yes"){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
 		
 		function CheckEmail(uemail,random){
 			var uemail = $("#uemail").val();
 			var random = $("#random").val();
-		
-		var leaveConfirm = confirm("탈퇴하시겠습니까?");
-			if(leaveConfirm == true){
-				location.href = "../gxsx/emailCheck.do?uemail=" + uemail + "&random=" + random;
-			}
-			else if(leaveConfirm == false){
-				alert('탈퇴취소')
-			}
-			alert('완')
-	}
-// 		function signupCancel(userid){
-// 			var userid = $("#userid").val();
 			
-// 				location.href = "/idconfirm.do?userid="+userid;
-				
-// 				if(leaveConfirm != null){
-// 					location.href="leaveUser.do?userid="+editId;
-// 					alert('탈퇴완료')
-// 				}
-// 				else if(leaveConfirm == null){
-// 					alert('탈퇴취소')
-// 				}
-// 		}
+			$.ajax({
+				type:"GET",
+				url:"../gxsx/emailCheck.do",
+				dataType: "json",
+				data: {uemail: $("#uemail").val(), random: $("#random").val()},
+				success: function(data){
+					if(data==true){
+						alert("인증메일 발송 완료");
+					}else if(data == false){
+						alert("인증메일 발송 실패")
+					}
+				},
+				error: function(data){
+					alert("에러가 발생했습니다.");
+				}
+			});
+			
+			alert('인증메일이 발송 되었습니다.')
+		}
 		
-// 		function SendEmail(uemail){
-//  			var uemail = $("#uemail").val();
-// 			var random = $("#random").val();
-// 				alert("2222222");
-// 				location.href = "/emailCheck.do?uemail=" + uemail + "&random=" + random;
-				
-// 		}
+		function CheckEmailAuth(uemailauth,random){
+			var uemailauth = $("#uemailauth").val();
+			var random = $("#random").val();
+		
+// 			location.href = "../gxsx/emailAuth.do?uemailauth=" + uemailauth;
+			$.ajax({
+				type:"GET",
+				url:"../gxsx/emailAuth.do",
+				dataType: "json",
+				data: {uemailauth: $("#uemailauth").val()},
+				success: function(data){
+					if(data== true){
+						alert("인증이 완료되었습니다.");
+						document.getElementById("authconfirm").value = "yes";
+					}else if(data == false){
+						alert("인증번호를 잘못 입력하셨습니다.")
+					}
+				},
+				error: function(data){
+					alert("에러가 발생했습니다.");
+				}
+			});
+		}
 
-// 		$(function(){
-//  			/* 이메일 인증 버튼 클릭시 발생하는 이벤트 */
-//  			$("#EmailConfirm").on("click", function(){
-//  				alert("여어2");
-//  				/* 이메일 중복 체크 후 메일 발송 비동기 처리 */
-//  				$.ajax({
-//  					beforeSend: function(){
-//  						loadingBarStart();
-//  					},
-//  					type:"get",
-//  					url : "../gxsx/emailCheck.do",
-//  					data : {uemail: $("#uemail").val() + "&random=" + $("#random").val()},
-//  					//data: "userEmail="+encodeURIComponent($('#userEmail').val()),
-//  					/* encodeURIComponent
-//  					예를들어, http://a.com?name=egoing&amp;job=programmer 에서 &amp;job=programmer 
-//  					중 '&amp;'는 하나의 파라미터가 끝나고 다음 파라미터가 온다는 의미이다.
-//  					그런데 다음과 같이 job의 값에 &amp;가 포함된다면 시스템은 job의 값을 제대로 인식할수 없게 된다. */
-//  					success : function(data){
-//  							alert("사용가능한 이메일입니다. 인증번호를 입력해주세요.");
-//  							EmailConfirm.value = 'Confirm';
-//  						}
-						
-//  					},
-//  					error: function(data){
-//  						alert("사용불가능한 이메일입니다.");
-//  						return false;
-//  					}
-//  				})
-//  			})
-			
-//  			/* 이메일 인증번호 입력 후 인증 버튼 클릭 이벤트 */
-//  			$(document).on("click", "#emailAuthBtn", function(){
-				
-//  				$.ajax({
-//  					beforeSend: function(){
-//  						loadingBarStart();
-//  					},
-//  					type:"get",
-//  					url:"<c:url value='/login/emailAuth.do'/>",
-//  					data:"authCode=" + $('#emailAuth').val() + "&amp;random=" + $("#random").val(),
-//  					success:function(data){
-//  						if(data=="complete"){
-//  							alert("인증이 완료되었습니다.");
-//  						}else if(data == "false"){
-//  							alert("인증번호를 잘못 입력하셨습니다.")
-//  						}
-//  					},
-//  					complete: function(){
-//  						loadingBarEnd();
-//  					},
-//  					error:function(data){
-//  						alert("에러가 발생했습니다.");
-//  					}
-//  				});
-//  			});
-//   		})
 	</script>
 		
  		
@@ -192,12 +126,16 @@
 					<label for="input1">E-mail address</label>
 					</br>
 					<input style="float:left;width:280px" class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
-					<input type="hidden" path="random" name="random" id="random" value="${random}" />
-					
-					<button style="float:right" type="button" id="EmailConfirm" name="EmailConfirm" 
+					<button style="float:right" type="button" id="EmailSend" name="EmailSend" 
 						class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">Send</button>
-				
 					<div class="help-block error-message">Fill valid e-mail address</div>
+					
+					</br></br>				
+					<input style="float:left;width:280px" class="form-control" id="uemailauth" name="uemailauth" type="text" placeholder="number">
+					<input type="hidden" path="random" name="random" id="random" value="${random}" />
+					<input type="hidden" name="authconfirm" id="authconfirm" value="" />
+					<button style="float:right" type="button" id="EmailConfirm" name="EmailConfirm" 
+						class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">Confirm</button>
 				</div>
 				
 				<div class="row form-group">
@@ -214,9 +152,9 @@
 				</div>
 				
 				<button type="submit" id="signupSubmit" name="signupSubmit" 
-					class="btn btn-default">Submit</button>
+					class="btn btn-default" onclick="CheckForm(document.form2.authconfirm)">Submit</button>
 				<button type="button" id="signupCancel" name="signupCancel" 
-					class="btn btn-default">Cancel</button>
+					class="btn btn-default" onclick="FormCancel()">Cancel</button>
 			</form>
 			
 			<!-- Modal -->

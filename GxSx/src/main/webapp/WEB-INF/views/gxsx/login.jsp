@@ -75,10 +75,10 @@
 							</a>
 						</p>
 	
-						<a href="loolo.do" class="btn-google m-b-10">
-							<img src="images/kakao_login_medium_wide.png">
-							Google
-						</a>					
+<!-- 						<a href="loolo.do" class="btn-google m-b-10"> -->
+<!-- 							<img src="images/kakao_login_medium_wide.png"> -->
+<!-- 							Google -->
+<!-- 						</a>					 -->
 						
 						<div class="text-center w-full p-t-115">
 							<span class="txt1">
