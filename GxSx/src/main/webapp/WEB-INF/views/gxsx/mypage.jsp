@@ -494,7 +494,7 @@
 									</br>
 										<div class="flex-w flex-m m-r-20 m-tb-5">
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
-												id='submit' name="submit"  onclick="CheckLeave(document.form2.editId)">
+												id='submit' name="submit" onclick="CheckLeave(document.form2.editId)">
 												Leave</div>
 											<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' 
 												style="opacity:0; pointer-events:none">

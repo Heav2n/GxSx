@@ -2,6 +2,7 @@ package sansil.gxsx.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
@@ -23,6 +25,7 @@ import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.DomainService;
+import sansil.gxsx.service.MailService;
 
 @Log4j
 @RequestMapping("/gxsx/")
@@ -30,6 +33,8 @@ import sansil.gxsx.service.DomainService;
 public class DomainController {
 	@Resource(name="DomainService")
 	private DomainService service;	
+	@Resource(name="EmailService")
+	private MailService mailService;	
 	
 	@RequestMapping("domain.do")
 	public ModelAndView list(HttpServletRequest request, HttpSession session) { 
@@ -187,14 +192,42 @@ public class DomainController {
     }
 	
 	@GetMapping("signupform.do")
-	public String signupform() {
-		return "gxsx/signup";
+	public ModelAndView signupform() {
+		ModelAndView mv = new ModelAndView();
+		int ran = new Random().nextInt(900000) + 100000;
+		mv.setViewName("gxsx/signup");
+		mv.addObject("random", ran);
+		System.out.println("#######random1 : " + ran);
+		return mv;
 	}
 	
 	@PostMapping("signup.do")
 	public String signup(Users users, HttpSession session) {
 		service.signupS(users);
 		return "redirect:domain.do";
+	}
+	
+//	@RequestMapping("idconfirm.do")
+//	public boolean idconfirm(String userid) {
+//		boolean x = service.idconfirmS(userid);
+//		return x;
+//	}
+	
+	@RequestMapping("emailCheck.do")
+	@ResponseBody
+	public boolean emailCheck(@RequestParam String uemail, @RequestParam int random, HttpServletRequest req){
+		//이메일 인증
+		int ran = new Random().nextInt(900000) + 100000;
+		HttpSession session = req.getSession(true);
+		String authCode = String.valueOf(ran);
+		session.setAttribute("authCode", authCode);
+		session.setAttribute("random", random);
+		System.out.println("#######authCode / random2 : " + authCode + " / " + random);
+		String subject = "회원가입 인증 코드 발급 안내 입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 인증 코드는 " + authCode + "입니다.");
+
+		return mailService.send(subject, sb.toString(), "javaoneteam@gmail.com", uemail, null);
 	}
 	
 	@RequestMapping("contact.do")

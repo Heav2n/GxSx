@@ -41,4 +41,8 @@
 		update users set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
 	</update>
 	
+	<select id="idconfirm" resultType="String" parameterType="String">
+		select userid from users where userid = #{userid}
+	</select>
+	
 </mapper>
