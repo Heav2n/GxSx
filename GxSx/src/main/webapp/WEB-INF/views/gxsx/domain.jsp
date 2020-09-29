@@ -71,11 +71,11 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li class="active-menu">
-								<a href="domain.do">Home</a>
+								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
 							<li>
-								<a href="notice.do">Notice</a>
+								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
@@ -87,7 +87,7 @@
 							</li>
 
 							<li>
-								<a href="contact.do">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -105,7 +105,7 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
 							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
 							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
@@ -130,7 +130,7 @@
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -389,27 +389,21 @@
 						<ul>
 							<li class="p-b-10">
 								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/filist.do" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
 								</a>
 							</li>
 	
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../lostitem/lolist.do" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
 								</a>
-							</li>
-	
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Shoes
-								</a>
-							</li>
-	
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Watches
-								</a>
-							</li>
+							</li>	
 						</ul> 
 				</div>
 
@@ -419,14 +413,15 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125
+						<i class="fa fa-phone"></i> 02-707-1480
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com
+						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
+						
 					</p>
 
 					<div class="p-t-27">
