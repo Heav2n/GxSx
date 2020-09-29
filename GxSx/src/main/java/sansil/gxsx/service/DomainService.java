@@ -20,4 +20,5 @@ public interface DomainService {
 	Users kakaologinS(String kid);
 	
 	Users kakaouser(Users kakaouser);
+	String idconfirmS(String userid);
 }

@@ -107,36 +107,14 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-							           		
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
+							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+								            		<a href="">${messageResult.qsub}</a>
+								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+								            		<p class="time">답변완료</p></div>
+								            	</li>
+							            	</c:forEach>
 							             </div>
 						          	</ul>
 						        </li>
@@ -147,12 +125,9 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
-					            		</div></li>
-					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
@@ -493,7 +468,7 @@
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>

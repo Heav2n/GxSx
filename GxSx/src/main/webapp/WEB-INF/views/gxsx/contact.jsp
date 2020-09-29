@@ -51,35 +51,85 @@
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript">	
+// 		$(function() {
+// 			$("#클릭할꺼").on("click", function(){
+// 				$.ajax({
+// 				   url: "../Users/경로.json", 
+// 				   type: "POST",
+// 				   dataType: "json",
+// 				   data: { 변수이름: $("#변수받을거").val()},				
+// 				   success: function(responseData){
+// 					 if(!responseData){
+// 						 alert("데이터없음");
+// 						 return false;
+// 					 }
+// 					 var html= "";
+// 					 if(responseData.length != 0){
+//  						 for(var i=0; i<responseData.length; i++){
+// 							html += "";
+// 						 }
+//  					 }else{
+//  						 html += "";
+//  					 }
+//   					 html += "";					
+  						
+//   					 $("#상기내용이 추가될div").html(html);
+// 				   }
+// 			   });
+// 		   });
+// 		})//start-end
+
 		$(function() {
-			$("#클릭할꺼").on("click", function(){
+			$("#MyQandA").on("click", function(){
 				$.ajax({
-				   url: "../Users/경로.json", 
+				   url: "../Question/*경로이름.json", 
 				   type: "POST",
 				   dataType: "json",
-				   data: { 변수이름: $("#변수받을거").val()},				
+				   data: { userid: $("#userid").val()},				
 				   success: function(responseData){
 					 if(!responseData){
-						 alert("데이터없음");
+						 alert("존재하지 않는 제목");
 						 return false;
 					 }
-					 var html= "";
+					 var html= "<div class='wrap-table-shopping-cart'>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th>";
+						 html += "<th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
 					 if(responseData.length != 0){
  						 for(var i=0; i<responseData.length; i++){
-							html += "";
+							html += "<tr class='table_row'>";
+							html += "<td class='column-2'>"+responseData[i].qsub+"</td>";
+							html += "<td class='column-4'>"+responseData[i].qdate+"</td>";
+							if(responseData[i].qreply != 0){
+								html += "<td class='column-5'>답변완료</td></tr>";
+							}
+							else{
+								html += "<td class='column-5'>답변미완료</td></tr>";
+							}
 						 }
  					 }else{
- 						 html += "";
+ 						 html += "<tr class='table_row'><td colspan='5'><center>작성된 글 없음</center></td></tr></table></div>";
  					 }
-  					 html += "";					
+  					 html += "</table></div>";
   						
-  					 $("#상기내용이 추가될div").html(html);
+  					 $("#contentchange").html(html);
 				   }
 			   });
 		   });
 		})//start-end
+		
+		function tempfunc() {
+			var html = "";
+			 html= "<div class='wrap-table-shopping-cart'>";
+			 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th>";
+			 html += "<th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			 html += "<tr class='table_row'>";
+			 html += "<td class='column-2'>제목</td>";
+			 html += "<td class='column-4'>날짜</td>";
+			 html += "<td class='column-5'>미완료</td></tr>";
+			 html += "</table></div>";
+			document.getElementById("contentchange").innerHTML = html;
+		}
 
-	<script type="text/javascript">
 	
 	function 함수이름() {
 		//alert("성공2");
@@ -91,6 +141,7 @@
 	}
 
 </script>
+
 
 </head>
 
@@ -250,14 +301,14 @@
 							</h4>
 
 							<ul id="accordion" class="accordion">
-								<li class="bor18">
+								<li class="bor18" id="QandA">
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Q&A
 									</a>
 								</li>
 								
-								<li class="bor18">
-									<a href="#" onclick="pwdfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+								<li class="bor18" id="MyQandA">
+									<a href="#" onclick="tempfunc()"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										My Q&A
 									</a>
 								</li>
@@ -283,6 +334,7 @@
 			
 									<div class="bor8 m-b-20 how-pos4-parent">
 										<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
+										<input type="hidden" name="userid" id="userid" value="${loginuser.userid}" />
 										<img class="how-pos4 pointer-none" src="../images/coza/icons/icon-email.png" alt="ICON">
 									</div>
 			
@@ -349,12 +401,10 @@
 					</div>
 				</section>	
 				
-				
-					<!-- Map -->
-					<div class="map">
-						<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-					</div>
-
+						<!-- Map -->
+						<div class="map">
+							<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+						</div>						
 				</div>
 				
 			</div>

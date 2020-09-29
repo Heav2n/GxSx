@@ -58,5 +58,10 @@ public class DomainServiceImpl implements DomainService {
 		signupS(kakaouser);		
 		return kakaologinS(kakaouser.getUserid());
 	}
+	
+	@Override
+	public String idconfirmS(String userid) {
+		return mapper.idconfirm(userid);
+	}
 
 }
