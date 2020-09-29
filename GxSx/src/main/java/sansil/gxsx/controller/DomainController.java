@@ -60,7 +60,7 @@ public class DomainController {
 		
 		if(session.getAttribute("loginuser")!=null) { //메세지확인용
 			Users user = (Users)session.getAttribute("loginuser");
-			List<Question> messageResult = messageService.messageList(user.getUserid());
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
 		
