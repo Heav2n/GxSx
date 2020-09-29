@@ -70,23 +70,23 @@
 					<div class="menu-desktop">
 						<ul class="main-menu">
 							<li>
-								<a href="domain.do">Home</a>
+								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
 							<li>
-								<a href="notice.do">Notice</a>
+								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
-							<li class="label1" data-label1="습득물" class="active-menu">
+							<li class="label1" data-label1="습득물">
 								<a href="../finditem/list.do">Finditem</a>
 							</li>
 
-							<li class="label1" data-label1="분실물">
+							<li class="label1" data-label1="분실물" class="active-menu">
 								<a href="../lostitem/list.do">Lostitem</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="../gsxs/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -99,43 +99,21 @@
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
-										<a href="login.do">Login</a></li>
+										<a href="../gxsx/login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-							           		
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
+							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+								            		<a href="">${messageResult.qsub}</a>
+								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+								            		<p class="time">답변완료</p></div>
+								            	</li>
+							            	</c:forEach>
 							             </div>
 						          	</ul>
 						        </li>
@@ -146,15 +124,12 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
-					            		</div></li>
-					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -162,7 +137,7 @@
 						            			&nbsp;<a href="">Logout</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">Logout</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
 												&nbsp;<a href="${kakaologout_url}">Logout</a>
