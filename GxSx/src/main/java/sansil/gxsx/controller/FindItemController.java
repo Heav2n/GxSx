@@ -21,8 +21,11 @@ import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItPicListResult;
 import sansil.gxsx.domain.Pagination;
+import sansil.gxsx.domain.Question;
+import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.FindCommentService;
 import sansil.gxsx.service.FindItemService;
+import sansil.gxsx.service.MessageService;
 
 @RequestMapping("/finditem/")
 @Controller
@@ -32,6 +35,8 @@ public class FindItemController {
 	private FindItemService service; //Spring 4.3~ ( with @AllArgsConstructor )
 	@Resource(name="FindCommentService")
 	private FindCommentService findCommentService;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	
 	@GetMapping("write2.do")
 	public String write() {
@@ -69,74 +74,6 @@ public class FindItemController {
 	}
 	
 	/////////////////////////////////////////////////////////index -> 습득물에서 검색
-//	@GetMapping("fisearch.do")
-//	public ModelAndView ficontent(String query, HttpServletRequest request, HttpSession session) { 
-//		String cpStr = request.getParameter("cp");
-//		String psStr = request.getParameter("ps");
-//		
-//		int cp = 1;
-//		if(cpStr == null) {
-//			Object cpObj = session.getAttribute("cp");
-//			if(cpObj != null) {
-//				cp = (Integer)cpObj;
-//			}
-//		}else {
-//			cpStr = cpStr.trim();
-//			cp = Integer.parseInt(cpStr);
-//		}
-//		session.setAttribute("cp", cp);
-//		
-//		int ps = 8;
-//		if(psStr == null) {
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				ps = (Integer)psObj;
-//			}
-//		}else {
-//			psStr = psStr.trim();
-//			int psParam = Integer.parseInt(psStr);
-//			
-//			Object psObj = session.getAttribute("ps");
-//			if(psObj != null) {
-//				int psSession = (Integer)psObj;
-//				if(psSession != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}else {
-//				if(ps != psParam) {
-//					cp = 1;
-//					session.setAttribute("cp", cp);
-//				}
-//			}
-//			
-//			ps = psParam;
-//		}
-//		session.setAttribute("ps", ps);
-//		
-//		FindItPicListResult findResult;
-//		
-//		if(query.length()!=0) {
-//			findResult = service.getFindItemResultByKeyword(query, cp, ps);
-//		}
-//		else {
-//			findResult = service.getFindItPicListResult(cp, ps);
-//		}
-//		
-//		ModelAndView mv = new ModelAndView();		
-//		mv.setViewName("gxsx/fislist");		
-//		mv.addObject("findResult", findResult);
-//		
-//		if(findResult.getList().size() == 0) {
-//			if(cp > 1) {
-//				return new ModelAndView("redirect:fisearch.do?cp="+(cp-1));
-//			}else {
-//				return new ModelAndView("redirect:fisearch.do", "findResult", null);
-//			}
-//		}else {
-//			return mv;
-//		}
-//	}
 	
 	//ajax
 	@ResponseBody
@@ -157,6 +94,11 @@ public class FindItemController {
 		mv.addObject("findResult", list);
 		mv.addObject("listpage", listpage);
 		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 
 		return mv;
 	}
@@ -225,6 +167,12 @@ public class FindItemController {
 		mv.setViewName("gxsx/fislist");
 		mv.addObject("findResult", listResult);
 		mv.addObject("query", query);
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		
 		if(listResult.getList().size() == 0) {
 			if(cp > 1) {

@@ -158,14 +158,14 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="../gxsx/domain.do" class="logo">
+					<a href="domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
@@ -182,7 +182,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/contact.do" class="active-menu">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -200,38 +200,16 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-							           		
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
+							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+								            		<a href="">${messageResult.qsub}</a>
+								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+								            		<p class="time">답변완료</p></div>
+								            	</li>
+							            	</c:forEach>
 							             </div>
 						          	</ul>
 						        </li>
@@ -242,12 +220,9 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../gxsx/mypage.do">Myboard</a>
-					            		</div></li>
-					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
@@ -402,9 +377,51 @@
 				</section>	
 				
 						<!-- Map -->
-						<div class="map">
-							<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-						</div>						
+<!-- 						<div class="map"> -->
+<!-- 							<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div> -->
+<!-- 						</div>	
+					 -->
+					 <!-- 지도 -->
+				<div id="map" style="width:826px;height:390px;"></div>
+				<script type="text/javascript" 
+					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b57fe4487ecb7780c41fada1cfb2a2b"></script>
+				<script>
+					var container = document.getElementById('map');
+					var options = {
+						center: new kakao.maps.LatLng(37.5524, 126.9377),
+						level: 2
+					};
+					var map = new kakao.maps.Map(container, options);
+					
+					var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+				    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+				    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+				      
+					// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+					    markerPosition = new kakao.maps.LatLng(37.5524, 126.9377); // 마커가 표시될 위치입니다
+	
+					// 마커를 생성합니다
+					var marker = new kakao.maps.Marker({
+					    position: markerPosition, 
+					    image: markerImage // 마커이미지 설정 
+					});
+	
+					// 마커가 지도 위에 표시되도록 설정합니다
+					marker.setMap(map); 
+					
+					// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+					var mapTypeControl = new kakao.maps.MapTypeControl();
+
+					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+					// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+					map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+					var zoomControl = new kakao.maps.ZoomControl();
+					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+					
+				</script>
 				</div>
 				
 			</div>

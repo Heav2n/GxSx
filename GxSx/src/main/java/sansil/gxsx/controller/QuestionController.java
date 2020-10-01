@@ -26,6 +26,7 @@ import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
+import sansil.gxsx.service.MessageService;
 import sansil.gxsx.service.QuestionService;
 import sansil.gxsx.service.QuestionServiceImpl;
 
@@ -37,6 +38,8 @@ public class QuestionController {
 	
 	@Resource(name="QuestionMapper")
 	private QuestionService service;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	
 	
 	@RequestMapping("list.do")
@@ -49,6 +52,11 @@ public class QuestionController {
 		mv.setViewName("question");
 		mv.addObject("question", questionlist);
 		mv.addObject("questionPage", questionPage);
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		
 		for(Question q : questionlist) {
 			log.info("#>qno : "+q.getQno());

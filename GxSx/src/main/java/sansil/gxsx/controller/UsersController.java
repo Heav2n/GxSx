@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
-import lombok.var;
 import lombok.extern.log4j.Log4j;
-import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindListVo;
 import sansil.gxsx.domain.LostListVo;
 import sansil.gxsx.domain.Pagination;
+import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.FindItemService;
 import sansil.gxsx.service.FindPicService;
 import sansil.gxsx.service.LostItemService;
 import sansil.gxsx.service.LostPicService;
+import sansil.gxsx.service.MessageService;
 import sansil.gxsx.service.UsersService;
 
 @RequestMapping("/Users/*")
@@ -45,26 +45,8 @@ public class UsersController {
 	private FindPicService fpserivce;
 	@Resource(name="LostPic")
 	private LostPicService lpService;
-	
-//	@RequestMapping("list.do")
-//	public ModelAndView list(HttpServletRequest request, HttpSession session) { // 구현
-//		Users user = (Users)session.getAttribute("loginUser");
-//		
-//		List<LostListVo> lostList = service.getLostList(user.getUserid(), request, session);
-//		Pagination lostPage = service.getLostPagination(user.getUserid(), request, session);
-//		
-//		List<FindListVo> findlist = service.getFindList(user.getUserid(), request, session);
-//		Pagination findPage = service.getFindPagination(user.getUserid(), request, session);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("list");
-//		mv.addObject("lost", lostList);
-//		mv.addObject("lostPage", lostPage);
-//		
-//		mv.addObject("find", findlist);
-//		mv.addObject("findPage", findPage);
-//		
-//		return mv;
-//	}
+	@Resource(name="MessageService")
+	private MessageService messageService;
 
 	@RequestMapping("mypage.do")
 	public ModelAndView mypage(HttpServletRequest request, HttpSession session) { // 구현
@@ -85,6 +67,11 @@ public class UsersController {
 		mv.addObject("lostPage", lostPage);		
 		mv.addObject("find", findlist);
 		mv.addObject("findPage", findPage);
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		
 		return mv;
 	}

@@ -100,7 +100,7 @@
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
-										<a href="login.do">Login</a></li>
+										<a href="../gxsx/login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
@@ -125,7 +125,7 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
@@ -138,7 +138,7 @@
 						            			&nbsp;<a href="">Logout</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">Logout</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
 												&nbsp;<a href="${kakaologout_url}">Logout</a>

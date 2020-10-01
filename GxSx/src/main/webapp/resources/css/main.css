@@ -2,47 +2,6 @@
 
 
 
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-Regular;
-  src: url('../fonts/raleway/Raleway-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-Black;
-  src: url('../fonts/raleway/Raleway-Black.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-SemiBold;
-  src: url('../fonts/raleway/Raleway-SemiBold.ttf'); 
-}
-
-@font-face {
-  font-family: Raleway-Bold;
-  src: url('../fonts/raleway/Raleway-Bold.ttf'); 
-}
-
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px; 
@@ -52,12 +11,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+/* 	font-family: qwertyRegular, sans-serif; */
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+/* 	font-family: qwertyRegular; */
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -82,13 +41,12 @@ h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
-		/* p { */
-		/* 	font-family: Poppins-Regular; */
-		/* 	font-size: 14px; */
-		/* 	line-height: 1.7; */
-		/* 	color: #666666; */
-		/* 	margin: 0px; */
-		/* } */
+		p {
+			font-size: 14px;
+			line-height: 1.7;
+			color: #666666;
+			margin: 0px;
+		}
 
 ul, li {
 	margin: 0px;
@@ -235,6 +193,7 @@ iframe {
 .login100-form-title {
   font-family: Raleway-Black;
   font-size: 30px;
+  font-weight: 900;
   color: #333333;
   line-height: 1.2;
   text-transform: uppercase;
@@ -495,7 +454,7 @@ iframe {
   position: absolute;
   max-width: 70%;
   background-color: white;
-  border: 1px solid #c80000;
+  border: 1px solid #098be8;
   border-radius: 3px;
   padding: 4px 25px 4px 10px;
   top: 50%;
@@ -508,7 +467,7 @@ iframe {
   pointer-events: none;
 
   font-family: Raleway-SemiBold;
-  color: #c80000;
+  color: #098be8;
   font-size: 13px;
   line-height: 1.4;
   text-align: left;
@@ -527,7 +486,7 @@ iframe {
   font-family: FontAwesome;
   display: block;
   position: absolute;
-  color: #c80000;
+  color: #098be8;
   font-size: 15px;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -549,6 +508,19 @@ iframe {
     opacity: 1;
   }
 }
+
+/*//////////////////////////////////////////////////////////////////
+[ mine ]*/
+/* form */
+.form-group.type-btn:after { display:block; clear:both; content:""; }
+.form-group.type-btn > label { display:block; }
+.form-group.type-btn > input { float:left; width:280px; }
+.form-group.type-btn > button { float:right; width:calc(100% - 290px); }
+.form-group .error-message { float:none; clear:both; width:100%; margin:0; padding:6px 0 0; color:red; font-size:12px; }
+
+/* btns */
+.btn-wrap { text-align:center; }
+.btn-wrap button { margin:0 10px; }
 
 /*//////////////////////////////////////////////////////////////////
 [ responsive ]*/

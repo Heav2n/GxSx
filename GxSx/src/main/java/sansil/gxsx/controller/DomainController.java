@@ -257,8 +257,15 @@ public class DomainController {
 	}
 	
 	@RequestMapping("contact.do")
-	public String contact() {
-		return "gxsx/contact";
+	public ModelAndView contact(HttpSession session) {
+		ModelAndView mv = new ModelAndView();	
+		mv.setViewName("gxsx/contact");
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		return mv;
 	}
 	
 	@RequestMapping("myboard.do")
