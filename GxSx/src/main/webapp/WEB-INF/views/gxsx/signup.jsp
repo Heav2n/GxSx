@@ -95,12 +95,11 @@
 				<span class="login100-form-title p-b-55"> Sign up </span>
 				
 			<form action="signup.do" name="form2" id="form-row" method="post">
-				<div class="row form-group">
+				<div class="row form-group type-btn">
 					<label for="input0">ID</label>
-					</br>
-					<input style="float:left;width:280px" class="form-control" id="userid" name="userid" type="text" data-bvStrict="string" data-bvSwitch="ID">
+					<input class="form-control" id="userid" name="userid" type="text" data-bvStrict="string" data-bvSwitch="ID">
 					
-					<button style="float:right" type="button" id="IdConfirm" name="IdConfirm" 
+					<button type="button" id="IdConfirm" name="IdConfirm" 
 						class="btn btn-default">Confirm</button>
 					<div class="help-block error-message">Fill your ID</div>
 				</div>
@@ -122,19 +121,19 @@
 					<div class="help-block error-message">This must be a string</div>
 				</div>
 				
-				<div class="row form-group">
+				<div class="row form-group type-btn">
 					<label for="input1">E-mail address</label>
-					</br>
-					<input style="float:left;width:280px" class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
-					<button style="float:right" type="button" id="EmailSend" name="EmailSend" 
+					<input class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
+					<button type="button" id="EmailSend" name="EmailSend" 
 						class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">Send</button>
 					<div class="help-block error-message">Fill valid e-mail address</div>
 					
-					</br></br>				
-					<input style="float:left;width:280px" class="form-control" id="uemailauth" name="uemailauth" type="text" placeholder="number">
+				</div>
+				<div class="row form-group type-btn">	
+					<input class="form-control" id="uemailauth" name="uemailauth" type="text" placeholder="number">
 					<input type="hidden" path="random" name="random" id="random" value="${random}" />
 					<input type="hidden" name="authconfirm" id="authconfirm" value="" />
-					<button style="float:right" type="button" id="EmailConfirm" name="EmailConfirm" 
+					<button type="button" id="EmailConfirm" name="EmailConfirm" 
 						class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">Confirm</button>
 				</div>
 				
@@ -151,10 +150,12 @@
 					</label>
 				</div>
 				
-				<button type="submit" id="signupSubmit" name="signupSubmit" 
-					class="btn btn-default" onclick="CheckForm(document.form2.authconfirm)">Submit</button>
-				<button type="button" id="signupCancel" name="signupCancel" 
-					class="btn btn-default" onclick="FormCancel()">Cancel</button>
+				<div class="btn-wrap">
+					<button type="submit" id="signupSubmit" name="signupSubmit" 
+						class="btn btn-default" onclick="CheckForm(document.form2.authconfirm)">Submit</button>
+					<button type="button" id="signupCancel" name="signupCancel" 
+						class="btn btn-default" onclick="FormCancel()">Cancel</button>
+				</div>
 			</form>
 			
 			<!-- Modal -->
