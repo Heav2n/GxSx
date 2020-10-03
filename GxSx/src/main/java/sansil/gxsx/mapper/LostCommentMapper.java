@@ -10,14 +10,14 @@ public interface LostCommentMapper {
 	List<LoComments> LostCommentList(int lono);
 	
 	
-	int LostCommentInsert(LoComments locomments);
+	boolean LostCommentInsert(LoComments locomments);
 	
 	
-	void LostCommentDelete(LoComments locomments);
+	boolean LostCommentDelete(LoComments locomments);
 	
 	List<LoComments> reSelectComment(LoComments locomments);
 
-	void LostCommentUpdate(LoComments locomments);
+	boolean LostCommentUpdate(LoComments locomments);
 
 	
 }

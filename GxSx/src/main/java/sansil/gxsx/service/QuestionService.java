@@ -5,23 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
+import sansil.gxsx.domain.ResponseListVo;
 
 
 public interface QuestionService {
 	
-	List<Question> selectQuestion(String quid);
-
-	List<Question> getQuestion(String quid, HttpServletRequest request, HttpSession session);
-	
-	Pagination getAjaxQuestionPagination(int selectedPage, String quid, HttpServletRequest request,
-			HttpSession session);
-	
-	
 	List<Question> getQuestion(Pagination page, String quid);
-
-	Pagination getQuestionPagination(String quid, HttpServletRequest request, HttpSession session);
 
 	Question contentS(long seq);
 	
@@ -43,6 +36,17 @@ public interface QuestionService {
 	 */
 	void updateS(int qno, String content);
 
-	
-	
+	//문의게시판 글작성 
+	void QuestioninsertS(Question questioninsert);
+	//문의게시판 수정
+	void QuestionupdateS(Question questionupdate);
+	//문의게시판 삭제
+	long QuestiondeleteS(long qno);
+
+	/**
+	 * 문의 게시판 리스트 조회
+	 * @param selectedPage 요청 페이지
+	 * @return ResponseListVo 문의 게시판 리스트, 페이징
+	 */
+	ResponseListVo getQuestionListService(int selectedPage);
 }

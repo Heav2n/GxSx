@@ -198,8 +198,13 @@ public class DomainController {
 	}
 	
 	@RequestMapping("contact.do")
-	public String contact() {
+	public String contact(HttpSession session) {
+		if(session.getAttribute("loginuser") == null) return "redirect:login.do";
 		return "gxsx/contact";
+	}
+	
+	public boolean name(HttpSession session) {
+		return session.getAttribute("loginuser") == null;
 	}
 	
 	@RequestMapping("myboard.do")

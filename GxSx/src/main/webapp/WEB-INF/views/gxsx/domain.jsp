@@ -85,7 +85,6 @@
 							<li class="label1" data-label1="분실물">
 								<a href="../lostitem/list.do">Lostitem</a>
 							</li>
-
 							<li>
 								<a href="contact.do">Contact</a>
 							</li>

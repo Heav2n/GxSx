@@ -53,7 +53,7 @@ public class LostCommentController {
 		locomments.setContents(content);
 		locomments.setUserid(user.getUserid());
 		//og.info("###################### fino : " + FiComments.getComno() +" , contents : " + fiComments.getContents());
-		List<LoComments> commentList = service.LostCommentInsert(locomments);
+		boolean commentList = service.LostCommentInsert(locomments);
 		ModelAndView response = new ModelAndView("lostitem2/comment_table");
 		response.addObject("locomment", commentList);
 		return response;

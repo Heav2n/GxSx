@@ -6,17 +6,17 @@
 	
 	
 	<select id="selectQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{query}
+		select * from QUESTION where QUID = #{query} order by QNO desc;
 	</select>
 	
-	<select id="selectCountQuestion" resultType="Long">
-		select count(*) from QUESTION where QUID = #{query}
+	<select id="selectCountQuestion" resultType="Long" parameterType="String">
+		select count(*) from QUESTION where QUID = #{query} 
 	</select>
 	
-	<select id="selectPerPage" resultType="Question" parameterType="Question">
+	<select id="selectPerPage" resultType="Question" parameterType="hashmap">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION order by QUID desc) aa) 
-		where rnum between #{start} and #{last}
+		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION where QUID = #{usersid} order by QNO desc) aa) 
+		where rnum between #{paging.startRow} and #{paging.endRow}
 		]]>
 	</select>	
 	
@@ -31,5 +31,19 @@
 	<delete id="commentDelete" parameterType="int">
 		delete from QUESTION where QNO = #{qno}
 	</delete>
+	
+	<insert id="Questioninsert" parameterType="Question">
+		insert into QUESTION values(QUESTION_SEQ_PK.nextval, #{quid}, #{qsub}, #{qcon}, null)
+	</insert>
+	
+	<update id="Questionupdate" parameterType="Question">
+		update QUESTION set QSUB=#{qsub}, QCON=#{qcon} where QNO=#{qno}
+	</update>
+	
+	<delete id="Questiondelete" parameterType="long">
+		delete from QUESTION where QNO=#{qno}
+	</delete>
+	
+	
 	
 </mapper>
