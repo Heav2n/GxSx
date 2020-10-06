@@ -20,6 +20,17 @@
 		]]>
 	</select>	
 	
+	<select id="allCountQuestion" resultType="Long" parameterType="String">
+		select count(*) from QUESTION 
+	</select>
+	
+	<select id="allSelectPerPage" resultType="Question" parameterType="hashmap">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION order by QNO desc) aa) 
+		where rnum between #{paging.startRow} and #{paging.endRow}
+		]]>
+	</select>	
+	
 	<select id="content" parameterType="long" resultType="Question">
 	select * from QUESTION where QNO=#{query}
 	</select>

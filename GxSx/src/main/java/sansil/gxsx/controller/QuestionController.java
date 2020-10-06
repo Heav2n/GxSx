@@ -46,8 +46,13 @@ public class QuestionController {
 	@GetMapping("otherPageQu")
 	private ModelAndView otherPageQu(int selectedPage) {
 		log.info("#>>selectedPage : "+selectedPage);
-		ResponseListVo result = service.getQuestionListService(selectedPage);
-		return new ModelAndView("gxsx/questionList", "vo", result);
+		if(session.getAttribute("admin") != null) {
+			ResponseListVo result = service.getAllQuestionListService(selectedPage);
+			return new ModelAndView("gxsx/questionAllList", "vo", result);
+		}else {
+			ResponseListVo result = service.getQuestionListService(selectedPage);
+			return new ModelAndView("gxsx/questionList", "vo", result);
+		}
 	}
 	
 	@ResponseBody

@@ -307,9 +307,18 @@
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18" id="QandA">
+								<c:choose>
+									<c:when test="${ !empty admin }">
+									<a href="#" onclick="allQuestionPage(1)" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Q&A
+									</a>
+									</c:when>
+									<c:otherwise>
 									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Q&A
 									</a>
+									</c:otherwise>
+								</c:choose>
 								</li>
 								
 								<ul id="question-paging" class="pagination" style="display:inline-flex">

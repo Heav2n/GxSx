@@ -49,4 +49,6 @@ public interface QuestionService {
 	 * @return ResponseListVo 문의 게시판 리스트, 페이징
 	 */
 	ResponseListVo getQuestionListService(int selectedPage);
+
+	ResponseListVo getAllQuestionListService(int selectedPage);
 }

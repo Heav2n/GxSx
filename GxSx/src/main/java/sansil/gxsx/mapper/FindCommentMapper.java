@@ -11,16 +11,16 @@ public interface FindCommentMapper {
 	
 	boolean FindCommentInsert(FiComments findcomments);
 
+	boolean CommentReplyInsert(FiComments fiComments);
+
+	boolean FindCommentUpdate(FiComments fiComments);
 	
-	boolean FindCommentDelete(FiComments fiComments);
+	boolean FindCommentDelete(int comno);
 	
 	List<FiComments> reSelectComment(FiComments findcomments);
 
 //	FiComments FindCommentUpdate(int comno, String contents);
-
-	boolean FindCommentUpdate(FiComments fiComments);
 	
-	boolean CommentReplyInsert(FiComments fiComments);
 
 }
 

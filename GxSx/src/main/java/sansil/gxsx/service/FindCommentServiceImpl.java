@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,13 +19,18 @@ public class FindCommentServiceImpl implements FindCommentService {
 	private FindCommentMapper findcommentMapper;
 	
 	public List<FiComments> FindCommentList(int fino) {
+		log.info("@@@@@@@@@@@@@@@@ 서비스 임플 FINO : " + fino);
 		return findcommentMapper.FindCommentList(fino);
 	}
 
 	@Override
-	public boolean FindCommentInsert(FiComments findcomments) {
-		
-		return findcommentMapper.FindCommentInsert(findcomments);
+	public boolean FindCommentInsert(FiComments ficomments) {
+//		LoComments parentComment = LostcommentMappe
+		if(ficomments.getCogroup() == 0) {
+			return findcommentMapper.FindCommentInsert(ficomments);
+		} else {
+			return findcommentMapper.CommentReplyInsert(ficomments);
+		}
 	}
 
 	@Override
@@ -33,14 +39,19 @@ public class FindCommentServiceImpl implements FindCommentService {
 	}
 
 	@Override
-	public boolean FindCommentDelete(FiComments ficomments) {
-		return findcommentMapper.FindCommentDelete(ficomments);
-		
+	public boolean FindCommentDelete(HashMap<String, Object> request) {
+		return findcommentMapper.FindCommentDelete(Integer.parseInt(request.get("comno").toString()));
 	}
 	
 	@Override
 	public boolean CommentReplyInsert(FiComments ficomments) {
 		return findcommentMapper.CommentReplyInsert(ficomments);
 	
+	}
+
+	@Override
+	public List<FiComments> reSelectComment(FiComments ficomments) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

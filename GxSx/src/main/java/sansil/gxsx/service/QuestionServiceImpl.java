@@ -53,6 +53,22 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 	
 	@Override
+	public ResponseListVo getAllQuestionListService(int selectedPage) {
+		Users user = (Users)session.getAttribute("loginuser");
+		log.info("user : "+user);
+		long listCount = questionMapper.allCountQuestion(user.getUserid());
+		Pagination paging = new Pagination(listCount, selectedPage, 5);
+		
+		HashMap<String, Object> query = new HashMap<String, Object>();
+		query.put("paging", paging);
+		query.put("usersid", user.getUserid());
+		
+		List<Question> list = questionMapper.allSelectPerPage(query);
+		return new ResponseListVo(list, paging);
+	}
+	
+	
+	@Override
 	public Question contentS(long qno) {
 			return questionMapper.content(qno);
 	}

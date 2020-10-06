@@ -364,7 +364,11 @@
 															class="form-control" id="content" name="content"
 															placeholder="내용을 입력하세요."> <span
 															class="input-group-btn">
+															<c:if test="${ admin }">
+															<c:if test="${!empty sessionScope.loginuser}">
 															<button class="btn btn-default" type="submit">등록</button>
+															</c:if>
+															</c:if>
 														</span>
 													</div>
 												</form>
@@ -374,9 +378,12 @@
 								
 								<c:if test="${!empty question.qreply}">
 								<div id="comment_update_btn">
+								<c:if test="${sessionScope.loginuser.userid eq 'sansillyung' }">
       								<button class="btn btn-default" type="button" onclick="qreply('${question.qno}','${question.qreply}');">관리자 댓글 수정버튼</button>
+    							</c:if>	
     							</div>
-								</c:if>	
+								</c:if>
+								
 									
 									<script>		
 										function questionco_form() {

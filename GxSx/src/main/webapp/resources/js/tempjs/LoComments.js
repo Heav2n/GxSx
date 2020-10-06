@@ -104,8 +104,6 @@ function update_form_id(val){
 var global_lono;
 //댓글수정
 function do_update(index){
-	console.log(index);
-	console.log(global_lono);
 	click = 0;
 	let content = document.getElementById("update-txt-"+index).value;
 	$.ajax({
