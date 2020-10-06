@@ -13,11 +13,11 @@ public interface FindCommentService {
 	
 	List<FiComments> FindCommentList(int fino);
 	
-	List<FiComments> FindCommentInsert(FiComments findcomments);
+	boolean FindCommentInsert(FiComments findcomments);
 	
-	void FindCommentDelete(FiComments fiComments);
+	boolean FindCommentDelete(FiComments fiComments);
 
-	void FindCommentUpdate(FiComments fiComments);
+	boolean FindCommentUpdate(FiComments fiComments);
 
-	
+	boolean CommentReplyInsert(FiComments fiComments);
 }

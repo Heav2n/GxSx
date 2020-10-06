@@ -1,5 +1,8 @@
 package sansil.gxsx.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -24,6 +27,7 @@ import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
+import sansil.gxsx.domain.Notice;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.DomainService;
@@ -149,7 +153,7 @@ public class DomainController {
 	
 	
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpSession session) { 
+	public static ModelAndView login(HttpSession session) { 
 		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
 		ModelAndView mv = new ModelAndView();		
 		mv.setViewName("gxsx/login");		
@@ -218,11 +222,17 @@ public class DomainController {
 		return "redirect:domain.do";
 	}
 	
-//	@RequestMapping("idconfirm.do")
-//	public boolean idconfirm(String userid) {
-//		boolean x = service.idconfirmS(userid);
-//		return x;
-//	}
+	@PostMapping("idCheck.do")
+	@ResponseBody
+	public boolean idconfirm(String userid) {
+		int id_exist = service.idCheckS(userid);
+		if(id_exist==0) {
+			return true;
+		}
+		else {
+			return false;
+		}		
+	}
 	
 	@RequestMapping(value="emailCheck.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
 	@ResponseBody
@@ -256,16 +266,8 @@ public class DomainController {
 		}
 	}
 	
-	@RequestMapping("contact.do")
-	public ModelAndView contact(HttpSession session) {
-		ModelAndView mv = new ModelAndView();	
-		mv.setViewName("gxsx/contact");
-		if(session.getAttribute("loginuser")!=null) { //메세지확인용
-			Users user = (Users)session.getAttribute("loginuser");
-			List<Question> messageResult = messageService.messageList(user.getUserid());			
-			mv.addObject("messageResult", messageResult);
-		}
-		return mv;
+	public boolean name(HttpSession session) {
+		return session.getAttribute("loginuser") == null;
 	}
 	
 	@RequestMapping("myboard.do")
@@ -273,23 +275,15 @@ public class DomainController {
 		return "temp/myboard";
 	}
 	
-	@RequestMapping("modifyform.do")
-	public String modifyform() {
-		return "temp/modifyform";
-	}
-	
-	@RequestMapping("modify.do")
-	public String modify() {
-		return "temp/modify";
-	}
-	
 	////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("tempsignupform.do") //카톡으로 로그인했는데 DB에 저장 안되어있을때 호출할꺼임
 	public ModelAndView tempsignupform(HttpSession session) {
 		Users kakaouser = (Users)session.getAttribute("kakaouser");
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/tempsign");		
+		int ran = new Random().nextInt(900000) + 100000;
+		mv.setViewName("gxsx/signup2");
 		mv.addObject("kakaouser", kakaouser);
+		mv.addObject("random", ran);
 		System.out.println("77777 : " + kakaouser);
 		return mv;
 	}	
@@ -300,8 +294,31 @@ public class DomainController {
 		service.kakaouser(kakaouser);
 		Users users = service.kakaologinS(kakaouser.getUserid());
 		session.setAttribute("loginuser", users);
-		System.out.println("로긔으니ㅏ으ㅏㅣㅁ느아: " + users);
 		
 		return "redirect:domain.do";
+	}
+	
+	@GetMapping("notice.do")
+	public ModelAndView notice(HttpServletRequest request, HttpSession session) {
+		List<Notice> notice = service.noticeListS();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String datestr = sdf.format(cal.getTime());
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/notice");
+		mv.addObject("noticeList", notice);
+		mv.addObject("today", datestr);
+		return mv;
+	}
+
+	@GetMapping("noticeCon.do")
+	public ModelAndView noticeCon(HttpServletRequest request, HttpSession session, String nono) {
+//		Notice notice = service.noticeConS(Integer.parseInt(nono));
+		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("gxsx/noticeContent");
+		mv.setViewName("gxsx/temp");
+//		mv.addObject("noticeList", notice);
+		return mv;
 	}
 }

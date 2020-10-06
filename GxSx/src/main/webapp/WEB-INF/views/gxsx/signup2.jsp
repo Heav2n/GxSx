@@ -25,43 +25,14 @@
 		
 		function CheckForm(authconfirm){
 			var confirm = $("#authconfirm").val();
-			var idconfirm = $("#idauthconfirm").val();
 			console.log(confirm);
-			if(confirm=="yes" && idconfirm=="yes"){
+			if(confirm=="yes"){
+				alert("yes");
 				return true;
 			}
 			else{
-				if(confirm==""){
-					alert("이메일 인증 필요");
-				}
-				else if(idconfirm==""){
-					alert("아이디 인증 필요");
-				}
-				else{
-					alert("아이디,이메일 인증 필요");
-				}
 				return false;
 			}
-		}
-		
-		function CheckId(){
-			$.ajax({
-				type:"POST",
-				url:"../gxsx/idCheck.do",
-				dataType: "json",
-				data: {userid: $("#userid").val()},
-				success: function(data){
-					if(data== true){
-						alert("사용할 수 있는 아이디입니다");
-						document.getElementById("idauthconfirm").value = "yes";						
-					}else{
-						alert("사용할 수 없는 아이디입니다")
-					}
-				},
-				error: function(data){
-					alert("CheckId 에러가 발생했습니다.");
-				}
-			});
 		}
 		
 		function CheckEmail(uemail,random){
@@ -81,7 +52,7 @@
 					}
 				},
 				error: function(data){
-					alert("CheckEmail 에러가 발생했습니다.");
+					alert("에러가 발생했습니다.");
 				}
 			});
 			
@@ -124,14 +95,13 @@
 				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
 				<span class="login100-form-title p-b-55"> Sign up </span>
 				
-			<form action="signup.do" name="form2" id="form-row" method="post">
+			<form action="tempsignup.do" name="form2" id="form-row" method="post">
 				<div class="row form-group type-btn">
 					<label for="input0">ID</label>
-					<input class="form-control" id="userid" name="userid" type="text" data-bvStrict="reg:^[A-Za-z]\w{7,14}$" data-bvSwitch="ID">
-					<input type="hidden" name="idauthconfirm" id="idauthconfirm" value="" />
+					<input type="text" value="${kakaouser.userid}" disabled>
+					<input type="hidden" name="userid" value="${kakaouser.userid}">
 					<button type="button" id="IdConfirm" name="IdConfirm" 
-						class="btn btn-default" onclick="CheckId()">Confirm</button>
-					<div class="help-block error-message">Fill your ID</div>
+						class="btn btn-default" disabled>Confirm</button>
 				</div>
 
 				<div class="row form-group">
@@ -141,32 +111,38 @@
 				</div>
 				<div class="row form-group">
 					<label for="input4">Password again</label>
-					<input class="form-control" id="upwdagain" name="upwdagain" type="password" data-bvStrict="same:upwd" >
+					<input class="form-control" type="password" data-bvStrict="same:upwd" >
 					<span class="help-block error-message" style ="color:red">Password does not match</span>
 				</div>
 				
 				<div class="row form-group">
 					<label for=-"input0">Name</label>
-					<input class="form-control" id="uname" name="uname" type="text" data-bvStrict="notEmpty" data-bvSwitch="Your Name">
+					<input class="form-control" id="uname" name="uname" type="text" data-bvStrict="notEmpty" data-bvSwitch="Your Name" value="${kakaouser.uname}">
 					<div class="help-block error-message">This must be a string</div>
 				</div>
 				
 				<div class="row form-group type-btn">
 					<label for="input1">E-mail address</label>
-					<input class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
-					<button type="button" id="EmailSend" name="EmailSend" 
-						class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">Send</button>
-					<div class="help-block error-message">Fill valid e-mail address</div>
+					<c:if test="${ kakaouser.uemail.equals('temp')}">
+						<input class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
+						<button type="button" id="EmailSend" name="EmailSend" 
+							class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">Send</button>
+						<div class="help-block error-message">Fill valid e-mail address</div>
+					</c:if>
+					<c:if test="${ !kakaouser.uemail.equals('temp')}">
+						<input type="text" name="uemail" value="${kakaouser.uemail}" disabled>
+					</c:if>
 					
 				</div>
-				<div class="row form-group type-btn">	
-					<input class="form-control" id="uemailauth" name="uemailauth" type="text" placeholder="number">
-					<input type="hidden" path="random" name="random" id="random" value="${random}" />
-					<input type="hidden" name="authconfirm" id="authconfirm" value="" />
-					<button type="button" id="EmailConfirm" name="EmailConfirm" 
-						class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">Confirm</button>
-				</div>
-				
+				<c:if test="${ kakaouser.uemail.equals('temp')}">
+					<div class="row form-group type-btn">	
+						<input class="form-control" id="uemailauth" name="uemailauth" type="text" placeholder="number">
+						<input type="hidden" path="random" name="random" id="random" value="${random}" />
+						<input type="hidden" name="authconfirm" id="authconfirm" value="" />
+						<button type="button" id="EmailConfirm" name="EmailConfirm" 
+							class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">Confirm</button>
+					</div>
+				</c:if>
 				<div class="row form-group">
 					<label for="input2">Phone Number</label>
 					<input class="form-control" id="upnum" name="upnum" type="text" data-bvStrict="phone" data-bvSwitch="000-0000-0000">

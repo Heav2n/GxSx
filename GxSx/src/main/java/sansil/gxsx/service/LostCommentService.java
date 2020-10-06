@@ -8,15 +8,11 @@ public interface LostCommentService {
 	
 	List<LoComments> LostCommentList(int lono);
 	
-	List<LoComments> LostCommentInsert(LoComments locomments);
+	boolean LostCommentInsert(LoComments locomments);
 	
-	void LostCommentDelete(LoComments locomments);
+	boolean LostCommentDelete(LoComments locomments);
 
-	void LostCommentUpdate(LoComments locomments);
-
-//	List<LoComments> LostCommentInsert(LoComments locomments);
+	boolean LostCommentUpdate(LoComments locomments);
 	
-	List<LoComments> reSelectComment(LoComments locomments);
-
-	
+	List<LoComments> reSelectComment(LoComments locomments);	
 }

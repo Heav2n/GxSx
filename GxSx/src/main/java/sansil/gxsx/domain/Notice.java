@@ -15,4 +15,5 @@ public class Notice {
 	private String nosub;
 	private String nocon;
 	private Date nodate;
+	private String nocate;
 }

@@ -46,43 +46,24 @@
 		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
+		#paging p{
+			cursor:pointer;
+		}
+		#paging p:active{
+			background-color:#808080;
+			/* box-shadow:0px 0px 10px #000;
+			color:#808080; */
+		}
 	</style>
 	
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript">	
-// 		$(function() {
-// 			$("#클릭할꺼").on("click", function(){
-// 				$.ajax({
-// 				   url: "../Users/경로.json", 
-// 				   type: "POST",
-// 				   dataType: "json",
-// 				   data: { 변수이름: $("#변수받을거").val()},				
-// 				   success: function(responseData){
-// 					 if(!responseData){
-// 						 alert("데이터없음");
-// 						 return false;
-// 					 }
-// 					 var html= "";
-// 					 if(responseData.length != 0){
-//  						 for(var i=0; i<responseData.length; i++){
-// 							html += "";
-// 						 }
-//  					 }else{
-//  						 html += "";
-//  					 }
-//   					 html += "";					
-  						
-//   					 $("#상기내용이 추가될div").html(html);
-// 				   }
-// 			   });
-// 		   });
-// 		})//start-end
 
 		$(function() {
 			$("#MyQandA").on("click", function(){
 				$.ajax({
-				   url: "../Question/*경로이름.json", 
+					url: "../Question/otherPageQu.json",  
 				   type: "POST",
 				   dataType: "json",
 				   data: { userid: $("#userid").val()},				
@@ -130,16 +111,6 @@
 			document.getElementById("contentchange").innerHTML = html;
 		}
 
-	
-	function 함수이름() {
-		//alert("성공2");
-		var str1 = "";
-				
-		document.getElementById("상기내용이 추가될div").innerHTML = str1;
-			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
-			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
-	}
-
 </script>
 
 
@@ -158,7 +129,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="domain.do" class="logo">
+					<a href="../gxsx/domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -277,17 +248,28 @@
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18" id="QandA">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a href="list.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Q&A
 									</a>
 								</li>
 								
+								<ul id="question-paging" class="pagination" style="display:inline-flex">
 								<li class="bor18" id="MyQandA">
-									<a href="#" onclick="tempfunc()"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+								<tbody id="question">
+									<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										My Q&A
 									</a>
+								</tbody>	
 								</li>
+								</ul>
 							</ul>
+							<input id="currentPage" type="hidden" value="${questionPage.currentPage}">
+							<input id="prevPage" type="hidden" value="${questionPage.currentPage}">
+							<input id="startPage" type="hidden" value="${questionPage.startPage}">
+							<input id="endPage" type="hidden" value="${questionPage.endPage}">
+							<input id="rangeSize" type="hidden" value="${questionPage.rangeSize}">
+							<input id="pageCount" type="hidden" value="${questionPage.pageCount}">
+							
 							
 						</div>
 					</div>
@@ -298,30 +280,40 @@
 					<!-- 경빈 -->
 
 				<!-- Content page -->
+				
 				<section class="bg0 p-t-104 p-b-116">
 					<div class="container">
 						<div class="flex-w flex-tr">
 							<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-								<form>
+								<form id='write_form' name='input' method='post' action='../Question/Questioninsert.do' accept-charset='UTF-8'>
 									<h4 class="mtext-105 cl2 txt-center p-b-30">
-										Send Us A Message
+										1:1 문의 글 입니다
 									</h4>
 			
 									<div class="bor8 m-b-20 how-pos4-parent">
-										<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-										<input type="hidden" name="userid" id="userid" value="${loginuser.userid}" />
+										<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name='qsub' placeholder="제목을 입력해주세요.">
+										<input type="hidden" name="quid" id="quid" value="${loginuser.userid}" />
 										<img class="how-pos4 pointer-none" src="../images/coza/icons/icon-email.png" alt="ICON">
 									</div>
 			
 									<div class="bor8 m-b-30">
-										<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
+										<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="qcon" placeholder="무엇이 궁금하느냐!?"></textarea>
 									</div>
 			
-									<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-										Submit
-									</button>
+									<input  class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type='button' value='문의 등록하기' onclick='write_form()'>									
 								</form>
-							</div>
+				
+									<script>		
+										function write_form() {
+											if (confirm("문의글을 등록하시겠습니까?") == true) {
+												document.getElementById(
+														'write_form').submit();
+											} else {
+												return false;
+											}
+										}
+									</script>
+								</div>
 			
 							<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
 								<div class="flex-w w-full p-b-42">
@@ -331,11 +323,11 @@
 			
 									<div class="size-212 p-t-2">
 										<span class="mtext-110 cl2">
-											Address
+											주소
 										</span>
 			
 										<p class="stext-115 cl6 size-213 p-t-18">
-											Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
+											비트캠프 3층 1강의실
 										</p>
 									</div>
 								</div>
@@ -347,11 +339,11 @@
 			
 									<div class="size-212 p-t-2">
 										<span class="mtext-110 cl2">
-											Lets Talk
+											문의 전화
 										</span>
 			
 										<p class="stext-115 cl1 size-213 p-t-18">
-											+1 800 1236879
+											앞뒤가 똑같은 1577
 										</p>
 									</div>
 								</div>
@@ -363,7 +355,7 @@
 			
 									<div class="size-212 p-t-2">
 										<span class="mtext-110 cl2">
-											Sale Support
+											E-mali
 										</span>
 			
 										<p class="stext-115 cl1 size-213 p-t-18">
@@ -376,52 +368,52 @@
 					</div>
 				</section>	
 				
-						<!-- Map -->
-<!-- 						<div class="map"> -->
-<!-- 							<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div> -->
-<!-- 						</div>	
-					 -->
-					 <!-- 지도 -->
-				<div id="map" style="width:826px;height:390px;"></div>
-				<script type="text/javascript" 
-					src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b57fe4487ecb7780c41fada1cfb2a2b"></script>
-				<script>
-					var container = document.getElementById('map');
-					var options = {
-						center: new kakao.maps.LatLng(37.5524, 126.9377),
-						level: 2
-					};
-					var map = new kakao.maps.Map(container, options);
-					
-					var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-				    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-				    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-				      
-					// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-					var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-					    markerPosition = new kakao.maps.LatLng(37.5524, 126.9377); // 마커가 표시될 위치입니다
-	
-					// 마커를 생성합니다
-					var marker = new kakao.maps.Marker({
-					    position: markerPosition, 
-					    image: markerImage // 마커이미지 설정 
-					});
-	
-					// 마커가 지도 위에 표시되도록 설정합니다
-					marker.setMap(map); 
-					
-					// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-					var mapTypeControl = new kakao.maps.MapTypeControl();
+				
+				<!-- Map -->
+				<!-- 지도 -->
+				<div class="size-212 p-t-2">
+				<span class="mtext-110 cl2">
+						지도
+				</span>
+		            <div id="map" style="width:826px;height:390px;"></div>
+		            <script type="text/javascript" 
+		               src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b57fe4487ecb7780c41fada1cfb2a2b"></script>
+		            <script>
+		               var container = document.getElementById('map');
+		               var options = {
+		                  center: new kakao.maps.LatLng(37.5524, 126.9377),
+		                  level: 2
+		               };
+		               var map = new kakao.maps.Map(container, options);
+		               
+		               var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+		                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		                imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		                  
+		               // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+		               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+		                   markerPosition = new kakao.maps.LatLng(37.5524, 126.9377); // 마커가 표시될 위치입니다
+		   
+		               // 마커를 생성합니다
+		               var marker = new kakao.maps.Marker({
+		                   position: markerPosition, 
+		                   image: markerImage // 마커이미지 설정 
+		               });
+		   
+		               // 마커가 지도 위에 표시되도록 설정합니다
+		               marker.setMap(map); 
+		               
+		               // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		               var mapTypeControl = new kakao.maps.MapTypeControl();
+		               // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		               // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		               map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+		               // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		               var zoomControl = new kakao.maps.ZoomControl();
+		               map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+		               
+		            </script>
 
-					// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-					// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-					map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-
-					// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-					var zoomControl = new kakao.maps.ZoomControl();
-					map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-					
-				</script>
 				</div>
 				
 			</div>
@@ -776,6 +768,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		var accordion = new Accordion($('#accordion'), false);
 	});
 	</script>
-
+	
+<!-- ======question========================================================================================== -->
+	<!-- 자바스크립트  -->
+	<script src="../js/tempjs/question.js"></script>
+	
 </body>
 </html>

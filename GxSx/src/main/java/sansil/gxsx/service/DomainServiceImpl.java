@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
+import sansil.gxsx.domain.Notice;
 import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.mapper.DomainMapper;
@@ -60,8 +61,17 @@ public class DomainServiceImpl implements DomainService {
 	}
 	
 	@Override
-	public String idconfirmS(String userid) {
-		return mapper.idconfirm(userid);
+	public int idCheckS(String userid) {
+		return mapper.idcheck(userid);
 	}
-
+	
+	@Override
+	public List<Notice> noticeListS() {
+		return mapper.noticelist();
+	}
+	
+	@Override
+	public Notice noticeConS(int nono) {
+		return mapper.noticecon();
+	}
 }

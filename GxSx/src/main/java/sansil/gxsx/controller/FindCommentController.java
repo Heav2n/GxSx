@@ -34,14 +34,14 @@ public class FindCommentController {
 	private ModelAndView fCommentserviceInsert(HttpSession session, @RequestParam int fino, @RequestParam String content) {
 		log.info("#> fCommentserviceInsert() Á¢±Ù"); 
 		
-		Users user = (Users)session.getAttribute("loginUser");
+		Users user = (Users)session.getAttribute("loginuser");
 		FiComments ficomments = new FiComments();
 		ficomments.setFino(fino);
 		ficomments.setContents(content);
 		ficomments.setUserid(user.getUserid());
 		//og.info("###################### fino : " + FiComments.getComno() +" , contents : " + fiComments.getContents());
-		List<FiComments> commentList = service.FindCommentInsert(ficomments);
-		ModelAndView response = new ModelAndView("findItPic/comment_table");
+		boolean commentList = service.FindCommentInsert(ficomments);
+		ModelAndView response = new ModelAndView("../added/findItPic/comment_table");
 		response.addObject("ficomment", commentList);
 		return response;
 	}

@@ -27,21 +27,6 @@ public class LostCommentController {
 	@Resource(name="LostCommentService")
 	private LostCommentService service;
 	
-	
-
-	
-//	@GetMapping("list")//댓글리스트
-//	@ResponseBody
-//	public ModelAndView list(int fino, HttpServletRequest request, HttpSession session){
-//		log.info("#> list() 접근"); 
-//		List<FiComments> ficomment = service.FindCommentList(fino);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("findPic/content");
-//		mv.addObject("ficomment", ficomment);
-//		
-//	return mv;
-//	}
-	
 	@PostMapping("insert")//댓글작성
 	@ResponseBody
 	private ModelAndView fCommentserviceInsert(HttpSession session, @RequestParam int lono, @RequestParam String content) {
@@ -53,18 +38,14 @@ public class LostCommentController {
 		locomments.setContents(content);
 		locomments.setUserid(user.getUserid());
 		//og.info("###################### fino : " + FiComments.getComno() +" , contents : " + fiComments.getContents());
-		List<LoComments> commentList = service.LostCommentInsert(locomments);
-		ModelAndView response = new ModelAndView("lostitem2/comment_table");
+		boolean commentList = service.LostCommentInsert(locomments);
+		ModelAndView response = new ModelAndView("../added/lostitem2/comment_table");
 		response.addObject("locomment", commentList);
 		return response;
 	}
 	
 	@PostMapping("update")//댓글수정
 	private String fCommentserviceUpdate(LoComments locomments) {
-		
-//		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 안들어와??" +fiComments);
-		
-			
 		
 		 service.LostCommentUpdate(locomments);
 		
