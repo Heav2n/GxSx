@@ -1,5 +1,6 @@
 package sansil.gxsx.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -7,19 +8,14 @@ import org.apache.ibatis.annotations.Param;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 
-
-
-
-
 public interface QuestionMapper {
 	
 	List<Question> selectQuestion(String query);
 	
-	//
 	long selectCountQuestion(String query);
 	
 	//ÆäÀÌÂ¡
-	List<Question> selectPerPage(Pagination page);
+	List<Question> selectPerPage(HashMap<String, Object> query);
 	
 	//content ¶ç¿ì±â
 	Question content(long qno);
@@ -34,6 +30,12 @@ public interface QuestionMapper {
 	
 	//´ñ±Û »èÁ¦
 	public long Delete(long qno);
+	
+	public void Questioninsert(Question questioninsert);
+
+	public void Questionupdate(Question questionupdate);
+
+	public long Questiondelete(long qno);
 	
 	//¸Þ¼¼Áö¿ë
 	List<Question> messageQuestion(String userid);

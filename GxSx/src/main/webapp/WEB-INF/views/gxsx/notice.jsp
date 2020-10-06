@@ -46,7 +46,206 @@
 		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
+		
+		table.table-shopping-cart td:first-child, table.table-shopping-cart th:first-child {
+			border-left:0;
+			border-right:0;
+		}
+		
+		.container2 * {
+		    margin: 0;
+		    padding: 0;
+		    list-style: none;
+		    border: 0;
+		    text-decoration: none;
+		    font-family: "NanumBarunGothic" , "Malgun Gothic" , sans-serif;
+		    letter-spacing: -0.03em;
+		}
+		
+		.con_title {
+		    font-size: 34px;
+		    color: #333;
+		    margin-top: 60px;
+		    width: 100%;
+		    float: left;
+		    margin-bottom: 30px;
+		    height: 40px;
+		}
+		
+		input {
+		    -webkit-writing-mode: horizontal-tb !important;
+		    text-rendering: auto;
+		    color: -internal-light-dark(black, white);
+		    word-spacing: normal;
+		    text-transform: none;
+		    text-indent: 0px;
+		    text-shadow: none;
+		    display: inline-block;
+		    text-align: start;
+		    appearance: textfield;		    
+		}
+		.contents_wrap {
+		    width: 930px;
+		    float: left;
+		    height: 100%;
+		    overflow: auto;
+		    zoom: 1;
+		}
+		
+		.page_numb {
+		    float: left;
+		    width: 100%;
+		    margin-top: 30px;
+		    padding-bottom: 180px;
+		    text-align: center;
+		}
+		.news_board {
+		    width: 100%;
+		    float: left;
+		    border-top: 1px solid #c8c8d5;
+		    margin-top: 30px;
+		}
+		div {
+		    display: block;
+		    overflow: auto;
+		    zoom: 1;
+		}
+		
+		li {
+		    display: list-item;
+		    text-align: -webkit-match-parent;
+		}
+		.news_board ul li {
+		    float: left;
+		    width: 903px;
+		    padding-left: 27px;
+		    position: relative;
+ 		    line-height: 69px;
+		    height: 68px;
+		    border-bottom: 1px solid #e3e3e3;
+		    font-size: 16px;
+		    color: #333;
+		}
+		.heart_date {
+		    position: absolute;
+		    top: 34px;
+    		right: 35px;
+		}
+		.heart_date dl dd {
+		    float: left;
+		    margin-top: 4px;
+		    color: #aaa;
+		    font-size: 12px;
+		    font-family: "Tahoma";
+		}
+		.heart_date dl dt {
+		    float: left;
+		    margin-right: 5px;
+		    margin-top: 3px;
+		}
+		dt {
+		    display: block;
+		}
+		.news_board ul li a {
+		    color: #333;
+		    float: left;
+		    line-height: 69px;
+		}
+		.news_board ul li div.heart_date {
+		    top: 0;
+		    right: 0;
+		    width: 110px;
+		}
+		.fix_sort {
+		    float: right;
+		    padding: 0 10px 0 10px !important;
+		    font-size: 13px;
+		    color: #333;
+		    height: 38px;
+		    line-height: 38px;
+		    border: 1px solid #e3e3e3;
+		    border-right: 0;
+		    margin-top: 16px;
+		    min-width: 67px;
+		    position: relative;
+		    background: none !important;
+		    text-align: center;
+		}
+		.sort_wrap a {
+		    width: 100%;
+		    float: left;
+		    color: #666;
+		    padding-right: 30px;
+		    font-weight: normal;
+		}
+		.word_input input {
+		    height: 38px;
+		    line-height: 38px;
+		    background-color: #fff;
+		    border: 1px solid #e3e3e3;
+		    padding: 0 29px 0 20px;
+		    float: left;
+		}
+		.word_input {
+		    float: right;
+		    position: relative;
+		    margin-top: 16px;
+		}
+		.word_input span.btn2 {
+		    position: absolute;
+		    right: 8px;
+		    top: -5px;
+		    height: 21px;
+		}
+		.sort_wrap {
+		    float: right;
+		    padding: 0 30px 0 10px;
+		    font-size: 13px;
+		    color: #333;
+		    height: 38px;
+		    line-height: 38px;
+		    border: 1px solid #e3e3e3;
+		    border-right: 0;
+		    margin-top: 16px;
+		    background: url(https://ssl.nx.com/s2/game/maplestory/renewal/common/search_down_bg.jpg) #fff right center no-repeat;
+		    min-width: 67px;
+		    position: relative;
+		}
+		
+		input {
+		    -webkit-writing-mode: horizontal-tb !important;
+		    text-rendering: auto;
+		    color: -internal-light-dark(black, white);
+		    letter-spacing: normal;
+		    word-spacing: normal;
+		    text-transform: none;
+		    text-indent: 0px;
+		    text-shadow: none;
+		    display: inline-block;
+		    text-align: start;
+		    appearance: textfield;
+		    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+		    -webkit-rtl-ordering: logical;
+		    cursor: text;
+		    margin: 0em;
+		    font: 400 13.3333px Arial;
+		    padding: 1px 2px;
+		    border-width: 2px;
+		    border-style: inset;
+		    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+		    border-image: initial;
+		}
+		a{
+			color: #868e96;
+		}
 	</style>
+	
+	<script type="text/javascript" language="javascript" 
+		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">	
+
+	</script>
+
 </head>
 
 <body class="animsition">
@@ -62,14 +261,14 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="../gxsx/domain.do" class="logo">
+					<a href="domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
@@ -77,25 +276,22 @@
 								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
-							<li class="label1" data-label1="습득물" class="active-menu">
-								<a href="../finditem/list.do">Finditem</a>
+							<li class="label1" data-label1="습득물">
+								<a href="../finditem/list.do?cp=1">Finditem</a>
 							</li>
 
 							<li class="label1" data-label1="분실물">
-								<a href="../lostitem/list.do">Lostitem</a>
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 
 							<li>
-								<a href="../gsxs/contact.do">Contact</a>
+								<a href="../Question/list.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-<!-- 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> -->
-<!-- 							<i class="zmdi zmdi-favorite-outline"></i> -->
-<!-- 						</a> -->
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
@@ -129,7 +325,7 @@
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -158,308 +354,88 @@
 
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- /////////////////////////////////////// 컨텐츠 시작  /////////////////////////////////////// -->
+	
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-02.jpg');margin-top:-40px">
+		<h2 class="ltext-105 cl0 txt-center">
+			Notice
+		</h2>
+	</section>
 
-	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-130">
-		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-					F i n d I t e m
-				</h3>
-			</div>
+	<!-- Content page -->
+	<section class="bg0 p-t-62 p-b-60">
+		<div class="container" style="padding-left:110px">
+			<!-- d -->
+			<div class="contents_wrap" >
+                <h1 class="con_title">공지사항
+                    <div style="float:right;">
+                        <span class="word_input" style="margin-top:0;">
+                            <input type="text" name="search_text" value="">
+                            <span class="btn2"><a href="#a" onmouseover="ch_png_on(this)" onmouseout="ch_png_off(this)"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/board_top_search_btn_off.png" alt=""></a></span>
+                        </span>
+                        <span class="sort_wrap fix_sort" style="margin-top:0;">
+                            <a href="#a" class="cus_sel_a">제목</a>
+                        </span>
+                    </div>
+                </h1>
+                    	<div></div><div></div>
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
+                       <div class="news_board">
+                           <!-- notice ul str -->
+                           <ul>
+                               <!--게시물 Loop : Str-->
+                               <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                                   <li>
+										<p>
+											<a href="../gxsx/noticeCon.do?nono=${notice.nono}">
+                                             <em><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${notice.nocate}.png"></em>
+											<!-- <img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${nocate}.png"> gm-->
+											<!-- <img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/notice_icon03.png"> 점검-->
+                                              <span>&emsp;${notice.nosub}</span>
+                                              <c:if test="${today==notice.nodate}">
+                                                <img class="new" alt="" src="https://ssl.nx.com/s2/game/maplestory/renewal/common/new.png">
+                                              </c:if>
+											</a>
+										</p>
+                                       <div class="heart_date">
+                                           <dl>
+                                               <dt><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/sub_date_new.png" alt="시계 아이콘"></dt>
+                                               <dd>${notice.nodate}</dd>
+                                           </dl>
+                                       </div>
+                                   </li>
+                                </c:forEach>
+                                   
+                           </ul>
+                           <!-- notice ul end -->
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
+							<div class="page_numb">
+						        <span class="cm_all_prev">
+						                <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_prev.png" alt="이전 10개"></a>
+						        </span>
+							    <span class="cm_prev">
+							            <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
+							    </span>
+					                <a class="active">1</a>
+					                <a href="/News/Notice/All?page=2">2</a>
+					                <a href="/News/Notice/All?page=3">3</a>
+					                <a href="/News/Notice/All?page=4">4</a>
+					                <a href="/News/Notice/All?page=5">5</a>
+							    <span class="cm_next">
+							            <a href="/News/Notice/All?page=2"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
+							    </span>
+						        <span class="cm_all_next">
+						                <a href="/News/Notice/All?page=11"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_next.png" alt="다음 10개"></a>
+						        </span>
+							</div>
+                            
+						</div>
 				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Search
-					</div>
-				</div>
-
-				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Default</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Popularity</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Average rating</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Newness</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: Low to High</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: High to Low</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$0.00 - $50.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$50.00 - $100.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$100.00 - $150.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts</a>
-							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do">
-								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" placeholder="Search" autocomplete="off">
-							</form>
-						</div>
-						
-						<div class="w-full">
-							</br>
-						</div>
-											
-					</div>					
-				</div>
-			</div>
-
-			<div class="row isotope-grid">
 			
-			  <c:if test="${empty findResult}">
-				  <center>데이터가 하나도 없음</center>
-			  </c:if>
-				
-			  <c:forEach items="${findResult.list}" var="finditem">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<c:if test="${ empty loginuser && empty klogin}">
-		            			<a href="../gxsx/login.do"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-		            		</c:if>
-		            		<c:if test="${ (!empty loginuser && empty kakaologout_url) || (!empty klogin && !empty kakaologout_url)}">
-								<a href="../finditem/content.do?fino=${finditem.fino}"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-							</c:if>
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<span class="m-r-3">
-									<span class="cl5">${finditem.fisub}</span>
-								</span>
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
-
-								<span class="stext-105 cl3">
-									<i class="zmdi zmdi-calendar"></i>&nbsp;${finditem.fidate}
-								</span>
-								<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${finditem.fiplace}</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-							
-						</div>						
-					</div>
-				</div>
-			  </c:forEach>
-			  
-			</div>
-			
-			<div class="btn-nextprev">
-				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
-				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
-			</div>
-
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
-				<c:if test="${findResult.totalCount>10}">
-					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
-				    	onclick="selectlostitemPage(${listpage.startPage-1})">
-				    		Previous</p>
-				 </c:if>
-				 
-				 <c:forEach begin="1" end="10" var="i">
-			        <a href="list.do?cp=${i}">
-			   			<c:choose>
-			   			    <c:when test="${i==findResult.page && i<=findResult.totalCount}">
-			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
-			                </c:when>
-			                <c:when test="${i!=findResult.page && i<=findResult.totalCount}">
-			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
-			                </c:when>
-			                <c:otherwise>
-			                    <p></p>
-			                </c:otherwise>
-						</c:choose>
-			    	</a>&nbsp;
-			    </c:forEach>
-				 
-<%-- 				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i"> --%>
-<%-- 			        <a href="slist.do?cp=${i}&query=${query}"> --%>
-<%-- 			   			<c:choose> --%>
-<%-- 			   			    <c:when test="${i==findResult.page}"> --%>
-<%-- 			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p> --%>
-<%-- 			                </c:when> --%>
-<%-- 			                <c:otherwise> --%>
-<%-- 			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p> --%>
-<%-- 			                </c:otherwise> --%>
-<%-- 						</c:choose> --%>
-<!-- 			    	</a>&nbsp; -->
-<%-- 			    </c:forEach> --%>
-			    
-			    <c:if test="${findResult.totalCount>10}">
-				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-				    	onclick="selectlostitemPage(${listpage.endPage+1})">
-				      		Next</p>
-			    </c:if>
-			</div>
-			
+			<!-- d -->
 		</div>
 	</section>
+
 	<!-- /////////////////////////////////////// 컨텐츠 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
@@ -715,6 +691,48 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 	
+	<script>
+		function CheckEditProfile(editEmail,editPnum,editPwd,oldPwd,editPwdVerify){ 
+			var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			var phone = /^01(?:0|1|7|9)-(?:\d{3}|\d{4})-\d{4}$/;
+			var editEmail = $("#editEmail").val();
+			var editPnum = $("#editPnum").val();
+			var editPwd = $("#editPwd").val();
+			var editPwdVerify = $("#editPwdVerify").val();
+			var oldPwd = $("#oldPwd").val();
+			
+			if(editEmail!=null && editEmail.match(email) && editPnum.match(phone)  
+				&& editPnum!=null && editPwd!=null && editPwdVerify!=null 
+				&& editPwd==oldPwd && editPwd==editPwdVerify){
+				alert('Correct')
+				document.getElementById("form2").submit();
+			}
+			else{
+				if(editEmail==null){
+					alert('이메일을 입력하세요')
+				}
+				else if(editPnum==null){
+					alert('휴대폰번호를 입력하세요')
+				}
+				else if(editPwd==null || editPwdVerify==null){
+					alert('사용중인 비번을 입력하세요')
+				}
+				else if(editPwd!=editPwdVerify || editPwd!=oldPwd){
+					alert('현재 비번과 비번확인 불일치')
+				}
+				else{
+					if(editEmail.match(email)){					
+						alert('변경할 휴대폰번호가 규칙에 맞지않음')
+					}
+					else{					
+						alert('변경할 이메일이 규칙에 맞지않음')
+					}
+				}
+				return false;
+			}
+		}
+	</script>
+	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -761,41 +779,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="../vendor/coza/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -815,6 +798,34 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/coza/main.js"></script>
+	<script>
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+		}
+
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+				$this = $(this),
+				$next = $this.next();
+
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+
+			if (!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}	
+
+		var accordion = new Accordion($('#accordion'), false);
+	});
+	</script>
 
 </body>
 </html>

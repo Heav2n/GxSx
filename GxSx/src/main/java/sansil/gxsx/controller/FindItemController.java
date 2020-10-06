@@ -62,8 +62,6 @@ public class FindItemController {
 	}
 	@PostMapping("update.do")
 	public String update(FindItPic findItPic) {
-//		log.info("####################### findpic : " + findItPic);
-//		log.info("####################### fino : " + findItPic.getFino());
 		service.UpdateS(findItPic);
 		return "redirect:list.do";
 	}
@@ -195,19 +193,12 @@ public class FindItemController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/ficontent");
-		mv.addObject("content", findItPic);		
+		mv.addObject("content", findItPic);		 
 		mv.addObject("ficomment", ficomment);
 		mv.addObject("area", area);
 		mv.addObject("related", related);
 		
 		return mv;
 	}
-	
-//	@GetMapping("content.do")
-//	public String contents(long fino) {
-//		System.out.println("@@@@@@@@@@@@@@@@@@@@@ fino : " +fino);
-//		return "gxsx/ficontent";
-//		return "added/findItPic/content";
-//	}
 	
 }

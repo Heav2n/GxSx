@@ -22,19 +22,18 @@ public class LostCommentServiceImpl implements LostCommentService {
 	}
 
 	@Override
-	public List<LoComments> LostCommentInsert(LoComments locomments) {
-		LostcommentMapper.LostCommentInsert(locomments);
-		return LostcommentMapper.LostCommentList(locomments.getLono());
+	public boolean LostCommentInsert(LoComments locomments) {
+		return LostcommentMapper.LostCommentInsert(locomments);
 	}
 
 	@Override
-	public void LostCommentUpdate(LoComments locomments) {		
-		LostcommentMapper.LostCommentUpdate(locomments);
+	public boolean LostCommentUpdate(LoComments locomments) {		
+		return LostcommentMapper.LostCommentUpdate(locomments);
 	}
 
 	@Override
-	public void LostCommentDelete(LoComments locomments) {
-		LostcommentMapper.LostCommentDelete(locomments);
+	public boolean LostCommentDelete(LoComments locomments) {
+		return LostcommentMapper.LostCommentDelete(locomments);
 		
 	}
 	@Override

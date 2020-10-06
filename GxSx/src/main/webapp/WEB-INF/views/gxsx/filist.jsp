@@ -341,7 +341,7 @@
 						
 					<!-- Search product -->
 						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do?">
+							<form method="post" action="slist.do">
 								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
 									<i class="zmdi zmdi-search"></i>
 								</button>

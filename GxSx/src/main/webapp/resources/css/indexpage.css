@@ -129,7 +129,7 @@ button i.fas
     height: 80px;
     border-radius: 50%;
     
-    background-image:url(../images/Maple_200615_023527.gif);
+    background-image:url(../images/indexImage.gif);
     background-size: contain;
     transition: 0.9s ease all;
     z-index: 1;

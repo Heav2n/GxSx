@@ -21,6 +21,7 @@
          <typeAlias alias="FiComments" type="sansil.gxsx.domain.FiComments"/>
          <typeAlias alias="LostItemPicVo" type="sansil.gxsx.domain.LostItemPicVo"/>
          <typeAlias alias="LoComments" type="sansil.gxsx.domain.LoComments"/>
+         <typeAlias alias="Notice" type="sansil.gxsx.domain.Notice"/>
    </typeAliases>
    
    <mappers>

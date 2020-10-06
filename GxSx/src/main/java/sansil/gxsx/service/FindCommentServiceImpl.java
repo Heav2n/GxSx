@@ -12,8 +12,7 @@ import sansil.gxsx.mapper.FindCommentMapper;
 @Log4j
 @Service("FindCommentService")
 @AllArgsConstructor
-public class FindCommentServiceImpl implements FindCommentService {
-	
+public class FindCommentServiceImpl implements FindCommentService {	
 	
 	private FindCommentMapper findcommentMapper;
 	
@@ -22,19 +21,23 @@ public class FindCommentServiceImpl implements FindCommentService {
 	}
 
 	@Override
-	public List<FiComments> FindCommentInsert(FiComments findcomments) {
-		findcommentMapper.FindCommentInsert(findcomments);
-		return findcommentMapper.FindCommentList(findcomments.getFino());
+	public boolean FindCommentInsert(FiComments findcomments) {
+		return findcommentMapper.FindCommentInsert(findcomments);
 	}
 
 	@Override
-	public void FindCommentUpdate(FiComments fiComments) {		
-		findcommentMapper.FindCommentUpdate(fiComments);
+	public boolean FindCommentUpdate(FiComments fiComments) {		
+		return findcommentMapper.FindCommentUpdate(fiComments);
 	}
 
 	@Override
-	public void FindCommentDelete(FiComments ficomments) {
-		 findcommentMapper.FindCommentDelete(ficomments);
-		
+	public boolean FindCommentDelete(FiComments ficomments) {
+		return findcommentMapper.FindCommentDelete(ficomments);		
+	}
+	
+	@Override
+	public boolean CommentReplyInsert(FiComments ficomments) {
+		return findcommentMapper.CommentReplyInsert(ficomments);
+
 	}
 }

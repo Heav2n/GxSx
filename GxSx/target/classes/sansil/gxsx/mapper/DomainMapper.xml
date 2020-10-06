@@ -21,7 +21,7 @@
 	</select>	
 	<select id="listfipic" resultType="FindPic">
 		<![CDATA[
-			select * from FindPic where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3)
+			select * from FINDPIC where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3)
 		]]>
 	</select>
 	
@@ -30,19 +30,27 @@
 	</insert>
 	
 	<select id="login" resultType="Users" parameterType="HashMap">
-		select * from users where userid = #{userid} and upwd = #{upwd}
+		select * from USERS where userid = #{userid} and upwd = #{upwd}
 	</select>
 	
 	<select id="usercheck" resultType="Users" parameterType="String">
-		select * from users where userid = #{kid}
+		select * from USERS where userid = #{kid}
 	</select>
 	
 	<update id="kakaouser" parameterType="Users">
-		update users set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
+		update USERS set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
 	</update>
 	
-	<select id="idconfirm" resultType="String" parameterType="String">
-		select userid from users where userid = #{userid}
+	<select id="idcheck" resultType="int" parameterType="String">
+		select count(userid) from USERS where userid = #{userid}
+	</select>
+	
+	<select id="noticelist" resultType="Notice">
+		select * from NOTICE order by nodate desc
+	</select>
+	
+	<select id="noticecon" resultType="Notice">
+		select * from NOTICE where nono = #{nono}
 	</select>
 	
 </mapper>

@@ -2,10 +2,13 @@
  * 
  */
 function qreply(qno, content){ 
+	if($('#comment_update_btn').is(":visible")){
+		$('#comment_update_btn').hide();	
+		
 	var newInput_html = "";
 	newInput_html+="<label for='content'>comment</label>"
     
-    +"<form action='reupdate.do' method='GET'>"
+    +"<form action='reupdate.do' method='POST'>"
         +"<div class='input-group'>"
            +"<input type='hidden' id='qno' name='qno' value='"+qno+"'/>"
            +"<input type='text' class='form-control' id='content' value='"+content+"' name='content' placeholder='내용을 입력하세요.'>"
@@ -14,6 +17,6 @@ function qreply(qno, content){
            +"</span>"
           +"</div>"
     +"</form>";
-    
+	}
 	document.getElementById("comment-input").innerHTML = newInput_html;
 }
