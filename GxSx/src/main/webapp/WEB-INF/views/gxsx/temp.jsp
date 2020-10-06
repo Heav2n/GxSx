@@ -214,7 +214,7 @@
 		<div class="container">
 				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
 
-						<div class='m-l-25 m-r--38 m-lr-0-xl fs-12' style='float: 200px'>
+						<div class='m-l-25 m-r--38 m-lr-0-xl fs-12' style='margin-left: 200px'>
 							</br>
 							</br>
 							<div class='table-shopping-cart fs-12'>
