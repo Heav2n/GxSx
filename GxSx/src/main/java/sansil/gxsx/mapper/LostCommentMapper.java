@@ -12,13 +12,13 @@ public interface LostCommentMapper {
 	
 	boolean LostCommentInsert(LoComments locomments);
 	
+	boolean CommentReplyInsert(LoComments locomments);
 	
-	boolean LostCommentDelete(LoComments locomments);
+	boolean LostCommentDelete(int comno);
 	
 	List<LoComments> reSelectComment(LoComments locomments);
 
 	boolean LostCommentUpdate(LoComments locomments);
 
-	
 }
 

@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,17 +24,22 @@ public class LostCommentServiceImpl implements LostCommentService {
 
 	@Override
 	public boolean LostCommentInsert(LoComments locomments) {
-		return LostcommentMapper.LostCommentInsert(locomments);
+//		LoComments parentComment = LostcommentMappe
+		if(locomments.getCogroup() == 0) {
+			return LostcommentMapper.LostCommentInsert(locomments);
+		} else {
+			return LostcommentMapper.CommentReplyInsert(locomments);
+		}
 	}
 
 	@Override
-	public boolean LostCommentUpdate(LoComments locomments) {		
+	public boolean LostCommentUpdate(LoComments locomments) {
 		return LostcommentMapper.LostCommentUpdate(locomments);
 	}
 
 	@Override
-	public boolean LostCommentDelete(LoComments locomments) {
-		return LostcommentMapper.LostCommentDelete(locomments);
+	public boolean LostCommentDelete(HashMap<String, Object> request) {
+		return LostcommentMapper.LostCommentDelete(Integer.parseInt(request.get("comno").toString()));
 	}
 	@Override
 	public List<LoComments> reSelectComment(LoComments locomments) {

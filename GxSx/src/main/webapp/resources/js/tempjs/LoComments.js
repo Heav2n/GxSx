@@ -13,109 +13,158 @@
 
 
 //댓글 목록
+$(document).ready(function() {
+	commentList(26);
+})
+
 function commentList(lono){
 		$.ajax({
-			url : '../LostComment/list.do',
+			url : '../test/comment.do',
 			type : 'get',
 			data : {'lono':lono},
+			dataType: "HTML",
 			success : function(data){
-				var a = '';
-				let count=1;
-				if(result.length < 1){ 
-	               htmls.push("등록된 댓글이 없쫑");
-				}else{
-					$(result).each(function(){		
-			       
-						+"<tr>"
-						+"<td align='center'>댓글</td>"
-						+"<c:forEach var='locomment' items='${locomment}''>"
-						+"<td>${locomment.contents}</td>"
-						+"</c:forEach>"
-					+"</tr>"
-					});
-				}
-	            $(".commentList").html(a);
+	            $("#lost_comment_list").html(data);
+	            let comment_num = document.getElementById("comment_num").value;
+	            $('#comment_toggle').text("Comment ("+comment_num+")");
+	            global_lono = document.getElementById('global-lono').value;
 	        }
 	    });
 	}
+
+
 //댓글 등록
 function commentInsert(lono){
+	let sendData = {};
 	let newInput_html = "";
-	console.log("lono : "+lono);
-	let content = document.getElementById('comments').value;
-	console.log("content : "+content);
+	let review = document.getElementById('review').value;
+	let target = document.getElementById("reply_to").childNodes;
+	
+	if(typeof target[0] !== 'undefined'){
+		target = target[0].value;
+		sendData = {
+			"contents": review,
+			"lono": lono,
+			"cogroup" : target
+		}
+	} else {
+		sendData = {
+			"contents": review,
+			"lono": lono	
+		};
+	}
 	$.ajax({
-		url : "../LostComment/insert.json",
+		url : "../test/insert.json",
 		type : 'post',
-		dataType : 'HTML',
-		data : {
-			'content': content,
-			'lono': lono
-			},
+		dataType : 'JSON',
+		contentType: "application/json",
+		data : JSON.stringify(sendData),
 		success : function(data){ //list로 받음, 뽑을땐 반복문 돌려야함(for)
-			$('#comment-table').html(data);
-			console.log("기모리1");
+			if(data){
+				commentList(lono);
+				alert("댓글이 정상적으로 등록되었습니다.");
+				$("#review").val("");
+			} else {
+				alert("댓글 작성에 실패하였습니다. 오류를 문의해주세요.");
+			}
+			deleteReply();
 		}
 	});
 }
 var prevInput;
+var prevText;
 var click=0;
-////댓글수정
+
+////댓글수정폼
 function update_form_id(val){
-	
 	if(click>0){
 		$('#update_txt_'+prevInput).remove();
 		$('#btn'+prevInput).text("수정");
 		$('#btn'+prevInput).attr("onclick", "update_form_id("+prevInput+");");		
+		
+		let p_el = '<p class="stext-102 cl6">'+prevText+'</p>';
+		$('#update-form-'+prevInput).html(p_el);
 	}
 	click++;
 	
 	$('#btn'+val).text("수정완료");
-	$('#btn'+val).attr("onclick", "submit("+val+");");
-	console.log($("#ficom_input_"+val));
-	if($("#ficom_input_"+val)[0].childElementCount == 0){
-			console.log("val : "+val);
-		console.log($("#ficomment_"+val)[0].childNodes[3].innerText);
-		var u_txt = $("#ficomment_"+val)[0].childNodes[3].innerText;
-		
-		var inputTag = "<input type='text' name='contents' id='update_txt_"+ val +"'>";
-
-		$("#ficom_input_"+val).append(inputTag);
-		$("#update_txt_" + val)[0].value = u_txt;
+	$('#btn'+val).attr("onclick", "do_update("+val+");");
+	
+	let comment_text = document.getElementById("update-form-"+val).childNodes;
+	for(let i=0; i<comment_text.length; i++){
+		if(comment_text[i].nodeName == 'P') comment_text = comment_text[i].innerText;
 	}
-	console.log("1prevInput : "+prevInput);
-	prevInput=val;
-	console.log("2prevInput : "+prevInput);
+	
+	let new_update_input_html = '<input class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="update-txt-'+val+'" value="'+comment_text+'">';
+	$('#update-form-'+val).html(new_update_input_html);
+	prevText = comment_text;
+	prevInput = val;
+}
+
+var global_lono;
+//댓글수정
+function do_update(index){
+	console.log(index);
+	console.log(global_lono);
+	click = 0;
+	let content = document.getElementById("update-txt-"+index).value;
+	$.ajax({
+		url : "../test/update.do",
+		type : 'post',
+		data: {
+			comno : index,
+			contents: content
+			},
+		dataType: "HTML",
+		error: function(){
+			alert("에러어어");
+		},
+		success : function(data){
+			if(data){
+				alert("댓글이 수정되었습니다");
+			}else{
+				alert("댓글이 수정 실패");
+			}
+			commentList(global_lono);
+		}
+	});
 }
 
 function submit(index){
 	click = 0;
 	document.getElementById('form'+index).submit();
 }
-//댓글삭제
-function commentDelete(val){
-	console.log("제발들어와주세요!");
-	let newInput_html = "";
-	$.ajax({
-		url : "../LostComment/delete.json",
-		type : 'post',
-		dataType : 'html',
-		data: { comno : val},
-		error: function(){
-			alert("에러");
-		},
-		success : function(response){
-			console.log("response :" + val);
-			console.log(response);
 
-			location.reload(true);
+//댓글삭제
+function commentDelete(val, lono){
+	let sendData = new Object;
+	sendData.comno = val;
+	console.log(sendData);
+	$.ajax({
+		url: "../test/delete.json",
+		type: "post",
+		contentType: "application/json",
+		data: JSON.stringify(sendData),
+		dataType: "JSON",
+		success: function(data){
+			if(data){
+				alert("댓글이 정상적으로 삭제되었습니다.");
+				commentList(lono);
+			} else {
+				alert("댓글 삭제가 실패하였습니다. 관리자에게 문의해주세요.")
+			}
 		}
 	});
 }
 
+function reply_to(who){
+	let el = document.getElementById("reply_to");
+	let reciever = document.getElementById("who-"+who).value;
+	el.innerHTML = "<input id='reply-target-"+who+"' type='hidden' value='"+who+"'>"+reciever+"<span onclick='deleteReply();'> X </span>";
+	$("#review").focus();
+}
 
-
-//
-//$(document).ready(function(){
-//	FindcommentList(); //페이지 로딩시 댓글 목록 출력
-//});
+function deleteReply(){
+	let el = document.getElementById("reply_to");
+	el.innerHTML = "";
+}

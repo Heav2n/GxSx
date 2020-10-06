@@ -47,6 +47,98 @@
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
 	</style>
+	
+	<script type="text/javascript" language="javascript" 
+		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">	
+// 		$(function() {
+// 			$("#클릭할꺼").on("click", function(){
+// 				$.ajax({
+// 				   url: "../Users/경로.json", 
+// 				   type: "POST",
+// 				   dataType: "json",
+// 				   data: { 변수이름: $("#변수받을거").val()},				
+// 				   success: function(responseData){
+// 					 if(!responseData){
+// 						 alert("데이터없음");
+// 						 return false;
+// 					 }
+// 					 var html= "";
+// 					 if(responseData.length != 0){
+//  						 for(var i=0; i<responseData.length; i++){
+// 							html += "";
+// 						 }
+//  					 }else{
+//  						 html += "";
+//  					 }
+//   					 html += "";					
+  						
+//   					 $("#상기내용이 추가될div").html(html);
+// 				   }
+// 			   });
+// 		   });
+// 		})//start-end
+		$(function() {
+			$("#MyQandA").on("click", function(){
+				$.ajax({
+				   url: "../Question/otherPageQu.json", 
+				   type: "POST",
+				   dataType: "json",
+				   data: { userid: $("#userid").val()},				
+				   success: function(responseData){
+					 if(!responseData){
+						 alert("존재하지 않는 제목");
+						 return false;
+					 }
+					 var html= "<div class='wrap-table-shopping-cart'>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th>";
+						 html += "<th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+					 if(responseData.length != 0){
+ 						 for(var i=0; i<responseData.length; i++){
+							html += "<tr class='table_row'>";
+							html += "<td class='column-2'>"+responseData[i].qsub+"</td>";
+							html += "<td class='column-4'>"+responseData[i].qdate+"</td>";
+							if(responseData[i].qreply != 0){
+								html += "<td class='column-5'>답변완료</td></tr>";
+							}
+							else{
+								html += "<td class='column-5'>답변미완료</td></tr>";
+							}
+						 }
+ 					 }else{
+ 						 html += "<tr class='table_row'><td colspan='5'><center>작성된 글 없음</center></td></tr></table></div>";
+ 					 }
+  					 html += "</table></div>";
+  						
+  					 $("#contentchange").html(html);
+				   }
+			   });
+		   });
+		})//start-end
+		
+		function tempfunc() {
+			var html = "";
+			 html= "<div class='wrap-table-shopping-cart'>";
+			 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th>";
+			 html += "<th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			 html += "<tr class='table_row'>";
+			 html += "<td class='column-2'>제목</td>";
+			 html += "<td class='column-4'>날짜</td>";
+			 html += "<td class='column-5'>미완료</td></tr>";
+			 html += "</table></div>";
+			document.getElementById("contentchange").innerHTML = html;
+		}
+	
+	function 함수이름() {
+		//alert("성공2");
+		var str1 = "";
+				
+		document.getElementById("상기내용이 추가될div").innerHTML = str1;
+			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
+			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
+	}
+</script>
+
 </head>
 
 <body class="animsition">
@@ -74,25 +166,20 @@
 							</li>
 
 							<li>
-								<a href="notice.do">Notice</a>
+								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
 								<a href="../finditem/list.do">Finditem</a>
 							</li>
 
-							<li class="label1" data-label1="분실물" class="active-menu">
+							<li class="label1" data-label1="분실물">
 								<a href="../lostitem/list.do">Lostitem</a>
 							</li>
 
 							<li>
-								<a href="../contact.do">Contact</a>
+								<a href="../gxsx/contact.do" class="active-menu">Contact</a>
 							</li>
-							
-							<li >
-								<a href="../test/lost.do">Test</a>
-							</li>
-							
 						</ul>
 					</div>	
 
@@ -153,13 +240,13 @@
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../gxsx/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -188,288 +275,189 @@
 
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- /////////////////////////////////////// 컨텐츠 시작  /////////////////////////////////////// -->
+	
+	<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-01.jpg');margin-top:-40px">
+		<h2 class="ltext-105 cl0 txt-center">
+			Contact
+		</h2>
+	</section>	
 
-	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-130">
+
+	<!-- Content page -->
+	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-					L o s t I t e m
-				</h3>
-			</div>
+			<div class="row">
+				<div class="col-md-4 col-lg-3 p-b-80">
+					<div class="side-menu">
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
+						<div class="p-t-55">
+							<h4 class="mtext-112 cl2 p-b-33">
+								Categories
+							</h4>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Search
-					</div>
-				</div>
-
-				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Default</a>
+							<ul id="accordion" class="accordion">
+								<li class="bor18" id="QandA">
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Q&A
+									</a>
 								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Popularity</a>
+								
+								<ul id="question-paging" class="pagination" style="display:inline-flex">
+								<li class="bor18" id="MyQandA">
+								<tbody id="question">
+									<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										My Q&A
+									</a>
+								</tbody>	
 								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Average rating</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Newness</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: Low to High</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: High to Low</a>
-								</li>
+								</ul>
 							</ul>
-						</div>
-
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$0.00 - $50.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$50.00 - $100.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$100.00 - $150.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts</a>
-							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do?">
-								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" placeholder="Search" autocomplete="off">
-							</form>
-						</div>
-						
-						<div class="w-full">
-							</br>
-						</div>
-											
-					</div>					
-				</div>
-			</div>
-
-			<div class="row isotope-grid">
-			
-			  <c:if test="${empty lostResult}">
-				  <center>데이터가 하나도 없음</center>
-			  </c:if>
-				
-			  <c:forEach items="${lostResult}" var="lostitem">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<a href="../lostitem2/locontent.do?lono=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<span class="m-r-3">
-									<a href="../finditem/content.do"><span class="cl5">${lostitem.losub}</span></a>
-								</span>
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
-
-								<span class="stext-105 cl3">
-									<i class="zmdi zmdi-calendar"></i>&nbsp;${lostitem.lodate}
-								</span>
-								<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${lostitem.loplace}</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<c:if test="${lostitem.logift!=0}">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-								</c:if>
-								<c:if test="${lostitem.logift==0}">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-								</c:if>
-								</a>
-							</div>
+							<input id="currentPage" type="hidden" value="${questionPage.currentPage}">
+							<input id="prevPage" type="hidden" value="${questionPage.currentPage}">
+							<input id="startPage" type="hidden" value="${questionPage.startPage}">
+							<input id="endPage" type="hidden" value="${questionPage.endPage}">
+							<input id="rangeSize" type="hidden" value="${questionPage.rangeSize}">
+							<input id="pageCount" type="hidden" value="${questionPage.pageCount}">
 							
-						</div>						
+							
+						</div>
 					</div>
 				</div>
-			  </c:forEach>
-			  
-			</div>
+				
+				
+				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange"> <!-- 본문 들어갈 div -->
+					<!-- 경빈 -->
 
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
-				<c:if test="${listpage.rangeCount>10}">
-					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
-				    	onclick="selectlostitemPage(${listpage.startPage-1})">
-				    		Previous</p>
-				 </c:if>
-				<c:forEach begin="1" end="10" var="i">
-			        <a href="list.do?cp=${i}">
-			   			<c:choose>
-			   			    <c:when test="${i==listpage.currentPage && i<=listpage.pageCount}">
-			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
-			                </c:when>
-			                <c:when test="${i!=listpage.currentPage && i<=listpage.pageCount}">
-			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
-			                </c:when>
-			                <c:otherwise>
-			                    <p></p>
-			                </c:otherwise>
-						</c:choose>
-			    	</a>&nbsp;
-			    </c:forEach>
-			    
-			    <c:if test="${listpage.pageCount>10}">
-				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-				    	onclick="selectlostitemPage(${listpage.endPage+1})">
-				      		Next</p>
-			    </c:if>
-			</div>
+				<!-- Content page -->
+				
+				<section class="bg0 p-t-104 p-b-116">
+					<div class="container">
+						<div class="flex-w flex-tr">
+							<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+								<form id='questionco_form' name='input' method='post' action='../Question/reupdate.do' accept-charset='UTF-8'>
+									<h4 class="mtext-105 cl2 txt-center p-b-30">
+										1:1 문의 글 입니다
+									</h4>
 			
+									<div class="bor8 m-b-20 how-pos4-parent">
+										<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="txt1" name='qsub' value="${question.qsub}" readonly/>
+										<input type="hidden" name="quid" id="quid" value="${loginuser.userid}" />
+										<img class="how-pos4 pointer-none" src="../images/coza/icons/icon-email.png" alt="ICON">
+									</div>
+			
+									<div class="bor8 m-b-30">
+										<input class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" type="text" id="txt2" name="qcon" value="${question.qcon}" readonly/>
+									</div>
+									
+									<div class="bor8 m-b-30">
+										<input class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" type="text" id="txt3" name="qreply" value="${question.qreply}" readonly/>
+									</div>
+<%-- 									<c:if test="${empty sessionScope.loginuser'}"> --%>
+										<div id="comment-input" class="container">
+											<c:if test="${empty question.qreply}">
+												<label for="content">관리자 댓글</label>
+												<form action="reupdate.do" method="POST">
+													<div class="input-group">
+														<input type="hidden" id="qno" name="qno"
+															value="${question.qno}" /> <input type="text"
+															class="form-control" id="content" name="content"
+															placeholder="내용을 입력하세요."> <span
+															class="input-group-btn">
+															<button class="btn btn-default" type="submit">등록</button>
+														</span>
+													</div>
+												</form>
+											</c:if>
+										</div>
+									</form>
+								
+								<c:if test="${!empty question.qreply}">
+								<div id="comment_update_btn">
+      								<button class="btn btn-default" type="button" onclick="qreply('${question.qno}','${question.qreply}');">관리자 댓글 수정버튼</button>
+    							</div>
+								</c:if>	
+									
+									<script>		
+										function questionco_form() {
+											if (confirm("관리자 댓글을 등록하시겠습니까??") == true) {
+												document.getElementById(
+														'questionco_form').submit();
+											} else {
+												return false;
+											}
+										}
+									</script>
+									
+			
+
+								</div>
+			
+							<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
+								<div class="flex-w w-full p-b-42">
+									<span class="fs-18 cl5 txt-center size-211">
+										<span class="lnr lnr-map-marker"></span>
+									</span>
+			
+									<div class="size-212 p-t-2">
+										<span class="mtext-110 cl2">
+											주소
+										</span>
+			
+										<p class="stext-115 cl6 size-213 p-t-18">
+											비트캠프 3층 1강의실
+										</p>
+									</div>
+								</div>
+			
+								<div class="flex-w w-full p-b-42">
+									<span class="fs-18 cl5 txt-center size-211">
+										<span class="lnr lnr-phone-handset"></span>
+									</span>
+			
+									<div class="size-212 p-t-2">
+										<span class="mtext-110 cl2">
+											문의 전화
+										</span>
+			
+										<p class="stext-115 cl1 size-213 p-t-18">
+											앞뒤가 똑같은 1577
+										</p>
+									</div>
+								</div>
+			
+								<div class="flex-w w-full">
+									<span class="fs-18 cl5 txt-center size-211">
+										<span class="lnr lnr-envelope"></span>
+									</span>
+			
+									<div class="size-212 p-t-2">
+										<span class="mtext-110 cl2">
+											E-mali
+										</span>
+			
+										<p class="stext-115 cl1 size-213 p-t-18">
+											contact@example.com
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>	
+				
+				
+					<!-- Map -->
+					<div class="map">
+						<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+					</div>
+
+				</div>
+				
+			</div>
 		</div>
 	</section>
+
 	<!-- /////////////////////////////////////// 컨텐츠 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
@@ -771,41 +759,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="../vendor/coza/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -817,7 +770,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})
@@ -825,6 +777,39 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/coza/main.js"></script>
+	<script>
+	$(function() {
+		var Accordion = function(el, multiple) {
+			this.el = el || {};
+			this.multiple = multiple || false;
+			// Variables privadas
+			var links = this.el.find('.link');
+			// Evento
+			links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+		}
+		Accordion.prototype.dropdown = function(e) {
+			var $el = e.data.el;
+				$this = $(this),
+				$next = $this.next();
+			$next.slideToggle();
+			$this.parent().toggleClass('open');
+			if (!e.data.multiple) {
+				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+			};
+		}	
+		var accordion = new Accordion($('#accordion'), false);
+	});
+	</script>
+<!-- ======question========================================================================================== -->
+	<!-- 자바스크립트  -->
+	<script src="../js/tempjs/question.js"></script>
+	<!-- 자바스크립트  -->
+	<script src="../js/tempjs/questionrepley.js"></script>
+<!-- 수정버튼 안보이게하기! =================================================================== -->
+	<script>
 
+ 
+ 
+</script>	
 </body>
 </html>

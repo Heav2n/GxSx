@@ -17,4 +17,5 @@ public class LoComments {
 	private String contents;
 	private int depth;
 	private int pcom;
+	private int cogroup;
 }

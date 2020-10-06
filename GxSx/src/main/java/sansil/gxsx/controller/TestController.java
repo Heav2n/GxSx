@@ -1,47 +1,43 @@
 package sansil.gxsx.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.LoComments;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.LostCommentService;
 
-@RequestMapping("LostComment")
-@Controller
 @Log4j
-@AllArgsConstructor
-public class LostCommentController {
-	
-	@Resource(name="LostCommentService")
+@RequestMapping("/test")
+@Controller
+public class TestController {
+	@Autowired
 	private LostCommentService service;
+	private String comno;
 	
 	
-
+	@RequestMapping("lost.do")
+	public String myboard() {
+		return "gxsx/locontent";
+	}
 	
-//	@GetMapping("list")//¥Ò±€∏ÆΩ∫∆Æ
-//	@ResponseBody
-//	public ModelAndView list(int fino, HttpServletRequest request, HttpSession session){
-//		log.info("#> list() ¡¢±Ÿ"); 
-//		List<FiComments> ficomment = service.FindCommentList(fino);
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("findPic/content");
-//		mv.addObject("ficomment", ficomment);
-//		
-//	return mv;
-//	}
+	@RequestMapping("comment.do")
+	public ModelAndView comment(int lono) {
+		log.info("#> TestController comment() : call"); 
+		List<LoComments> list = service.LostCommentList(lono);
+		return new ModelAndView("gxsx/lost_comment_list", "comment", list);
+	}
 	
 	@PostMapping("insert")//¥Ò±€¿€º∫
 	@ResponseBody
@@ -54,13 +50,17 @@ public class LostCommentController {
 	
 	@RequestMapping("update")//¥Ò±€ºˆ¡§
 	@ResponseBody
-	private boolean fCommentserviceUpdate(LoComments locomments) {
+	private boolean fCommentserviceUpdate(HttpSession session, LoComments locomments) {
+		Users user = (Users)session.getAttribute("loginuser");
+		locomments.setUserid(user.getUserid());
 		return service.LostCommentUpdate(locomments);
 	}
 	
-	@PostMapping("delete")//¥Ò±€ªË¡¶
+	@RequestMapping("delete")//¥Ò±€ªË¡¶
 	@ResponseBody
-	private boolean fCommentserviceDelete(LoComments locomments) {
-		return service.LostCommentDelete(locomments);
+	private boolean fCommentserviceDelete(HttpSession session, @RequestBody HashMap<String, Object> request) {
+		log.info("#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		return service.LostCommentDelete(request);
 	}
 }
+
