@@ -318,7 +318,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (1)</a>
+							<a id="comment_toggle" class="nav-link" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
 						</li>
 					</ul>
 
@@ -327,7 +327,7 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<div class="flex-w flex-t p-b-68">
+								<div class="flex-w flex-t p-b-68" id="find_comment_list">
 									<c:forEach var="ficomment" items="${ficomment}" varStatus="status">
 										<c:if test="${ficomment.depth==0}">
 				  							<div class="size-207" id="ficomment_${ficomment.comno}">
@@ -381,12 +381,13 @@
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
 											<label class="stext-102 cl3" for="review">Write comment</label>
+											<label id="reply_to"></label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-											type="button" onclick="commentInsert('${content.fino}');">
+											type="button" onclick="commentInsert('1');">
 										Submit
 									</button>
 								</form>

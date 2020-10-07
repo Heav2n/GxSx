@@ -7,20 +7,23 @@
 	
 	
 	<select id="LostCommentList" resultType="LoComments" parameterType="int">
-		select * from LOCOMMENTS where FINO = #{lono} order By PCOM desc, DEPTH asc, COMNO asc 
+		select * from LOCOMMENTS where LONO = #{lono} order By COGROUP desc, PCOM asc, DEPTH asc 
 	</select>
 	
 	<insert id="LostCommentInsert" parameterType="LoComments">
 		<selectKey keyProperty="comno" resultType="int" order="BEFORE">
-			select LOCOMMENTS_SEQ_PK.nextval from dual
+			select LOSTCOMMENTS_SEQ_PK.nextval from dual
 		</selectKey>
 		INSERT into LOCOMMENTS 
-		values(#{comno}, #{lono}, #{userid}, SYSDATE, #{contents}, 1, #{comno})
+		values(#{comno}, #{lono}, #{userid}, SYSDATE, #{contents}, 0, 0, #{comno})
 	</insert>
 	
 	<!-- 대댓글 -->
 	<insert id="CommentReplyInsert" parameterType="LoComments">
-		insert into LOCOMMENTS values(#{comno}, #{lono}, #{userid}, SYSDATE, #{contents}, (#{depth}+1), #{comno});
+		<selectKey keyProperty="pcom" resultType="int" order="BEFORE">
+			select nvl(max(PCOM), 0) from LOCOMMENTS where COMNO = #{comno}
+		</selectKey>
+		insert into LOCOMMENTS values(LOSTCOMMENTS_SEQ_PK.nextval, #{lono}, #{userid}, SYSDATE, #{contents}, (#{depth}+1), (#{pcom}+1), #{cogroup})
 	</insert>
 	
 	<update id="LostCommentUpdate" parameterType="LoComments">
@@ -28,7 +31,7 @@
 		where COMNO = #{comno}
 	</update>
 	
-	<delete id="LostCommentDelete" parameterType="LoComments">
+	<delete id="LostCommentDelete" parameterType="int">
 		delete from LOCOMMENTS  where COMNO = #{comno}
 	</delete>
 	

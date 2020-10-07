@@ -47,6 +47,7 @@
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
 	</style>
+	
 </head>
 
 <body class="animsition">
@@ -74,7 +75,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="notice.do">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물" class="active-menu">
@@ -84,13 +85,9 @@
 							<li class="label1" data-label1="분실물">
 								<a href="../lostitem/list.do">Lostitem</a>
 							</li>
-							
-							<li >
-								<a href="../test/find.do">Test</a>
-							</li>
 
 							<li>
-								<a href="../gsxs/contact.do">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -103,21 +100,43 @@
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
-										<a href="../gxsx/login.do">Login</a></li>
+										<a href="login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+							           		
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
 							             </div>
 						          	</ul>
 						        </li>
@@ -128,12 +147,15 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
+						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
+					            		</div></li>
+					            	<li><div>&nbsp;&nbsp;
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -141,7 +163,7 @@
 						            			&nbsp;<a href="">Logout</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="logout.do">Logout</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
 												&nbsp;<a href="${kakaologout_url}">Logout</a>
@@ -159,301 +181,245 @@
 	</header>
 	<!-- ////////////////////////////////////// 맨 위 메뉴 종료 ////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-
+     
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- /////////////////////////////////////// 컨텐츠 시작  /////////////////////////////////////// -->
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
 
-	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-130">
+			<a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
+				Lostitem
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+			${locontent[0].losub}
+			</span>
+		</div>
+	</div>
+	
+	<!-- Product Detail -->
+	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-					F i n d I t e m
+			<div class="row">
+				<div class="col-md-6 col-lg-7 p-b-30">
+					<div class="p-l-25 p-r-30 p-lr-0-lg">
+						<div class="wrap-slick3 flex-sb flex-w">
+							<div class="wrap-slick3-dots"></div>
+							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+							<div class="slick3 gallery-lb">
+							<c:forEach items="${locontent}" var="locontent">
+								<div class="item-slick3" data-thumb="../images/Lostimgs/${locontent.lopicname }">
+									<div class="wrap-pic-w pos-relative">
+										<img src="../images/Lostimgs/${locontent.lopicname }" alt="IMG-PRODUCT">
+
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+											<i class="fa fa-expand"></i>
+										</a>
+									</div>
+								</div>
+							</c:forEach>
+<!-- 								<div class="item-slick3" data-thumb="../images/coza/product-detail-02.jpg"> -->
+<!-- 									<div class="wrap-pic-w pos-relative"> -->
+<!-- 										<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT"> -->
+
+<!-- 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg"> -->
+<!-- 											<i class="fa fa-expand"></i> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+
+<!-- 								<div class="item-slick3" data-thumb="../images/coza/product-detail-03.jpg"> -->
+<!-- 									<div class="wrap-pic-w pos-relative"> -->
+<!-- 										<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT"> -->
+
+<!-- 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg"> -->
+<!-- 											<i class="fa fa-expand"></i> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+					
+				<div class="col-md-6 col-lg-5 p-b-30">
+					<div class="p-r-50 p-t-5 p-lr-0-lg">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+							${locontent[0].losub}
+						</h4>
+						<ul class="p-lr-28 p-lr-15-sm">
+							<li class="flex-w flex-t p-b-7">
+								<span class="stext-102 cl3 size-205">
+									Date
+								</span>
+
+								<span class="stext-102 cl6 size-206">
+									${locontent[0].lodate}
+								</span>
+							</li>
+
+							<li class="flex-w flex-t p-b-7">
+								<span class="stext-102 cl3 size-205">
+									Place
+								</span>
+
+								<span class="stext-102 cl6 size-206">
+									${area} / ${locontent[0].loplace}
+								</span>
+							</li>
+
+							<li class="flex-w flex-t p-b-7">
+								<span class="stext-102 cl3 size-205">
+									Store
+								</span>
+
+								<span class="stext-102 cl6 size-206">
+									${locontent[0].lofin}
+								</span>
+							</li>
+
+							<li class="flex-w flex-t p-b-7">
+								<span class="stext-102 cl3 size-205">
+									Content
+								</span>
+
+								<span class="stext-102 cl6 size-206">
+								<div style="word-break:break-all">
+									${locontent[0].locon} 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 
+								</span></div>
+							</li>
+						</ul>
+						
+						<!-- botton -->
+						<div class="p-t-33">
+							<div class="flex-w flex-r-m p-b-10">
+								<a href="update.do"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+									Modify
+								</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="del.do"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									Delete
+								</button></a>
+							</div>	
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="bor10 m-t-50 p-t-43 p-b-40">
+				<!-- Tab01 -->
+				<div class="tab01">
+<!-- 					Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item p-b-10">
+							<a id="comment_toggle" class="nav-link" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
+						</li>
+					</ul>
+
+<!-- 					Tab panes -->
+					<div class="tab-content p-t-43">
+						-
+						<div class="tab-pane fade show" id="description" role="tabpanel">
+							<div class="how-pos2 p-lr-15-md">
+								<div class="flex-w flex-t p-b-68" id="lost_comment_list">	
+										
+								</div>
+								
+								<!-- Add review -->
+								<form class="w-full">
+									
+									<div class="row p-b-25">
+										<div class="col-12 p-b-5">
+											<label class="stext-102 cl3" for="review">Write comment</label>
+											<label id="reply_to"></label>
+											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
+										</div>
+									</div>
+
+									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
+											type="button" onclick="commentInsert(26);">
+										Submit
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+			<span class="stext-107 cl6 p-lr-25">
+				SKU: JAK-01
+			</span>
+
+			<span class="stext-107 cl6 p-lr-25">
+				Categories: Jacket, Men
+			</span>
+		</div>
+	</section>
+
+
+	<!-- Related Products -->
+	<section class="sec-relate-product bg0 p-t-45 p-b-105">
+		<div class="container">
+			<div class="p-b-45">
+				<h3 class="ltext-106 cl5 txt-center">
+					Related Items
 				</h3>
 			</div>
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Search
-					</div>
-				</div>
-
-				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
+			<!-- Slide2 -->
+			<div class="wrap-slick2">
+				<div class="slick2">
+					<c:forEach var="locontent" items="${locontent}" varStatus="status">
+						<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+							<!-- Block2 -->
+							<div class="block2">
+								<div class="block2-pic hov-img0">
+									<img src="../images/Lostimgs/${locontent.lopicname}" alt="IMG-PRODUCT">
+	
+									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+										Quick View
+									</a>
+								</div>
+	
+								<div class="block2-txt flex-w flex-t p-t-14">
+									<div class="block2-txt-child1 flex-col-l ">
+										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+											${locontent.lodate}
+										</a>
+	
+										<span class="stext-105 cl3">
+											${locontent.losub}
+										</span>
+									</div>
+	
+<!-- 									<div class="block2-txt-child2 flex-r p-t-3"> -->
+<!-- 										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> -->
+<!-- 											<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON"> -->
+<!-- 											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON"> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+								</div>
 							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Default</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Popularity</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Average rating</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Newness</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: Low to High</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: High to Low</a>
-								</li>
-							</ul>
 						</div>
+					</c:forEach>
 
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$0.00 - $50.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$50.00 - $100.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$100.00 - $150.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts</a>
-							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do">
-								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" placeholder="Search" autocomplete="off">
-							</form>
-						</div>
-						
-						<div class="w-full">
-							</br>
-						</div>
-											
-					</div>					
 				</div>
 			</div>
-
-			<div class="row isotope-grid">
-			
-			  <c:if test="${empty findResult}">
-				  <center>데이터가 하나도 없음</center>
-			  </c:if>
-				
-			  <c:forEach items="${findResult}" var="finditem">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<c:if test="${ empty loginuser && empty klogin}">
-		            			<a href="../gxsx/login.do"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-		            		</c:if>
-		            		<c:if test="${ (!empty loginuser && empty kakaologout_url) || (!empty klogin && !empty kakaologout_url)}">
-								<a href="../finditem/content.do?fino=${finditem.fino}"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-							</c:if>
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<span class="m-r-3">
-									<a href="../finditem/content.do"><span class="cl5">${finditem.fisub}</span></a>
-								</span>
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
-
-								<span class="stext-105 cl3">
-									<i class="zmdi zmdi-calendar"></i>&nbsp;${finditem.fidate}
-								</span>
-								<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${finditem.fiplace}</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-							
-						</div>						
-					</div>
-				</div>
-			  </c:forEach>
-			  
-			</div>
-			
-			<div class="btn-nextprev">
-				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
-				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
-			</div>
-
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
-				<c:if test="${listpage.rangeCount>10}">
-					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
-				    	onclick="selectlostitemPage(${listpage.startPage-1})">
-				    		Previous</p>
-				 </c:if>
-				 
-				<c:forEach begin="1" end="10" var="i">
-			        <a href="list.do?cp=${i}">
-			   			<c:choose>
-			   			    <c:when test="${i==listpage.currentPage && i<=listpage.pageCount}">
-			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
-			                </c:when>
-			                <c:when test="${i!=listpage.currentPage && i<=listpage.pageCount}">
-			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
-			                </c:when>
-			                <c:otherwise>
-			                    <p></p>
-			                </c:otherwise>
-						</c:choose>
-			    	</a>&nbsp;
-			    </c:forEach>
-			    
-			    <c:if test="${listpage.pageCount>10}">
-				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-				    	onclick="selectlostitemPage(${listpage.endPage+1})">
-				      		Next</p>
-			    </c:if>
-			</div>
-			
 		</div>
 	</section>
 	<!-- /////////////////////////////////////// 컨텐츠 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-
+	
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- ////////////////////////////////////// footer 시작 ////////////////////////////////////// -->
 
@@ -475,22 +441,28 @@
 					
 						<ul>
 							<li class="p-b-10">
-								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
-									Notice
-								</a>
-							</li>
-	
-							<li class="p-b-10">
-								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
 								</a>
 							</li>
 	
 							<li class="p-b-10">
-								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
 								</a>
-							</li>	
+							</li>
+	
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Shoes
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+									Watches
+								</a>
+							</li>
 						</ul> 
 				</div>
 
@@ -500,15 +472,14 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
-						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
+						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
+						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> 02-707-1480
+						<i class="fa fa-phone"></i> +101 377 655 22125
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
-						
+						<i class="fa fa-envelope"></i> mail@yourcompany.com
 					</p>
 
 					<div class="p-t-27">
@@ -545,11 +516,13 @@
 					</p>
 				</div>
 			</div>
+			
+			
 
-			<p class="stext-107 cl6 txt-center">
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+				<p class="stext-107 cl6 txt-center">
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
@@ -585,35 +558,37 @@
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+								<c:forEach items="${locontent}" var="locontent">
+									<div class="item-slick3" data-thumb="../images/Lostimgs/${locontent.lopicname }">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img src="../images/Lostimgs/${locontent.lopicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
+									</c:forEach>
 
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
+<!-- 									<div class="item-slick3" data-thumb="images/product-detail-02.jpg"> -->
+<!-- 										<div class="wrap-pic-w pos-relative"> -->
+<!-- 											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT"> -->
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
+<!-- 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg"> -->
+<!-- 												<i class="fa fa-expand"></i> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
+<!-- 									<div class="item-slick3" data-thumb="images/product-detail-03.jpg"> -->
+<!-- 										<div class="wrap-pic-w pos-relative"> -->
+<!-- 											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT"> -->
 
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
+<!-- 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg"> -->
+<!-- 												<i class="fa fa-expand"></i> -->
+<!-- 											</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 								</div>
 							</div>
 						</div>
@@ -771,30 +746,23 @@
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
-
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
-
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
-
 		/*---------------------------------------------*/
-
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -813,7 +781,6 @@
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})
@@ -821,6 +788,8 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/coza/main.js"></script>
-
+	
+	<!-- 자바스크립트  -->
+	<script src="../js/tempjs/LoComments.js"></script>
 </body>
 </html>

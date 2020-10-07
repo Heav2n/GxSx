@@ -1,21 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="sansil.gxsx.mapper.QuestionMapper">
 	
 	
 	<select id="selectQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{query} order by QNO desc
+		select * from QUESTION where QUID = #{query} order by QNO desc;
 	</select>
 	
 	<select id="selectCountQuestion" resultType="Long" parameterType="String">
-		select count(*) from QUESTION where QUID = #{query}
+		select count(*) from QUESTION where QUID = #{query} 
 	</select>
 	
 	<select id="selectPerPage" resultType="Question" parameterType="hashmap">
 		<![CDATA[
 		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION where QUID = #{usersid} order by QNO desc) aa) 
+		where rnum between #{paging.startRow} and #{paging.endRow}
+		]]>
+	</select>	
+	
+	<select id="allCountQuestion" resultType="Long" parameterType="String">
+		select count(*) from QUESTION 
+	</select>
+	
+	<select id="allSelectPerPage" resultType="Question" parameterType="hashmap">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION order by QNO desc) aa) 
 		where rnum between #{paging.startRow} and #{paging.endRow}
 		]]>
 	</select>	
@@ -35,11 +45,11 @@
 	<insert id="Questioninsert" parameterType="Question">
 		insert into QUESTION values(QUESTION_SEQ_PK.nextval, #{quid}, #{qsub}, #{qcon}, null)
 	</insert>
-
+	
 	<update id="Questionupdate" parameterType="Question">
 		update QUESTION set QSUB=#{qsub}, QCON=#{qcon} where QNO=#{qno}
 	</update>
-
+	
 	<delete id="Questiondelete" parameterType="long">
 		delete from QUESTION where QNO=#{qno}
 	</delete>
@@ -47,5 +57,6 @@
 	<select id="messageQuestion" resultType="Question" parameterType="String">
 		select * from QUESTION where QUID = #{userid} and QREPLY is null
 	</select>
+	
 	
 </mapper>

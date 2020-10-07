@@ -7,27 +7,23 @@
 	
 	
 	<select id="FindCommentList" resultType="FiComments" parameterType="int">
-		select * from FICOMMENTS where FINO = #{fino} order By PCOM desc, DEPTH asc, COMNO asc 
+		select * from FICOMMENTS where FINO = #{fino} order By COGROUP desc, PCOM asc, DEPTH asc 
 	</select>
 	
-<!-- 	<insert id="FindCommentInsert" parameterType="FiComments"> 경빈-->
-<!-- 		<selectKey keyProperty="comno" resultType="int" order="BEFORE"> -->
-<!-- 			select FINDCOMMENTS_SEQ_PK.nextval from dual -->
-<!-- 		</selectKey> -->
-<!-- 		INSERT into FICOMMENTS  -->
-<!-- 		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 1, #{comno}) -->
-<!-- 	</insert> -->
 	<insert id="FindCommentInsert" parameterType="FiComments">
 		<selectKey keyProperty="comno" resultType="int" order="BEFORE">
 			select FINDCOMMENTS_SEQ_PK.nextval from dual
 		</selectKey>
 		INSERT into FICOMMENTS 
-		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 0, null, #{comno})
+		values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, 0, 0, #{comno})
 	</insert>
 	
 	<!-- 대댓글 -->
 	<insert id="CommentReplyInsert" parameterType="FiComments">
-		insert into FICOMMENTS values(#{comno}, #{fino}, #{userid}, SYSDATE, #{contents}, (#{depth}+1), #{comno});
+		<selectKey keyProperty="pcom" resultType="int" order="BEFORE">
+			select nvl(max(PCOM), 0) from FICOMMENTS where COMNO = #{comno}
+		</selectKey>
+		insert into FICOMMENTS values(FINDCOMMENTS_SEQ_PK.nextval, #{fino}, #{userid}, SYSDATE, #{contents}, (#{depth}+1), (#{pcom}+1), #{cogroup})
 	</insert>
 	
 	<update id="FindCommentUpdate" parameterType="FiComments">
