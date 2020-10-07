@@ -35,17 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
+		
 	</style>
 	
 </head>
@@ -63,7 +53,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="domain.do" class="logo">
+					<a href="../gxsx/domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
@@ -87,7 +77,7 @@
 							</li>
 
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -104,6 +94,7 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
+							          <c:if test="${messageResult!=[]}">
 							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
 							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
 								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
@@ -112,7 +103,15 @@
 								            		<p class="time">답변완료</p></div>
 								            	</li>
 							            	</c:forEach>
-							             </div>
+							            </div>
+							           </c:if>
+						            	<c:if test="${messageResult==[]}">
+						            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:20px">
+							            		<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px;">
+								            		<center>알람 없음</center>
+								            	</li>
+							            	</div>
+						            	</c:if>
 						          	</ul>
 						        </li>
 							</li>
@@ -127,7 +126,7 @@
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>

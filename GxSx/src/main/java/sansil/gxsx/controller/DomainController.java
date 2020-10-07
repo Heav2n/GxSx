@@ -67,6 +67,7 @@ public class DomainController {
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
+			System.out.println("엥?" + messageResult);
 		}
 		
 		if(session.getAttribute("klogin")!=null) { //kakao로 로그인 했을때
