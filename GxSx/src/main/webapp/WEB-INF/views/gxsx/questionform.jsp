@@ -353,7 +353,7 @@
 									<div class="bor8 m-b-30">
 										<input class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" type="text" id="txt3" name="qreply" value="${question.qreply}" readonly/>
 									</div>
-<%-- 									<c:if test="${empty sessionScope.loginuser'}"> --%>
+									<c:if test="${ admin}">									
 										<div id="comment-input" class="container">
 											<c:if test="${empty question.qreply}">
 												<label for="content">관리자 댓글</label>
@@ -378,12 +378,12 @@
 								
 								<c:if test="${!empty question.qreply}">
 								<div id="comment_update_btn">
-								<c:if test="${sessionScope.loginuser.userid eq 'sansillyung' }">
+								<c:if test="${admin}">
       								<button class="btn btn-default" type="button" onclick="qreply('${question.qno}','${question.qreply}');">관리자 댓글 수정버튼</button>
     							</c:if>	
     							</div>
 								</c:if>
-								
+								</c:if>
 									
 									<script>		
 										function questionco_form() {
