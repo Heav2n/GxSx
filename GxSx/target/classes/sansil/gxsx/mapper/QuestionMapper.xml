@@ -45,7 +45,7 @@
 	</delete>
 	
 	<select id="messageQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{userid} and QREPLY is not null
+		select * from QUESTION where QUID = #{userid} and QREPLY is null
 	</select>
 	
 </mapper>
