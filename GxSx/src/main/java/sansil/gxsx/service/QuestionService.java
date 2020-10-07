@@ -2,17 +2,13 @@ package sansil.gxsx.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.springframework.web.servlet.ModelAndView;
-
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 
-public interface QuestionService {
 
+public interface QuestionService {
+	
 	List<Question> getQuestion(Pagination page, String quid);
 
 	Question contentS(long seq);
@@ -49,4 +45,5 @@ public interface QuestionService {
 	 */
 	ResponseListVo getQuestionListService(int selectedPage);
 
+	ResponseListVo getAllQuestionListService(int selectedPage);
 }

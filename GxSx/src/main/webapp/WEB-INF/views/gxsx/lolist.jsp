@@ -74,7 +74,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="notice.do">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
@@ -86,8 +86,13 @@
 							</li>
 
 							<li>
-								<a href="../gsxs/contact.do">Contact</a>
+								<a href="../contact.do">Contact</a>
 							</li>
+							
+							<li >
+								<a href="../test/lost.do">Test</a>
+							</li>
+							
 						</ul>
 					</div>	
 
@@ -104,16 +109,38 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+							           		
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
 							             </div>
 						          	</ul>
 						        </li>
@@ -124,12 +151,15 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
+						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
+					            		</div></li>
+					            	<li><div>&nbsp;&nbsp;
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -368,7 +398,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<a href="../finditem/content.do?fino=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
+							<a href="../lostitem2/locontent.do?lono=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -394,13 +424,14 @@
 									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
 								</c:if>
+								
 								<c:if test="${lostitem.logift==0}">
 									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
 								</c:if>
 								</a>
-							</div>
 							
+							</div>
 						</div>						
 					</div>
 				</div>
@@ -745,30 +776,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
-
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
-
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
-
 		/*---------------------------------------------*/
-
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -787,7 +811,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})

@@ -13,130 +13,156 @@
 
 
 //댓글 목록
+$(document).ready(function() {
+	commentList(1);
+})
+
 function commentList(fino){
 		$.ajax({
-			url : '../FindComment/list.do',
+			url : '../test/findcomment.do',
 			type : 'get',
 			data : {'fino':fino},
+			dataType: "HTML",
 			success : function(data){
-				var a = '';
-				let count=1;
-				if(result.length < 1){ 
-	               htmls.push("등록된 댓글이 없쫑");
-				}else{
-					$(result).each(function(){		
-			       
-						+"<tr>"
-						+"<td align='center'>댓글</td>"
-						+"<c:forEach var='ficomment' items='${ficomment}''>"
-						+"<td>${ficomment.contents}</td>"
-						+"</c:forEach>"
-					+"</tr>"
-					});
-				}
-	            $(".commentList").html(a);
+	            $("#find_comment_list").html(data);
+	            let comment_num = document.getElementById("comment_num").value;
+	            $('#comment_toggle').text("Comment ("+comment_num+")");
+	            global_fino = document.getElementById('global-fino').value;
 	        }
 	    });
 	}
-//댓글 등록
-//function commentInsert(fino){
-//	let newInput_html = "";
-//	console.log("fino : "+fino);
-//	let content = document.getElementById('comments').value;
-//	console.log("content : "+content);
-//	$.ajax({
-//		url : "../FindComment/insert.json",
-//		type : 'post',
-//		dataType : 'HTML',
-//		data : {
-//			'content': content,
-//			'fino': fino
-//			},
-//		success : function(data){ //list로 받음, 뽑을땐 반복문 돌려야함(for)
-//			$('#comment-table').html(data);
-//			console.log("기모리1");
-//		}
-//	});
-//}
+
 
 function commentInsert(fino){
+	let sendData = {};
 	let newInput_html = "";
-	console.log("fino : "+fino);
-	let content = document.getElementById('review').value;
-	console.log("content : "+content);
+	let review = document.getElementById('review').value;
+	let target = document.getElementById("reply_to").childNodes;
+	
+	if(typeof target[0] !== 'undefined'){
+		target = target[0].value;
+		sendData = {
+				"contents" : review,
+				"fino": fino,
+				"cogroup" : target
+		}
+	}else{
+		sendData = {
+			"contents": review,
+			"fino" : fino
+		};
+	}
 	$.ajax({
-		url : "../FindComment/insert.json",
-		type : 'post',
-		dataType : 'HTML',
-		data : {
-			'content': content,
-			'fino': fino
-			},
-		success : function(data){ //list로 받음, 뽑을땐 반복문 돌려야함(for)
-			$('#comment-table').html(data);
-			console.log("기모리1");
+		url:"../test/findinsert.json",
+		type : "post",
+		dataType : "JSON",
+		contentType: "application/json",
+		data : JSON.stringify(sendData),
+		success : function(data){
+			if(data){
+				commentList(fino);
+				alert("댓글이 정상적으로 등록되었습니다.");
+				$("#review").val("");
+			}else{
+				alert("댓글 작성에 실패하였습니다. 오류를 문의해주세요.");
+			}
+			deleteReply();
 		}
 	});
 }
 
 var prevInput;
+var prevTesxt;
 var click=0;
-////댓글수정
+////댓글수정폼
 function update_form_id(val){
-	
 	if(click>0){
 		$('#update_txt_'+prevInput).remove();
 		$('#btn'+prevInput).text("수정");
 		$('#btn'+prevInput).attr("onclick", "update_form_id("+prevInput+");");		
+		
+		let p_el = '<p class="stext-102 cl6">'+prevText+'</p>';
+		$('#update-form-'+prevInput).html(p_el);
+	
 	}
 	click++;
 	
 	$('#btn'+val).text("수정완료");
-	$('#btn'+val).attr("onclick", "submit("+val+");");
-	console.log($("#ficom_input_"+val));
-	if($("#ficom_input_"+val)[0].childElementCount == 0){
-			console.log("val : "+val);
-		console.log($("#ficomment_"+val)[0].childNodes[3].innerText);
-		var u_txt = $("#ficomment_"+val)[0].childNodes[3].innerText;
-		
-		var inputTag = "<input type='text' name='contents' id='update_txt_"+ val +"'>";
+	$('#btn'+val).attr("onclick", "do_update("+val+");");
 
-		$("#ficom_input_"+val).append(inputTag);
-		$("#update_txt_" + val)[0].value = u_txt;
+//	console.log("1 : "+val);
+	let comment_text = document.getElementById("update-form-"+val).childNodes;
+	for(let i=0; i<comment_text.length; i++){
+		if(comment_text[i].nodeName == 'P') {
+			comment_text = comment_text[i].innerText;
+		}
 	}
-	console.log("1prevInput : "+prevInput);
-	prevInput=val;
-	console.log("2prevInput : "+prevInput);
+	
+	let new_update_input_html = '<input class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="update-txt-'+val+'" value="'+comment_text+'">';
+	$('#update-form-'+val).html(new_update_input_html);
+	prevText = comment_text;
+	prevInput = val;
 }
+var global_fino;
+//댓글수정
+function do_update(index){
+	click = 0;
+	let content = document.getElementById("update-txt-"+index).value;
+	$.ajax({
+		url : "../test/fiupdate.do",
+		type : 'post',
+		data : {
+			comno : index,
+			contents : content
+		},
+		dataType: "HTML",
+		error: function(){
+			alert("에러발생");
+		},
+		success : function(data){
+			if(data){
+				alert("댓글이 수정이 되었습니당");
+			}else{
+				alert("댓글 수정 실패 다시 시도해쥬세요");
+			}
+			commentList(global_fino);
+		}
+	});
+}
+
 
 function submit(index){
 	click = 0;
 	document.getElementById('form'+index).submit();
 }
 //댓글삭제
-function commentDelete(val){
-	console.log("제발들어와주세요!");
-	let newInput_html = "";
+function commentDelete(val, fino){
+	let sendData = new Object;
+	sendData.comno = val;
 	$.ajax({
-		url : "../FindComment/delete.json",
+		url : "../test/fidelete.json",
 		type : 'post',
-		dataType : 'html',
-		data: { comno : val},
-		error: function(){
-			alert("에러");
-		},
-		success : function(response){
-			console.log("response :" + val);
-			console.log(response);
-
-			location.reload(true);
+		contentType : "application/json",
+		data : JSON.stringify(sendData),
+		dataType : 'JSON',	
+		success : function(data){
+			if(data){
+				alert("댓글이 정상적으로 삭제되었습니다.");
+				commentList(fino);
+			}else{
+				alert("댓글 삭제가 실패하였습니다. 관리자에게 문의해주세요.")
+			}
 		}
 	});
 }
+function reply_to(who){
+	let el = document.getElementById("reply_to");
+	let reciever = document.getElementById("who-"+who).value;
+	el.innerHTML = "<input id='reply-target-"+who+"' type='hidden' value='"+who+"'>"+reciever+"<span onclick='deleteReply();'> X </span>";
+	$("#review").focus();
+}
 
-
-
-//
-//$(document).ready(function(){
-//	FindcommentList(); //페이지 로딩시 댓글 목록 출력
-//});
+function deleteReply(){
+	let el = document.getElementById("reply_to");
+	el.innerHTML = "";
+}

@@ -17,4 +17,5 @@ public class FiComments {
 	private String contents;
 	private int depth;
 	private int pcom;
+	private int cogroup;
 }
