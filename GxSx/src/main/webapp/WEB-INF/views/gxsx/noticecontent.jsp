@@ -47,11 +47,6 @@
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
 		
-		table.table-shopping-cart td:first-child, table.table-shopping-cart th:first-child {
-			border-left:0;
-			border-right:0;
-		}
-		
 		.container2 * {
 		    margin: 0;
 		    padding: 0;
@@ -133,7 +128,7 @@
 		}
 		.heart_date dl dd {
 		    float: left;
-		    margin-top: 4px;
+		    margin-top: 3px;
 		    color: #aaa;
 		    font-size: 12px;
 		    font-family: "Tahoma";
@@ -141,7 +136,7 @@
 		.heart_date dl dt {
 		    float: left;
 		    margin-right: 5px;
-		    margin-top: 3px;
+		    margin-top: 1px;
 		}
 		dt {
 		    display: block;
@@ -238,6 +233,59 @@
 		a{
 			color: #868e96;
 		}
+		.page_move {
+		    float: left;
+		    margin-top: 40px;
+		    width: 100%;
+		    padding-bottom: 180px;
+		}
+		.page_move > ul > li:first-child {
+		    border-top: 1px solid #e3e3e3;
+		}
+		.page_move > ul > li {
+		    float: left;
+		    width: 100%;
+		    height: 45px;
+		    line-height: 46px;
+		    border-bottom: 1px solid #e3e3e3;
+		}
+		.notice_title {
+		    float: left;
+		    font-size: 15px;
+		    color: #666;
+		}
+		.page_move_info {
+		    float: right;
+		    height: 100%;
+		}
+		.page_move > ul {
+		    float: left;
+		    width: 100%;
+		    height: 100%;
+		}
+		.page_move_btn {
+		    float: left;
+		    margin-left: 27px;
+		    margin-right: 24px;
+		    font-size: 15px;
+		    line-height: 1;
+		    margin-top: 15px;
+		}
+		.lili > ul > li {
+			   float: left;
+			   width: 100%;
+			   height: 40px;
+			   line-height: 30px;
+			   border-bottom: 1px solid #e3e3e3;
+			}
+		.back_btn {
+		    display: inline-block;
+		    font-size: 13px;
+		    color: #666;
+		    padding: 13px 11px;
+		    line-height: 1;
+		    border: 1px solid #e6e6e6;
+		}
 		.cm_write {
 		    float: right;
 		    text-align: right;
@@ -262,7 +310,22 @@
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript">	
-
+		function noticeEditForm(nono){
+			$.ajax({
+				url:"../gxsx/noticeEditForm.json",
+				type:"GET",
+				dataType :"HTML", 
+				data:{nono: nono},
+				error:function(error){
+					console.log("통신실패");
+					console.log(error);
+				},
+				success:function(response){
+					console.log("성공 : "+response);
+					$("#contents_wrap").html(response);
+				},
+			})
+		}
 	</script>
 
 </head>
@@ -385,16 +448,12 @@
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container" style="padding-left:110px">
 			<!-- d -->
-			<div class="contents_wrap" >
+			<div class="contents_wrap" id="contents_wrap">
                 <h1 class="con_title">공지사항
                     <div style="float:right;">
                         <span class="word_input" style="margin-top:0;">
-                            <input type="text" name="search_text" value="">
-                            <span class="btn2"><a href="#a" onmouseover="ch_png_on(this)" onmouseout="ch_png_off(this)"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/board_top_search_btn_off.png" alt=""></a></span>
-                        </span>
-                        <span class="sort_wrap fix_sort" style="margin-top:0;">
-                            <a href="#a" class="cus_sel_a">제목</a>
-                        </span>
+                            <span class="con_title_btn fs-13">
+                            <a href="https://maplestory.nexon.com/Community/Free" class="back_btn" style="width:56px; text-align:center;">목록</a></span>
                     </div>
                 </h1>
                     	<div></div><div></div>
@@ -402,53 +461,65 @@
                        <div class="news_board">
                            <!-- notice ul str -->
                            <ul>
+	                           <li>
+		                           <p class="last fs-13" style="float:right;">
+		                           		<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/sub_date_new.png" alt="작성 시간" 
+		                           			style="margin-right:5px;">${noticeList.nodate}
+		                           </p>
+		                           
+		                           <img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${noticeList.nocate}.png">
+		                           		<span class="qs_id fs-15">&emsp;${noticeList.nosub}</span>
+	                           </li>
                                <!--게시물 Loop : Str-->
-                               <c:forEach items="${noticeList}" var="notice" varStatus="status">
                                    <li>
-										<p>
-											<a href="../gxsx/noticeCon.do?nono=${notice.nono}">
-                                             <em><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${notice.nocate}.png"></em>
-                                              <span>&emsp;${notice.nosub}</span>
-                                              <c:if test="${today==notice.nodate}">
-                                                <img class="new" alt="" src="https://ssl.nx.com/s2/game/maplestory/renewal/common/new.png">
-                                              </c:if>
-											</a>
+                                   		<div class="qs_text" style="word-break:keep-all">
+											<p class="fs-13">
+	                                           <span>&emsp;${noticeList.nocon}</span>
+											</p>
+										</div>
+                                   </li>
+                           </ul>
+                           <!-- notice ul end -->
+                           <input type='hidden' name='nouid' value='${userid}'>
+                           <c:if test="${user=='관리자'}">
+                                	<button class="cm_write"><a class="btn02_b" href="noticeDel.do?nono=${noticeList.nono}">삭제</a></button>
+                                	<button class="cm_write" id="editbtn"><a class="btn02_b" onclick="noticeEditForm(${noticeList.nono})">수정</a></button>
+                           </c:if>
+
+						<div class="news_board lili">
+                           <!-- notice ul str -->
+                           <ul>
+                               <!--게시물 Loop : Str-->
+                                   <li style="margin-top:6px">
+										<p class="fs-12">                        
+											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_up.png">
+											이전글
+                                            <span>&emsp;${noticeup.nosub}</span>
 										</p>
                                        <div class="heart_date">
                                            <dl>
                                                <dt><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/sub_date_new.png" alt="시계 아이콘"></dt>
-                                               <dd>${notice.nodate}</dd>
+                                               <dd>${noticeup.nodate}</dd>
                                            </dl>
                                        </div>
                                    </li>
-                                </c:forEach>
-                                <c:if test="${user=='관리자'}">
-                                	<span class="cm_write"><a class="btn02_b" href="../gxsx/noticeForm.do">글작성</a></span>
-                                </c:if>
+                                   <li style="margin-top:6px">
+										<p class="fs-12">                                           
+											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_down.png">
+											다음글
+                                            <span>&emsp;${noticedown.nosub}</span>
+										</p>
+                                       <div class="heart_date">
+                                           <dl>
+                                               <dt><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/sub_date_new.png" alt="시계 아이콘"></dt>
+                                               <dd>${noticedown.nodate}</dd>
+                                           </dl>
+                                       </div>
+                                   </li>
+                                   
                            </ul>
-                           
-                           
                            <!-- notice ul end -->
-
-							<div class="page_numb">
-						        <span class="cm_all_prev">
-						                <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_prev.png" alt="이전 10개"></a>
-						        </span>
-							    <span class="cm_prev">
-							            <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
-							    </span>
-					                <a class="active">1</a>
-					                <a href="/News/Notice/All?page=2">2</a>
-					                <a href="/News/Notice/All?page=3">3</a>
-					                <a href="/News/Notice/All?page=4">4</a>
-					                <a href="/News/Notice/All?page=5">5</a>
-							    <span class="cm_next">
-							            <a href="/News/Notice/All?page=2"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
-							    </span>
-						        <span class="cm_all_next">
-						                <a href="/News/Notice/All?page=11"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_next.png" alt="다음 10개"></a>
-						        </span>
-							</div>
+						</div>
                             
 						</div>
 				</div>
@@ -550,169 +621,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- ////////////////////////////////////// footer 종료 ////////////////////////////////////// -->	
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
 	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>

@@ -22,5 +22,12 @@ public interface DomainMapper {
 	int idcheck(String userid);
 	
 	List<Notice> noticelist();
-	Notice noticecon();
+	Notice noticecon(int nono);
+	Notice noticeup(int nono);
+	Notice noticedown(int nono);
+	
+	String userpower(String userid);
+	void noticewrite(Notice notice);
+	void noticeedit(Notice notice);
+	void noticedel(int nono);
 }

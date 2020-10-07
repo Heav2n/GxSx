@@ -25,4 +25,10 @@ public interface DomainService {
 	
 	List<Notice> noticeListS();
 	Notice noticeConS(int nono);
+	Notice noticeUp(int nono);
+	Notice noticeDown(int nono);
+	String userPowerS(String userid);
+	void noticeWriteS(Notice notice);
+	void noticeEditS(Notice notice);
+	void noticeDelS(int nono);
 }
