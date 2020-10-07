@@ -3,8 +3,8 @@
  */
 function qreply(qno, content){ 
 	if($('#comment_update_btn').is(":visible")){
-		$('#comment_update_btn').hide();	
-		
+	$('#comment_update_btn').hide();	
+	
 	var newInput_html = "";
 	newInput_html+="<label for='content'>comment</label>"
     

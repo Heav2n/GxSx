@@ -32,8 +32,12 @@ import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.DomainService;
+
 import sansil.gxsx.service.MailService;
 import sansil.gxsx.service.MessageService;
+
+import sansil.gxsx.setting.AdminInfo;
+
 
 @Log4j
 @RequestMapping("/gxsx/")
@@ -179,7 +183,8 @@ public class DomainController {
 	@RequestMapping("logout.do")
 	public String Logout(HttpSession session) {	
 			System.out.println("일반유저 로그아웃");
-			session.setAttribute("loginuser", null); //일반 로그인시 로그아웃 하고 user비워줌
+			session.setAttribute("loginuser", null);//일반 로그인시 로그아웃 하고 user비워줌
+			session.setAttribute("admin", null);
 //			session.invalidate();
 			System.out.println("access_token:!!!!!!!!!!!!!!!!!!!!!!!!!!!!:"+(String)session.getAttribute("access_Token"));
         return "redirect:domain.do";
@@ -212,6 +217,7 @@ public class DomainController {
 		return "redirect:domain.do";
 	}
 	
+
 	@PostMapping("idCheck.do")
 	@ResponseBody
 	public boolean idconfirm(String userid) {
@@ -222,6 +228,20 @@ public class DomainController {
 		else {
 			return false;
 		}		
+	}
+	@RequestMapping("contact.do")
+	public ModelAndView contact(HttpSession session) {
+		Users user = (Users)session.getAttribute("loginuser");
+		if(user == null) return new ModelAndView("redirect:login.do");
+		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
+			session.setAttribute("admin", true);
+		}
+		return new ModelAndView("gxsx/contact");
+	}
+	
+	public boolean name(HttpSession session) {
+		return session.getAttribute("loginuser") == null;
+
 	}
 	
 	@RequestMapping(value="emailCheck.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -255,11 +275,7 @@ public class DomainController {
 			return false;
 		}
 	}
-	
-	public boolean name(HttpSession session) {
-		return session.getAttribute("loginuser") == null;
-	}
-	
+		
 	@RequestMapping("myboard.do")
 	public String myboard() {
 		return "temp/myboard";

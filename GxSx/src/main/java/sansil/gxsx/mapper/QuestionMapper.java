@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 
 public interface QuestionMapper {
@@ -14,8 +13,14 @@ public interface QuestionMapper {
 	
 	long selectCountQuestion(String query);
 	
+	//관리자 문의게시판 리스트 
+	long allCountQuestion(String query);
+	
 	//페이징
 	List<Question> selectPerPage(HashMap<String, Object> query);
+	
+	//관리자 문의게시판 리스트 
+	List<Question> allSelectPerPage(HashMap<String, Object> query);
 	
 	//content 띄우기
 	Question content(long qno);
@@ -39,5 +44,6 @@ public interface QuestionMapper {
 	
 	//메세지용
 	List<Question> messageQuestion(String userid);
+
 
 }
