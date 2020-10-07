@@ -1,6 +1,8 @@
 package sansil.gxsx.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,9 +11,9 @@ import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItPicListResult;
 import sansil.gxsx.domain.FindItem;
-import sansil.gxsx.domain.FindItemResult;
-import sansil.gxsx.domain.LostItemPicVo;
+import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.Pagination;
+import sansil.gxsx.domain.ResponseListVo;
 
 public interface FindItemService {
 	List<FindItem> finditem();
@@ -30,13 +32,13 @@ public interface FindItemService {
 
 	FindItPic UpdatefS(long fino);
 	
-	
-	////////////////////////////////////////////////////////////////////////////////////////////È®½ÇÈ÷»ç¿ëÁß(ÃÖÁ¾¶§ À§¿¡Áö¿ï²¨ÀÓ)
+	////////////////////////////////////////////////////////////////////////////////////////////È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï²¨ï¿½ï¿½)
 	FindItPicListResult getFindItemResultByKeyword(String fisub, int page, int pageSize);	
 	List<FindItPic> selectByNameS(String fisub);
 	
 
 	Pagination getPagination(HttpServletRequest request, HttpSession session);
+	Pagination getPaginationByCondition(HttpServletRequest request, HttpSession session, String option, String condition, String sorting);
 	List<FindItPic> getlist(Pagination page);
 //	FindItPicListResult listResult(int cp, int ps);
 	FindItPicListResult listResult(String fisub, int cp, int ps);
@@ -45,9 +47,14 @@ public interface FindItemService {
 	String areaS(long fino);
 	List<FindItPic> getFindRelated();
 	
-	///////////////////////////////////////////////////////////////////////////////////////ÄÚ¸àÆ®
+	List<FindItPic> getlistByCondition(Pagination page, String option, String condition, String sorting);
+	
+	int insertBoard(FindItem findItem);
+	int insertBoardPic(Map<String, Object> paramMap);
+	
+	///////////////////////////////////////////////////////////////////////////////////////ï¿½Ú¸ï¿½Æ®
 	List<FiComments> FindCommentList(int fino);
 
-
+	ResponseListVo getListService(HashMap<String, Object> query);
 	
 }

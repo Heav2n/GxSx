@@ -20,6 +20,52 @@
 		insert into FindItem values(FINDITEM_SEQ_PK.nextval, #{fiuid}, #{fisub}, #{ficon}, SYSDATE, #{fiano}, #{fiplace}, #{fistor}, #{ficname}, #{fifin})
 	</insert>
 	
+	<insert id="insertBoard" parameterType="FindItem">
+		<selectKey keyProperty="fino" resultType="int" order="BEFORE">
+			select FINDITEM_SEQ_PK.nextval from DUAL
+		</selectKey>
+		INSERT INTO FINDITEM 
+		(	
+			FINO,
+			FIUID,
+			FISUB,
+			FICON,
+			FIDATE,
+			FIANO,
+			FIPLACE,
+			FISTOR,
+			FICNAME,
+			FIFIN
+			
+		) VALUES (
+			#{fino},
+			#{fiuid},
+			#{fisub},
+			#{ficon},
+			SYSDATE,
+			#{fiano},
+			#{fiplace},
+			#{fistor},
+			#{ficname},
+			0
+		)
+		
+	</insert>
+	
+	<insert id="insertBoardPic" parameterType="java.util.Map">
+		INSERT INTO FINDPIC 
+		(	
+			FIPICNO,
+			FIPNO,
+			FIPICNAME
+			
+		) VALUES (
+			FINDPIC_SEQ_PK.nextval,
+			#{fipno},
+			#{fipicname}
+		)
+	</insert>
+	
 	<update id="update" parameterType="FindItem">
 		update FindItem set FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FIFIN=#{fifin} where FINO=#{fino}
 	</update>
@@ -55,10 +101,16 @@
 	</select>
 	
 	<select id="selectPerPage" resultType="FindItPic" parameterType="Pagination">
-		<![CDATA[
+<!-- 		<![CDATA[
 		select * from (select ROWNUM rnum, aa.* from (select * from finditem join findpic on finditem.fino = findpic.fipno join area on finditem.fiano = area.ano
 		 order by FINO desc) aa) where rnum between #{startRow} and #{endRow}
-		]]>
+		]]> -->
+		
+		select * from (select aa.*, ROWNUM rnum from (
+    	select finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin , 
+		(select fipicname from findpic where findpic.fipno = finditem.fino AND ROWNUM= 1) as fipicname
+  		from finditem left join findpic on finditem.fino = findpic.fipno GROUP BY finditem.fino , finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin)
+    	aa) where rnum between #{startRow} and #{endRow}
 	</select>
 	
 	<select id="selectPerPage2" resultType="FindItPic" parameterType="FindListVo">
