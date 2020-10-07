@@ -100,6 +100,7 @@
 		    border-top: 1px solid #c8c8d5;
 		    margin-top: 30px;
 		}
+		.news_board > ul:after { display:block; clear:both; content:""; }
 		div {
 		    display: block;
 		    overflow: auto;
@@ -116,7 +117,8 @@
 		    padding-left: 27px;
 		    position: relative;
  		    line-height: 69px;
-		    height: 68px;
+		    min-height: 68px;
+		    height:auto;
 		    border-bottom: 1px solid #e3e3e3;
 		    font-size: 16px;
 		    color: #333;

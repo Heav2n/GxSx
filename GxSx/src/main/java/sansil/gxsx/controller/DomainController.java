@@ -361,7 +361,7 @@ public class DomainController {
 		Users user = (Users)session.getAttribute("loginuser");
 		String userid = user.getUserid();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/noticewrite");
+		mv.setViewName("gxsx/fiwrite");
 		mv.addObject("userid", userid);
 		return mv;
 	}

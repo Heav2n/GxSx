@@ -392,33 +392,35 @@
                        <div class="news_board fs-12" style="padding-top:20px;overflow: hidden">
                        			<form class='form2 fs-12' id='form2' autocomplete='off' action='noticeWrite.do'>
                        			<input type='hidden' name='nouid' value='${userid}'>
-									<div class='form-group row'>
+									<div class='form-group row' style="overflow:visible;">
 											<label for='inputArea'
 												class='col-lg-2 col-form-label form-control-label'>Category</label>
-											<div class='col-lg-3' style="position:relative;height:10px;width:100px;">
-											      <select class="ui fluid dropdown" name='nocate' style="position:absolute;" onmousedown="if(this.options.length>8){this.size=8;}" onchange='this.size=0;' onblur="this.size=0;">
-												    <option value="notice_icon01">공지&emsp;&emsp;&emsp;</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-												    <option value="notice_icon02">점검</option>
-												    <option value="notice_icon03">GM</option>
-											      </select>
+											<div class='col-lg-3' style="overflow:visible;">
+												<div class="select-box">
+												      <select class="ui fluid dropdown" name='nocate' onmousedown="if(this.options.length>8){this.size=8;}" onchange='this.size=0;' onblur="this.size=0;">
+													    <option value="notice_icon01">공지</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon02">점검</option>
+													    <option value="notice_icon03">GM</option>
+												      </select>
+											      </div>
 											</div>
 											<label for='inputPlace'
 												class='col-lg-1 col-form-label form-control-label' style="text-align:right">Subject</label>
