@@ -72,6 +72,35 @@ public class DomainServiceImpl implements DomainService {
 	
 	@Override
 	public Notice noticeConS(int nono) {
-		return mapper.noticecon();
+		return mapper.noticecon(nono);
+	}
+	
+	@Override
+	public Notice noticeUp(int nono) {
+		return mapper.noticeup(nono);
+	}
+	@Override
+	public Notice noticeDown(int nono) {
+		return mapper.noticedown(nono);
+	}
+	
+	@Override
+	public String userPowerS(String userid) {
+		return mapper.userpower(userid);
+	}
+	
+	@Override
+	public void noticeWriteS(Notice notice) {
+		mapper.noticewrite(notice);
+	}
+	
+	@Override
+	public void noticeEditS(Notice notice) {
+		mapper.noticeedit(notice);
+	}
+	
+	@Override
+	public void noticeDelS(int nono) {
+		mapper.noticedel(nono);
 	}
 }

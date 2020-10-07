@@ -46,11 +46,39 @@
 	</select>
 	
 	<select id="noticelist" resultType="Notice">
-		select * from NOTICE order by nodate desc
+		select * from NOTICE order by nono desc
 	</select>
 	
-	<select id="noticecon" resultType="Notice">
+	<select id="noticecon" resultType="Notice" parameterType="int">
 		select * from NOTICE where nono = #{nono}
 	</select>
 	
+	<select id="noticeup" resultType="Notice" parameterType="int">
+		<![CDATA[
+			select * from NOTICE where nono=(select min(nono) from NOTICE where nono > #{nono})
+		]]>
+	</select>
+	
+	<select id="noticedown" resultType="Notice" parameterType="int">
+		<![CDATA[
+			select * from NOTICE where nono=(select max(nono) from NOTICE where nono < #{nono})
+		]]>
+	</select>
+	
+	<select id="userpower" resultType="String" parameterType="String">
+		select userpower from USERSPOWER where userid = #{userid}
+	</select>
+	
+	<insert id="noticewrite" parameterType="Notice">
+		insert into NOTICE values(NOTICE_SEQ_PK.nextval, #{nouid}, #{nosub}, #{nocon}, SYSDATE, #{nocate})
+	</insert>
+	
+	<update id="noticeedit" parameterType="Notice">
+		update NOTICE set nosub = #{nosub}, nocon = #{nocon}, nocate = #{nocate}, nodate = SYSDATE where nono = #{nono}
+	</update>
+	
+	<delete id="noticedel" parameterType="int">
+		delete from NOTICE where nono = #{nono}
+	</delete>
+
 </mapper>

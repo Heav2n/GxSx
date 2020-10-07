@@ -247,7 +247,7 @@
 		}
 		.btn02_b {
 		    min-width: 53px;
-		    font-size: 16px;
+		    font-size: 14px;
 		    color: #fff !important;
 		    text-align: center;
 		    background-color: #455d9d;
@@ -380,75 +380,66 @@
 			Notice
 		</h2>
 	</section>
-
-	<!-- Content page -->
+	
+		<!-- Content page -->
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container" style="padding-left:110px">
 			<!-- d -->
 			<div class="contents_wrap" >
-                <h1 class="con_title">공지사항
-                    <div style="float:right;">
-                        <span class="word_input" style="margin-top:0;">
-                            <input type="text" name="search_text" value="">
-                            <span class="btn2"><a href="#a" onmouseover="ch_png_on(this)" onmouseout="ch_png_off(this)"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/board_top_search_btn_off.png" alt=""></a></span>
-                        </span>
-                        <span class="sort_wrap fix_sort" style="margin-top:0;">
-                            <a href="#a" class="cus_sel_a">제목</a>
-                        </span>
-                    </div>
-                </h1>
+                <h1 class="con_title">공지사항</h1>
                     	<div></div><div></div>
 
-                       <div class="news_board">
-                           <!-- notice ul str -->
-                           <ul>
-                               <!--게시물 Loop : Str-->
-                               <c:forEach items="${noticeList}" var="notice" varStatus="status">
-                                   <li>
-										<p>
-											<a href="../gxsx/noticeCon.do?nono=${notice.nono}">
-                                             <em><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${notice.nocate}.png"></em>
-                                              <span>&emsp;${notice.nosub}</span>
-                                              <c:if test="${today==notice.nodate}">
-                                                <img class="new" alt="" src="https://ssl.nx.com/s2/game/maplestory/renewal/common/new.png">
-                                              </c:if>
-											</a>
-										</p>
-                                       <div class="heart_date">
-                                           <dl>
-                                               <dt><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/sub_date_new.png" alt="시계 아이콘"></dt>
-                                               <dd>${notice.nodate}</dd>
-                                           </dl>
-                                       </div>
-                                   </li>
-                                </c:forEach>
-                                <c:if test="${user=='관리자'}">
-                                	<span class="cm_write"><a class="btn02_b" href="../gxsx/noticeForm.do">글작성</a></span>
-                                </c:if>
-                           </ul>
-                           
-                           
+                       <div class="news_board fs-12" style="padding-top:20px;overflow: hidden">
+                       			<form class='form2 fs-12' id='form2' autocomplete='off' action='noticeWrite.do'>
+                       			<input type='hidden' name='nouid' value='${userid}'>
+									<div class='form-group row'>
+											<label for='inputArea'
+												class='col-lg-2 col-form-label form-control-label'>Category</label>
+											<div class='col-lg-3' style="position:relative;height:10px;width:100px;">
+											      <select class="ui fluid dropdown" name='nocate' style="position:absolute;" onmousedown="if(this.options.length>8){this.size=8;}" onchange='this.size=0;' onblur="this.size=0;">
+												    <option value="notice_icon01">공지&emsp;&emsp;&emsp;</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+												    <option value="notice_icon02">점검</option>
+												    <option value="notice_icon03">GM</option>
+											      </select>
+											</div>
+											<label for='inputPlace'
+												class='col-lg-1 col-form-label form-control-label' style="text-align:right">Subject</label>
+											<div class='col-lg-6'>
+												<input class='form-control fs-12' type='text' id='editPlace'
+													name='nosub' required='' style="height: 34px;">
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<label for='inputPnum'
+												class='col-lg-2 col-form-label form-control-label'>Content</label>
+											<div class='col-lg-10'>
+												<textarea rows="2" class='form-control csisize fs-12' type='text' id='editCon'
+													name='nocon' required='' style="height: 330px;"></textarea>
+											</div>
+										</div>
+                                
+                                <button class="cm_write btn02_b" type='submit'>작성완료</button>
                            <!-- notice ul end -->
-
-							<div class="page_numb">
-						        <span class="cm_all_prev">
-						                <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_prev.png" alt="이전 10개"></a>
-						        </span>
-							    <span class="cm_prev">
-							            <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
-							    </span>
-					                <a class="active">1</a>
-					                <a href="/News/Notice/All?page=2">2</a>
-					                <a href="/News/Notice/All?page=3">3</a>
-					                <a href="/News/Notice/All?page=4">4</a>
-					                <a href="/News/Notice/All?page=5">5</a>
-							    <span class="cm_next">
-							            <a href="/News/Notice/All?page=2"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
-							    </span>
-						        <span class="cm_all_next">
-						                <a href="/News/Notice/All?page=11"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_next.png" alt="다음 10개"></a>
-						        </span>
-							</div>
+                           </form>
                             
 						</div>
 				</div>
@@ -550,7 +541,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- ////////////////////////////////////// footer 종료 ////////////////////////////////////// -->	
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -558,162 +548,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	
-	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
