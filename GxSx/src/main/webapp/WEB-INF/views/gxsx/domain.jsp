@@ -75,7 +75,7 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -97,7 +97,7 @@
 								           		<ul class="dropdown-menu notify-drop" style="right:350px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
 									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-									            		<a href="">${messageResult.qsub}</a>
+									            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
 									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
 									            		<p class="time">답변완료</p></div>
 									            	</li>
@@ -109,9 +109,9 @@
 							             <c:if test="${messageResult==[]}">
 								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
-									            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
-									            		알람 없음</div></center>
-									            	</li>
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
 									            	</div>
 									            </ul>
 							            </c:if>
