@@ -438,18 +438,19 @@
 			    	</a>&nbsp;
 			    </c:forEach>
 				 
-<%-- 				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i"> --%>
-<%-- 			        <a href="slist.do?cp=${i}&query=${query}"> --%>
-<%-- 			   			<c:choose> --%>
-<%-- 			   			    <c:when test="${i==findResult.page}"> --%>
-<%-- 			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p> --%>
-<%-- 			                </c:when> --%>
-<%-- 			                <c:otherwise> --%>
-<%-- 			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p> --%>
-<%-- 			                </c:otherwise> --%>
-<%-- 						</c:choose> --%>
+				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i">
+			        <a href="slist.do?cp=${i}&query=${query}">
+			   			<c:choose>
+			   			    <c:when test="${i==findResult.page}">
+			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
+			                </c:when>
+			                <c:otherwise>
+			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
+			                </c:otherwise>
+						</c:choose>
 <!-- 			    	</a>&nbsp; -->
-<%-- 			    </c:forEach> --%>
+			    </c:forEach>
+			    
 			    
 			    <c:if test="${findResult.totalCount>10}">
 				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"

@@ -39,15 +39,24 @@ public class FindItemController {
 	private MessageService messageService;
 	
 	@GetMapping("write2.do")
-	public String write() {
-		return "findItPic/write2";
+	public String write(HttpServletRequest request, HttpSession session) {
+		
+		if(session.getAttribute("loginuser")==null) { //ë¡œê·¸ì¸ ì•ˆë˜ì—ˆì„ ë•Œ
+			return "redirect:../gxsx/login.do";
+		}
+		else {
+			return "gxsx/fiwrite";
+		}
 	}
+	
 	@PostMapping("write2.do")
 	public String write(FindItPic findItPic) {
+		
 		log.info("==========YJ write findpic : " + findItPic);
 		service.write(findItPic);
 		return "redirect:list.do";
 	}
+	
 	@GetMapping("update.do")
 	public ModelAndView update(FiComments ficomments) {
 		FindItPic findItPic = service.UpdatefS(ficomments);
@@ -71,7 +80,7 @@ public class FindItemController {
 		return "redirect:list.do";
 	}
 	
-	/////////////////////////////////////////////////////////index -> ½Àµæ¹°¿¡¼­ °Ë»ö
+	/////////////////////////////////////////////////////////index -> ï¿½ï¿½ï¿½æ¹°ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	
 	//ajax
 	@ResponseBody
@@ -92,7 +101,7 @@ public class FindItemController {
 		mv.addObject("findResult", list);
 		mv.addObject("listpage", listpage);
 		
-		if(session.getAttribute("loginuser")!=null) { //¸Þ¼¼ÁöÈ®ÀÎ¿ë
+		if(session.getAttribute("loginuser")!=null) { //ï¿½Þ¼ï¿½ï¿½ï¿½È®ï¿½Î¿ï¿½
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
@@ -166,7 +175,7 @@ public class FindItemController {
 		mv.addObject("findResult", listResult);
 		mv.addObject("query", query);
 		
-		if(session.getAttribute("loginuser")!=null) { //¸Þ¼¼ÁöÈ®ÀÎ¿ë
+		if(session.getAttribute("loginuser")!=null) { //ï¿½Þ¼ï¿½ï¿½ï¿½È®ï¿½Î¿ï¿½
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
@@ -185,7 +194,7 @@ public class FindItemController {
 	
 	@GetMapping("content.do")
 	public ModelAndView content(long fino) {
-		FindItPic findItPic = service.getFindItPic(fino);
+		List<FindItPic> findItPic = service.getFindItPic(fino);
 		String area = service.areaS(fino);
 		int finoInt = (int)fino;
 		List<FiComments> ficomment = service.FindCommentList(finoInt);

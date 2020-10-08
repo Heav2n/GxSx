@@ -194,8 +194,8 @@
 						Shoes
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
+					<a href="../finditem/write2.do" button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".write">
+						Write
 					</button>
 				</div>
 
@@ -203,6 +203,7 @@
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						<a href="../finditem/fislist.do"></a>
 						 Search
 					</div>
 				</div>
