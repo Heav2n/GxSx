@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 		
 		table.table-shopping-cart td:first-child, table.table-shopping-cart th:first-child {
 			border-left:0;
@@ -431,9 +420,6 @@
                            <!-- notice ul end -->
 
 							<div class="page_numb">
-						        <span class="cm_all_prev">
-						                <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_prev.png" alt="이전 10개"></a>
-						        </span>
 							    <span class="cm_prev">
 							            <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
 							    </span>
@@ -445,9 +431,6 @@
 							    <span class="cm_next">
 							            <a href="/News/Notice/All?page=2"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
 							    </span>
-						        <span class="cm_all_next">
-						                <a href="/News/Notice/All?page=11"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_all_next.png" alt="다음 10개"></a>
-						        </span>
 							</div>
                             
 						</div>
