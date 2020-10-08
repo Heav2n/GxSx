@@ -3686,6 +3686,11 @@ iframe {border: none;}
 /*//////////////////////////////////////////////////////////////////
 [ Other ]*/
 
+/* selectbox */
+.select-box { position:relative;min-height:34px;width:100%; overflow:visible; }
+.select-box > select { z-index:1;position:absolute; width:100%; min-height:34px; width:100%; border:1px solid #cacaca; border-radius:4px;}
+.select-box > select option { height:32px; padding:5px 10px; }
+
 .parallax100 {
   background-attachment: fixed;
   background-position: center 0;

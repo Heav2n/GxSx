@@ -46,6 +46,7 @@
 		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
+		
 		#paging p{
 			cursor:pointer;
 		}
@@ -59,11 +60,37 @@
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript">	
-
+// 		$(function() {
+// 			$("#클릭할꺼").on("click", function(){
+// 				$.ajax({
+// 				   url: "../Users/경로.json", 
+// 				   type: "POST",
+// 				   dataType: "json",
+// 				   data: { 변수이름: $("#변수받을거").val()},				
+// 				   success: function(responseData){
+// 					 if(!responseData){
+// 						 alert("데이터없음");
+// 						 return false;
+// 					 }
+// 					 var html= "";
+// 					 if(responseData.length != 0){
+//  						 for(var i=0; i<responseData.length; i++){
+// 							html += "";
+// 						 }
+//  					 }else{
+//  						 html += "";
+//  					 }
+//   					 html += "";					
+  						
+//   					 $("#상기내용이 추가될div").html(html);
+// 				   }
+// 			   });
+// 		   });
+// 		})//start-end
 		$(function() {
 			$("#MyQandA").on("click", function(){
 				$.ajax({
-					url: "../Question/otherPageQu.json",  
+				   url: "../Question/otherPageQu.json", 
 				   type: "POST",
 				   dataType: "json",
 				   data: { userid: $("#userid").val()},				
@@ -110,9 +137,16 @@
 			 html += "</table></div>";
 			document.getElementById("contentchange").innerHTML = html;
 		}
-
+	
+	function 함수이름() {
+		//alert("성공2");
+		var str1 = "";
+				
+		document.getElementById("상기내용이 추가될div").innerHTML = str1;
+			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
+			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
+	}
 </script>
-
 
 </head>
 
@@ -136,7 +170,7 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu">
+							<li>
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
@@ -153,7 +187,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/contact.do">Contact</a>
+								<a href="../gxsx/contact.do" class="active-menu">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -171,16 +205,38 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
 							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
+							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
+							           		
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
+							            	<li>
+							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
+								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
+								            		<p>Lorem ipsum sit dolor amet consilium.</p>
+								            		<p class="time">1 Saat önce</p>
+							            		</div>
+							            	</li>
 							             </div>
 						          	</ul>
 						        </li>
@@ -191,9 +247,12 @@
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../gxsx/mypage.do">Myboard</a>
+					            		</div></li>
+					            	<li><div>&nbsp;&nbsp;
+						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
@@ -248,9 +307,18 @@
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18" id="QandA">
-									<a href="list.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+								<c:choose>
+									<c:when test="${ !empty admin }">
+									<a href="#" onclick="allQuestionPage(1)" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Q&A
 									</a>
+									</c:when>
+									<c:otherwise>
+									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										Q&A
+									</a>
+									</c:otherwise>
+								</c:choose>
 								</li>
 								
 								<ul id="question-paging" class="pagination" style="display:inline-flex">
@@ -369,50 +437,50 @@
 				</section>	
 				
 				
-				<!-- Map -->
-				<!-- 지도 -->
-				<div class="size-212 p-t-2">
-				<span class="mtext-110 cl2">
-						지도
-				</span>
-		            <div id="map" style="width:826px;height:390px;"></div>
-		            <script type="text/javascript" 
-		               src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b57fe4487ecb7780c41fada1cfb2a2b"></script>
-		            <script>
-		               var container = document.getElementById('map');
-		               var options = {
-		                  center: new kakao.maps.LatLng(37.5524, 126.9377),
-		                  level: 2
-		               };
-		               var map = new kakao.maps.Map(container, options);
-		               
-		               var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
-		                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-		                imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		                  
-		               // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-		               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-		                   markerPosition = new kakao.maps.LatLng(37.5524, 126.9377); // 마커가 표시될 위치입니다
-		   
-		               // 마커를 생성합니다
-		               var marker = new kakao.maps.Marker({
-		                   position: markerPosition, 
-		                   image: markerImage // 마커이미지 설정 
-		               });
-		   
-		               // 마커가 지도 위에 표시되도록 설정합니다
-		               marker.setMap(map); 
-		               
-		               // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-		               var mapTypeControl = new kakao.maps.MapTypeControl();
-		               // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-		               // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-		               map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-		               // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-		               var zoomControl = new kakao.maps.ZoomControl();
-		               map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		               
-		            </script>
+					<!-- Map -->
+					<!-- 지도 -->
+					<div class="size-212 p-t-2">
+					<span class="mtext-110 cl2">
+							지도
+					</span>
+            <div id="map" style="width:826px;height:390px;"></div>
+            <script type="text/javascript" 
+               src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b57fe4487ecb7780c41fada1cfb2a2b"></script>
+            <script>
+               var container = document.getElementById('map');
+               var options = {
+                  center: new kakao.maps.LatLng(37.5524, 126.9377),
+                  level: 2
+               };
+               var map = new kakao.maps.Map(container, options);
+               
+               var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+                imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+                imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                  
+               // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+                   markerPosition = new kakao.maps.LatLng(37.5524, 126.9377); // 마커가 표시될 위치입니다
+   
+               // 마커를 생성합니다
+               var marker = new kakao.maps.Marker({
+                   position: markerPosition, 
+                   image: markerImage // 마커이미지 설정 
+               });
+   
+               // 마커가 지도 위에 표시되도록 설정합니다
+               marker.setMap(map); 
+               
+               // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+               var mapTypeControl = new kakao.maps.MapTypeControl();
+               // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+               // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+               map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+               // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+               var zoomControl = new kakao.maps.ZoomControl();
+               map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+               
+            </script>
 
 				</div>
 				
@@ -732,7 +800,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})
@@ -745,33 +812,26 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		var Accordion = function(el, multiple) {
 			this.el = el || {};
 			this.multiple = multiple || false;
-
 			// Variables privadas
 			var links = this.el.find('.link');
 			// Evento
 			links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
 		}
-
 		Accordion.prototype.dropdown = function(e) {
 			var $el = e.data.el;
 				$this = $(this),
 				$next = $this.next();
-
 			$next.slideToggle();
 			$this.parent().toggleClass('open');
-
 			if (!e.data.multiple) {
 				$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
 			};
 		}	
-
 		var accordion = new Accordion($('#accordion'), false);
 	});
 	</script>
-	
 <!-- ======question========================================================================================== -->
 	<!-- 자바스크립트  -->
 	<script src="../js/tempjs/question.js"></script>
-	
 </body>
 </html>

@@ -86,8 +86,14 @@
 							</li>
 
 							<li>
+
 								<a href="../gsxs/contact.do">Contact</a>
+
+								<a href="../contact.do">Contact</a>
+
 							</li>
+							
+							
 						</ul>
 					</div>	
 

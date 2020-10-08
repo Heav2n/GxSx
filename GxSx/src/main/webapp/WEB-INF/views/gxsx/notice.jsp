@@ -238,6 +238,25 @@
 		a{
 			color: #868e96;
 		}
+		.cm_write {
+		    float: right;
+		    text-align: right;
+		    width: auto;
+		    margin-top: 15px;
+		    margin-right: 15px;
+		}
+		.btn02_b {
+		    min-width: 53px;
+		    font-size: 16px;
+		    color: #fff !important;
+		    text-align: center;
+		    background-color: #455d9d;
+		    border-radius: 2px;
+		    padding: 10px 14px 10px 14px;
+		    border: 1px solid #455d9d;
+		    display: inline-block;
+		    line-height: 1;
+		}
 	</style>
 	
 	<script type="text/javascript" language="javascript" 
@@ -389,8 +408,6 @@
 										<p>
 											<a href="../gxsx/noticeCon.do?nono=${notice.nono}">
                                              <em><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${notice.nocate}.png"></em>
-											<!-- <img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/${nocate}.png"> gm-->
-											<!-- <img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/notice_icon03.png"> 점검-->
                                               <span>&emsp;${notice.nosub}</span>
                                               <c:if test="${today==notice.nodate}">
                                                 <img class="new" alt="" src="https://ssl.nx.com/s2/game/maplestory/renewal/common/new.png">
@@ -405,8 +422,12 @@
                                        </div>
                                    </li>
                                 </c:forEach>
-                                   
+                                <c:if test="${user=='관리자'}">
+                                	<span class="cm_write"><a class="btn02_b" href="../gxsx/noticeForm.do">글작성</a></span>
+                                </c:if>
                            </ul>
+                           
+                           
                            <!-- notice ul end -->
 
 							<div class="page_numb">
@@ -691,47 +712,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 	
-	<script>
-		function CheckEditProfile(editEmail,editPnum,editPwd,oldPwd,editPwdVerify){ 
-			var email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-			var phone = /^01(?:0|1|7|9)-(?:\d{3}|\d{4})-\d{4}$/;
-			var editEmail = $("#editEmail").val();
-			var editPnum = $("#editPnum").val();
-			var editPwd = $("#editPwd").val();
-			var editPwdVerify = $("#editPwdVerify").val();
-			var oldPwd = $("#oldPwd").val();
-			
-			if(editEmail!=null && editEmail.match(email) && editPnum.match(phone)  
-				&& editPnum!=null && editPwd!=null && editPwdVerify!=null 
-				&& editPwd==oldPwd && editPwd==editPwdVerify){
-				alert('Correct')
-				document.getElementById("form2").submit();
-			}
-			else{
-				if(editEmail==null){
-					alert('이메일을 입력하세요')
-				}
-				else if(editPnum==null){
-					alert('휴대폰번호를 입력하세요')
-				}
-				else if(editPwd==null || editPwdVerify==null){
-					alert('사용중인 비번을 입력하세요')
-				}
-				else if(editPwd!=editPwdVerify || editPwd!=oldPwd){
-					alert('현재 비번과 비번확인 불일치')
-				}
-				else{
-					if(editEmail.match(email)){					
-						alert('변경할 휴대폰번호가 규칙에 맞지않음')
-					}
-					else{					
-						alert('변경할 이메일이 규칙에 맞지않음')
-					}
-				}
-				return false;
-			}
-		}
-	</script>
+	
 	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>

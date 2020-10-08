@@ -1,5 +1,6 @@
 package sansil.gxsx.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,44 +29,36 @@ public class LostCommentController {
 	@Resource(name="LostCommentService")
 	private LostCommentService service;
 	
+	
+	@RequestMapping("comment.do")
+	public ModelAndView comment(int lono) {
+		log.info("#> TestController comment() : call"); 
+		List<LoComments> list = service.LostCommentList(lono);
+		return new ModelAndView("gxsx/lost_comment_list", "comment", list);
+	}
+	
+	
 	@PostMapping("insert")//댓글작성
 	@ResponseBody
-	private ModelAndView fCommentserviceInsert(HttpSession session, @RequestParam int lono, @RequestParam String content) {
-		log.info("#> lCommentserviceInsert() 접근"); 
-		
-		Users user = (Users)session.getAttribute("loginUser");
-		LoComments locomments = new LoComments();
-		locomments.setLono(lono);
-		locomments.setContents(content);
+	private boolean fCommentserviceInsert(HttpSession session, @RequestBody LoComments locomments) {
+		Users user = (Users)session.getAttribute("loginuser");
 		locomments.setUserid(user.getUserid());
-		//og.info("###################### fino : " + FiComments.getComno() +" , contents : " + fiComments.getContents());
-		boolean commentList = service.LostCommentInsert(locomments);
-		ModelAndView response = new ModelAndView("../added/lostitem2/comment_table");
-		response.addObject("locomment", commentList);
-		return response;
+		log.info("#> comment : "+locomments);
+		return service.LostCommentInsert(locomments);
 	}
 	
-	@PostMapping("update")//댓글수정
-	private String fCommentserviceUpdate(LoComments locomments) {
-		
-		 service.LostCommentUpdate(locomments);
-		
-		 return "redirect:../lostitem2/content.do?lono="+locomments.getLono();
-	
+	@RequestMapping("update")//댓글수정
+	@ResponseBody
+	private boolean fCommentserviceUpdate(HttpSession session, LoComments locomments) {
+		Users user = (Users)session.getAttribute("loginuser");
+		locomments.setUserid(user.getUserid());
+		return service.LostCommentUpdate(locomments);
 	}
+	
 	@RequestMapping("delete")//댓글삭제
 	@ResponseBody
-	private boolean fCommentserviceDelete(LoComments locomments) {
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 안들어와??" +locomments);
-		
-		int lonoInt = (int)locomments.getLono();
-		List<LoComments> f = service.LostCommentList(lonoInt);
-		
-		service.LostCommentDelete(locomments);
-		
-		locomments.getComno();
-		locomments.getContents();
-
-		return true;
+	private boolean fCommentserviceDelete(HttpSession session, @RequestBody HashMap<String, Object> request) {
+		log.info("#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+		return service.LostCommentDelete(request);
 	}
 }

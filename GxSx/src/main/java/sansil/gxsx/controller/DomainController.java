@@ -29,10 +29,15 @@ import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Notice;
 import sansil.gxsx.domain.Question;
+import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.DomainService;
+
 import sansil.gxsx.service.MailService;
 import sansil.gxsx.service.MessageService;
+
+import sansil.gxsx.setting.AdminInfo;
+
 
 @Log4j
 @RequestMapping("/gxsx/")
@@ -109,28 +114,17 @@ public class DomainController {
 			Users usercheck = service.kakaologinS(session.getAttribute("kid").toString()); //DB에 카카오아이디가 등록된 회원인지 확인
 			if(usercheck==null) { //kakao로 회원계정이 등록되어있지않으면 -> 등록하게해야함
 				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 되 지 않 은 회 원 %%%%%%%%%%%%%%%%%%%%");
-//				session.setAttribute("usercheck", usercheck);
 				if(session.getAttribute("kemail").toString().length()!=0) { //이메일도 선택해서 제공하는 사람
-					System.out.println("11111");
 					mv.addObject("usercheck", "email");
-//					session.setAttribute("usercheck", "kuser_with_email");
-//					Users kakaouser = new Users(session.getAttribute("kid").toString(), "temp", 
-//							session.getAttribute("kname").toString(), session.getAttribute("kemail").toString(), "temp", null);
 				}else {
-					System.out.println("22222");
-//					mv.addObject("usercheck", "noemail");
 					session.setAttribute("usercheck", "no_email");
 					Users kakaouser = new Users(session.getAttribute("kid").toString(), "temp", 
 							session.getAttribute("kname").toString(), "temp", "temp", null);
 					session.setAttribute("kakaouser", kakaouser);
-//					mv.addObject("kakaouser", kakaouser);
 					System.out.println("왜왜왜왜왜왜오왜왜왱: " + kakaouser);
 				}
 			}else { //kakao로 로그인했고 & 회원계정이 등록 되어있음 -> 그 계정으로 로그인 한번더(session에 넘겨줌)
 				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 된 회 원 %%%%%%%%%%%%%%%%%%%%");
-//				mv.addObject("userid", usercheck.getUserid());
-//				mv.addObject("upwd", usercheck.getUpwd());
-				
 				HashMap<String, String> loginmap = new HashMap<String, String>(); 
 				loginmap.put("userid", usercheck.getUserid().toString());
 				loginmap.put("upwd", usercheck.getUpwd().toString());
@@ -151,12 +145,11 @@ public class DomainController {
 			return "redirect:domain.do"; //로그인 완료되었으니 domain.do 돌아감 (!@#추후에 이전페이지로 수정해야함)
 	}
 	
-	
 	@RequestMapping("login.do")
-	public static ModelAndView login(HttpSession session) { 
+	public static ModelAndView login(HttpSession session) {
 		String kakaoUrl = KakaoController.getAuthorizationUrl(session);
-		ModelAndView mv = new ModelAndView();		
-		mv.setViewName("gxsx/login");		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/login");
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
@@ -170,15 +163,17 @@ public class DomainController {
 		loginmap.put("userid", userid);
 		loginmap.put("upwd", upwd);
 		Users users = service.loginS(loginmap);
+		
+		String userpower = service.userPowerS(userid); //권한 뿌리기(회원 or 관리자)
 
 		if(users == null || users.getUoutdate()!=null) {
 			System.out.println("로그인 실패 :탈퇴날짜!!!! : null");
 			session.invalidate();
-//			session.setAttribute("loginuser", null);
 		}
 		else { //users 비어져있지 않고 탈퇴날짜없음 -> login
 			System.out.println("로그인 성공!!!! : login");
 			session.setAttribute("loginuser", users);
+			session.setAttribute("userpower", userpower);
 			System.out.println("비우고 로그인" + users);
 		}
 
@@ -186,10 +181,10 @@ public class DomainController {
 	}
 	
 	@RequestMapping("logout.do")
-	public String Logout(HttpSession session) {		
-		
+	public String Logout(HttpSession session) {	
 			System.out.println("일반유저 로그아웃");
-			session.setAttribute("loginuser", null); //일반 로그인시 로그아웃 하고 user비워줌
+			session.setAttribute("loginuser", null);//일반 로그인시 로그아웃 하고 user비워줌
+			session.setAttribute("admin", null);
 //			session.invalidate();
 			System.out.println("access_token:!!!!!!!!!!!!!!!!!!!!!!!!!!!!:"+(String)session.getAttribute("access_Token"));
         return "redirect:domain.do";
@@ -222,6 +217,7 @@ public class DomainController {
 		return "redirect:domain.do";
 	}
 	
+
 	@PostMapping("idCheck.do")
 	@ResponseBody
 	public boolean idconfirm(String userid) {
@@ -232,6 +228,20 @@ public class DomainController {
 		else {
 			return false;
 		}		
+	}
+	@RequestMapping("contact.do")
+	public ModelAndView contact(HttpSession session) {
+		Users user = (Users)session.getAttribute("loginuser");
+		if(user == null) return new ModelAndView("redirect:login.do");
+		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
+			session.setAttribute("admin", true);
+		}
+		return new ModelAndView("gxsx/contact");
+	}
+	
+	public boolean name(HttpSession session) {
+		return session.getAttribute("loginuser") == null;
+
 	}
 	
 	@RequestMapping(value="emailCheck.do", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -265,11 +275,7 @@ public class DomainController {
 			return false;
 		}
 	}
-	
-	public boolean name(HttpSession session) {
-		return session.getAttribute("loginuser") == null;
-	}
-	
+		
 	@RequestMapping("myboard.do")
 	public String myboard() {
 		return "temp/myboard";
@@ -301,24 +307,69 @@ public class DomainController {
 	@GetMapping("notice.do")
 	public ModelAndView notice(HttpServletRequest request, HttpSession session) {
 		List<Notice> notice = service.noticeListS();
-		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String datestr = sdf.format(cal.getTime());
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/notice");
 		mv.addObject("noticeList", notice);
-		mv.addObject("today", datestr);
+		if(session.getAttribute("userpower")!=null) {
+			String userpower = (String)session.getAttribute("userpower");
+			mv.addObject("user", userpower);
+		}
 		return mv;
 	}
 
 	@GetMapping("noticeCon.do")
 	public ModelAndView noticeCon(HttpServletRequest request, HttpSession session, String nono) {
-//		Notice notice = service.noticeConS(Integer.parseInt(nono));
+		Notice notice = service.noticeConS(Integer.parseInt(nono));
+		Notice noticeup = service.noticeUp(Integer.parseInt(nono));
+		Notice noticedown = service.noticeDown(Integer.parseInt(nono));
 		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("gxsx/noticeContent");
-		mv.setViewName("gxsx/temp");
-//		mv.addObject("noticeList", notice);
+		mv.setViewName("gxsx/noticecontent");
+		mv.addObject("noticeList", notice);
+		mv.addObject("noticeup", noticeup);
+		mv.addObject("noticedown", noticedown);
+		if(session.getAttribute("userpower").toString()!=null) {
+			String userpower = (String)session.getAttribute("userpower");
+			mv.addObject("user", userpower);
+		}
 		return mv;
+	}
+	
+	@ResponseBody
+	@GetMapping("noticeEditForm")
+	private ModelAndView noticeEditForm(int nono) {
+		log.info("#########nono : "+nono);
+		System.out.println(nono);
+		Notice result = service.noticeConS(nono);
+		return new ModelAndView("gxsx/noticeedit", "notice", result);
+	}
+	
+	@RequestMapping("noticeEdit")
+	private String noticeEdit(HttpServletRequest request, HttpSession session, Notice notice) {
+		service.noticeEditS(notice);
+		return "redirect:notice.do";
+	}
+	
+	@RequestMapping("noticeDel.do")
+	private String noticeDel(HttpServletRequest request, HttpSession session, int nono) {
+		System.out.println("#########ddsadlksajdlksajdl##########");
+		service.noticeDelS(nono);
+		return "redirect:notice.do";
+	}
+	
+	@RequestMapping("noticeForm.do")
+	public ModelAndView noticeForm(HttpServletRequest request, HttpSession session) {
+		Users user = (Users)session.getAttribute("loginuser");
+		String userid = user.getUserid();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/fiwrite");
+		mv.addObject("userid", userid);
+		return mv;
+	}
+	
+	@RequestMapping("noticeWrite.do")
+	public String noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {
+		Users user = (Users)session.getAttribute("loginuser");
+		service.noticeWriteS(notice);
+		return "redirect:notice.do";
 	}
 }
