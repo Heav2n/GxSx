@@ -86,7 +86,7 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	

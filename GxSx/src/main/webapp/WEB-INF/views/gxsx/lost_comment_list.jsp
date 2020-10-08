@@ -18,8 +18,12 @@
 					</span> 
 	
  					<span class="fs-18 cl11"> 
+ 					<c:if test="${sessionScope.loginuser.userid eq comment.userid }">
+					<c:if test="${!empty sessionScope.loginuser}">
  						<button id="btn${comment.comno}"  type="button" onclick="update_form_id(this.value);" value="${comment.comno}" class="stext-109 cl8 hov-cl1 trans-04">수정</button>	
  						<button id="btndel${comment.comno}" type="button" onclick="commentDelete('${comment.comno}', '${ comment.lono }');" value="${comment.comno}" class="stext-109 cl8 hov-cl1 trans-04" >삭제</button>							
+ 					</c:if>
+					</c:if>
  						<!-- <a href="#" class="stext-109 cl8 hov-cl1 trans-04"><i class="zmdi zmdi-mail-reply"></i></a>  -->
 					</span> 
 				</div>
