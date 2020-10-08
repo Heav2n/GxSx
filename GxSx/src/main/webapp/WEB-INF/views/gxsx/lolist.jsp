@@ -86,13 +86,8 @@
 							</li>
 
 							<li>
-								<a href="../contact.do">Contact</a>
+								<a href="contact.html">Contact</a>
 							</li>
-							
-							<li >
-								<a href="../test/lost.do">Test</a>
-							</li>
-							
 						</ul>
 					</div>	
 
@@ -201,7 +196,7 @@
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
+						All LostItem
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
@@ -224,7 +219,12 @@
 						Watches
 					</button>
 				</div>
-
+				
+				<div>
+				<a href='write.do'>write</a><br/>
+						
+				</div>
+				
 				<div class="flex-w flex-c-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
@@ -265,7 +265,7 @@
 
 						<div class="filter-col2 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Price
+								기간
 							</div>
 
 							<ul>
@@ -275,23 +275,23 @@
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$0.00 - $50.00</a>
+									<a href="#" class="filter-link stext-106 trans-04">1주일</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$50.00 - $100.00</a>
+									<a href="#" class="filter-link stext-106 trans-04">2주일</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$100.00 - $150.00</a>
+									<a href="#" class="filter-link stext-106 trans-04">1개월</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
+									<a href="#" class="filter-link stext-106 trans-04">3개월</a>
 								</li>
 
 								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
+									<a href="#" class="filter-link stext-106 trans-04">3개월+</a>
 								</li>
 							</ul>
 						</div>
@@ -398,7 +398,7 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0">
-							<a href="../lostitem2/locontent.do?lono=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
+							<a href="../lostitem/locontent.do?lono=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -408,7 +408,7 @@
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<span class="m-r-3">
-									<a href="../finditem/content.do"><span class="cl5">${lostitem.losub}</span></a>
+									<a href="../lostitem/locontent.do"><span class="cl5">${lostitem.losub}</span></a>
 								</span>
 								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
 
@@ -424,19 +424,25 @@
 									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
 								</c:if>
-								
 								<c:if test="${lostitem.logift==0}">
 									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
 									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
 								</c:if>
 								</a>
-							
 							</div>
+							
 						</div>						
 					</div>
 				</div>
 			  </c:forEach>
 			  
+			</div>
+
+			<div class="btn-nextprev">
+				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
+				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
+				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
+				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
 			</div>
 
 			<!-- Pagination -->
@@ -776,23 +782,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
+
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
+
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
+
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
+
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
+
 		/*---------------------------------------------*/
+
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -811,6 +824,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
+
 			$(window).on('resize', function(){
 				ps.update();
 			})

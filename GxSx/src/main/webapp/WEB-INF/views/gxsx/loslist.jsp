@@ -408,6 +408,13 @@
 			  
 			</div>
 
+			<div class="btn-nextprev">
+				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
+				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
+				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
+				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+			</div>
+
 			<!-- Pagination -->
 			<div class="flex-c-m flex-w w-full p-t-38">
 				<c:forEach begin="1" end="${findResult.totalPageCount}" var="i">

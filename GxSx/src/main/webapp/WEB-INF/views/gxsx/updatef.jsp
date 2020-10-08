@@ -46,7 +46,14 @@
 		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
 		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
 		}
+		.form-control{
+			height:30px;
+		}
+		.csisize{
+			height:70px;
+		}
 	</style>
+	
 </head>
 
 <body class="animsition">
@@ -62,14 +69,14 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="../gxsx/domain.do" class="logo">
+					<a href="domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
@@ -77,29 +84,22 @@
 								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
-							<li class="label1" data-label1="습득물" class="active-menu">
-								<a href="../finditem/list.do">Finditem</a>
+							<li class="label1" data-label1="습득물">
+								<a href="../finditem/list.do?cp=1">Finditem</a>
 							</li>
 
 							<li class="label1" data-label1="분실물">
-								<a href="../lostitem/list.do">Lostitem</a>
-							</li>
-							
-							<li >
-								<a href="../test/find.do">Test</a>
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 
 							<li>
-								<a href="../gsxs/contact.do">Contact</a>
+								<a href="../Question/list.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-<!-- 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> -->
-<!-- 							<i class="zmdi zmdi-favorite-outline"></i> -->
-<!-- 						</a> -->
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
@@ -133,7 +133,7 @@
 						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
@@ -159,302 +159,183 @@
 	</header>
 	<!-- ////////////////////////////////////// 맨 위 메뉴 종료 ////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-
+     
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- /////////////////////////////////////// 컨텐츠 시작  /////////////////////////////////////// -->
+	<!-- breadcrumb -->
+	<div class="container">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04">
+				Home
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
 
-	<!-- Product -->
-	<section class="bg0 p-t-23 p-b-130">
+			<a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
+				Finditem
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a>
+
+			<span class="stext-109 cl4">
+				write
+			</span>
+		</div>
+	</div>
+	
+	<!-- Content page -->
+	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
-			<div class="p-b-10">
-				<h3 class="ltext-103 cl5">
-					F i n d I t e m
-				</h3>
-			</div>
+				<div class="col-md-8 col-lg-9 p-b-80" id="contentchange">
 
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<a href="../finditem/write2.do" button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".write">
-						Write
-					</button>
-				</div>
-
-				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
-						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
-						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						<a href="../finditem/fislist.do"></a>
-						 Search
-					</div>
-				</div>
-
-				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
-					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
-						<div class="filter-col1 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Sort By
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Default</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Popularity</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Average rating</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Newness</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: Low to High</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: High to Low</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col2 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Price
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$0.00 - $50.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$50.00 - $100.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$100.00 - $150.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
-							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts</a>
-							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do">
-								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" placeholder="Search" autocomplete="off">
-							</form>
-						</div>
-						
-						<div class="w-full">
+						<div class='m-l-25 m-r--38 m-lr-0-xl fs-12' style='margin-left: 200px'>
 							</br>
+							</br>
+							<div class='table-shopping-cart fs-12'>
+								<div class='card-header'>
+									<h3 class='mb-0'>Finditem Write</h3>
+								</div>
+								<div class='card-body fs-12'>
+									<form class='form2 fs-12' method='post'  name='input' id='form2' role='form2' enctype='multipart/form-data'
+										autocomplete='off' action='update.do'>
+										
+										<input type="hidden" name="lono" value="${updatef[0].lono}">
+										
+										
+										<div class='form-group row'>
+											<label for='noinputId'
+												class='col-lg-2 col-form-label form-control-label'>ID</label>
+											<div class='col-lg-10'>
+												<input type='text' class='form-control fs-12' id='editId'
+													name='userid' value='${loginuser.userid}' readonly='readonly'>
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<label for='inputSub'
+												class='col-lg-2 col-form-label form-control-label'>SUB</label>
+											<div class='col-lg-10'>
+											<input class='form-control fs-12' type='text' id='editSub'
+													name='losub' value='${updatef[0].losub}' required=''>
+											</div>
+										</div>
+										
+										
+										<div class='form-group row'>
+											<label for='inputDate'
+												class='col-lg-2 col-form-label form-control-label'>Date</label>
+											<div class='col-lg-10'>
+												
+												<input class='form-control fs-12' type='date' id='editDate'
+													name='lodate' value='${user.uemail}' required=''>
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<label for='inputArea'
+												class='col-lg-2 col-form-label form-control-label'>Area</label>
+											<div class='col-lg-3'>
+											      <select class="ui fluid dropdown" name="loano" id="ano">
+											        	   <option value="02">서울</option>
+												           <option value="051">부산</option>
+												           <option value="053">대구</option>
+												           <option value="032">인천</option>
+												           <option value="062">광주</option>
+												           <option value="042">대전</option>
+												           <option value="052">울산</option>
+												           <option value="044">세종</option>
+												           <option value="031">경기</option>
+												           <option value="033">강원</option>
+												           <option value="043">충북</option>
+												           <option value="041">충남</option>
+												           <option value="063">전북</option>
+												           <option value="061">전남</option>
+												           <option value="054">경북</option>
+												           <option value="055">경남</option>
+												           <option value="064">제주</option>
+												           <option value="0">기타</option>
+											      </select>
+											</div>
+											<label for='inputPlace'
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Place</label>
+											<div class='col-lg-5'>
+												<input class='form-control fs-12' type='text' id='editPlace'
+													name='loplace' value='${updatef[0].loplace}' required=''>
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<label for='inputArea'
+												class='col-lg-2 col-form-label form-control-label'>Category</label>
+											<div class='col-lg-3'>
+											      <select class="ui fluid dropdown" name="locname">
+											        <option value="">물품종류</option>
+												       <option value="가방">가방</option>
+											           <option value="귀금속">귀금속</option>
+											           <option value="도서용품">도서용품</option>
+											           <option value="서류">서류</option>
+											           <option value="산업용품">산업용품</option>
+											           <option value="핸드폰">핸드폰</option>
+											           <option value="현금">현금</option>
+											           <option value="카드">카드</option>
+											           <option value="노트북">노트북</option>
+											           <option value="악기">악기</option>
+											           <option value="지갑">지갑</option>
+											           <option value="증명서">증명서</option>
+											           <option value="스포츠용품">스포츠용품</option>
+											           <option value="전자기기">전자기기</option>
+											           <option value="자동차">자동차</option>
+											           <option value="의류">의류</option>
+											           <option value="기타">기타</option>
+											      </select>
+											</div>
+											<label for='inputPlace'
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Gift</label>
+											<div class='col-lg-5'>
+												<input class='form-control fs-12' type='text' id='editPlace'
+													name='logift' value='${user.uemail}' required=''>
+											</div>
+										</div>
+										
+										<div class='form-group row'>
+											<label for='inputPnum'
+												class='col-lg-2 col-form-label form-control-label'>Content</label>
+											<div class='col-lg-10'>
+												<textarea rows="2" class='form-control csisize fs-12' type='text' id='editCon'
+													name='locon' value='${updatef[0].locon}' required=''></textarea>
+											</div>
+										</div>
+										
+<!-- 										<div id=fileup> -->
+<!-- 											<input type="file" name="files" multiple> -->
+<!-- 										</div> -->
+																			
+										</br>
+										<div class='flex-w flex-m m-r-20 m-tb-5'>
+											<div
+												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5'
+												style='opacity: 0; pointer-events: none'></div>
+											<button
+												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
+												id='submit2' name='submit2' type='submit'>
+												Save</button>
+											&emsp;
+											<div
+												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
+												id='submit3' name='submit3' onclick='EditCancel()'>
+												Cancel</div>
+										</div>
+									</form>
 						</div>
-											
-					</div>					
-				</div>
-			</div>
-
-			<div class="row isotope-grid">
-			
-			  <c:if test="${empty findResult}">
-				  <center>데이터가 하나도 없음</center>
-			  </c:if>
-				
-			  <c:forEach items="${findResult}" var="finditem">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<c:if test="${ empty loginuser && empty klogin}">
-		            			<a href="../gxsx/login.do"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-		            		</c:if>
-		            		<c:if test="${ (!empty loginuser && empty kakaologout_url) || (!empty klogin && !empty kakaologout_url)}">
-								<a href="../finditem/content.do?fino=${finditem.fino}"><img src="../images/Findimgs/${finditem.fipicname}" alt="IMG-PRODUCT"></a>
-							</c:if>
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<span class="m-r-3">
-									<a href="../finditem/content.do"><span class="cl5">${finditem.fisub}</span></a>
-								</span>
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
-
-								<span class="stext-105 cl3">
-									<i class="zmdi zmdi-calendar"></i>&nbsp;${finditem.fidate}
-								</span>
-								<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${finditem.fiplace}</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-								</a>
-							</div>
-							
-						</div>						
 					</div>
-				</div>
-			  </c:forEach>
-			  
-			</div>
-			
-			<div class="btn-nextprev">
-				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
-				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
-			</div>
 
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
-				<c:if test="${listpage.rangeCount>10}">
-					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
-				    	onclick="selectlostitemPage(${listpage.startPage-1})">
-				    		Previous</p>
-				 </c:if>
-				 
-				<c:forEach begin="1" end="10" var="i">
-			        <a href="list.do?cp=${i}">
-			   			<c:choose>
-			   			    <c:when test="${i==listpage.currentPage && i<=listpage.pageCount}">
-			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
-			                </c:when>
-			                <c:when test="${i!=listpage.currentPage && i<=listpage.pageCount}">
-			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
-			                </c:when>
-			                <c:otherwise>
-			                    <p></p>
-			                </c:otherwise>
-						</c:choose>
-			    	</a>&nbsp;
-			    </c:forEach>
-			    
-			    <c:if test="${listpage.pageCount>10}">
-				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-				    	onclick="selectlostitemPage(${listpage.endPage+1})">
-				      		Next</p>
-			    </c:if>
+
+				</div>
+				
 			</div>
-			
 		</div>
 	</section>
 	<!-- /////////////////////////////////////// 컨텐츠 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
-
+	
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- ////////////////////////////////////// footer 시작 ////////////////////////////////////// -->
 
@@ -822,6 +703,9 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/coza/main.js"></script>
+	
+	<!-- 자바스크립트  -->
+	<script src="../js/tempjs/FiComments.js"></script>
 
 </body>
 </html>

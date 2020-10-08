@@ -300,10 +300,10 @@
 						<!-- botton -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<a href="update.do"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+								<a href="updatef.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
 									Modify
 								</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="del.do"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+								<a href="del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 									Delete
 								</button></a>
 							</div>	
@@ -316,20 +316,64 @@
 			<div class="bor10 m-t-50 p-t-43 p-b-40">
 				<!-- Tab01 -->
 				<div class="tab01">
-<!-- 					Nav tabs -->
+					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a id="comment_toggle" class="nav-link" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
+							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (1)</a>
 						</li>
 					</ul>
 
-<!-- 					Tab panes -->
+					<!-- Tab panes -->
 					<div class="tab-content p-t-43">
-						-
-						<div class="tab-pane fade show" id="description" role="tabpanel">
+						<!-- - -->
+						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<div class="flex-w flex-t p-b-68" id="lost_comment_list">	
+								<div class="flex-w flex-t p-b-68">
+									<c:forEach var="ficomment" items="${locomment}" varStatus="status">
+										<c:if test="${locomment.depth==0}">
+				  							<div class="size-207" id="ficomment_${locomment.comno}">
+												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
+													<span class="mtext-107 cl2 p-r-20">
+														${locomment.userid} 
+														<span class="stext-102 cl6">&nbsp;
+															${locomment.codate} </span>
+													</span>
+		
+													<span class="fs-18 cl11">
+														<a href="#" class="stext-109 cl8 hov-cl1 trans-04">reply</a>
+													</span>
+												</div>
+		
+												<p class="stext-102 cl6">
+													${locomment.contents}
+												</p>
+												</br>
+											</div>
+			  							</c:if>
+			  							<c:if test="${locomment.depth!=0 && !empty locomment.pcom}">
+				  							<div class="size-207" id="ficomment_${locomment.comno}" style="margin-left:100px">
+												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
+													<span class="mtext-107 cl2 p-r-20">
+														${locomment.userid} 
+														<span class="stext-102 cl6">&nbsp;
+															${locomment.codate} </span>
+													</span>
+		
+													<span class="fs-18 cl11">
+<!-- 														<a href="#" class="stext-109 cl8 hov-cl1 trans-04">reply</a> -->
+														<a href="#" class="stext-109 cl8 hov-cl1 trans-04"><i class="zmdi zmdi-mail-reply"></i></a>
+													</span>
+												</div>
+		
+												<p class="stext-102 cl6">
+													${locomment.contents}
+												</p>
+												</br>
+											</div>
+			  							</c:if>
 										
+									</c:forEach>
+									
 								</div>
 								
 								<!-- Add review -->
@@ -338,13 +382,12 @@
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
 											<label class="stext-102 cl3" for="review">Write comment</label>
-											<label id="reply_to"></label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-											type="button" onclick="commentInsert(26);">
+											type="button" onclick="commentInsert('${locontent[0].lono}');">
 										Submit
 									</button>
 								</form>
@@ -379,12 +422,12 @@
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
-					<c:forEach var="locontent" items="${locontent}" varStatus="status">
+					<c:forEach var="related" items="${related}" varStatus="status">
 						<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<img src="../images/Lostimgs/${locontent.lopicname}" alt="IMG-PRODUCT">
+									<img src="../images/Lostimgs/${related.lopicname}" alt="IMG-PRODUCT">
 	
 									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 										Quick View
@@ -394,11 +437,11 @@
 								<div class="block2-txt flex-w flex-t p-t-14">
 									<div class="block2-txt-child1 flex-col-l ">
 										<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-											${locontent.lodate}
+											${related.lodate}
 										</a>
 	
 										<span class="stext-105 cl3">
-											${locontent.losub}
+											${related.losub}
 										</span>
 									</div>
 	
@@ -746,23 +789,30 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
+
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
+
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
+
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
+
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
+
 		/*---------------------------------------------*/
+
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -781,6 +831,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
+
 			$(window).on('resize', function(){
 				ps.update();
 			})
@@ -791,5 +842,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<!-- 자바스크립트  -->
 	<script src="../js/tempjs/LoComments.js"></script>
+
 </body>
 </html>
