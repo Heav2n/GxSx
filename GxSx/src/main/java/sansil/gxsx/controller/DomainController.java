@@ -153,31 +153,36 @@ public class DomainController {
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
-
+	
+	//ajax
+	@ResponseBody
 	@PostMapping("logincheck.do")
-	public String logincheck(HttpServletRequest request, HttpSession session) { 
-		String userid = request.getParameter("userid");
-		String upwd = request.getParameter("upwd");
+	public boolean logincheck(HttpServletRequest request, HttpSession session, String userid, String upwd) { 
+//		String userid = request.getParameter("userid");
+//		String upwd = request.getParameter("upwd");
+		String userids = (String)userid;
+		String upwds = (String)upwd;
 
 		HashMap<String, String> loginmap = new HashMap<String, String>(); 
-		loginmap.put("userid", userid);
-		loginmap.put("upwd", upwd);
+		loginmap.put("userid", userids);
+		loginmap.put("upwd", upwds);
 		Users users = service.loginS(loginmap);
 		
-		String userpower = service.userPowerS(userid); //권한 뿌리기(회원 or 관리자)
+		String userpower = service.userPowerS(userids); //권한 뿌리기(회원 or 관리자)
 
 		if(users == null || users.getUoutdate()!=null) {
 			System.out.println("로그인 실패 :탈퇴날짜!!!! : null");
 			session.invalidate();
+			return false;
 		}
 		else { //users 비어져있지 않고 탈퇴날짜없음 -> login
 			System.out.println("로그인 성공!!!! : login");
 			session.setAttribute("loginuser", users);
 			session.setAttribute("userpower", userpower);
 			System.out.println("비우고 로그인" + users);
+			return true;
 		}
 
-		return "redirect:domain.do";
 	}
 	
 	@RequestMapping("logout.do")
@@ -232,7 +237,15 @@ public class DomainController {
 	@RequestMapping("contact.do")
 	public ModelAndView contact(HttpSession session) {
 		Users user = (Users)session.getAttribute("loginuser");
-		if(user == null) return new ModelAndView("redirect:login.do");
+		if(user == null) {
+			if(session.getAttribute("kakaouser")!=null) {
+				return new ModelAndView("redirect:tempsignupform.do");
+			}
+			else {
+				return new ModelAndView("redirect:login.do");
+			}
+			
+		}
 		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
 			session.setAttribute("admin", true);
 		}
