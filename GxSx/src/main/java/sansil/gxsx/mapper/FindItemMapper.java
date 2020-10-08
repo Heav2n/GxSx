@@ -17,7 +17,7 @@ public interface FindItemMapper {
 	List<FindItem> selectFinditem();
 		
 	List<FindItPic> selectByWriter(FindItem findItPicVo);
-	List<FindItPic> selectBySeq(FindItPic findItPic);
+//	List<FindItPic> selectBySeq(FindItPic findItPic);
 	void insert(FindItPic findItPic);
 	boolean update(FindItPic findItPic);
 	FindItPic updatef(long fino);
@@ -33,7 +33,7 @@ public interface FindItemMapper {
 //	List<FindItPic> selectPerPage(FindItemVo findItPicVo);
 	List<FindItPic> selectPerPage2(FindItemVo findItPicVo);
 	
-	FindItPic selectBySeq(long fino);
+	List<FindItPic> selectBySeq(long fino);
 	String area(long fino);
 	List<FindItPic> getFindRelated();
 	

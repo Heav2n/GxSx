@@ -52,10 +52,10 @@ public class FindItemSerivceImpl implements FindItemService {
 		finditemMapper.delete(fino);
 	}
 
-	@Override
-	public FindItPic selectBySeqS(long fino) {
-		return finditemMapper.selectBySeq(fino);
-	}
+//	@Override
+//	public FindItPic selectBySeqS(long fino) {
+//		return finditemMapper.selectBySeq(fino);
+//	}
 
 	@Override
 	public FindItPic UpdatefS(long fino) {
@@ -151,7 +151,7 @@ public class FindItemSerivceImpl implements FindItemService {
 	}
 	
 	@Override
-	public FindItPic getFindItPic(long fino) {
+	public List<FindItPic> getFindItPic(long fino) {
 		return finditemMapper.selectBySeq(fino);
 	}
 	

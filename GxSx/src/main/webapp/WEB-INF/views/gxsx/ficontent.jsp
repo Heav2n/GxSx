@@ -212,38 +212,24 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+							
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="../images/finditem/${content.fipicname}">
+							<!-- side slide images bar forEach -->
+							<c:forEach items="${ content }" var="content">
+								<div class="item-slick3" data-thumb="../images/Findimgs/${content.fipicname}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
+										<img src="../images/Findimgs/${content.fipicname}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../images/${content.fipicname}">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../images/Findimgs/${content.fipicname}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
-
-								<div class="item-slick3" data-thumb="../images/finditem/${content.fipicname}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../images/${content.fipicname}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="item-slick3" data-thumb="../images/finditem/${content.fipicname}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../images/${content.fipicname}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
+							</c:forEach>
+							<!-- END FOREACH -->
 							</div>
+							
+							
 						</div>
 					</div>
 				</div>
@@ -251,7 +237,7 @@
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							${content.fisub}
+							${content[0].fisub}
 						</h4>
 						<ul class="p-lr-28 p-lr-15-sm">
 							<li class="flex-w flex-t p-b-7">
@@ -260,7 +246,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${content.fidate}
+									${content[0].fidate}
 								</span>
 							</li>
 
@@ -270,7 +256,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${area} / ${content.fiplace}
+									${area} / ${content[0].fiplace}
 								</span>
 							</li>
 
@@ -280,7 +266,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${content.fistor}
+									${content[0].fistor}
 								</span>
 							</li>
 
@@ -291,7 +277,7 @@
 
 								<span class="stext-102 cl6 size-206">
 								<div style="word-break:break-all">
-									${content.ficon} 
+									${content[0].ficon} 
 								</span></div>
 							</li>
 						</ul>
@@ -386,7 +372,7 @@
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-											type="button" onclick="commentInsert('${content.fino}');">
+											type="button" onclick="commentInsert('${content[0].fino}');">
 										Submit
 									</button>
 								</form>
@@ -601,9 +587,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/finditem/${content.fipicname}">
+									<!-- START FOREACH -->
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
@@ -611,9 +598,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/finditem/${content.fipicname}">
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
@@ -621,15 +608,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/finditem/${content.fipicname}">
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/finditem/${content.fipicname}" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
+									<!-- END FOREACH -->
 								</div>
 							</div>
 						</div>
@@ -736,6 +724,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</div>
+	<!-- END MODAL -->
 	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>

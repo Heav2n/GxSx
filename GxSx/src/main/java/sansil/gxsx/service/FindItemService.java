@@ -20,7 +20,7 @@ public interface FindItemService {
 
 	void insertS(FindItPic findItPic);
 	void deleteS(long fino);
-	FindItPic selectBySeqS(long fino);
+//	FindItPic selectBySeqS(long fino); // 추정불가 메소드 ㅠㅠ
 	FindItPic UpdatefS(FiComments ficomments);
 	boolean UpdateS(FindItPic findItPic);
 	
@@ -43,7 +43,7 @@ public interface FindItemService {
 //	FindItPicListResult listResult(int cp, int ps);
 	FindItPicListResult listResult(String fisub, int cp, int ps);
 	
-	FindItPic getFindItPic(long fino);
+	List<FindItPic> getFindItPic(long fino);
 	String areaS(long fino);
 	List<FindItPic> getFindRelated();
 	

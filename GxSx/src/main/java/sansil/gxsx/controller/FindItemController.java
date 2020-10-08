@@ -194,7 +194,7 @@ public class FindItemController {
 	
 	@GetMapping("content.do")
 	public ModelAndView content(long fino) {
-		FindItPic findItPic = service.getFindItPic(fino);
+		List<FindItPic> findItPic = service.getFindItPic(fino);
 		String area = service.areaS(fino);
 		int finoInt = (int)fino;
 		List<FiComments> ficomment = service.FindCommentList(finoInt);
