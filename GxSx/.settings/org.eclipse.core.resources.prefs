@@ -1,5 +1,9 @@
 eclipse.preferences.version=1
+encoding//src/main/java/sansil/gxsx/controller/FindItemController.java=UTF-8
+encoding//src/main/java/sansil/gxsx/mapper/FindItemMapper.java=UTF-8
 encoding//src/main/java/sansil/gxsx/service/FindCommentServiceImpl.java=UTF-8
+encoding//src/main/java/sansil/gxsx/service/FindItemSerivceImpl.java=UTF-8
+encoding//src/main/java/sansil/gxsx/service/FindItemService.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/gxsx/myfinditem.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/gxsx/mylostitem.html=UTF-8
 encoding//src/main/webapp/WEB-INF/views/gxsx/mylostitem.jsp=UTF-8

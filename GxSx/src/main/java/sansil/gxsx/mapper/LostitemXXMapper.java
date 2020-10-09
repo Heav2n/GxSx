@@ -1,11 +1,18 @@
 package sansil.gxsx.mapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import sansil.gxsx.domain.FindItPic;
+import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostItemPicVo;
+import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Pagination;
 
 public interface LostitemXXMapper {
@@ -18,16 +25,17 @@ public interface LostitemXXMapper {
 	
 	void insert(LostItemPicVo lostitem);
 	
+//	void insert1(LostItemPicVo lostitem,  ArrayList<MultipartFile> files);
 	void insert1(LostItemPicVo lostitem);
 
 
-	LostItemPicVo Content(int lono);
+	List<LostItemPicVo> Content(int lono);
 
 	String area (int lono);
 	
 	void delete(int lono);
 
-	LostItemPicVo Updatef(int lono);
+	List<LostItemPicVo> Updatef(int lono);
 	boolean Update(LostItemPicVo lostitem);
 	boolean Update1(LostItemPicVo lostitem);
 
@@ -35,4 +43,9 @@ public interface LostitemXXMapper {
     boolean writeFile(MultipartFile f, String saveFileName);
     
     void uploadpic(Map<String,String> map);
+	List<LostItemPicVo> getLostRelated();
+	List<LostItemPicVo> getpic();
+
+
+    
 }

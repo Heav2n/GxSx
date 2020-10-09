@@ -1,5 +1,6 @@
 package sansil.gxsx.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -7,11 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostItemPicVo;
+import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.mapper.LostitemXXMapper;
 import sansil.gxsx.utils.PagingUtil;
@@ -22,8 +27,9 @@ import sansil.gxsx.utils.PagingUtil;
 public class LostitemXXserviceImpl implements LostitemXXservice {
 
 	private LostitemXXMapper lostitemxxMapper;
+	private FileUploadservice fileuploadsevice;
 	
-
+	
 	@Override
 	public List<LostItemPicVo> list() {
 		
@@ -40,6 +46,8 @@ public class LostitemXXserviceImpl implements LostitemXXservice {
 		query.setPaging(new Pagination(listCount, pagingutil.getCp(),pagingutil.getPs()));
 		List<LostItemPicVo> lostitem = lostitemxxMapper.list();
 		System.out.println("asdasdasdaTLqkf" + pagingutil.getPs());
+		System.out.println("@!@#!@#!@#!@#" + lostitem);
+		log.info("@!@#!@#!@#!@#" + lostitem);
 		return lostitem;
 	}
 
@@ -76,10 +84,29 @@ public class LostitemXXserviceImpl implements LostitemXXservice {
 	@Override
 	public void insertS(LostItemPicVo lostitem) {
 		lostitemxxMapper.insert(lostitem);
-		lostitemxxMapper.insert1(lostitem);
+		
 	}
 	@Override
-	public LostItemPicVo ContentS(int lono) {
+	public void insertP(LostItemPicVo lostitem, ArrayList<MultipartFile> files) {
+		lostitemxxMapper.insert(lostitem);
+		System.out.println("########## lllll :" + lostitem);
+		for(MultipartFile file : files) {
+            String ofname = file.getOriginalFilename();
+            if(ofname != null) {
+                ofname = ofname.trim();
+                if(ofname.length() != 0) {
+                	lostitem.setLopicname(ofname);
+                	lostitemxxMapper.insert1(lostitem);
+                    String url = fileuploadsevice.saveStore(file);
+                    log.info("@@@@@@@@@@@"+ofname +"##########" +file);
+                }
+            }
+        }
+	int get_lono = lostitem.getLono();
+	log.info("이건왜안뜨는거야tlqkf" + get_lono);
+	}
+	@Override
+	public List<LostItemPicVo> ContentS(int lono) {
 		return lostitemxxMapper.Content(lono);
 	}
 	@Override
@@ -91,13 +118,17 @@ public class LostitemXXserviceImpl implements LostitemXXservice {
 		lostitemxxMapper.delete(lono);
 	}
 	@Override
-	public LostItemPicVo UpdatefS(int lono) {
+	public List<LostItemPicVo> UpdatefS(int lono) {
 		return lostitemxxMapper.Updatef(lono);
 	}
 
 	@Override
 	public boolean UpdateS(LostItemPicVo lostitem) {
 		return lostitemxxMapper.Update(lostitem);
+	}
+	@Override
+	public List<LostItemPicVo> getLostRelated(){
+		return lostitemxxMapper.getLostRelated();
 	}
 
 

@@ -1,7 +1,5 @@
 package sansil.gxsx.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
-
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -112,84 +110,26 @@ public class FindItemController {
 	
 	
 	@RequestMapping("slist.do")
-	public ModelAndView slist(String query, HttpServletRequest request, HttpSession session) {
+	public ModelAndView slist(String nextPage, String query, FindItPic requestData, String isSearch, HttpServletRequest request, HttpSession session) {
 		System.out.println("nullroQkrclsek:" + query);
-		String cpStr = request.getParameter("cp");
-		String psStr = request.getParameter("ps");
+		System.out.println("isSearch:" + isSearch);
+		System.out.println("requestData:" + requestData);
 		
-		int cp = 1;
-		if(cpStr == null) {
-			Object cpObj = session.getAttribute("cp");
-			if(cpObj != null) {
-				cp = (Integer)cpObj;
-			}
-		}else {
-			cpStr = cpStr.trim();
-			cp = Integer.parseInt(cpStr);
-		}
-		session.setAttribute("cp", cp);
-		
-		int ps = 8;
-		if(psStr == null) {
-			Object psObj = session.getAttribute("ps");
-			if(psObj != null) {
-				ps = (Integer)psObj;
-			}
-		}else {
-			psStr = psStr.trim();
-			int psParam = Integer.parseInt(psStr);
-			
-			Object psObj = session.getAttribute("ps");
-			if(psObj != null) {
-				int psSession = (Integer)psObj;
-				if(psSession != psParam) {
-					cp = 1;
-					session.setAttribute("cp", cp);
-				}
-			}else {
-				if(ps != psParam) {
-					cp = 1;
-					session.setAttribute("cp", cp);
-				}
-			}
-			
-			ps = psParam;
-		}
-		session.setAttribute("ps", ps);
-		
-		FindItPicListResult listResult;
-		ModelAndView mv = new ModelAndView();	
-		
-		listResult = service.listResult(query, cp, ps);
-		
-//		if(query.length()!=0) {
-//			listResult = service.listResult(query, cp, ps);
+//		if(requestData.getFicname().equals("")) {
+//			System.out.println("null1? " + true);
 //		}
-//		else {
-//			Pagination listpage = service.getPagination(request, session);
-//			List<FindItPic> list = service.getlist(listpage);
-//			listResult = service.listResult(cp, ps);
+//		if(requestData.getFisub().equals("")) {
+//			System.out.println("null2? " + true);
 //		}
 		
-		mv.setViewName("gxsx/fislist");
-		mv.addObject("findResult", listResult);
-		mv.addObject("query", query);
-		
-		if(session.getAttribute("loginuser")!=null) { //�޼���Ȯ�ο�
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("loginuser")!=null) { 
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
-		
-		if(listResult.getList().size() == 0) {
-			if(cp > 1) {
-				return new ModelAndView("redirect:slist.do?cp="+(cp-1)+"&query="+query);
-			}else {
-				return new ModelAndView("redirect:slist.do?cp=1&query="+query, "findResult", null);
-			}
-		}else {
-			return mv;
-		}
+		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
+		return mv;
 	}
 	
 	@GetMapping("content.do")

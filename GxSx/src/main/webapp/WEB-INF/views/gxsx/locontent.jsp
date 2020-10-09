@@ -292,7 +292,7 @@
 
 								<span class="stext-102 cl6 size-206">
 								<div style="word-break:break-all">
-									${locontent[0].locon} 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 
+									${locontent[0].locon}
 								</span></div>
 							</li>
 						</ul>
@@ -319,7 +319,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (1)</a>
+							<a id="comment_toggle" class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
 						</li>
 					</ul>
 
@@ -328,15 +328,15 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<div class="flex-w flex-t p-b-68">
-									<c:forEach var="ficomment" items="${locomment}" varStatus="status">
-										<c:if test="${locomment.depth==0}">
-				  							<div class="size-207" id="ficomment_${locomment.comno}">
+								<div class="flex-w flex-t p-b-68" id="lost_comment_list">
+									<c:forEach var="comment" items="${comment}" varStatus="status">
+										<c:if test="${comment.depth==0}">
+				  							<div class="size-207" id="locomment_${comment.comno}">
 												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
 													<span class="mtext-107 cl2 p-r-20">
-														${locomment.userid} 
+														${comment.userid} 
 														<span class="stext-102 cl6">&nbsp;
-															${locomment.codate} </span>
+															${comment.codate} </span>
 													</span>
 		
 													<span class="fs-18 cl11">
@@ -345,18 +345,18 @@
 												</div>
 		
 												<p class="stext-102 cl6">
-													${locomment.contents}
+													${comment.contents}
 												</p>
 												</br>
 											</div>
 			  							</c:if>
-			  							<c:if test="${locomment.depth!=0 && !empty locomment.pcom}">
-				  							<div class="size-207" id="ficomment_${locomment.comno}" style="margin-left:100px">
+			  							<c:if test="${comment.depth!=0 && !empty comment.pcom}">
+				  							<div class="size-207" id="locomment_${comment.comno}" style="margin-left:100px">
 												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
 													<span class="mtext-107 cl2 p-r-20">
-														${locomment.userid} 
+														${comment.userid} 
 														<span class="stext-102 cl6">&nbsp;
-															${locomment.codate} </span>
+															${comment.codate} </span>
 													</span>
 		
 													<span class="fs-18 cl11">
@@ -366,7 +366,7 @@
 												</div>
 		
 												<p class="stext-102 cl6">
-													${locomment.contents}
+													${comment.contents}
 												</p>
 												</br>
 											</div>
@@ -381,11 +381,11 @@
 									
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
+										<label id="reply_to"></label>
 											<label class="stext-102 cl3" for="review">Write comment</label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
-
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
 											type="button" onclick="commentInsert('${locontent[0].lono}');">
 										Submit
@@ -842,6 +842,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<!-- 자바스크립트  -->
 	<script src="../js/tempjs/LoComments.js"></script>
-
+	<script>
+		commentList("${ locontent[0].lono }");
+	</script>
 </body>
 </html>

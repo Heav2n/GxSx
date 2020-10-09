@@ -165,7 +165,7 @@ public class FindItemSerivceImpl implements FindItemService {
 		return finditemMapper.getFindRelated();
 	}
 	
-	////////////////////////////////////////////////////////////////////////�ڸ�Ʈ
+	////////////////////////////////////////////////////////////////////////占쌘몌옙트
 	public List<FiComments> FindCommentList(int fino) {
 		return finditemMapper.FindCommentList(fino);
 	}

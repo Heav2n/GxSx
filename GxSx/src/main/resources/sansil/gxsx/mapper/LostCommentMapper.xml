@@ -32,7 +32,7 @@
 	</update>
 	
 	<delete id="LostCommentDelete" parameterType="int">
-		delete from LOCOMMENTS  where COMNO = #{comno}
+		delete from LOCOMMENTS  where COMNO = #{comno} or COGROUP = #{comno}
 	</delete>
 	
 	<select id="reSelectComment" resultType="LoComments" parameterType="LoComments">
