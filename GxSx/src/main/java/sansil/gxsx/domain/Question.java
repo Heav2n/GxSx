@@ -15,6 +15,7 @@ public class Question {
 	private String qsub;
 	private String qcon;
 	private String qreply;
+	private int qread;
 	private Pagination paging;
 	private String content;
 }

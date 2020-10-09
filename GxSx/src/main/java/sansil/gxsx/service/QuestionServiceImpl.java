@@ -104,4 +104,9 @@ public class QuestionServiceImpl implements QuestionService {
 	public long QuestiondeleteS(long qno) {
 		return questionMapper.Questiondelete(qno);
 	}
+	
+	@Override
+	public void contentReadS(long qno) {
+		questionMapper.contentread(qno);
+	}
 }

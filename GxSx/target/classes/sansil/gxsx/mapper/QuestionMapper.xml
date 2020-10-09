@@ -55,8 +55,10 @@
 	</delete>
 	
 	<select id="messageQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{userid} and QREPLY is NOT NULL order by QNO desc
+		select * from QUESTION where QUID = #{userid} and QREPLY is NOT NULL and QREAD = 0 order by QNO desc
 	</select>
 	
-	
+	<update id="contentread" parameterType="long">
+		update QUESTION set QREAD=1 where QNO=#{qno}
+	</update>
 </mapper>
