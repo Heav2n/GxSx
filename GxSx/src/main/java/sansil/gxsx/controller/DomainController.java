@@ -116,7 +116,7 @@ public class DomainController {
 				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 되 지 않 은 회 원 %%%%%%%%%%%%%%%%%%%%");
 				if(session.getAttribute("kemail").toString().length()!=0) { //이메일도 선택해서 제공하는 사람
 					mv.addObject("usercheck", "email");
-				}else {
+				}else { //이메일 선택안한사람
 					session.setAttribute("usercheck", "no_email");
 					Users kakaouser = new Users(session.getAttribute("kid").toString(), "temp", 
 							session.getAttribute("kname").toString(), "temp", "temp", null);
@@ -158,8 +158,6 @@ public class DomainController {
 	@ResponseBody
 	@PostMapping("logincheck.do")
 	public boolean logincheck(HttpServletRequest request, HttpSession session, String userid, String upwd) { 
-//		String userid = request.getParameter("userid");
-//		String upwd = request.getParameter("upwd");
 		String userids = (String)userid;
 		String upwds = (String)upwd;
 
@@ -238,23 +236,25 @@ public class DomainController {
 	public ModelAndView contact(HttpSession session) {
 		Users user = (Users)session.getAttribute("loginuser");
 		
-		if(user == null) {
-			if(session.getAttribute("kakaouser")!=null) {
-				return new ModelAndView("redirect:tempsignupform.do");
+		if(user == null) { //로그인X
+			if(session.getAttribute("kakaouser")!=null) { //카카오O, 회원정보X
+				return new ModelAndView("redirect:../gxsx/tempsignupform.do");
 			}
-			else {
-				return new ModelAndView("redirect:login.do");
+			else { //로그인X, 카카오X
+				return new ModelAndView("redirect:../gxsx/login.do");
 			}
 			
 		}
-		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
-			session.setAttribute("admin", true);
+		else {
+			if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
+				session.setAttribute("admin", true);
+			}
+			ModelAndView mv = new ModelAndView();
+			List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용		
+			mv.setViewName("gxsx/contact");
+			mv.addObject("messageResult", messageResult);
+			return mv;
 		}
-		ModelAndView mv = new ModelAndView();
-		List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용		
-		mv.setViewName("gxsx/contact");
-		mv.addObject("messageResult", messageResult);
-		return mv;
 	}
 	
 	public boolean name(HttpSession session) {
@@ -293,11 +293,6 @@ public class DomainController {
 			return false;
 		}
 	}
-		
-	@RequestMapping("myboard.do")
-	public String myboard() {
-		return "temp/myboard";
-	}
 	
 	////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("tempsignupform.do") //카톡으로 로그인했는데 DB에 저장 안되어있을때 호출할꺼임
@@ -308,15 +303,12 @@ public class DomainController {
 		mv.setViewName("gxsx/signup2");
 		mv.addObject("kakaouser", kakaouser);
 		mv.addObject("random", ran);
-		System.out.println("77777 : " + kakaouser);
 		return mv;
 	}	
 
 	@PostMapping("tempsignup.do") //DB에 카톡유저 등록할때 호출됨
 	public String tempsignup(HttpServletRequest request, HttpSession session, Users kakaouser) {
-		System.out.println("88888 : " + kakaouser);
-		service.kakaouser(kakaouser);
-		Users users = service.kakaologinS(kakaouser.getUserid());
+		Users users = service.kakaouser(kakaouser);
 		session.setAttribute("loginuser", users);
 		
 		return "redirect:domain.do";
