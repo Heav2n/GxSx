@@ -92,7 +92,7 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							           	<c:if test="${messageResult!=[]}">
+							           	<c:if test="${messageResult!='[]'}">
 								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
 								           		<ul class="dropdown-menu notify-drop" style="right:350px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
@@ -106,7 +106,7 @@
 								            </c:forEach>
 							            </c:if>
 							             
-							             <c:if test="${messageResult==[]}">
+							             <c:if test="${messageResult=='[]'}">
 								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
 										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
@@ -114,10 +114,10 @@
 										            	</li>
 									            	</div>
 									            </ul>
-							            </c:if>
-						        </li>
-							</li>
-						</c:if>
+							             </c:if>
+						            </li>
+							    </li>
+						    </c:if>
 								
 						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
 							<li class="dropdown">
@@ -125,21 +125,21 @@
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../Question/list.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -524,41 +524,7 @@
 	<script src="../vendor/coza/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
+	
 <!--===============================================================================================-->
 	<script src="../vendor/coza/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>

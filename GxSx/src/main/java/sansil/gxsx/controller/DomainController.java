@@ -237,6 +237,7 @@ public class DomainController {
 	@RequestMapping("contact.do")
 	public ModelAndView contact(HttpSession session) {
 		Users user = (Users)session.getAttribute("loginuser");
+		
 		if(user == null) {
 			if(session.getAttribute("kakaouser")!=null) {
 				return new ModelAndView("redirect:tempsignupform.do");
@@ -249,7 +250,11 @@ public class DomainController {
 		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
 			session.setAttribute("admin", true);
 		}
-		return new ModelAndView("gxsx/contact");
+		ModelAndView mv = new ModelAndView();
+		List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용		
+		mv.setViewName("gxsx/contact");
+		mv.addObject("messageResult", messageResult);
+		return mv;
 	}
 	
 	public boolean name(HttpSession session) {
@@ -323,7 +328,13 @@ public class DomainController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/notice");
 		mv.addObject("noticeList", notice);
-		if(session.getAttribute("userpower")!=null) {
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		if(session.getAttribute("userpower")!=null) { //관리자
 			String userpower = (String)session.getAttribute("userpower");
 			mv.addObject("user", userpower);
 		}
@@ -340,7 +351,13 @@ public class DomainController {
 		mv.addObject("noticeList", notice);
 		mv.addObject("noticeup", noticeup);
 		mv.addObject("noticedown", noticedown);
-		if(session.getAttribute("userpower").toString()!=null) {
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		if(session.getAttribute("userpower")!=null) { //관리자
 			String userpower = (String)session.getAttribute("userpower");
 			mv.addObject("user", userpower);
 		}
@@ -350,7 +367,6 @@ public class DomainController {
 	@ResponseBody
 	@GetMapping("noticeEditForm")
 	private ModelAndView noticeEditForm(int nono) {
-		log.info("#########nono : "+nono);
 		System.out.println(nono);
 		Notice result = service.noticeConS(nono);
 		return new ModelAndView("gxsx/noticeedit", "notice", result);
@@ -364,7 +380,6 @@ public class DomainController {
 	
 	@RequestMapping("noticeDel.do")
 	private String noticeDel(HttpServletRequest request, HttpSession session, int nono) {
-		System.out.println("#########ddsadlksajdlksajdl##########");
 		service.noticeDelS(nono);
 		return "redirect:notice.do";
 	}
@@ -380,9 +395,15 @@ public class DomainController {
 	}
 	
 	@RequestMapping("noticeWrite.do")
-	public String noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {
+	public ModelAndView noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {		
 		Users user = (Users)session.getAttribute("loginuser");
 		service.noticeWriteS(notice);
-		return "redirect:notice.do";
+		
+		List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/notice");
+		mv.addObject("messageResult", messageResult);
+		
+		return mv;
 	}
 }
