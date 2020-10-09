@@ -60,9 +60,8 @@ public class TestController {
 	private boolean FindCommentInsert(HttpSession session, @RequestBody FiComments ficomments) {
 		Users user = (Users)session.getAttribute("loginuser");
 		ficomments.setUserid(user.getUserid());
-		log.info("#> comment : "+ficomments);
-		boolean flag = fiservice.FindCommentInsert(ficomments);
-		return flag;
+		log.info("#> comment : "+ficomments);		 
+		return fiservice.FindCommentInsert(ficomments);
 	}
 	
 	@PostMapping("insert")//¥Ò±€¿€º∫

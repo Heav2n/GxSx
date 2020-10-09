@@ -2,24 +2,10 @@
  * 
  */
 
-//var comno =  '${ficomments.comno}';
-//
-//$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시
-//	var insertData = $('[name=commentInsertForm]').serialize(); 
-//	console.log("insertData:" +insertData);
-//	commentIsert(insertData);
-//});
-
-
-
-//댓글 목록
-$(document).ready(function() {
-	commentList(1);
-})
-
-function commentList(fino){
-		$.ajax({
-			url : '../test/findcomment.do',
+//댓글 목록 
+function commentList(fino){	
+	$.ajax({
+			url : '../FindComment/findcomment.do',
 			type : 'get',
 			data : {'fino':fino},
 			dataType: "HTML",
@@ -53,7 +39,7 @@ function commentInsert(fino){
 		};
 	}
 	$.ajax({
-		url:"../test/findinsert.json",
+		url:"../FindComment/findinsert.json",
 		type : "post",
 		dataType : "JSON",
 		contentType: "application/json",
@@ -109,7 +95,7 @@ function do_update(index){
 	click = 0;
 	let content = document.getElementById("update-txt-"+index).value;
 	$.ajax({
-		url : "../test/fiupdate.do",
+		url : "../FindComment/fiupdate.do",
 		type : 'post',
 		data : {
 			comno : index,
@@ -140,7 +126,7 @@ function commentDelete(val, fino){
 	let sendData = new Object;
 	sendData.comno = val;
 	$.ajax({
-		url : "../test/fidelete.json",
+		url : "../FindComment/fidelete.json",
 		type : 'post',
 		contentType : "application/json",
 		data : JSON.stringify(sendData),

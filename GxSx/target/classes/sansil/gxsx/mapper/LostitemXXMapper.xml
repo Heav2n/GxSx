@@ -15,16 +15,6 @@
 	</select>
 	
 	<select id="selectPerPage" resultType="LostItemPicVo" parameterType="Pagination">
-<!-- 			
-			select distinct * from (select ROWNUM rnum, aa.* from (select * from lostitem order by LONO desc 
-        		) aa) where rnum between #{startRow} and #{endRow}  
-			 -->
-		
-<!--   		select * from (select ROWNUM rnum, aa.* from (select * from lostitem join area on lostitem.loano = area.ano order by LONO asc -->
-<!--   		 ) aa) where rnum between #{startRow} and #{endRow}   -->
-		  
-<!-- 		select distinct lostitem.losub, lostitem.louid , lostitem.lono , lostitem.lodate , (select lopicname from lostpic, lostitem where lostpic.lopno = lostitem.lono AND rownum = 1 )  -->
-<!--     	from lostitem, lostpic -->
 		<![CDATA[
 		select * from (select aa.*, ROWNUM rnum from (
         select lostitem.losub, lostitem.louid , lostitem.lono , lostitem.lodate , lostitem.locon , lostitem.loano , lostitem.loplace , lostitem.locname , lostitem.lofin , 
@@ -33,10 +23,6 @@
         aa) where rnum between #{startRow} and #{endRow} 
 		]]>
 	</select>
-	
-<!-- 	<insert id="insert" parameterType="LostItemPicVo"> -->
-<!-- 		insert into LOSTITEM values(LOSTITEM_SEQ_PK.nextval, #{louid}, #{losub}, #{locon}, SYSDATE, #{loano}, #{loplace}, #{locname}, #{logift}, 0) -->
-<!-- 	</insert> -->
 
 	<insert id="insert" parameterType="LostItemPicVo">
 		<selectKey keyProperty="lono" resultType="int" order="BEFORE">
@@ -64,15 +50,7 @@
 		(select lopicname from lostpic where lostpic.lopno = lostitem.lono AND ROWNUM= 1) as lopicname
     	from lostitem left join lostpic on lostitem.lono = lostpic.lopno GROUP BY lostitem.lono , lostitem.losub, lostitem.louid , lostitem.lono , lostitem.lodate , lostitem.locon , lostitem.loano , lostitem.loplace , lostitem.locname , lostitem.lofin order by lono desc)
         aa) where ROWNUM <=8 
-		]]>	
-<!-- 		select * from (select ROWNUM rnum, aa.* from (select * from lostitem left outer join lostpic on  -->
-<!-- 		lostitem.lono = lostpic.lopno join area on lostitem.loano = area.ano order by LONO desc)aa) -->
-<!-- 		where ROWNUM <=8 -->
-		
-		
-		
-		
-		
+		]]>			
 	</select>
 	
 	<select id="area" resultType="String" parameterType="int">

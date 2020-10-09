@@ -43,7 +43,7 @@ public class QuestionController {
 	
 	//문의글 리스트 JSON 데이터 요청 / ResponseListVo 응답
 	@ResponseBody
-	@GetMapping("otherPageQu")
+	@PostMapping("otherPageQu")
 	private ModelAndView otherPageQu(int selectedPage) {
 		log.info("#>>selectedPage : "+selectedPage);
 		if(session.getAttribute("admin") != null) {

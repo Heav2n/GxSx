@@ -4,12 +4,11 @@
 
 	<input type="hidden" id="comment_num" value="${ comment.size() }">
 	<input type="hidden" id="global-lono" value="${ comment[0].lono }">
-
 	<c:forEach items="${ comment }" var="comment">
 	
 	<c:choose>
 		<c:when test="${ comment.depth > 0 }">
-			<div class="size-207" id="ficomment_${locomment.comno}" style="margin-left:100px">
+			<div class="size-207" id="locomment_${comment.comno}" style="margin-left:100px">
 				<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
  					<span class="mtext-107 cl2 p-r-20"> 
  						${comment.userid}  

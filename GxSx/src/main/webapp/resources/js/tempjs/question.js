@@ -3,8 +3,8 @@
  */
 function selectQuestionPage(index){ // 인덱스라는 변수로 받는다? 
 	$.ajax({
-		url:"/test/Question/otherPageQu.json", // url 내가 컨트롤러에서 받을 json녀석을 써준다
-		type:"GET", // controller에서 받아올Type을 정의해준다 
+		url:"/../Question/otherPageQu.json", // url 내가 컨트롤러에서 받을 json녀석을 써준다
+		type:"POST", // controller에서 받아올Type을 정의해준다 
 		dataType :"HTML", // 
 		data:{selectedPage: index}, //클릭한 페이지 넘버->다음의 현재페이지   자바에서 정의해준  index를 data로 받아온다
 		error:function(error){
@@ -20,8 +20,8 @@ function selectQuestionPage(index){ // 인덱스라는 변수로 받는다?
 
 function allQuestionPage(index){ // 인덱스라는 변수로 받는다? 
 	$.ajax({
-		url:"/test/Question/otherPageQu.json", // url 내가 컨트롤러에서 받을 json녀석을 써준다
-		type:"GET", // controller에서 받아올Type을 정의해준다 
+		url:"/../Question/otherPageQu.json", // url 내가 컨트롤러에서 받을 json녀석을 써준다
+		type:"POST", // controller에서 받아올Type을 정의해준다 
 		dataType :"HTML", // 
 		data:{selectedPage: index}, //클릭한 페이지 넘버->다음의 현재페이지   자바에서 정의해준  index를 data로 받아온다
 		error:function(error){

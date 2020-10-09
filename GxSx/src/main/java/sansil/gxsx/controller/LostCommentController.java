@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.LoComments;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.LostCommentService;
@@ -29,10 +30,9 @@ public class LostCommentController {
 	@Resource(name="LostCommentService")
 	private LostCommentService service;
 	
-	
+	//´ñ±Û¸®½ºÆ®
 	@RequestMapping("comment.do")
 	public ModelAndView comment(int lono) {
-		log.info("#> TestController comment() : call"); 
 		List<LoComments> list = service.LostCommentList(lono);
 		return new ModelAndView("gxsx/lost_comment_list", "comment", list);
 	}

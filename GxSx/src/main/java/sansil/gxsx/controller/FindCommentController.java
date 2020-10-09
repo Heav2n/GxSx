@@ -32,35 +32,29 @@ public class FindCommentController {
 	@Resource(name="FindCommentService")
 	private FindCommentService service;
 	
-	@PostMapping("insert")//댓글작성
-	@ResponseBody
 
-	private ModelAndView fCommentserviceInsert(HttpSession session, @RequestParam int fino, @RequestParam String content) {
-		log.info("#> fCommentserviceInsert() 접근"); 
-		
-		Users user = (Users)session.getAttribute("loginuser");
-		FiComments ficomments = new FiComments();
-		ficomments.setFino(fino);
-		ficomments.setContents(content);
-		ficomments.setUserid(user.getUserid());
-		//og.info("###################### fino : " + FiComments.getComno() +" , contents : " + fiComments.getContents());
-		boolean commentList = service.FindCommentInsert(ficomments);
-		ModelAndView response = new ModelAndView("../added/findItPic/comment_table");
-		response.addObject("ficomment", commentList);
-		return response;
-	}
-	private boolean fCommentserviceInsert(HttpSession session, @RequestBody FiComments ficomments) {
-		Users user = (Users)session.getAttribute("loginuser");
-		ficomments.setUserid(user.getUserid());
-		log.info("#> comment : "+ficomments);
-		return service.FindCommentInsert(ficomments);
-
-	}
+	//Find 리스트
+		@RequestMapping("findcomment.do")
+		public ModelAndView findcomment(int fino) {		
+			List<FiComments> list = service.FindCommentList(fino);			
+			return new ModelAndView("gxsx/find_comment_list", "comment", list);
+		}
 	
-	@PostMapping("update")//댓글수정
+	//Find댓글작성
+		@PostMapping("findinsert")
+		@ResponseBody
+		private boolean FindCommentInsert(HttpSession session, @RequestBody FiComments ficomments) {
+			Users user = (Users)session.getAttribute("loginuser");
+			ficomments.setUserid(user.getUserid());
+			log.info("#> comment : "+ficomments);		 
+			return service.FindCommentInsert(ficomments);
+		}
+	
+	@RequestMapping("fiupdate")//Find댓글수정
 	@ResponseBody
-	private boolean fCommentserviceUpdate(FiComments fiComments) {
-		
+	private boolean FindCommentUpdate(HttpSession session, FiComments fiComments) {
+		Users user = (Users)session.getAttribute("loginuser");
+		fiComments.setUserid(user.getUserid());
 		return service.FindCommentUpdate(fiComments);
 	}
 	

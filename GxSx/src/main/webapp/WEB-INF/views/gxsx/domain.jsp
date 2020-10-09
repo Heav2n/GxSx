@@ -106,7 +106,7 @@
 								            </c:forEach>
 							            </c:if>
 							             
-							             <c:if test="${messageResult ==[]}">
+							             <c:if test="${messageResult==[]}">
 								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
 									            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">

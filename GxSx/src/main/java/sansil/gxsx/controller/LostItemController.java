@@ -23,7 +23,7 @@ import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.service.LostItemService;
 
-@RequestMapping("/lostitem/")
+@RequestMapping("/lostitem2/")
 @Controller
 @Log4j
 public class LostItemController {
