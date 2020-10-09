@@ -13,6 +13,7 @@ public class FindItPicListResult {
 	private long totalCount;
 	private List<FindItPic> list;
 	private long totalPageCount;
+	private Pagination paging;
 	
 	public FindItPicListResult(int page, int pageSize, long totalCount, List<FindItPic> list) {
 		this.page = page;
@@ -21,10 +22,17 @@ public class FindItPicListResult {
 		this.list = list;
 		this.totalPageCount = calTotalPageCount();
 	}
+	
+	public FindItPicListResult(List<FindItPic> list, Pagination paging) {
+		this.list = list;
+		this.paging = paging;
+	}
+	
 	private long calTotalPageCount() {
 		long tpc = totalCount/pageSize; 
 		if(totalCount%pageSize != 0) tpc++;
 		
 		return tpc;
 	}
+
 }

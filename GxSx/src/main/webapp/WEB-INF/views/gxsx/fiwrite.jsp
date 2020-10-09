@@ -666,8 +666,8 @@ table, tr, td {
 									<label for='inputArea'
 										class='col-lg-2 col-form-label form-control-label'>Area</label>
 									<div class='col-lg-3' >
-									
-											<select class="ui fluid dropdown" name="fiano" id="ano" >
+										<div class="select-box">
+											<select class="ui fluid dropdown" name="fiano" id="ano" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
 												<option value="">지역&emsp;</option>
 												<option value="02">서울</option>
 												<option value="051">부산</option>
@@ -688,6 +688,7 @@ table, tr, td {
 												<option value="064">제주</option>
 												<option value="0">기타</option>
 											</select>
+											</div>
 										
 									</div>
 									<label for='inputPlace'
@@ -703,8 +704,8 @@ table, tr, td {
 									<label for='inputArea'
 										class='col-lg-2 col-form-label form-control-label'>Category</label>
 									<div class='col-lg-3'>
-									
-										<select class="ui fluid dropdown" name="ficname" id="cname">
+										<div class="select-box">
+										<select class="ui fluid dropdown" name="ficname" id="cname" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
 											<option value="">종류</option>
 											<option value="가방">가방</option>
 											<option value="귀금속">귀금속</option>
@@ -724,7 +725,7 @@ table, tr, td {
 											<option value="의류">의류</option>
 											<option value="기타">기타</option>
 										</select>
-										
+										</div>
 									</div>
 									<label for='inputPlace'
 										class='col-lg-2 col-form-label form-control-label'

@@ -7,11 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+
 import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItPicListResult;
 import sansil.gxsx.domain.FindItem;
-import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.ResponseListVo;
 
@@ -56,5 +57,10 @@ public interface FindItemService {
 	List<FiComments> FindCommentList(int fino);
 
 	ResponseListVo getListService(HashMap<String, Object> query);
+	
+	//FindItem 검색 서비스
+	ModelAndView searchFindItem(String nextPage, String query, FindItPic findItPic, String isSearch, ModelAndView mv);
+
+	ModelAndView getSearchOptions();
 	
 }

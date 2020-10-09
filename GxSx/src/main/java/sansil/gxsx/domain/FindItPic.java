@@ -26,4 +26,8 @@ public class FindItPic {
 	private int fipicno;
 	private int fipno;
 	private String fipicname;
+	
+	//검색 조건 변수
+	private String startDate;
+	private String endDate;
 }
