@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import sansil.gxsx.domain.Area;
+import sansil.gxsx.domain.Category;
 import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItem;
@@ -46,6 +48,9 @@ public interface FindItemMapper {
 	List<FindItPic> selectList(Map<String, Object> query);
 	List<FindPic> selectFindPic(long fipno);
 	
+	//검색 옵션 쿼리
+	List<Category> selectCategory();
+	List<Area> selectArea();
 	//검색 쿼리
 	long selectCountSearch(HashMap<String, Object> query);
 	List<FindItPic> selectSearch(HashMap<String, Object> query);

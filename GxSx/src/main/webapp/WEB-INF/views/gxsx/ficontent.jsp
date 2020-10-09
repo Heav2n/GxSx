@@ -304,7 +304,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-								<a id="comment_toggle" class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
+							<a id="comment_toggle" class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
 						</li>
 					</ul>
 
@@ -313,7 +313,7 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<div class="flex-w flex-t p-b-68" id="find_comment_list">
+								<div class="flex-w flex-t p-b-68">
 									<c:forEach var="ficomment" items="${ficomment}" varStatus="status">
 										<c:if test="${ficomment.depth==0}">
 				  							<div class="size-207" id="ficomment_${ficomment.comno}">

@@ -60,4 +60,9 @@ public interface FindItemService {
 
 
 	
+	//FindItem 검색 서비스
+	ModelAndView searchFindItem(String nextPage, String query, FindItPic findItPic, String isSearch, ModelAndView mv);
+
+	ModelAndView getSearchOptions();
+	
 }

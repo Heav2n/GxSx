@@ -145,50 +145,71 @@
 	<select id="selectCountSearch" resultType="long" parameterType="hashmap">
 	<choose>
 		<when test="date != null">
-			<![CDATA[
 		    select count(*) from FINDITEM join area on finditem.fiano = area.ano
-		    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' order by FINDITEM.FIDATE desc
-			]]>	
+		    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%'
+		    <if test="area != null">
+	    		and finditem.fiano = #{area}
+	    	</if>
+		    order by FINDITEM.FIDATE desc
 		</when>
 		<otherwise>
-			<![CDATA[
 		    select count(*) from FINDITEM join area on finditem.fiano = area.ano
 		    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' 
-		    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD') 
+		    <if test="area != null">
+	    		and finditem.fiano = #{area}
+	    	</if> 		   
+		    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD')
 		    AND TO_DATE(#{finditem.endDate}, 'YY/MM/DD')  order by FINDITEM.FIDATE desc
-			]]>	
 		</otherwise>
 	</choose>
 	</select>
 
+	<!-- START 검색옵션 쿼리 -->
+	<select id="selectCategory" resultType="sansil.gxsx.domain.Category">
+		select * from CATEGORY
+	</select>
+	<select id="selectArea" resultType="sansil.gxsx.domain.Area">
+		select * from AREA
+	</select>
+	<!-- END 검색옵션 쿼리 -->
+
+	<!-- START 검색 쿼리 -->
 	<select id="selectSearch" resultType="FindItPic" parameterType="hashmap">
-	<choose>
-		<when test="date != null">
-			<![CDATA[
-	 		select * from (
-	 		select ROWNUM rnum, aa.* from (
-			    select * from FINDITEM join area on finditem.fiano = area.ano
-			    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' order by FINDITEM.FIDATE desc
-	 		)aa)
-	 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
-			]]>	
-		</when>
-		<otherwise>
-			<![CDATA[
-	 		select * from (
-	 		select ROWNUM rnum, aa.* from (
-			    select * from FINDITEM join area on finditem.fiano = area.ano
-			    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' 
-			    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD') 
-			    AND TO_DATE(#{finditem.endDate}, 'YY/MM/DD')  order by FINDITEM.FIDATE desc
-	 		)aa)
-	 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
-			]]>	
-		</otherwise>
-	</choose>
+		<choose>
+			<when test="date != null">
+		 		select * from (
+		 		select ROWNUM rnum, aa.* from (
+				    select * from FINDITEM join area on finditem.fiano = area.ano
+				    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%'
+			    	<if test="area != null">
+			    		and finditem.fiano = #{area}
+			    	</if>
+				<![CDATA[
+				    order by FINDITEM.FIDATE desc
+		 		)aa)
+		 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+				]]>	
+			</when>
+			<otherwise>
+		 		select * from (
+		 		select ROWNUM rnum, aa.* from (
+				    select * from FINDITEM join area on finditem.fiano = area.ano
+				    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' 
+				    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD') 
+			    	<if test="area != null">
+			    		and finditem.fiano = #{area}
+			    	</if>
+				<![CDATA[
+				    AND TO_DATE(#{finditem.endDate}, 'YY/MM/DD')  order by FINDITEM.FIDATE desc
+		 		)aa)
+		 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+				]]>	
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="selectFindPic" resultType="FindPic" parameterType="long">
 		select * from FINDPIC where fipno = #{fino}
 	</select>
+	<!-- END 검색 쿼리 -->
 </mapper>

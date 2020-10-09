@@ -91,20 +91,13 @@ public class FindItemController {
 	
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpServletRequest request, HttpSession session) {
-		
-		Pagination listpage = service.getPagination(request, session);
-		List<FindItPic> list = service.getlist(listpage);
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = service.getSearchOptions();
 		mv.setViewName("gxsx/filist");
-		mv.addObject("findResult", list);
-		mv.addObject("listpage", listpage);
-		
-		if(session.getAttribute("loginuser")!=null) { //�޼���Ȯ�ο�
+		if(session.getAttribute("loginuser")!=null) {
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
-
 		return mv;
 	}
 	
@@ -115,19 +108,13 @@ public class FindItemController {
 		System.out.println("isSearch:" + isSearch);
 		System.out.println("requestData:" + requestData);
 		
-//		if(requestData.getFicname().equals("")) {
-//			System.out.println("null1? " + true);
-//		}
-//		if(requestData.getFisub().equals("")) {
-//			System.out.println("null2? " + true);
-//		}
-		
 		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("loginuser")!=null) { 
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
+		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		return mv;
 	}
 	

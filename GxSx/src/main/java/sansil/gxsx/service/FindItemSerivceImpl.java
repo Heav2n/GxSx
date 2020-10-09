@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -18,8 +19,6 @@ import sansil.gxsx.domain.FindItPicListResult;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.FindItemVo;
 import sansil.gxsx.domain.FindPic;
-import sansil.gxsx.domain.LostItem;
-import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.mapper.FindItemMapper;
@@ -274,4 +273,96 @@ public class FindItemSerivceImpl implements FindItemService {
 		return new ResponseListVo(list, page);
 	}
 
+	@Override
+	public ModelAndView searchFindItem(String nextPage, String query, FindItPic findItPic, String isSearch, ModelAndView mv) {
+		String cpStr = request.getParameter("cp");
+		String psStr = request.getParameter("ps");
+		
+		if(isSearch.trim().equals("true")) {
+			session.removeAttribute("cp");
+			session.removeAttribute("ps");
+		}
+		
+		int cp = 1;
+		if(isSearch.equals("true")) {
+			if(cpStr == null) {
+				Object cpObj = session.getAttribute("cp");
+				if(cpObj != null) {
+					cp = (Integer)cpObj;
+				}
+			}else {
+				cpStr = cpStr.trim();
+				cp = Integer.parseInt(cpStr);
+			}
+			session.setAttribute("cp", cp);
+		} else {
+			cp = Integer.parseInt(nextPage);
+		}
+		int ps = 8;
+		if(psStr == null) {
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				ps = (Integer)psObj;
+			}
+		}else {
+			psStr = psStr.trim();
+			int psParam = Integer.parseInt(psStr);
+			
+			Object psObj = session.getAttribute("ps");
+			if(psObj != null) {
+				int psSession = (Integer)psObj;
+				if(psSession != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}else {
+				if(ps != psParam) {
+					cp = 1;
+					session.setAttribute("cp", cp);
+				}
+			}
+			
+			ps = psParam;
+		}
+		session.setAttribute("ps", ps);
+		
+		HashMap<String, Object> dbQuery = new HashMap<String, Object>();
+		
+		
+		dbQuery.put("finditem", findItPic);
+		if(findItPic.getStartDate().equals("")) {
+			dbQuery.put("date", "date");
+		} else {
+			dbQuery.put("date", null);
+		}
+		if(findItPic.getFiano() == -1) {
+			dbQuery.put("area", null);
+		} else {
+			dbQuery.put("area", findItPic.getFiano());
+		}
+		long totalCount = finditemMapper.selectCountSearch(dbQuery);
+		Pagination page = new Pagination(totalCount, cp, ps);
+		dbQuery.put("page", page);
+		List<FindItPic> list = finditemMapper.selectSearch(dbQuery);
+		
+		if(list.size() != 0) {
+			for(FindItPic obj : list) {
+				List<FindPic> temp = finditemMapper.selectFindPic(obj.getFino());
+				if(temp.size() != 0) obj.setFipicname(temp.get(0).getFipicname());
+			}
+		}
+		FindItPicListResult listResult = new FindItPicListResult(list, page);
+		mv.setViewName("gxsx/search_result");
+		mv.addObject("findResult", listResult);
+		mv.addObject("prevData", findItPic);
+		return mv;
+	}
+
+	@Override
+	public ModelAndView getSearchOptions() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("area", finditemMapper.selectArea());
+		mv.addObject("category", finditemMapper.selectCategory());
+		return mv;
+	}
 }
