@@ -77,7 +77,7 @@
 	<!-- ////////////////////////////////////////// -->
 	<select id="selectByName" resultType="FindItPic" parameterType="String">
 	     select * from FINDITEM join FINDPIC on finditem.fino = findpic.fipno join area on finditem.fiano = area.ano
-		 where finditem.FISUB like '%'||#{fisub}||'%' order by FINO desc
+		 where finditem.FISUB like '%'||#{fisub}||'%' and finditem.FIDATE like '%'||#{fidate}||'%' finditem.FICON like '%'||#{ficon}||'%' order by FINO desc
 	</select>
 	
 	<select id="selectCount" resultType="long">
@@ -109,7 +109,7 @@
 		select * from (select aa.*, ROWNUM rnum from (
     	select finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin , 
 		(select fipicname from findpic where findpic.fipno = finditem.fino AND ROWNUM= 1) as fipicname
-  		from finditem left join findpic on finditem.fino = findpic.fipno GROUP BY finditem.fino , finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin)
+  		from finditem left join findpic on finditem.fino = findpic.fipno GROUP BY finditem.fino , finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin order by fidate desc)
     	aa) where rnum between #{startRow} and #{endRow}
 	</select>
 	
@@ -142,4 +142,53 @@
 		select * from FICOMMENTS where FINO = #{fino} order by COGROUP, CODATE
 	</select>
 	
+	<select id="selectCountSearch" resultType="long" parameterType="hashmap">
+	<choose>
+		<when test="date != null">
+			<![CDATA[
+		    select count(*) from FINDITEM join area on finditem.fiano = area.ano
+		    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' order by FINDITEM.FIDATE desc
+			]]>	
+		</when>
+		<otherwise>
+			<![CDATA[
+		    select count(*) from FINDITEM join area on finditem.fiano = area.ano
+		    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' 
+		    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD') 
+		    AND TO_DATE(#{finditem.endDate}, 'YY/MM/DD')  order by FINDITEM.FIDATE desc
+			]]>	
+		</otherwise>
+	</choose>
+	</select>
+
+	<select id="selectSearch" resultType="FindItPic" parameterType="hashmap">
+	<choose>
+		<when test="date != null">
+			<![CDATA[
+	 		select * from (
+	 		select ROWNUM rnum, aa.* from (
+			    select * from FINDITEM join area on finditem.fiano = area.ano
+			    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' order by FINDITEM.FIDATE desc
+	 		)aa)
+	 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+			]]>	
+		</when>
+		<otherwise>
+			<![CDATA[
+	 		select * from (
+	 		select ROWNUM rnum, aa.* from (
+			    select * from FINDITEM join area on finditem.fiano = area.ano
+			    where finditem.FISUB like '%'||#{finditem.fisub}||'%' and finditem.FICNAME like'%'||#{finditem.ficname}||'%' 
+			    and finditem.FIDATE BETWEEN TO_DATE (#{finditem.startDate}, 'YY/MM/DD') 
+			    AND TO_DATE(#{finditem.endDate}, 'YY/MM/DD')  order by FINDITEM.FIDATE desc
+	 		)aa)
+	 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+			]]>	
+		</otherwise>
+	</choose>
+	</select>
+	
+	<select id="selectFindPic" resultType="FindPic" parameterType="long">
+		select * from FINDPIC where fipno = #{fino}
+	</select>
 </mapper>

@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 	</style>
 	
 	<script type="text/javascript" language="javascript" 
@@ -322,24 +311,20 @@
 							</li>
 
 							<li class="label1" data-label1="습득물">
-								<a href="../finditem/list.do">Finditem</a>
+								<a href="../finditem/list.do?cp=1">Finditem</a>
 							</li>
 
 							<li class="label1" data-label1="분실물">
-								<a href="../lostitem/list.do">Lostitem</a>
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
-
 							<li>
-								<a href="../gxsx/contact.do">Contact</a>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-<!-- 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> -->
-<!-- 							<i class="zmdi zmdi-favorite-outline"></i> -->
-<!-- 						</a> -->
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
@@ -348,43 +333,57 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
-							             </div>
-						          	</ul>
-						        </li>
-							</li>
-						</c:if>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../gxsx/contact.do">Contact</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -474,29 +473,32 @@
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
 							GxSx
 						</h4>
-				</div>
+	
+					</div>
 				
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						CATEGORIES
-					</h4>					
+					</h4>
+					
 						<ul>
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
-								</a></li>
+								</a>
+							</li>
+	
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Shoes
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Watches
-								</a></li>
+								</a>
+							</li>	
 						</ul> 
 				</div>
 
@@ -506,20 +508,29 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor</p>
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125</p>
+						<i class="fa fa-phone"></i> 02-707-1480
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com</p>
+						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
+						
+					</p>
 
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i></a>
+							<i class="fa fa-facebook"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i></a>
+							<i class="fa fa-instagram"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i></a>
+							<i class="fa fa-pinterest-p"></i>
+						</a>
 					</div>
 				</div>
 
@@ -530,20 +541,23 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
-						<span>9am to 8pm</span></p>
+						<span>9am to 8pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
-						<span>9am to 2pm</span></p>
+						<span>9am to 2pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
-						<span>Closed</span></p>
+						<span>Closed</span>
+					</p>
 				</div>
 			</div>
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<p class="stext-107 cl6 txt-center">
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
@@ -561,159 +575,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</span>
 	</div>
 
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	
 	<script>
 		function CheckEditProfile(editEmail,editPnum,editPwd,oldPwd,editPwdVerify){ 

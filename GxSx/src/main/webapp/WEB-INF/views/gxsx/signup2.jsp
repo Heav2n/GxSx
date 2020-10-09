@@ -20,7 +20,7 @@
 	 <script type="text/javascript">
 
 		function FormCancel(){
-			location.href = "../gxsx/login.do"
+			location.href = "../gxsx/domain.do"
 		}
 		
 		function CheckForm(authconfirm){

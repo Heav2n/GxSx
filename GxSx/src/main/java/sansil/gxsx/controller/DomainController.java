@@ -116,7 +116,7 @@ public class DomainController {
 				System.out.println("%%%%%%%%%%%%%%%%%%%% 등 록 되 지 않 은 회 원 %%%%%%%%%%%%%%%%%%%%");
 				if(session.getAttribute("kemail").toString().length()!=0) { //이메일도 선택해서 제공하는 사람
 					mv.addObject("usercheck", "email");
-				}else {
+				}else { //이메일 선택안한사람
 					session.setAttribute("usercheck", "no_email");
 					Users kakaouser = new Users(session.getAttribute("kid").toString(), "temp", 
 							session.getAttribute("kname").toString(), "temp", "temp", null);
@@ -153,31 +153,34 @@ public class DomainController {
 		mv.addObject("kakao_url", kakaoUrl);
 		return mv;
 	}
-
+	
+	//ajax
+	@ResponseBody
 	@PostMapping("logincheck.do")
-	public String logincheck(HttpServletRequest request, HttpSession session) { 
-		String userid = request.getParameter("userid");
-		String upwd = request.getParameter("upwd");
+	public boolean logincheck(HttpServletRequest request, HttpSession session, String userid, String upwd) { 
+		String userids = (String)userid;
+		String upwds = (String)upwd;
 
 		HashMap<String, String> loginmap = new HashMap<String, String>(); 
-		loginmap.put("userid", userid);
-		loginmap.put("upwd", upwd);
+		loginmap.put("userid", userids);
+		loginmap.put("upwd", upwds);
 		Users users = service.loginS(loginmap);
 		
-		String userpower = service.userPowerS(userid); //권한 뿌리기(회원 or 관리자)
+		String userpower = service.userPowerS(userids); //권한 뿌리기(회원 or 관리자)
 
 		if(users == null || users.getUoutdate()!=null) {
 			System.out.println("로그인 실패 :탈퇴날짜!!!! : null");
 			session.invalidate();
+			return false;
 		}
 		else { //users 비어져있지 않고 탈퇴날짜없음 -> login
 			System.out.println("로그인 성공!!!! : login");
 			session.setAttribute("loginuser", users);
 			session.setAttribute("userpower", userpower);
 			System.out.println("비우고 로그인" + users);
+			return true;
 		}
 
-		return "redirect:domain.do";
 	}
 	
 	@RequestMapping("logout.do")
@@ -232,11 +235,26 @@ public class DomainController {
 	@RequestMapping("contact.do")
 	public ModelAndView contact(HttpSession session) {
 		Users user = (Users)session.getAttribute("loginuser");
-		if(user == null) return new ModelAndView("redirect:login.do");
-		if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
-			session.setAttribute("admin", true);
+		
+		if(user == null) { //로그인X
+			if(session.getAttribute("kakaouser")!=null) { //카카오O, 회원정보X
+				return new ModelAndView("redirect:../gxsx/tempsignupform.do");
+			}
+			else { //로그인X, 카카오X
+				return new ModelAndView("redirect:../gxsx/login.do");
+			}
+			
 		}
-		return new ModelAndView("gxsx/contact");
+		else {
+			if(user.getUserid().equals(AdminInfo.ADMIN_ID)) {
+				session.setAttribute("admin", true);
+			}
+			ModelAndView mv = new ModelAndView();
+			List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용		
+			mv.setViewName("gxsx/contact");
+			mv.addObject("messageResult", messageResult);
+			return mv;
+		}
 	}
 	
 	public boolean name(HttpSession session) {
@@ -275,11 +293,6 @@ public class DomainController {
 			return false;
 		}
 	}
-		
-	@RequestMapping("myboard.do")
-	public String myboard() {
-		return "temp/myboard";
-	}
 	
 	////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("tempsignupform.do") //카톡으로 로그인했는데 DB에 저장 안되어있을때 호출할꺼임
@@ -290,15 +303,12 @@ public class DomainController {
 		mv.setViewName("gxsx/signup2");
 		mv.addObject("kakaouser", kakaouser);
 		mv.addObject("random", ran);
-		System.out.println("77777 : " + kakaouser);
 		return mv;
 	}	
 
 	@PostMapping("tempsignup.do") //DB에 카톡유저 등록할때 호출됨
 	public String tempsignup(HttpServletRequest request, HttpSession session, Users kakaouser) {
-		System.out.println("88888 : " + kakaouser);
-		service.kakaouser(kakaouser);
-		Users users = service.kakaologinS(kakaouser.getUserid());
+		Users users = service.kakaouser(kakaouser);
 		session.setAttribute("loginuser", users);
 		
 		return "redirect:domain.do";
@@ -310,7 +320,13 @@ public class DomainController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/notice");
 		mv.addObject("noticeList", notice);
-		if(session.getAttribute("userpower")!=null) {
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		if(session.getAttribute("userpower")!=null) { //관리자
 			String userpower = (String)session.getAttribute("userpower");
 			mv.addObject("user", userpower);
 		}
@@ -327,7 +343,13 @@ public class DomainController {
 		mv.addObject("noticeList", notice);
 		mv.addObject("noticeup", noticeup);
 		mv.addObject("noticedown", noticedown);
-		if(session.getAttribute("userpower").toString()!=null) {
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		if(session.getAttribute("userpower")!=null) { //관리자
 			String userpower = (String)session.getAttribute("userpower");
 			mv.addObject("user", userpower);
 		}
@@ -337,7 +359,6 @@ public class DomainController {
 	@ResponseBody
 	@GetMapping("noticeEditForm")
 	private ModelAndView noticeEditForm(int nono) {
-		log.info("#########nono : "+nono);
 		System.out.println(nono);
 		Notice result = service.noticeConS(nono);
 		return new ModelAndView("gxsx/noticeedit", "notice", result);
@@ -351,7 +372,6 @@ public class DomainController {
 	
 	@RequestMapping("noticeDel.do")
 	private String noticeDel(HttpServletRequest request, HttpSession session, int nono) {
-		System.out.println("#########ddsadlksajdlksajdl##########");
 		service.noticeDelS(nono);
 		return "redirect:notice.do";
 	}
@@ -361,15 +381,21 @@ public class DomainController {
 		Users user = (Users)session.getAttribute("loginuser");
 		String userid = user.getUserid();
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/fiwrite");
+		mv.setViewName("gxsx/noticewrite");
 		mv.addObject("userid", userid);
 		return mv;
 	}
 	
 	@RequestMapping("noticeWrite.do")
-	public String noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {
+	public ModelAndView noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {		
 		Users user = (Users)session.getAttribute("loginuser");
 		service.noticeWriteS(notice);
-		return "redirect:notice.do";
+		
+		List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/notice");
+		mv.addObject("messageResult", messageResult);
+		
+		return mv;
 	}
 }

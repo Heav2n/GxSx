@@ -1,6 +1,8 @@
 package sansil.gxsx.controller;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,7 @@ import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
+import sansil.gxsx.service.MessageService;
 import sansil.gxsx.service.QuestionService;
 
 @RequestMapping("Question")
@@ -28,6 +31,8 @@ import sansil.gxsx.service.QuestionService;
 public class QuestionController {
 	
 	private static final String qcon = null;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	@Resource(name="QuestionMapper")
 	private QuestionService service;
 	@Autowired
@@ -37,19 +42,20 @@ public class QuestionController {
 	//문의글 리스트 View 요청 / question.jsp 응답
 	@RequestMapping("list.do")
 	public String list() {
-		if(session.getAttribute("loginUser") == null) return "redirect:../"; //비로그인시 인덱스 or 로그인 페이지 이동
-		return "gxsx/contact";
+		if(session.getAttribute("loginuser") == null) return "redirect:../gxsx/login.do"; //비로그인시 인덱스 or 로그인 페이지 이동
+		else if(session.getAttribute("loginuser") != null && session.getAttribute("usercheck") == null) return "redirect:../gxsx/tempsignupform.do"; //카카오로그인인데 회원정보없음
+		else return "gxsx/contact";
 	}
 	
 	//문의글 리스트 JSON 데이터 요청 / ResponseListVo 응답
 	@ResponseBody
-	@GetMapping("otherPageQu")
+	@PostMapping("otherPageQu")
 	private ModelAndView otherPageQu(int selectedPage) {
 		log.info("#>>selectedPage : "+selectedPage);
-		if(session.getAttribute("admin") != null) {
+		if(session.getAttribute("admin") != null) { //관리자
 			ResponseListVo result = service.getAllQuestionListService(selectedPage);
 			return new ModelAndView("gxsx/questionAllList", "vo", result);
-		}else {
+		}else { //일반회원
 			ResponseListVo result = service.getQuestionListService(selectedPage);
 			return new ModelAndView("gxsx/questionList", "vo", result);
 		}
@@ -57,9 +63,18 @@ public class QuestionController {
 	
 	@ResponseBody
 	@RequestMapping("/questionco.do")
-	public ModelAndView questionco(@RequestParam long qno) {
+	public ModelAndView questionco(@RequestParam long qno) {		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/questionform");
+		mv.addObject("question", service.contentS(qno));
+		service.contentReadS(qno);
 		
-		return new ModelAndView("gxsx/questionform", "question", service.contentS(qno));
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value="reupdate.do",method = RequestMethod.POST) //댓글작성

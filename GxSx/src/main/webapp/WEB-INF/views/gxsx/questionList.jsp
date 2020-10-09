@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<section class="bg0 p-t-104 p-b-116">
 <div class='wrap-table-shopping-cart'>
    <table class='table-shopping-cart'>
       <tr class='table_head'>
@@ -39,20 +39,20 @@
      </c:if>
 
     <c:forEach begin="${ vo.page.startPage }" end="${ vo.page.endPage }" step="1" varStatus="status">
-    <c:choose>
-       <c:when test="${ status.index eq vo.page.currentPage }">
-          <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-          onclick="selectQuestionPage(${ status.index });">
-               ${ status.index }
-         </p>
-       </c:when>
-       <c:otherwise>
-          <p class="flex-c-m how-pagination1 trans-04 m-all-7"
-          onclick="selectQuestionPage(${ status.index });">
-               ${ status.index }
-         </p>
-       </c:otherwise>
-    </c:choose>
+	    <c:choose>
+	       <c:when test="${ status.index eq vo.page.currentPage }">
+	          <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
+	          onclick="selectQuestionPage(${ status.index });">
+	               ${ status.index }
+	         </p>
+	       </c:when>
+	       <c:otherwise>
+	          <p class="flex-c-m how-pagination1 trans-04 m-all-7"
+	          onclick="selectQuestionPage(${ status.index });">
+	               ${ status.index }
+	         </p>
+	       </c:otherwise>
+	    </c:choose>
     </c:forEach>
      <c:if test="${ vo.page.endPage ne vo.page.pageCount }">
       <p class="flex-c-m how-pagination1 trans-04 m-all-7"
@@ -61,3 +61,4 @@
       </p>
      </c:if>
   </div>
+  </section>

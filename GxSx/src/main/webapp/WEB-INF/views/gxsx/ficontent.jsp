@@ -212,38 +212,24 @@
 						<div class="wrap-slick3 flex-sb flex-w">
 							<div class="wrap-slick3-dots"></div>
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+							
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="../images/coza/product-detail-01.jpg">
+							<!-- side slide images bar forEach -->
+							<c:forEach items="${ content }" var="content">
+								<div class="item-slick3" data-thumb="../images/Findimgs/${content.fipicname}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+										<img src="../images/Findimgs/${content.fipicname}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../images/Findimgs/${content.fipicname}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
-
-								<div class="item-slick3" data-thumb="../images/coza/product-detail-02.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
-
-								<div class="item-slick3" data-thumb="../images/coza/product-detail-03.jpg">
-									<div class="wrap-pic-w pos-relative">
-										<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
+							</c:forEach>
+							<!-- END FOREACH -->
 							</div>
+							
+							
 						</div>
 					</div>
 				</div>
@@ -251,7 +237,7 @@
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							${content.fisub}
+							${content[0].fisub}
 						</h4>
 						<ul class="p-lr-28 p-lr-15-sm">
 							<li class="flex-w flex-t p-b-7">
@@ -260,7 +246,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${content.fidate}
+									${content[0].fidate}
 								</span>
 							</li>
 
@@ -270,7 +256,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${area} / ${content.fiplace}
+									${area} / ${content[0].fiplace}
 								</span>
 							</li>
 
@@ -280,7 +266,7 @@
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${content.fistor}
+									${content[0].fistor}
 								</span>
 							</li>
 
@@ -291,7 +277,7 @@
 
 								<span class="stext-102 cl6 size-206">
 								<div style="word-break:break-all">
-									${content.ficon} 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 줄바꿈확인 
+									${content[0].ficon} 
 								</span></div>
 							</li>
 						</ul>
@@ -318,7 +304,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a id="comment_toggle" class="nav-link" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
+								<a id="comment_toggle" class="nav-link active" data-toggle="tab" href="#description" role="tab">Comment (0)</a>
 						</li>
 					</ul>
 
@@ -380,14 +366,14 @@
 									
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
+										<label id="reply_to"></label>
 											<label class="stext-102 cl3" for="review">Write comment</label>
-											<label id="reply_to"></label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
-											type="button" onclick="commentInsert('1');">
+											type="button" onclick="commentInsert('${content[0].fino}');">
 										Submit
 									</button>
 								</form>
@@ -602,9 +588,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+									<!-- START FOREACH -->
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
@@ -612,9 +599,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
 												<i class="fa fa-expand"></i>
@@ -622,15 +609,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 										</div>
 									</div>
 
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
+									<div class="item-slick3" data-thumb="images/finditem/${content[0].fipicname}">
 										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
+											<img src="../images/finditem/${content[0].fipicname}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
 												<i class="fa fa-expand"></i>
 											</a>
 										</div>
 									</div>
+									<!-- END FOREACH -->
 								</div>
 							</div>
 						</div>
@@ -737,6 +725,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			</div>
 		</div>
 	</div>
+	<!-- END MODAL -->
 	
 <!--===============================================================================================-->	
 	<script src="../vendor/coza/jquery/jquery-3.2.1.min.js"></script>
@@ -788,30 +777,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
-
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
-
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
-
 		/*---------------------------------------------*/
-
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -830,7 +812,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})
@@ -841,6 +822,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	
 	<!-- 자바스크립트  -->
 	<script src="../js/tempjs/FiComments.js"></script>
-
+	<script>
+		commentList("${ content[0].fino }");
+	</script>	
 </body>
 </html>

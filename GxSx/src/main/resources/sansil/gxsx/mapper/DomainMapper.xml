@@ -37,9 +37,9 @@
 		select * from USERS where userid = #{kid}
 	</select>
 	
-	<update id="kakaouser" parameterType="Users">
-		update USERS set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid}
-	</update>
+<!-- 	<update id="kakaouser" parameterType="Users"> -->
+<!-- 		update USERS set upwd = #{upwd}, uemail = #{uemail}, upnum = #{upnum} where userid = #{userid} -->
+<!-- 	</update> -->
 	
 	<select id="idcheck" resultType="int" parameterType="String">
 		select count(userid) from USERS where userid = #{userid}

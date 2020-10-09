@@ -46,4 +46,6 @@ public interface QuestionService {
 	ResponseListVo getQuestionListService(int selectedPage);
 
 	ResponseListVo getAllQuestionListService(int selectedPage);
+	
+	void contentReadS(long qno);
 }

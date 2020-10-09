@@ -24,6 +24,29 @@
 		<link rel="stylesheet" type="text/css" href="../css/util.css">
 		<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<!--===============================================================================================-->
+	
+	<script type="text/javascript">
+		function CheckLogin(){
+			$.ajax({
+				type:"POST",
+				url:"../gxsx/logincheck.do",
+				dataType: "json",
+				data: {userid: $("#userid").val(), upwd: $("#upwd").val()},
+				success: function(data){
+					if(data== true){
+						location.href = "../gxsx/domain.do"				
+					}else{
+						alert("로그인 실패")
+						location.href = "../gxsx/login.do"	
+					}
+				},
+				error: function(data){
+					alert("CheckLogin 에러가 발생했습니다.");
+				}
+			});
+		}
+	</script>
+	
 	</head>
 	<body>
 		
@@ -35,7 +58,7 @@
 							Login
 						</span>
 						<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid id is required">
-							<input class="input100" type="text" name="userid" placeholder="Enter your ID">
+							<input class="input100" type="text" name="userid" id="userid" placeholder="Enter your ID">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<span class="lnr lnr-envelope"></span>
@@ -43,7 +66,7 @@
 						</div>
 	
 						<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-							<input class="input100" type="password" name="upwd" placeholder="Password">
+							<input class="input100" type="password" name="upwd" id="upwd" placeholder="Password">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<span class="lnr lnr-lock"></span>
@@ -51,7 +74,7 @@
 						</div>
 						
 						<div class="container-login100-form-btn p-t-25">
-							<button type="submit" class="login100-form-btn">
+							<button type="submit" class="login100-form-btn" onclick="CheckLogin()">
 								Login
 							</button>
 						</div>

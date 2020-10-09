@@ -13,13 +13,10 @@
 
 
 //댓글 목록
-$(document).ready(function() {
-	commentList(26);
-})
 
 function commentList(lono){
 		$.ajax({
-			url : '../test/comment.do',
+			url : '../LostComment/comment.do',
 			type : 'get',
 			data : {'lono':lono},
 			dataType: "HTML",
@@ -54,7 +51,7 @@ function commentInsert(lono){
 		};
 	}
 	$.ajax({
-		url : "../test/insert.json",
+		url : "../LostComment/insert.json",
 		type : 'post',
 		dataType : 'JSON',
 		contentType: "application/json",
@@ -107,7 +104,7 @@ function do_update(index){
 	click = 0;
 	let content = document.getElementById("update-txt-"+index).value;
 	$.ajax({
-		url : "../test/update.do",
+		url : "../LostComment/update.do",
 		type : 'post',
 		data: {
 			comno : index,
@@ -139,7 +136,7 @@ function commentDelete(val, lono){
 	sendData.comno = val;
 	console.log(sendData);
 	$.ajax({
-		url: "../test/delete.json",
+		url: "../LostComment/delete.json",
 		type: "post",
 		contentType: "application/json",
 		data: JSON.stringify(sendData),

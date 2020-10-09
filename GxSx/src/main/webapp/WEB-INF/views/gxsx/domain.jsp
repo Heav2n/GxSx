@@ -75,7 +75,7 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	
@@ -92,54 +92,55 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							           	<c:if test="${messageResult!=[]}">
-								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px">
-								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
-									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-									            		<a href="">${messageResult.qsub}</a>
-									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-									            		<p class="time">답변완료</p></div>
-									            	</li>
-									            	</div>
-							          			</ul>
-								            </c:forEach>
-							            </c:if>
-							             
-							             <c:if test="${messageResult==[]}">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
-									            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
-									            		알람 없음</div></center>
-									            	</li>
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
 									            	</div>
 									            </ul>
-							            </c:if>
-						        </li>
-							</li>
-						</c:if>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -248,23 +249,16 @@
 				</c:if>
 				<c:forEach items="${findResult}" var="finditem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
-						<div class="blog-item">
-							<div class="hov-img0">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
 								<a href="blog-detail.html">
 									<img src="../images/finditem/${findpicResult[status.index].fipicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	
-							<div class="p-t-15">
-								<div class="stext-107 flex-w p-b-14">
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
 									<span class="m-r-3">
-										<span class="cl5">${finditem.fidate}</span>
-										<span class="cl4">${finditem.fiplace}</span>
-									</span>
-								</div>
-	
-								<h4 class="p-b-12">
-									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
 										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${finditem.fisub}</a>
 										</c:if>
@@ -274,20 +268,12 @@
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${finditem.fisub}</a>
 										</c:if>
-									</a>
-								</h4>
-	
-								<p class="stext-108 cl6">
-									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-										<a class="stext-108 cl6" href="login.do">${finditem.ficon}</a>
-									</c:if>
-									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-										<a class="stext-108 cl6" href="#">${finditem.ficon}</a>
-									</c:if>
-									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-										<a class="stext-108 cl6" href="tempsignupform.do">${finditem.ficon}</a>
-									</c:if>
-								</p>
+									</span>
+									<span class="stext-105 cl3">
+										<i class="zmdi zmdi-calendar"></i>&nbsp;${finditem.fidate}
+									</span>
+									<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${finditem.fiplace}</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -315,23 +301,16 @@
 				</c:if>
 				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
-						<div class="blog-item">
-							<div class="hov-img0">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
 								<a href="blog-detail.html">
-									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-LOST">
+									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	
-							<div class="p-t-15">
-								<div class="stext-107 flex-w p-b-14">
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
 									<span class="m-r-3">
-										<span class="cl5">${lostitem.lodate}</span>
-										<span class="cl4">${lostitem.loplace}</span>
-									</span>
-								</div>
-	
-								<h4 class="p-b-12">
-									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
 										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${lostitem.losub}</a>
 										</c:if>
@@ -341,20 +320,12 @@
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${lostitem.losub}</a>
 										</c:if>
-									</a>
-								</h4>
-	
-								<p class="stext-108 cl6">
-									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-										<a class="stext-108 cl6" href="login.do">${lostitem.locon}</a>
-									</c:if>
-									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-										<a class="stext-108 cl6" href="#">${lostitem.locon}</a>
-									</c:if>
-									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-										<a class="stext-108 cl6" href="tempsignupform.do">${lostitem.locon}</a>
-									</c:if>
-								</p>
+									</span>
+									<span class="stext-105 cl3">
+										<i class="zmdi zmdi-calendar"></i>&nbsp;${lostitem.lodate}
+									</span>
+									<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${lostitem.loplace}</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -524,41 +495,7 @@
 	<script src="../vendor/coza/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
 	<script src="../vendor/coza/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-	</script>
+	
 <!--===============================================================================================-->
 	<script src="../vendor/coza/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
