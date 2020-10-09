@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import filesetting.Path;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import sansil.gxsx.fileset.Fileset;
 
 @Log4j
 @Service
@@ -26,19 +25,20 @@ public class FileUploadserviceImpl implements FileUploadservice {
 		long ms = System.currentTimeMillis();
 		StringBuilder sb = new StringBuilder();
 		sb.append(ofheader);
-//		sb.append("_");
-//		sb.append(ms);
+		sb.append("_");
+		sb.append(ms);
 		sb.append(ext);
 		String saveFileName = sb.toString();
 		long fsize = f.getSize();
 		
 		boolean flag = writeFile(f, saveFileName);
 		if(flag) {
-			log.info("¾÷·Îµå ¼º°ø");
+			log.info("ì—…ë¡œë“œ ì„±ê³µ");
 		}else {
-			log.info("¾÷·Îµå ½ÇÆÐ");
+			log.info("ì—…ë¡œë“œ ì‹¤íŒ¨");
 		}
-		return Path.FILE_STORE + saveFileName;
+		//return Path.FILE_STORE + saveFileName;
+		return saveFileName;
 	}
 
 	@Override
