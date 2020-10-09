@@ -1,6 +1,8 @@
 package sansil.gxsx.controller;
 
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,7 @@ import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
+import sansil.gxsx.service.MessageService;
 import sansil.gxsx.service.QuestionService;
 
 @RequestMapping("Question")
@@ -28,6 +31,8 @@ import sansil.gxsx.service.QuestionService;
 public class QuestionController {
 	
 	private static final String qcon = null;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	@Resource(name="QuestionMapper")
 	private QuestionService service;
 	@Autowired
@@ -57,9 +62,17 @@ public class QuestionController {
 	
 	@ResponseBody
 	@RequestMapping("/questionco.do")
-	public ModelAndView questionco(@RequestParam long qno) {
+	public ModelAndView questionco(@RequestParam long qno) {		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/questionform");
+		mv.addObject("question", service.contentS(qno));
 		
-		return new ModelAndView("gxsx/questionform", "question", service.contentS(qno));
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+		return mv;
 	}
 	
 	@RequestMapping(value="reupdate.do",method = RequestMethod.POST) //댓글작성

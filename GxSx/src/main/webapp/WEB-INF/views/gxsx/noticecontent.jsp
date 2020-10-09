@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 		
 		.container2 * {
 		    margin: 0;
@@ -345,14 +334,14 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="domain.do" class="logo">
+					<a href="../gxsx/domain.do" class="logo">
 						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu">
+							<li>
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
@@ -367,9 +356,8 @@
 							<li class="label1" data-label1="분실물">
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
-
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								<a href="../gxsx/contact.do" class="active-menu">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -384,18 +372,31 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
-							             </div>
-						          	</ul>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							           	<c:if test="${messageResult!='[]'}">
+								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+								           		<ul class="dropdown-menu notify-drop" style="right:350px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+									            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+									            		<p class="time">답변완료</p></div>
+									            	</li>
+									            	</div>
+							          			</ul>
+								            </c:forEach>
+							            </c:if>
+							             
+							             <c:if test="${messageResult=='[]'}">
+								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							            </c:if>
 						        </li>
 							</li>
 						</c:if>
@@ -406,21 +407,21 @@
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+						            		<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
+						            		<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../Question/list.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -544,29 +545,32 @@
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
 							GxSx
 						</h4>
-				</div>
+	
+					</div>
 				
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						CATEGORIES
-					</h4>					
+					</h4>
+					
 						<ul>
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
-								</a></li>
+								</a>
+							</li>
+	
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Shoes
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Watches
-								</a></li>
+								</a>
+							</li>	
 						</ul> 
 				</div>
 
@@ -576,20 +580,29 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor</p>
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125</p>
+						<i class="fa fa-phone"></i> 02-707-1480
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com</p>
+						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
+						
+					</p>
 
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i></a>
+							<i class="fa fa-facebook"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i></a>
+							<i class="fa fa-instagram"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i></a>
+							<i class="fa fa-pinterest-p"></i>
+						</a>
 					</div>
 				</div>
 
@@ -600,20 +613,23 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
-						<span>9am to 8pm</span></p>
+						<span>9am to 8pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
-						<span>9am to 2pm</span></p>
+						<span>9am to 2pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
-						<span>Closed</span></p>
+						<span>Closed</span>
+					</p>
 				</div>
 			</div>
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<p class="stext-107 cl6 txt-center">
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
