@@ -52,10 +52,10 @@ public class QuestionController {
 	@GetMapping("otherPageQu")
 	private ModelAndView otherPageQu(int selectedPage) {
 		log.info("#>>selectedPage : "+selectedPage);
-		if(session.getAttribute("admin") != null) {
+		if(session.getAttribute("admin") != null) { //관리자
 			ResponseListVo result = service.getAllQuestionListService(selectedPage);
 			return new ModelAndView("gxsx/questionAllList", "vo", result);
-		}else {
+		}else { //일반회원
 			ResponseListVo result = service.getQuestionListService(selectedPage);
 			return new ModelAndView("gxsx/questionList", "vo", result);
 		}

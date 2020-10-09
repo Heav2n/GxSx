@@ -357,17 +357,7 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<c:choose>
-								    <c:when test="${empty loginuser && !empty usercheck}">
-								      <a href="../gxsx/tempsignupform.do">Contact</a>
-								    </c:when>
-								    <c:when test="${!empty loginuser && !empty usercheck}">
-								      <a href="../gxsx/contact.do">Contact</a>
-								    </c:when>						    
-								    <c:otherwise>
-								      <a href="../gxsx/login.do">Contact</a>
-								    </c:otherwise>
-								</c:choose>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	

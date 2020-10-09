@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="selectCountQuestion" resultType="Long" parameterType="String">
-		select count(*) from QUESTION where QUID = #{query} 
+		select count(*) from QUESTION where QUID = #{query}
 	</select>
 	
 	<select id="selectPerPage" resultType="Question" parameterType="hashmap">
@@ -20,12 +20,12 @@
 	</select>	
 	
 	<select id="allCountQuestion" resultType="Long" parameterType="String">
-		select count(*) from QUESTION 
+		select count(*) from QUESTION  where QREPLY is NULL
 	</select>
 	
 	<select id="allSelectPerPage" resultType="Question" parameterType="hashmap">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION order by QNO desc) aa) 
+		select * from (select ROWNUM rnum, aa.* from (select * from QUESTION where QREPLY is NULL order by QNO desc) aa) 
 		where rnum between #{paging.startRow} and #{paging.endRow}
 		]]>
 	</select>	
@@ -55,7 +55,7 @@
 	</delete>
 	
 	<select id="messageQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{userid} and QREPLY is null
+		select * from QUESTION where QUID = #{userid} and QREPLY is NOT NULL order by QNO desc
 	</select>
 	
 	
