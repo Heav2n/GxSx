@@ -249,23 +249,16 @@
 				</c:if>
 				<c:forEach items="${findResult}" var="finditem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
-						<div class="blog-item">
-							<div class="hov-img0">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
 								<a href="blog-detail.html">
 									<img src="../images/finditem/${findpicResult[status.index].fipicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	
-							<div class="p-t-15">
-								<div class="stext-107 flex-w p-b-14">
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
 									<span class="m-r-3">
-										<span class="cl5">${finditem.fidate}</span>
-										<span class="cl4">${finditem.fiplace}</span>
-									</span>
-								</div>
-	
-								<h4 class="p-b-12">
-									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
 										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${finditem.fisub}</a>
 										</c:if>
@@ -275,20 +268,12 @@
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${finditem.fisub}</a>
 										</c:if>
-									</a>
-								</h4>
-	
-								<p class="stext-108 cl6">
-									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-										<a class="stext-108 cl6" href="login.do">${finditem.ficon}</a>
-									</c:if>
-									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-										<a class="stext-108 cl6" href="#">${finditem.ficon}</a>
-									</c:if>
-									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-										<a class="stext-108 cl6" href="tempsignupform.do">${finditem.ficon}</a>
-									</c:if>
-								</p>
+									</span>
+									<span class="stext-105 cl3">
+										<i class="zmdi zmdi-calendar"></i>&nbsp;${finditem.fidate}
+									</span>
+									<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${finditem.fiplace}</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -316,23 +301,16 @@
 				</c:if>
 				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
-						<div class="blog-item">
-							<div class="hov-img0">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
 								<a href="blog-detail.html">
-									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-LOST">
+									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	
-							<div class="p-t-15">
-								<div class="stext-107 flex-w p-b-14">
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
 									<span class="m-r-3">
-										<span class="cl5">${lostitem.lodate}</span>
-										<span class="cl4">${lostitem.loplace}</span>
-									</span>
-								</div>
-	
-								<h4 class="p-b-12">
-									<a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
 										<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${lostitem.losub}</a>
 										</c:if>
@@ -342,20 +320,12 @@
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${lostitem.losub}</a>
 										</c:if>
-									</a>
-								</h4>
-	
-								<p class="stext-108 cl6">
-									<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
-										<a class="stext-108 cl6" href="login.do">${lostitem.locon}</a>
-									</c:if>
-									<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-										<a class="stext-108 cl6" href="#">${lostitem.locon}</a>
-									</c:if>
-									<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
-										<a class="stext-108 cl6" href="tempsignupform.do">${lostitem.locon}</a>
-									</c:if>
-								</p>
+									</span>
+									<span class="stext-105 cl3">
+										<i class="zmdi zmdi-calendar"></i>&nbsp;${lostitem.lodate}
+									</span>
+									<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${lostitem.loplace}</span>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -44,6 +44,8 @@ public interface QuestionMapper {
 	
 	//메세지용
 	List<Question> messageQuestion(String userid);
+	
+	void contentread(long qno);
 
 
 }
