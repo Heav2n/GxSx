@@ -57,8 +57,7 @@ public interface FindItemService {
 	List<FiComments> FindCommentList(int fino);
 
 	ResponseListVo getListService(HashMap<String, Object> query);
-	
-	//FindItem 검색 서비스
-	ModelAndView searchFindItem(String nextPage, String query, FindItPic findItPic, String isSearch, ModelAndView mv);
+
+
 	
 }

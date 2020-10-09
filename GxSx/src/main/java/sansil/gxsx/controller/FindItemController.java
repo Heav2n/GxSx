@@ -128,7 +128,6 @@ public class FindItemController {
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
-		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		return mv;
 	}
 	
