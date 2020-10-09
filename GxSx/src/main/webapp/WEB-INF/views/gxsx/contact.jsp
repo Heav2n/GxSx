@@ -140,17 +140,7 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<c:choose>
-								    <c:when test="${empty loginuser && !empty usercheck}">
-								      <a href="../gxsx/tempsignupform.do">Contact</a>
-								    </c:when>
-								    <c:when test="${!empty loginuser && !empty usercheck}">
-								      <a href="../gxsx/contact.do">Contact</a>
-								    </c:when>						    
-								    <c:otherwise>
-								      <a href="../gxsx/login.do">Contact</a>
-								    </c:otherwise>
-								</c:choose>
+								<a href="../gxsx/contact.do">Contact</a>
 							</li>
 						</ul>
 					</div>	
@@ -167,29 +157,30 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							           	<c:if test="${messageResult!='[]'}">
-								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px">
-								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
-									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-									            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
-									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-									            		<p class="time">답변완료</p></div>
-									            	</li>
-									            	</div>
-							          			</ul>
-								            </c:forEach>
-							            </c:if>
-							             
-							             <c:if test="${messageResult=='[]'}">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
 										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
 										            		알람 없음</div></center>
 										            	</li>
 									            	</div>
 									            </ul>
-							             </c:if>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
 						            </li>
 							    </li>
 						    </c:if>
@@ -257,26 +248,33 @@
 								<li class="bor18" id="QandA">
 								<c:choose>
 									<c:when test="${ !empty admin }">
-									<a href="#" onclick="allQuestionPage(1)" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Q&A
-									</a>
+										<a href="#" onclick="selectQuestionPage(1)" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+											Q&A
+										</a>
 									</c:when>
 									<c:otherwise>
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Q&A
-									</a>
+										<a href="../gxsx/contact.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+											Q&A
+										</a>
 									</c:otherwise>
 								</c:choose>
 								</li>
 								
 								<ul id="question-paging" class="pagination" style="display:inline-flex">
-								<li class="bor18" id="MyQandA">
-								<tbody id="question">
-									<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										My Q&A
-									</a>
-								</tbody>	
-								</li>
+									<c:choose>
+										<c:when test="${ !empty admin }">
+										</c:when>
+										<c:otherwise>
+											<li class="bor18" id="MyQandA">
+												<tbody id="question">
+													<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+														My Q&A
+													</a>
+												</tbody>	
+											</li>
+										</c:otherwise>
+									</c:choose>
+								
 								</ul>
 							</ul>
 							<input id="currentPage" type="hidden" value="${questionPage.currentPage}">
