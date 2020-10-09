@@ -42,8 +42,9 @@ public class QuestionController {
 	//문의글 리스트 View 요청 / question.jsp 응답
 	@RequestMapping("list.do")
 	public String list() {
-		if(session.getAttribute("loginUser") == null) return "redirect:../"; //비로그인시 인덱스 or 로그인 페이지 이동
-		return "gxsx/contact";
+		if(session.getAttribute("loginuser") == null) return "redirect:../gxsx/login.do"; //비로그인시 인덱스 or 로그인 페이지 이동
+		else if(session.getAttribute("loginuser") != null && session.getAttribute("usercheck") == null) return "redirect:../gxsx/tempsignupform.do"; //카카오로그인인데 회원정보없음
+		else return "gxsx/contact";
 	}
 	
 	//문의글 리스트 JSON 데이터 요청 / ResponseListVo 응답

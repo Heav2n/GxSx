@@ -277,11 +277,11 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
-							<li class="active-menu">
+							<li>
 								<a href="../gxsx/notice.do">Notice</a>
 							</li>
 
@@ -293,13 +293,23 @@
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
 							<li>
-								<a href="../gxsx/contact.do">Contact</a>
+								<c:choose>
+								    <c:when test="${empty loginuser && !empty usercheck}">
+								      <a href="../gxsx/tempsignupform.do">Contact</a>
+								    </c:when>
+								    <c:when test="${!empty loginuser && !empty usercheck}">
+								      <a href="../gxsx/contact.do">Contact</a>
+								    </c:when>						    
+								    <c:otherwise>
+								      <a href="../gxsx/login.do">Contact</a>
+								    </c:otherwise>
+								</c:choose>
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
-					<div class="wrap-icon-header flex-w flex-r-m" style="overflow:visible;">
+					<div class="wrap-icon-header flex-w flex-r-m">
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
@@ -332,21 +342,21 @@
 										            	</li>
 									            	</div>
 									            </ul>
-							            </c:if>
-						        </li>
-							</li>
-						</c:if>
+							             </c:if>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../Question/list.do">고객센터</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>

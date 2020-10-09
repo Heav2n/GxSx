@@ -51,29 +51,33 @@ public class UsersController {
 	@RequestMapping("mypage.do")
 	public ModelAndView mypage(HttpServletRequest request, HttpSession session) { // 구현
 		Users user = (Users)session.getAttribute("loginuser");
-		System.out.println("1:"+user);
-		System.out.println("2:"+user.getUserid());
-		List<LostListVo> lostList = service.getLostList(user.getUserid(), request, session);
-		
-		Pagination lostPage = service.getLostPagination(user.getUserid(), request, session);
-		
-		List<FindListVo> findlist = service.getFindList(user.getUserid(), request, session);
-		Pagination findPage = service.getFindPagination(user.getUserid(), request, session);
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/mypage");
-		mv.addObject("user", user);		
-		mv.addObject("lost", lostList);
-		mv.addObject("lostPage", lostPage);		
-		mv.addObject("find", findlist);
-		mv.addObject("findPage", findPage);
-		
-		if(session.getAttribute("loginuser")!=null) { //메세지확인용
-			List<Question> messageResult = messageService.messageList(user.getUserid());			
-			mv.addObject("messageResult", messageResult);
+		System.out.println("????:"+user);
+		if(user == null && session.getAttribute("kakaouser") != null) { //카카오로그인인데 회원정보없음
+			return new ModelAndView("redirect:../gxsx/tempsignupform.do");
 		}
-		
-		return mv;
+		else {
+			List<LostListVo> lostList = service.getLostList(user.getUserid(), request, session);
+			
+			Pagination lostPage = service.getLostPagination(user.getUserid(), request, session);
+			
+			List<FindListVo> findlist = service.getFindList(user.getUserid(), request, session);
+			Pagination findPage = service.getFindPagination(user.getUserid(), request, session);
+			
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("gxsx/mypage");
+			mv.addObject("user", user);		
+			mv.addObject("lost", lostList);
+			mv.addObject("lostPage", lostPage);		
+			mv.addObject("find", findlist);
+			mv.addObject("findPage", findPage);
+			
+			if(session.getAttribute("loginuser")!=null) { //메세지확인용
+				List<Question> messageResult = messageService.messageList(user.getUserid());			
+				mv.addObject("messageResult", messageResult);
+			}
+			
+			return mv;
+		}
 	}
 	
 	//ajax
