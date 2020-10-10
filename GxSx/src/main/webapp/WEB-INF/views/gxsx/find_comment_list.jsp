@@ -12,7 +12,7 @@
 			<div class="size-207" id="ficomment_${comment.comno}" style="margin-left:100px">
 				<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
  					<span class="mtext-107 cl2 p-r-20"> 
- 						${comment.userid}  
+ 						${comment.userid}
  						<span class="stext-102 cl6">&nbsp; 
  							${comment.codate} </span> 
 					</span> 

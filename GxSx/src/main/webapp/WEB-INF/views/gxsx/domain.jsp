@@ -64,7 +64,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">

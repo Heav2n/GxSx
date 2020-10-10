@@ -28,6 +28,8 @@ import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Notice;
+import sansil.gxsx.domain.NoticeVo;
+import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
@@ -316,10 +318,12 @@ public class DomainController {
 	
 	@GetMapping("notice.do")
 	public ModelAndView notice(HttpServletRequest request, HttpSession session) {
-		List<Notice> notice = service.noticeListS();
+		Pagination listpage = service.getPagination(request, session);
+		List<NoticeVo> notice = service.noticeListS(listpage);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/notice");
 		mv.addObject("noticeList", notice);
+		mv.addObject("listpage", listpage);
 		
 		if(session.getAttribute("loginuser")!=null) { //메세지확인용
 			Users user = (Users)session.getAttribute("loginuser");
@@ -330,6 +334,24 @@ public class DomainController {
 			String userpower = (String)session.getAttribute("userpower");
 			mv.addObject("user", userpower);
 		}
+		return mv;
+	}
+	
+	@ResponseBody
+	@GetMapping("noticeSearch")
+	private ModelAndView noticeSearch(HttpServletRequest request, HttpSession session, String query) {
+		Pagination listpage = service.getPaginationS(request, session, query);
+		
+		HashMap<String, Object> searpaging = new HashMap<String, Object>(); 
+		searpaging.put("paging", listpage);
+		searpaging.put("query", query);
+		
+		List<NoticeVo> notice = service.noticeSearchS(searpaging);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/noticeSearch");
+		mv.addObject("noticeList", notice);
+		mv.addObject("listpage", listpage);
+		mv.addObject("query", query);
 		return mv;
 	}
 
@@ -387,15 +409,10 @@ public class DomainController {
 	}
 	
 	@RequestMapping("noticeWrite.do")
-	public ModelAndView noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {		
+	public String noticeWrite(HttpServletRequest request, HttpSession session, Notice notice) {		
 		Users user = (Users)session.getAttribute("loginuser");
 		service.noticeWriteS(notice);
 		
-		List<Question> messageResult = messageService.messageList(user.getUserid()); //메세지 확인용
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/notice");
-		mv.addObject("messageResult", messageResult);
-		
-		return mv;
+		return "redirect:notice.do";
 	}
 }

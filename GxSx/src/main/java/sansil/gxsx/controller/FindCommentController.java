@@ -34,11 +34,11 @@ public class FindCommentController {
 	
 
 	//Find 리스트
-		@RequestMapping("findcomment.do")
-		public ModelAndView findcomment(int fino) {		
-			List<FiComments> list = service.FindCommentList(fino);			
-			return new ModelAndView("gxsx/find_comment_list", "comment", list);
-		}
+	@RequestMapping("findcomment.do")
+	public ModelAndView findcomment(int fino) {	
+		List<FiComments> list = service.FindCommentList(fino);			
+		return new ModelAndView("gxsx/find_comment_list", "comment", list);
+	}
 	
 	//Find댓글작성
 		@PostMapping("findinsert")

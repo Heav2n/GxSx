@@ -313,52 +313,7 @@
 						<!-- - -->
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
-								<div class="flex-w flex-t p-b-68">
-									<c:forEach var="ficomment" items="${ficomment}" varStatus="status">
-										<c:if test="${ficomment.depth==0}">
-				  							<div class="size-207" id="ficomment_${ficomment.comno}">
-												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
-													<span class="mtext-107 cl2 p-r-20">
-														${ficomment.userid} 
-														<span class="stext-102 cl6">&nbsp;
-															${ficomment.codate} </span>
-													</span>
-		
-													<span class="fs-18 cl11">
-														<a href="#" class="stext-109 cl8 hov-cl1 trans-04">reply</a>
-													</span>
-												</div>
-		
-												<p class="stext-102 cl6">
-													${ficomment.contents}
-												</p>
-												</br>
-											</div>
-			  							</c:if>
-			  							<c:if test="${ficomment.depth!=0 && !empty ficomment.pcom}">
-				  							<div class="size-207" id="ficomment_${ficomment.comno}" style="margin-left:100px">
-												<div class="flex-w flex-sb-m p-b-17" style="justify-content: unset">
-													<span class="mtext-107 cl2 p-r-20">
-														${ficomment.userid} 
-														<span class="stext-102 cl6">&nbsp;
-															${ficomment.codate} </span>
-													</span>
-		
-													<span class="fs-18 cl11">
-<!-- 														<a href="#" class="stext-109 cl8 hov-cl1 trans-04">reply</a> -->
-														<a href="#" class="stext-109 cl8 hov-cl1 trans-04"><i class="zmdi zmdi-mail-reply"></i></a>
-													</span>
-												</div>
-		
-												<p class="stext-102 cl6">
-													${ficomment.contents}
-												</p>
-												</br>
-											</div>
-			  							</c:if>
-										
-									</c:forEach>
-									
+								<div class="flex-w flex-t p-b-68" id="find_comment_list">
 								</div>
 								
 								<!-- Add review -->

@@ -58,7 +58,7 @@
 					 if(responseData.length != 0){
  						 for(var i=0; i<responseData.length; i++){
 							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
-							html += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+							html += "<img src='../images/Findimgs/"+responseData[i].fipicname+"' alt='IMG'></div></td>";
 							html += "<td class='column-2'>"+responseData[i].fisub+"</td>";
 							html += "<td class='column-3'>"+responseData[i].ficname+"\</td>";
 							html += "<td class='column-4'>"+responseData[i].fidate+"</td>";
@@ -99,7 +99,7 @@
 					 if(responseData.length != 0){
  						 for(var i=0; i<responseData.length; i++){
 							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
-							html += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+							html += "<img src='../images/Lostimgs/"+responseData[i].lopicname+"' alt='IMG'></div></td>";
 							html += "<td class='column-2'>"+responseData[i].losub+"</td>";
 							html += "<td class='column-3'>"+responseData[i].locname+"\</td>";
 							html += "<td class='column-4'>"+responseData[i].lodate+"</td>";
@@ -135,7 +135,7 @@
 			str1 += "<c:if test='${empty find}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
 			str1 += "<c:forEach items='${find}' var='find' varStatus='status'>";
 			str1 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
-			str1 += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+			str1 += "<img src='../images/Findimgs/${find.fipicname}' alt='IMG'></div></td>";
 			str1 += "<td class='column-2'>${find.fisub}</td><td class='column-3'>${find.ficname}</td><td class='column-4'>${find.fidate}</td>";
 			str1 += "<c:if test='${find.fifin==0}'><td class='column-5'>미완료</td></c:if>";
 			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
@@ -159,7 +159,7 @@
 			str2 += "<c:if test='${empty lost}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
 			str2 += "<c:forEach items='${lost}' var='lost' varStatus='status'>";
 			str2 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
-			str2 += "<img src='../images/coza/item-cart-04.jpg' alt='IMG'></div></td>";
+			str2 += "<img src='../images/Lostimgs/${lost.lopicname}' alt='IMG'></div></td>";
 			str2 += "<td class='column-2'>${lost.losub}</td><td class='column-3'>${lost.locname}</td><td class='column-4'>${lost.lodate}</td>";
 			str2 += "<c:if test='${lost.lofin==0}'><td class='column-5'>미완료</td></c:if>";
 			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";

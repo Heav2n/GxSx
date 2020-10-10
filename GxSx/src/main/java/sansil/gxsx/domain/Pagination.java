@@ -1,33 +1,33 @@
 package sansil.gxsx.domain;
 
 public class Pagination {
-	//í•œ í˜ì´ì§€ ë‹¹ ê²Œì‹œê¸€ ìˆ˜
+	//ÇÑ ÆäÀÌÁö ´ç °Ô½Ã±Û ¼ö
 	private int pageSize; 
-	//í•œ ë¸”ëŸ­(range)ë‹¹ í˜ì´ì§€ ìˆ˜
+	//ÇÑ ºí·°(range)´ç ÆäÀÌÁö ¼ö
 	private int rangeSize = 10;
-	//í˜„ì¬ í˜ì´ì§€
+	//ÇöÀç ÆäÀÌÁö
 	private int currentPage = 1;
-	//í˜„ì¬ ë¸”ëŸ­(range)
+	//ÇöÀç ºí·°(range)
 	private int currentRange = 1;
-	//ì´ ê²Œì‹œê¸€ ìˆ˜
+	//ÃÑ °Ô½Ã±Û ¼ö
 	private long listCount;
-	//ì´ í˜ì´ì§€ ìˆ˜
+	//ÃÑ ÆäÀÌÁö ¼ö
 	private int pageCount;
-	//ì´ ë¸”ëŸ­(range)
+	//ÃÑ ºí·°(range)
 	private int rangeCount;
-	//ì‹œì‘ í˜ì´ì§€
+	//½ÃÀÛ ÆäÀÌÁö
 	private int startPage = 1;
-	//ë í˜ì´ì§€
+	//³¡ ÆäÀÌÁö
 	private int endPage = 1;
-	//ì‹œì‘ index
+	//½ÃÀÛ index
 	private int startIndex = 0;
-	//ì´ì „ í˜ì´ì§€
+	//ÀÌÀü ÆäÀÌÁö
 	private int prevPage;
-	//ë‹¤ìŒ í˜ì´ì§€
+	//´ÙÀ½ ÆäÀÌÁö
 	private int nextPage;
-	//ì‹œì‘ í–‰
+	//½ÃÀÛ Çà
 	private int startRow;
-	//ë í–‰
+	//³¡ Çà
 	private int endRow;
 	
 	public Pagination(long listCount, int currentPage, int pageSize) {
@@ -35,13 +35,13 @@ public class Pagination {
 		this.currentPage = currentPage;
 		this.pageSize = pageSize;
 		
-		//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+		//ÃÑ ÆäÀÌÁö ¼ö
 		setPageCount(listCount);
-		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ setting
+		//ÇöÀç ºí·° setting
 		setCurrentRange(currentPage);
-		//ï¿½ï¿½ ï¿½ï¿½(range) ï¿½ï¿½
+		//ÃÑ ºí·°(range) ¼ö
 		setRangeCount(pageCount);
-		//ï¿½ï¿½(range) setting
+		//ºí·°(range) setting
 		rangeSetting(currentPage);
 		setStartIndex(currentPage);
 		setStartRow(currentPage, pageSize);

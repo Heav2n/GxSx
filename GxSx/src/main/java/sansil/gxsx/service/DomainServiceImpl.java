@@ -3,6 +3,9 @@ package sansil.gxsx.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +13,12 @@ import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Notice;
+import sansil.gxsx.domain.NoticeVo;
+import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.mapper.DomainMapper;
+import sansil.gxsx.utils.PagingUtil;
 
 @Service("DomainService")
 public class DomainServiceImpl implements DomainService {
@@ -66,8 +72,41 @@ public class DomainServiceImpl implements DomainService {
 	}
 	
 	@Override
-	public List<Notice> noticeListS() {
-		return mapper.noticelist();
+	public List<NoticeVo> noticeListS(Pagination listpage) {
+		return mapper.noticelist(listpage);
+	}
+	
+	@Override
+	public List<NoticeVo> noticeSearchS(HashMap searpaging) {
+		return mapper.noticesearch(searpaging);
+	}
+	
+	@Override
+	public Pagination getPagination(HttpServletRequest request, HttpSession session) {
+		String cpStr = request.getParameter("cp");
+		String psStr = "5";
+		
+		PagingUtil pagingutil = new PagingUtil(cpStr, psStr, session);
+
+		Long listCount = mapper.noticecount();
+		Pagination pagings = new Pagination(listCount, pagingutil.getCp(),pagingutil.getPs());
+		pagings.setRangeSize(5);
+
+		return pagings;
+	}
+	
+	@Override
+	public Pagination getPaginationS(HttpServletRequest request, HttpSession session, String query) {
+		String cpStr = request.getParameter("cp");
+		String psStr = "5";
+		
+		PagingUtil pagingutil = new PagingUtil(cpStr, psStr, session);
+
+		Long listCount = mapper.noticeScount(query);
+		Pagination pagings = new Pagination(listCount, pagingutil.getCp(),pagingutil.getPs());
+		pagings.setRangeSize(5);
+
+		return pagings;
 	}
 	
 	@Override

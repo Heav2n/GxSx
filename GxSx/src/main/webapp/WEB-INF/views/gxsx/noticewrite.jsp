@@ -403,24 +403,6 @@
 													    <option value="notice_icon01">공지</option>
 													    <option value="notice_icon02">점검</option>
 													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
 												      </select>
 											      </div>
 											</div>
