@@ -13,7 +13,7 @@ function qreply(qno, content){
            +"<input type='hidden' id='qno' name='qno' value='"+qno+"'/>"
            +"<input type='text' class='form-control' id='content' value='"+content+"' name='content' placeholder='내용을 입력하세요.'>"
            +"<span class='input-group-btn'>"
-                +"<button class= btn btn-default type=submit>등록</button>"
+                +"<button class='back_btn' type='submit' style='width:110px; text-align:center;margin-right:-15px;margin-left:10px'>등록</button>"
            +"</span>"
           +"</div>"
     +"</form>";

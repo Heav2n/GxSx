@@ -35,7 +35,272 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
+		
+		.container2 * {
+		    margin: 0;
+		    padding: 0;
+		    list-style: none;
+		    border: 0;
+		    text-decoration: none;
+		    font-family: "NanumBarunGothic" , "Malgun Gothic" , sans-serif;
+		    letter-spacing: -0.03em;
+		}
+		
+		.con_title {
+		    font-size: 34px;
+		    color: #333;
+		    margin-top: 60px;
+		    width: 100%;
+		    float: left;
+		    margin-bottom: 30px;
+		    height: 40px;
+		}
+		
+		input {
+		    -webkit-writing-mode: horizontal-tb !important;
+		    text-rendering: auto;
+		    color: -internal-light-dark(black, white);
+		    word-spacing: normal;
+		    text-transform: none;
+		    text-indent: 0px;
+		    text-shadow: none;
+		    display: inline-block;
+		    text-align: start;
+		    appearance: textfield;		    
+		}
+		.contents_wrap {
+		    width: 930px;
+		    float: left;
+		    height: 100%;
+		    overflow: auto;
+		    zoom: 1;
+		}
+		
+		.page_numb {
+		    float: left;
+		    width: 100%;
+		    margin-top: 30px;
+		    padding-bottom: 180px;
+		    text-align: center;
+		}
+		.news_board {
+		    width: 100%;
+		    float: left;
+		    border-top: 1px solid #c8c8d5;
+		    margin-top: 30px;
+		}
+		.news_board > ul:after { display:block; clear:both; content:""; }
+		div {
+		    display: block;
+		    overflow: auto;
+		    zoom: 1;
+		}
+		
+		li {
+		    display: list-item;
+		    text-align: -webkit-match-parent;
+		}
+		.news_board ul li {
+		    float: left;
+		    width: 903px;
+		    padding-left: 27px;
+		    position: relative;
+ 		    line-height: 69px;
+		    min-height: 68px;
+		    height:auto;
+		    border-bottom: 1px solid #e3e3e3;
+		    font-size: 16px;
+		    color: #333;
+		}
+		.heart_date {
+		    position: absolute;
+		    top: 34px;
+    		right: 35px;
+		}
+		.heart_date dl dd {
+		    float: left;
+		    margin-top: 3px;
+		    color: #aaa;
+		    font-size: 12px;
+		    font-family: "Tahoma";
+		}
+		.heart_date dl dt {
+		    float: left;
+		    margin-right: 5px;
+		    margin-top: 1px;
+		}
+		dt {
+		    display: block;
+		}
+		.news_board ul li a {
+		    color: #333;
+		    float: left;
+		    line-height: 69px;
+		}
+		.news_board ul li div.heart_date {
+		    top: 0;
+		    right: 0;
+		    width: 110px;
+		}
+		.fix_sort {
+		    float: right;
+		    padding: 0 10px 0 10px !important;
+		    font-size: 13px;
+		    color: #333;
+		    height: 38px;
+		    line-height: 38px;
+		    border: 1px solid #e3e3e3;
+		    border-right: 0;
+		    margin-top: 16px;
+		    min-width: 67px;
+		    position: relative;
+		    background: none !important;
+		    text-align: center;
+		}
+		.sort_wrap a {
+		    width: 100%;
+		    float: left;
+		    color: #666;
+		    padding-right: 30px;
+		    font-weight: normal;
+		}
+		.word_input input {
+		    height: 38px;
+		    line-height: 38px;
+		    background-color: #fff;
+		    border: 1px solid #e3e3e3;
+		    padding: 0 29px 0 20px;
+		    float: left;
+		}
+		.word_input {
+		    float: right;
+		    position: relative;
+		    margin-top: 16px;
+		}
+		.word_input span.btn2 {
+		    position: absolute;
+		    right: 8px;
+		    top: -5px;
+		    height: 21px;
+		}
+		.sort_wrap {
+		    float: right;
+		    padding: 0 30px 0 10px;
+		    font-size: 13px;
+		    color: #333;
+		    height: 38px;
+		    line-height: 38px;
+		    border: 1px solid #e3e3e3;
+		    border-right: 0;
+		    margin-top: 16px;
+		    background: url(https://ssl.nx.com/s2/game/maplestory/renewal/common/search_down_bg.jpg) #fff right center no-repeat;
+		    min-width: 67px;
+		    position: relative;
+		}
+		
+		input {
+		    -webkit-writing-mode: horizontal-tb !important;
+		    text-rendering: auto;
+		    color: -internal-light-dark(black, white);
+		    letter-spacing: normal;
+		    word-spacing: normal;
+		    text-transform: none;
+		    text-indent: 0px;
+		    text-shadow: none;
+		    display: inline-block;
+		    text-align: start;
+		    appearance: textfield;
+		    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+		    -webkit-rtl-ordering: logical;
+		    cursor: text;
+		    margin: 0em;
+		    font: 400 13.3333px Arial;
+		    padding: 1px 2px;
+		    border-width: 2px;
+		    border-style: inset;
+		    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+		    border-image: initial;
+		}
+		a{
+			color: #868e96;
+		}
+		.page_move {
+		    float: left;
+		    margin-top: 40px;
+		    width: 100%;
+		    padding-bottom: 180px;
+		}
+		.page_move > ul > li:first-child {
+		    border-top: 1px solid #e3e3e3;
+		}
+		.page_move > ul > li {
+		    float: left;
+		    width: 100%;
+		    height: 45px;
+		    line-height: 46px;
+		    border-bottom: 1px solid #e3e3e3;
+		}
+		.notice_title {
+		    float: left;
+		    font-size: 15px;
+		    color: #666;
+		}
+		.page_move_info {
+		    float: right;
+		    height: 100%;
+		}
+		.page_move > ul {
+		    float: left;
+		    width: 100%;
+		    height: 100%;
+		}
+		.page_move_btn {
+		    float: left;
+		    margin-left: 27px;
+		    margin-right: 24px;
+		    font-size: 15px;
+		    line-height: 1;
+		    margin-top: 15px;
+		}
+		.lili > ul > li {
+			   float: left;
+			   width: 100%;
+			   height: 40px;
+			   line-height: 30px;
+			   border-bottom: 1px solid #e3e3e3;
+			}
+		.back_btn {
+		    display: inline-block;
+		    font-size: 13px;
+		    color: #666;
+		    padding: 13px 11px;
+		    line-height: 1;
+		    border: 1px solid #e6e6e6;
+		}
+		.cm_write {
+		    float: right;
+		    text-align: right;
+		    width: auto;
+		    margin-top: 15px;
+		    margin-right: 15px;
+		}
+		.btn02_b {
+		    min-width: 53px;
+		    font-size: 16px;
+		    color: #fff !important;
+		    text-align: center;
+		    background-color: #455d9d;
+		    border-radius: 2px;
+		    padding: 10px 14px 10px 14px;
+		    border: 1px solid #455d9d;
+		    display: inline-block;
+		    line-height: 1;
+		}
+		div{
+			overflow: visible;
+		}
 	</style>
+	
 	
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
@@ -237,7 +502,7 @@
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18" id="QandA">
-									<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a href="../gxsx/contact.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										Q&A
 									</a>
 								</li>
@@ -270,29 +535,53 @@
 
 				<!-- Content page -->
 				
-				<section class="bg0 p-t-104 p-b-116">
-					<div class="container">
-						<div class="flex-w flex-tr">
-							<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+				<section class="bg0 p-t-62 p-b-60">
+					<div class="container" >  <!-- style="padding-left:110px"-->
+						<!-- d -->
+						<div class="contents_wrap" id="contents_wrap" style="margin-top:-105px;">
+							 <h1 class="con_title">
+			                    <div style="float:right;">
+			                    </div>
+			                </h1> <div></div>
 								<form id='questionco_form' name='input' method='post' action='../Question/reupdate.do' accept-charset='UTF-8'>
-									<h4 class="mtext-105 cl2 txt-center p-b-30">
-										1:1 문의 글 입니다
-									</h4>
-			
-									<div class="bor8 m-b-20 how-pos4-parent">
-										<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="txt1" name='qsub' value="${question.qsub}" readonly/>
-										<input type="hidden" name="quid" id="quid" value="${loginuser.userid}" />
-										<img class="how-pos4 pointer-none" src="../images/coza/icons/icon-email.png" alt="ICON">
-									</div>
-			
-									<div class="bor8 m-b-30">
-										<input class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" type="text" id="txt2" name="qcon" value="${question.qcon}" readonly/>
+			                       <div class="news_board">
+			                           <!-- notice ul str -->
+			                           <ul>
+				                           <li>
+					                           <p class="last fs-13" style="float:right;">${loginuser.userid}</p>
+					                           <span class="qs_id fs-15">&emsp;${question.qsub}</span>
+				                           </li>
+			                               <!--게시물 Loop : Str-->
+			                                   <li>
+			                                   		<div class="qs_text" style="word-break:keep-all">
+														<p class="fs-13">
+				                                           <span>&emsp;${question.qcon}</span>
+														</p>
+													</div>
+			                                   </li>
+			                           </ul>
 									</div>
 									
-									<div class="bor8 m-b-30">
-										<input class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" type="text" id="txt3" name="qreply" value="${question.qreply}" readonly/>
-									</div>
-									<c:if test="${ admin}">									
+									<div class="news_board">
+			                           <!-- notice ul str -->
+			                           <ul>
+				                           <li>
+					                           <span class="qs_id fs-15">&emsp;답변</span>
+				                           </li>
+			                               <!--게시물 Loop : Str-->
+			                                   <li>
+			                                   		<div class="qs_text" style="word-break:keep-all">
+														<p class="fs-13">
+				                                           <span>&emsp;${question.qreply}</span>
+														</p>
+													</div>
+			                                   </li>
+			                                    </ul>
+			                                   <span class="con_title_btn fs-13"> <a href="#" onclick="selectQuestionPage(1)" class="back_btn" 
+			                                   					style="width:56px; text-align:center;float:right;margin-top:20px">목록</a></span>
+			                          
+			                        <c:if test="${ admin}">	
+			                        							
 										<div id="comment-input" class="container">
 											<c:if test="${empty question.qreply}">
 												<label for="content">관리자 댓글</label>
@@ -304,9 +593,9 @@
 															placeholder="내용을 입력하세요."> <span
 															class="input-group-btn">
 															<c:if test="${ admin }">
-															<c:if test="${!empty sessionScope.loginuser}">
-															<button class="btn btn-default" type="submit">등록</button>
-															</c:if>
+																<c:if test="${!empty sessionScope.loginuser}">
+																	<button class="back_btn" type="submit" style="width:110px; text-align:center;margin-right:-15px;margin-left:10px">등록</button>
+																</c:if>
 															</c:if>
 														</span>
 													</div>
@@ -315,13 +604,13 @@
 										</div>
 									</form>
 								
-								<c:if test="${!empty question.qreply}">
-								<div id="comment_update_btn">
-								<c:if test="${admin}">
-      								<button class="btn btn-default" type="button" onclick="qreply('${question.qno}','${question.qreply}');">관리자 댓글 수정버튼</button>
-    							</c:if>	
-    							</div>
-								</c:if>
+									<c:if test="${!empty question.qreply}">
+										<div id="comment_update_btn">
+										<c:if test="${admin}">
+		      								<button class="back_btn" type="button" style="width:80px; text-align:center;margin-top:20px" onclick="qreply('${question.qno}','${question.qreply}');">답변수정</button>
+		    							</c:if>	
+		    							</div>
+									</c:if>
 								</c:if>
 									
 									<script>		
@@ -334,70 +623,14 @@
 											}
 										}
 									</script>
+									</div>
 									
-			
-
-								</div>
-			
-							<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-								<div class="flex-w w-full p-b-42">
-									<span class="fs-18 cl5 txt-center size-211">
-										<span class="lnr lnr-map-marker"></span>
-									</span>
-			
-									<div class="size-212 p-t-2">
-										<span class="mtext-110 cl2">
-											주소
-										</span>
-			
-										<p class="stext-115 cl6 size-213 p-t-18">
-											비트캠프 3층 1강의실
-										</p>
-									</div>
-								</div>
-			
-								<div class="flex-w w-full p-b-42">
-									<span class="fs-18 cl5 txt-center size-211">
-										<span class="lnr lnr-phone-handset"></span>
-									</span>
-			
-									<div class="size-212 p-t-2">
-										<span class="mtext-110 cl2">
-											문의 전화
-										</span>
-			
-										<p class="stext-115 cl1 size-213 p-t-18">
-											앞뒤가 똑같은 1577
-										</p>
-									</div>
-								</div>
-			
-								<div class="flex-w w-full">
-									<span class="fs-18 cl5 txt-center size-211">
-										<span class="lnr lnr-envelope"></span>
-									</span>
-			
-									<div class="size-212 p-t-2">
-										<span class="mtext-110 cl2">
-											E-mali
-										</span>
-			
-										<p class="stext-115 cl1 size-213 p-t-18">
-											contact@example.com
-										</p>
-									</div>
-								</div>
 							</div>
-						</div>
+						
+						<!-- d -->
 					</div>
-				</section>	
+				</section>
 				
-				
-					<!-- Map -->
-					<div class="map">
-						<div class="size-303" id="google_map" data-map-x="37.552329" data-map-y="126.937562" data-pin="../images/coza/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-					</div>
-
 				</div>
 				
 			</div>
