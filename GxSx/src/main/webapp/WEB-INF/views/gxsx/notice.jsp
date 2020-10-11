@@ -392,7 +392,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-02.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Notice
+			<img src="../images/공지사항-w.png">
 		</h2>
 	</section>
 

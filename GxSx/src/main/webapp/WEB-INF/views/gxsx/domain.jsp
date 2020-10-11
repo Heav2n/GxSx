@@ -53,7 +53,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -158,74 +158,38 @@
       
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
 	<!-- ////////////////////////////////////// 광고 배너 시작  ////////////////////////////////////// -->
-	<div class="sec-banner bg0">
-		<div class="flex-w flex-c-m">
-			<div class="size-202 m-lr-auto respon4" style="margin-left:15%">
-				<!-- Block1 -->
-				<div class="block1 wrap-pic-w">
-					<img src="../images/coza/banner-05.jpg" alt="IMG-BANNER">
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8">
-								Men
-							</span>
-							<span class="block1-info stext-102 trans-04">
-								Spring 2018
-							</span>
-						</div>
-						<div class="block1-txt-child2 p-b-4 trans-05">
-							<div class="block1-link stext-101 cl0 trans-09">
-								Shop Now
-							</div>
-						</div>
-					</a>
-				</div>
+	<div id="carouselExampleIndicators" class="carousel slide"
+		data-ride="carousel" style="margin-top: -38px">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0"
+				class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="../images/slide_6.png" class="d-block w-100" alt="...">
 			</div>
-			
-			<div class="size-202 m-lr-auto respon4">
-				<!-- Block1 -->
-				<div class="block1 wrap-pic-w">
-					<img src="../images/coza/banner-05.jpg" alt="IMG-BANNER">
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8">
-								Men
-							</span>
-							<span class="block1-info stext-102 trans-04">
-								Spring 2018
-							</span>
-						</div>
-						<div class="block1-txt-child2 p-b-4 trans-05">
-							<div class="block1-link stext-101 cl0 trans-09">
-								Shop Now
-							</div>
-						</div>
-					</a>
-				</div>
+			<div class="carousel-item">
+				<img src="../images/slide_5.png" class="d-block w-100" alt="...">
 			</div>
-
-			<div class="size-202 m-lr-auto respon4" style="margin-right:15%">
-				<!-- Block1 -->
-				<div class="block1 wrap-pic-w">
-					<img src="../images/coza/banner-06.jpg" alt="IMG-BANNER">
-					<a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-						<div class="block1-txt-child1 flex-col-l">
-							<span class="block1-name ltext-102 trans-04 p-b-8">
-								Bags
-							</span>
-							<span class="block1-info stext-102 trans-04">
-								New Trend
-							</span>
-						</div>
-						<div class="block1-txt-child2 p-b-4 trans-05">
-							<div class="block1-link stext-101 cl0 trans-09">
-								Shop Now
-							</div>
-						</div>
-					</a>
-				</div>
+			<div class="carousel-item">
+				<img src="../images/slide_4.png" class="d-block w-100" alt="...">
+			</div>
+			<div class="carousel-item">
+				<img src="../images/slide_1.png" class="d-block w-100" alt="...">
 			</div>
 		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators"
+			role="button" data-slide="prev"> <span
+			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
 	</div>
 
 	<!-- ////////////////////////////////////// 광고 배너 종료  ////////////////////////////////////// -->
@@ -238,14 +202,14 @@
 		<div class="container">
 			<div class="p-b-66">
 				<h3 class="ltext-105 cl5 txt-center respon1" style="float:center">
-					FindItem
+					<img src="../images/습득물01.png">
 				</h3>
-				<a href="../finditem/list.do?cp=1" style="float:right">more></a>
+				<a href="../finditem/list.do?cp=1" style="float:right;color:#1b252f"><img src="../images/더보기01.png"></a>
 			</div>
 
 			<div class="row">
 				<c:if test="${empty findResult}">
-					데이터가 하나도 없음
+					분실물 없음
 				</c:if>
 				<c:forEach items="${findResult}" var="finditem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
@@ -290,14 +254,14 @@
 		<div class="container">
 			<div class="p-b-66">
 				<h3 class="ltext-105 cl5 txt-center respon1" style="float:center">
-					LostItem
+					<img src="../images/분실물01.png">
 				</h3>
-				<a href="../lostitem/list.do?cp=1" style="float:right">more></a>
+				<a href="../lostitem/list.do?cp=1" style="float:right;color:#1b252f"><img src="../images/더보기.png"></a>
 			</div>
 
 			<div class="row">
 				<c:if test="${empty lostResult}">
-					데이터가 하나도 없음
+					분실물 없음
 				</c:if>
 				<c:forEach items="${lostResult}" var="lostitem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
@@ -345,7 +309,7 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
 	
 					</div>
