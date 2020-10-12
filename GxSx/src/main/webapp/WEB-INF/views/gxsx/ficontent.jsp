@@ -331,7 +331,7 @@
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Items
+					<img src="../images/최근게시물.png">
 				</h3>
 			</div>
 
@@ -344,11 +344,8 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<img src="../images/Findimgs/${related.fipicname}" alt="IMG-PRODUCT">
-	
-									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Quick View
-									</a>
+									<a href="../finditem/content.do?fino=${related.fino}" >
+									<img src="../images/Findimgs/${related.fipicname}" alt="IMG-PRODUCT"></a>
 								</div>
 	
 								<div class="block2-txt flex-w flex-t p-t-14">
@@ -358,7 +355,7 @@
 										</a>
 	
 										<span class="stext-105 cl3">
-											${related.fisub}
+											<a href="../finditem/content.do?fino=${related.fino}" class="cl3" >${related.fisub}</a>
 										</span>
 									</div>
 	

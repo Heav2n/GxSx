@@ -283,7 +283,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -488,7 +488,7 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
 	
 					</div>
