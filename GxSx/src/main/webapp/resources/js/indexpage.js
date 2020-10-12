@@ -13,7 +13,7 @@ $(function()
 
         if( app.hasClass('opened') )
         {
-            setTimeout(function(){ input.toggleClass('move-up'); },200);s
+            setTimeout(function(){ input.toggleClass('move-up'); },200);
             setTimeout(function(){ input.focus(); },500);
         }
         else

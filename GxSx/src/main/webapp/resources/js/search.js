@@ -8,7 +8,9 @@ var endDate = null;
 var fiano;
 //let fiplace; //TODO : 장소 입력 css 설계 이후 javascript 정의
 function searchAction(nextPage, isSearch){
+	console.log(nextPage, isSearch);
 	let date_range = document.getElementById("result-2").innerText.trim();
+	fisub = document.getElementById("query").value;
 	
 //	console.log("1 : "+fisub);
 //	console.log("2 : "+ficname);
@@ -25,9 +27,9 @@ function searchAction(nextPage, isSearch){
 	if(typeof ficname === 'undefined'){
 		ficname = null;
 	}
-	if(typeof fisub == 'undefined'){
-		fisub = null;
-	}
+//	if(typeof fisub == 'undefined'){
+//		fisub = null;
+//	}
 	if(typeof fiano == 'undefined'){
 		fiano = -1;
 	}
@@ -87,6 +89,8 @@ function selectArea(area, value){
 }
 
 const search_input = document.getElementById("query");
+console.log(search_input);
+console.log(search_input.value);
 function selectSub(){
 	fisub = query.value;
 	//console.log(query.value);

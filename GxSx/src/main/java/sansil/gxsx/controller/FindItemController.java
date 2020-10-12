@@ -117,7 +117,7 @@ public class FindItemController {
 	}	
 	
 	@RequestMapping("list.do")
-	public ModelAndView list(HttpServletRequest request, HttpSession session) {
+	public ModelAndView list(HttpServletRequest request, HttpSession session, String query) {
 		ModelAndView mv = service.getSearchOptions();
 		mv.setViewName("gxsx/filist");
 		if(session.getAttribute("loginuser")!=null) {
@@ -125,9 +125,23 @@ public class FindItemController {
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
+		mv.addObject("query", query);
 		return mv;
 	}
 	
+	// 테스트중
+	@RequestMapping("list2.do")
+	public ModelAndView list2(HttpServletRequest request, HttpSession session, String query) {
+		ModelAndView mv = service.getSearchOptions();
+		mv.setViewName("gxsx/filist");
+		if(session.getAttribute("loginuser")!=null) {
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+//		mv.addObject("query", query);
+		return mv;
+	}
 	
 	@RequestMapping("slist.do")
 	public ModelAndView slist(String nextPage, String query, FindItPic requestData, String isSearch, HttpServletRequest request, HttpSession session) {

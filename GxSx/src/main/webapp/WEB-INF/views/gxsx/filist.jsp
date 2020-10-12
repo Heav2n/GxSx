@@ -256,50 +256,6 @@
 							</div>
 						</div>
 
-<!-- 						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
-							</div>
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div> -->
-
 						<div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Tags
@@ -315,12 +271,12 @@
 						</div>	
 						
 					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
+						<div class="bor8 dis-flex p-l-15" style="background-color:white" >
 							<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" onclick="searchAction(1, true);" type="button">
 								<i class="zmdi zmdi-search"></i>
 							</button>
-							<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" 
-								onkeyup="selectSub();" placeholder="Search" autocomplete="off">
+							<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" value="${ query }" 
+								onkeyup="selectSub();" onkeypress="enterkey()" placeholder="Search" autocomplete="off">
 						</div>
 						
 						<div class="w-full">
@@ -706,5 +662,13 @@
     <script>
     	searchAction(1, true);
     </script>
+    <script>
+		function enterkey() { 
+		  		if (window.event.keyCode == 13) { 
+		  			searchAction(1, true);
+		   	} 
+		}
+		
+	</script>
 </body>
 </html>
