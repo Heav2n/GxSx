@@ -147,12 +147,7 @@
 			str1 += "<a class='cl3' href='../finditem/content.do?fino=${find.fino}'>${find.fisub}</a></td>";
 			str1 += "<td class='column-3'>${find.ficname}</td><td class='column-4'>${find.fidate}</td>";
 			str1 += "<c:if test='${find.fifin==0}'><td class='column-5'>미완료</td></c:if>";
-			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
-
-			str1 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
-			str1 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div><div>";
-			str1 += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisub' id='fisub' placeholder='Search item'>";
-			str1 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='fiboard' onclick='findSfunc()'>Search</div></div></div></div>";
+			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div></div>";
 				
 		document.getElementById("contentchange").innerHTML = str1;
 			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
@@ -172,12 +167,7 @@
 			str2 += "<a class='cl3' href='../lostitem/content.do?lono=${lost.lono}'>${lost.losub}</a></td>";
 			str2 += "<td class='column-3'>${lost.locname}</td><td class='column-4'>${lost.lodate}</td>";
 			str2 += "<c:if test='${lost.lofin==0}'><td class='column-5'>미완료</td></c:if>";
-			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
-	
-			str2 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
-			str2 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div><div>";
-			str2 += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='losub' id='losub' placeholder='Search item'>";
-			str2 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='loboard' onclick='lostSfunc()'>Search</div></div></div></div>";
+			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div></div>";
 
 		document.getElementById("contentchange").innerHTML = str2;
 	}

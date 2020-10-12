@@ -502,19 +502,35 @@
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18" id="QandA">
-									<a href="../gxsx/contact.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Q&A
-									</a>
+								<c:choose>
+									<c:when test="${ !empty admin }">
+										<a href="#" onclick="selectQuestionPage(1)" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+											Q&A
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="../gxsx/contact.do" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+											Q&A
+										</a>
+									</c:otherwise>
+								</c:choose>
 								</li>
 								
 								<ul id="question-paging" class="pagination" style="display:inline-flex">
-								<li class="bor18" id="MyQandA">
-								<tbody id="question">
-									<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										My Q&A
-									</a>
-								</tbody>	
-								</li>
+									<c:choose>
+										<c:when test="${ !empty admin }">
+										</c:when>
+										<c:otherwise>
+											<li class="bor18" id="MyQandA">
+												<tbody id="question">
+													<a href="#" onclick="selectQuestionPage(1)"  class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+														My Q&A
+													</a>
+												</tbody>	
+											</li>
+										</c:otherwise>
+									</c:choose>
+								
 								</ul>
 							</ul>
 							<input id="currentPage" type="hidden" value="${questionPage.currentPage}">
@@ -564,7 +580,7 @@
 			                           <!-- notice ul str -->
 			                           <ul>
 				                           <li style="width:800px">
-					                           <span class="qs_id fs-15">&emsp;답변</span>
+					                           <span class="qs_id fs-15"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/notice_icon02.png"><b>&emsp;산신령 답변</b></span>
 				                           </li>
 			                               <!--게시물 Loop : Str-->
 			                                   <li style="width:800px">
@@ -605,7 +621,7 @@
 									<c:if test="${!empty question.qreply}">
 										<div id="comment_update_btn">
 										<c:if test="${admin}">
-		      								<button class="back_btn" type="button" style="width:80px; text-align:center;margin-top:20px" onclick="qreply('${question.qno}','${question.qreply}');">답변수정</button>
+		      								<button class="back_btn" type="button" style="width:80px; text-align:center;margin-top:-5px" onclick="qreply('${question.qno}','${question.qreply}');">답변수정</button>
 		    							</c:if>	
 		    							</div>
 									</c:if>

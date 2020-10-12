@@ -443,7 +443,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-02.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Notice
+			<img src="../images/공지사항-w.png">
 		</h2>
 	</section>
 
@@ -456,7 +456,7 @@
                     <div style="float:right;">
                         <span class="word_input" style="margin-top:0;">
                             <span class="con_title_btn fs-13">
-                            <a href="https://maplestory.nexon.com/Community/Free" class="back_btn" style="width:56px; text-align:center;">목록</a></span>
+                            <a href="../gxsx/notice.do" class="back_btn" style="width:56px; text-align:center;">목록</a></span>
                     </div>
                 </h1>
                     	<div></div><div></div>

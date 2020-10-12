@@ -16,12 +16,12 @@
 	</select>
 	<select id="listlopic" resultType="LostPic">
 		<![CDATA[
-			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3)
+			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3) order by LOPNO desc
 		]]>
 	</select>	
 	<select id="listfipic" resultType="FindPic">
 		<![CDATA[
-			select * from FINDPIC where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3)
+			select * from FINDPIC where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3) order by FIPNO desc
 		]]>
 	</select>
 	
