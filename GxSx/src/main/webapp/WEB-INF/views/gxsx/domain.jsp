@@ -204,7 +204,7 @@
 				<h3 class="ltext-105 cl5 txt-center respon1" style="float:center">
 					<img src="../images/습득물01.png">
 				</h3>
-				<a href="../finditem/list.do?cp=1" style="float:right;color:#1b252f"><img src="../images/더보기01.png"></a>
+				<a href="../finditem/list.do?cp=1" style="float:right;color:#1b252f"><img src="../images/더보기.png"></a>
 			</div>
 
 			<div class="row">

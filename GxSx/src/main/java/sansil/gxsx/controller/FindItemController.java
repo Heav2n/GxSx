@@ -38,13 +38,17 @@ public class FindItemController {
 	private MessageService messageService;
 	
 	@GetMapping("write2.do")
-	public String write(HttpServletRequest request, HttpSession session) {
-		
+	public ModelAndView write(HttpServletRequest request, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("loginuser")==null) { //로그인 안되었을 때
-			return "redirect:../gxsx/login.do";
+			return DomainController.login(session);
 		}
 		else {
-			return "gxsx/fiwrite";
+			mv.setViewName("gxsx/fiwrite");
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+			return mv;
 		}
 	}
 	
@@ -132,17 +136,17 @@ public class FindItemController {
 		System.out.println("requestData:" + requestData);
 		
 		ModelAndView mv = new ModelAndView();
+		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		if(session.getAttribute("loginuser")!=null) { 
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
-		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		return mv;
 	}
 	
 	@GetMapping("content.do")
-	public ModelAndView content(long fino) {
+	public ModelAndView content(long fino, HttpSession session) {
 		List<FindItPic> findItPic = service.getFindItPic(fino);
 		String area = service.areaS(fino);
 		int finoInt = (int)fino;
@@ -151,6 +155,11 @@ public class FindItemController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/ficontent");
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		mv.addObject("content", findItPic);		 
 		mv.addObject("ficomment", ficomment);
 		mv.addObject("area", area);
