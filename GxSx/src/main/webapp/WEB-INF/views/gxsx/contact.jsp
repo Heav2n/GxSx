@@ -227,7 +227,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-01.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Contact
+			<img src = "../images/고객센터.png">
 		</h2>
 	</section>	
 

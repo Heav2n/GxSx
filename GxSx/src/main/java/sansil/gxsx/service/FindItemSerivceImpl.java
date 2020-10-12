@@ -57,18 +57,18 @@ public class FindItemSerivceImpl implements FindItemService {
 //	}
 
 	@Override
-	public FindItPic UpdatefS(long fino) {
-		return finditemMapper.updatef(fino);
-	}
-
-	@Override
 	public boolean UpdateS(FindItPic findItPic) {
-		return finditemMapper.update(findItPic);
+		return finditemMapper.Update(findItPic);
+	}
+	
+	@Override
+	public List<FindItPic> UpdatefS(long fino) {
+		return finditemMapper.Updatef(fino);
 	}
 	
 	@Override
 	public void edit(FindItPic findItPic) {
-		finditemMapper.update(findItPic);
+		finditemMapper.Update(findItPic);
 	}
 	
 	@Override
@@ -92,12 +92,6 @@ public class FindItemSerivceImpl implements FindItemService {
 //		System.out.println("list:------------------------------------------------------- " + list);
 //		return new FindItPicListResult(page, pageSize, totalCount, list);		
 //	}
-
-	@Override
-	public FindItPic UpdatefS(FiComments ficomments) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	///////////////////////////////////////////////////////////////////////////
 	public List<FindItPic> selectByNameS(String query){

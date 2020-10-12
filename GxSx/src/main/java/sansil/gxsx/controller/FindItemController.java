@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItPicListResult;
+import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.Users;
@@ -55,23 +56,45 @@ public class FindItemController {
 		return "redirect:list.do";
 	}
 	
-	@GetMapping("update.do")
-	public ModelAndView update(FiComments ficomments) {
-		FindItPic findItPic = service.UpdatefS(ficomments);
-		findCommentService.FindCommentUpdate(ficomments);
-		ModelAndView mv = new ModelAndView("findItPic/update", "update", findItPic);
-		mv.setViewName("findItPic/content");
-		mv.addObject("ficomments", ficomments);
-		mv.addObject("content", findItPic);
+//	@GetMapping("update.do")
+//	public ModelAndView fiupdate(int lono,HttpServletRequest request, HttpSession session) {
+//		FindItPic findItPic = service.UpdatefS(ficomments);
+//		findCommentService.FindCommentUpdate(ficomments);
+//		ModelAndView mv = new ModelAndView("findItPic/update", "update", findItPic);
+//		mv.setViewName("findItPic/content");
+//		mv.addObject("ficomments", ficomments);
+//		mv.addObject("content", findItPic);
+//		
+//		
+//		return mv;
+//	}
+//	@PostMapping("update.do")
+//	public String update(FindItPic findItPic) {
+//		service.UpdateS(findItPic);
+//		return "redirect:list.do";
+//	}
+	
+	@RequestMapping("/update.do")
+	public ModelAndView updatef(long fino, HttpServletRequest request, HttpSession session) {
+		List<FindItPic> finditem = service.UpdatefS(fino);
 		
+		Users user = (Users)session.getAttribute("loginuser");
+		String userid = user.getUserid();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/fiupdate");
+		mv.addObject("fiupdate", finditem);
+		mv.addObject("userid", userid);
 		
 		return mv;
 	}
-	@PostMapping("update.do")
-	public String update(FindItPic findItPic) {
-		service.UpdateS(findItPic);
+	@PostMapping("/update.do")
+	public String update(FindItPic finditem) {
+		service.UpdateS(finditem);
 		return "redirect:list.do";
 	}
+	
+	
 	@GetMapping("del.do")
 	public String delete(long fino) {
 		service.remove(fino);

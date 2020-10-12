@@ -22,8 +22,9 @@ public interface FindItemService {
 	void insertS(FindItPic findItPic);
 	void deleteS(long fino);
 //	FindItPic selectBySeqS(long fino); // 추정불가 메소드 ㅠㅠ
-	FindItPic UpdatefS(FiComments ficomments);
+//	FindItPic UpdatefS(FiComments ficomments);
 	boolean UpdateS(FindItPic findItPic);
+	List<FindItPic> UpdatefS(long fino);
 	
 	void write(FindItPic findItPic);
 	void edit(FindItPic findItPic);
@@ -31,7 +32,6 @@ public interface FindItemService {
 
 //	FindItPicListResult getFindItPicListResult(int cp, int ps);
 
-	FindItPic UpdatefS(long fino);
 	
 	////////////////////////////////////////////////////////////////////////////////////////////Ȯ���������(������ �������ﲨ��)
 	FindItPicListResult getFindItemResultByKeyword(String fisub, int page, int pageSize);	

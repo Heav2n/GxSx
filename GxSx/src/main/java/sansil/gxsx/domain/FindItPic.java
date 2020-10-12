@@ -24,10 +24,10 @@ public class FindItPic {
 	
 	//findpicture
 	private int fipicno;
-	private int fipno;
+	private long fipno;
 	private String fipicname;
 	
-	//ê²€ìƒ‰ ì¡°ê±´ ë³€ìˆ˜
+	//°Ë»ö Á¶°Ç º¯¼ö
 	private String startDate;
 	private String endDate;
 }

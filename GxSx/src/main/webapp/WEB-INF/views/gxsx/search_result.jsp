@@ -8,7 +8,7 @@
   </c:if>
 	
   <c:forEach items="${findResult.list}" var="finditem">
-	<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+	<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item ${finditem.ficname}">
 		<!-- Block2 -->
 		<div class="block2">
 			<div class="block2-pic hov-img0">
@@ -88,3 +88,7 @@
 		      		&#187;</p>
 		</c:if>			    
 	</div>
+	
+<!--===============================================================================================-->
+
+<!-- 	<script src="../js/coza/main.js"></script>    -->

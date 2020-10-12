@@ -180,25 +180,25 @@
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
+					
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".핸드폰">
+						핸드폰
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".전자기기">
+						전자기기
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
+						지갑
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
+					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".가방">
+						가방
 					</button>
 
-					<a href="../finditem/write2.do" type="button" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".write">
-						Write
+					<a href="../finditem/write2.do" type="button" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+						글쓰기
 					</a>
 				</div>
 
@@ -245,7 +245,6 @@
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
 								</li>
-
 								<li class="p-b-6">
 									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
 								</li>
@@ -262,11 +261,10 @@
 							</div>
 						</div>
 
-						<div class="filter-col3 p-r-15 p-b-27">
+<!-- 						<div class="filter-col3 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
 								Color
 							</div>
-
 							<ul>
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
@@ -274,35 +272,30 @@
 									</span>
 									<a href="#" class="filter-link stext-106 trans-04">Black</a>
 								</li>
-
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
 								</li>
-
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
 								</li>
-
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 									<a href="#" class="filter-link stext-106 trans-04">Green</a>
 								</li>
-
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
 										<i class="zmdi zmdi-circle"></i>
 									</span>
 									<a href="#" class="filter-link stext-106 trans-04">Red</a>
 								</li>
-
 								<li class="p-b-6">
 									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
 										<i class="zmdi zmdi-circle-o"></i>
@@ -310,7 +303,7 @@
 									<a href="#" class="filter-link stext-106 trans-04">White</a>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 
 						<div class="filter-col4 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
@@ -667,30 +660,23 @@
 		$('.js-addwish-b2').on('click', function(e){
 			e.preventDefault();
 		});
-
 		$('.js-addwish-b2').each(function(){
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-b2');
 				$(this).off('click');
 			});
 		});
-
 		$('.js-addwish-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
 			$(this).on('click', function(){
 				swal(nameProduct, "is added to wishlist !", "success");
-
 				$(this).addClass('js-addedwish-detail');
 				$(this).off('click');
 			});
 		});
-
 		/*---------------------------------------------*/
-
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
@@ -709,7 +695,6 @@
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
-
 			$(window).on('resize', function(){
 				ps.update();
 			})

@@ -483,7 +483,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-01.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Contact
+			<img src = "../images/고객센터.png">
 		</h2>
 	</section>	
 
@@ -536,23 +536,21 @@
 				<!-- Content page -->
 				
 				<section class="bg0 p-t-62 p-b-60">
-					<div class="container" >  <!-- style="padding-left:110px"-->
+					<div class="container">  <!-- style="padding-left:110px"-->
 						<!-- d -->
-						<div class="contents_wrap" id="contents_wrap" style="margin-top:-105px;">
+						<div class="contents_wrap" id="contents_wrap" style="margin-top:-105px;width:800px">
 							 <h1 class="con_title">
-			                    <div style="float:right;">
-			                    </div>
 			                </h1> <div></div>
 								<form id='questionco_form' name='input' method='post' action='../Question/reupdate.do' accept-charset='UTF-8'>
 			                       <div class="news_board">
 			                           <!-- notice ul str -->
 			                           <ul>
-				                           <li>
+				                           <li style="width:800px">
 					                           <p class="last fs-13" style="float:right;">${loginuser.userid}</p>
 					                           <span class="qs_id fs-15">&emsp;${question.qsub}</span>
 				                           </li>
 			                               <!--게시물 Loop : Str-->
-			                                   <li>
+			                                   <li style="width:800px">
 			                                   		<div class="qs_text" style="word-break:keep-all">
 														<p class="fs-13">
 				                                           <span>&emsp;${question.qcon}</span>
@@ -565,11 +563,11 @@
 									<div class="news_board">
 			                           <!-- notice ul str -->
 			                           <ul>
-				                           <li>
+				                           <li style="width:800px">
 					                           <span class="qs_id fs-15">&emsp;답변</span>
 				                           </li>
 			                               <!--게시물 Loop : Str-->
-			                                   <li>
+			                                   <li style="width:800px">
 			                                   		<div class="qs_text" style="word-break:keep-all">
 														<p class="fs-13">
 				                                           <span>&emsp;${question.qreply}</span>
@@ -582,7 +580,7 @@
 			                          
 			                        <c:if test="${ admin}">	
 			                        							
-										<div id="comment-input" class="container">
+										<div id="comment-input" class="container" style="margin-top:25px">
 											<c:if test="${empty question.qreply}">
 												<label for="content">관리자 댓글</label>
 												<form action="reupdate.do" method="POST">
