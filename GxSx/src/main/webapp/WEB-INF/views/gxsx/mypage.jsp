@@ -53,8 +53,8 @@
 					 }
 					 var html =  "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent' style='margin-top:75px'>";
 					 	 html += "<div class='wrap-table-shopping-cart'>";
-						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
-						 html += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>제목</th><th class='column-2'></th>";
+						 html += "<th class='column-3'>물품종류</th><th class='column-4'>날짜</th><th class='column-5'>완료여부</th></tr>";
 					 if(responseData.length != 0){
  						 for(var i=0; i<responseData.length; i++){
 							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
@@ -70,15 +70,15 @@
 							}
 						 }
  					 }else{
- 						 html += "</tr></table></div><tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr></table></div>";
+ 						 html += "</tr></table></div><tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr>";
  					 }
   					 html += "</table>";
 					 html += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
 					 html += "<div class='flex-w flex-m m-r-20 m-tb-5'></div>";
 					 html += "<div>";
-					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisub' id='fisub' placeholder='Search item'>";
+					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisub' id='fisub' placeholder='검색할 제목'>";
 					 html += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='fiboard' onclick='findSfunc()'>";
-					 html += "Search</div></div></div></div>";
+					 html += "검색</div></div></div></div>";
   						
   					 $("#contentchange").html(html);
 				   }
@@ -98,8 +98,8 @@
 					 }
 					 var html =  "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent' style='margin-top:75px'>";
 					 	 html += "<div class='wrap-table-shopping-cart'>";
-						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
-						 html += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+						 html += "<table class='table-shopping-cart'><tr class='table_head'><th class='column-1'>제목</th><th class='column-2'></th>";
+						 html += "<th class='column-3'>물품종류</th><th class='column-4'>날짜</th><th class='column-5'>완료여부</th></tr>";
 					 if(responseData.length != 0){
  						 for(var i=0; i<responseData.length; i++){
 							html += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
@@ -115,15 +115,15 @@
 							}
 						 }
  					 }else{
- 						 html += "</tr></table></div><tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr></table></div>";
+ 						 html += "</tr></table></div><tr class='table_row'><td colspan='5'><center>검색결과 없음</center></td></tr>";
  					 }
   					 html += "</table>";
 					 html += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
 					 html += "<div class='flex-w flex-m m-r-20 m-tb-5'></div>";
 					 html += "<div>";
-					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='losub' id='losub' placeholder='Search item'>";
+					 html += "<input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='losub' id='losub' placeholder='검색할 제목'>";
 					 html += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='loboard' onclick='lostSfunc()'>";
-					 html += "Search</div></div></div></div>";
+					 html += "검색</div></div></div></div>";
   						
   					 $("#contentchange").html(html);
 				   }
@@ -138,8 +138,8 @@
 		var str1 = "";
 			str1 += "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent' style='margin-top:75px'>";
 			str1 += "<div class='wrap-table-shopping-cart'><table class='table-shopping-cart'>";
-			str1 += "<tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
-			str1 += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			str1 += "<tr class='table_head'><th class='column-1'>제목</th><th class='column-2'></th>";
+			str1 += "<th class='column-3'>물품종류</th><th class='column-4'>날짜</th><th class='column-5'>완료여부</th></tr>";
 			str1 += "<c:if test='${empty find}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
 			str1 += "<c:forEach items='${find}' var='find' varStatus='status'>";
 			str1 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
@@ -147,8 +147,11 @@
 			str1 += "<a class='cl3' href='../finditem/content.do?fino=${find.fino}'>${find.fisub}</a></td>";
 			str1 += "<td class='column-3'>${find.ficname}</td><td class='column-4'>${find.fidate}</td>";
 			str1 += "<c:if test='${find.fifin==0}'><td class='column-5'>미완료</td></c:if>";
-			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div></div>";
-				
+			str1 += "<c:if test='${find.fifin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
+			str1 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+			str1 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div>";
+			str1 += "<div><input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='fisub' id='fisub' placeholder='검색할 제목'>";
+			str1 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='fiboard' onclick='findSfunc()'>검색</div></div></div>";
 		document.getElementById("contentchange").innerHTML = str1;
 			//.innerText = "str" : str 자체가 출력되도록 변환 후 덮어씌움
 			// 예)str : <b> b태그 </b> ==> &lt;b&gt; b태그 &lt;/b&gt;
@@ -158,8 +161,8 @@
 		var str2 = "";
 			str2 += "<div class='m-l-25 m-r--38 m-lr-0-xl' id='boardcontent' style='margin-top:75px'>";
 			str2 += "<div class='wrap-table-shopping-cart'><table class='table-shopping-cart'>";
-			str2 += "<tr class='table_head'><th class='column-1'>Subject</th><th class='column-2'></th>";
-			str2 += "<th class='column-3'>Category</th><th class='column-4'>Date</th><th class='column-5'>Finish</th></tr>";
+			str2 += "<tr class='table_head'><th class='column-1'>제목</th><th class='column-2'></th>";
+			str2 += "<th class='column-3'>물품종류</th><th class='column-4'>날짜</th><th class='column-5'>완료여부</th></tr>";
 			str2 += "<c:if test='${empty lost}'><tr class='table_row'><td colspan='5'><center>등록한 글 없음</center></td></tr></table></div></c:if>";
 			str2 += "<c:forEach items='${lost}' var='lost' varStatus='status'>";
 			str2 += "<tr class='table_row'><td class='column-1'><div class='how-itemcart1'>";
@@ -167,37 +170,41 @@
 			str2 += "<a class='cl3' href='../lostitem/content.do?lono=${lost.lono}'>${lost.losub}</a></td>";
 			str2 += "<td class='column-3'>${lost.locname}</td><td class='column-4'>${lost.lodate}</td>";
 			str2 += "<c:if test='${lost.lofin==0}'><td class='column-5'>미완료</td></c:if>";
-			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div></div>";
-
+			str2 += "<c:if test='${lost.lofin==1}'><td class='column-5'>완료</td></c:if></tr></c:forEach></table></div>";
+			
+			str2 += "<div class='flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm'>";
+			str2 += "<div class='flex-w flex-m m-r-20 m-tb-5'></div><form method='post' action='loboard.do?'>";
+			str2 += "<div><input style='float:left' class='stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5' type='text' name='losub' id='losub' placeholder='검색할 제목'>";
+			str2 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='loboard' onclick='lostSfunc()'>검색</div></form></div></div>";
 		document.getElementById("contentchange").innerHTML = str2;
 	}
 	
 	function profilefunc() {
 		var str3 = "";
 			str3 += "<div class='row'><div class='m-l-25 m-r--38 m-lr-0-xl' style='margin-left:100px;margin-top:40px'</br></br>";
-			str3 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>Information Change</h3></div>";
+			str3 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>정보 수정</h3></div>";
 			str3 += "<div class='card-body'><form class='form2' name='form2' id='form2' role='form2' autocomplete='off' action='editProfile.do'>";
-			str3 += "<div class='form-group row'><label for='noinputId' class='col-lg-3 col-form-label form-control-label'>ID</label>";
+			str3 += "<div class='form-group row'><label for='noinputId' class='col-lg-3 col-form-label form-control-label'>아이디</label>";
 			str3 += "<div class='col-lg-9'><input type='text' class='form-control' id='editId' name='userid' value='${user.userid}' readonly='readonly'></div></div>";
-			str3 += "<div class='form-group row'><label for='noinputName' class='col-lg-3 col-form-label form-control-label'>Name</label>";
+			str3 += "<div class='form-group row'><label for='noinputName' class='col-lg-3 col-form-label form-control-label'>이름</label>";
 			str3 += "<div class='col-lg-9'><input type='text' class='form-control' id='editName' name='uname' value='${user.uname}' readonly='readonly'></div></div>";
-			str3 += "<div class='form-group row'><label for='inputEmail' class='col-lg-3 col-form-label form-control-label'>Email</label>";
+			str3 += "<div class='form-group row'><label for='inputEmail' class='col-lg-3 col-form-label form-control-label'>이메일</label>";
 			str3 += "<div class='col-lg-9'><input class='form-control' type='text' id='editEmail' name='uemail' value='${user.uemail}' required=''></div></div>";
-			str3 += "<div class='form-group row'><label for='inputPnum' class='col-lg-3 col-form-label form-control-label'>Phone Number</label>";		
+			str3 += "<div class='form-group row'><label for='inputPnum' class='col-lg-3 col-form-label form-control-label'>연락처</label>";		
 			str3 += "<div class='col-lg-9'><input class='form-control' type='text' id='editPnum' name='upnum' value='${user.upnum}' required=''></div></div>";
-			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>Password</label>";
+			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>기존비밀번호</label>";
 			str3 += "<div class='col-lg-9'><input class='form-control' type='password' id='editPwd' value='' required=''>";
 			str3 += "<input type='hidden' class='form-control' id='oldPwd' name='oldPwd' value='${user.upwd}'></div></div>";
-			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>Password Confirm</label>";
+			str3 += "<div class='form-group row'><label for='inputPwd' class='col-lg-3 col-form-label form-control-label'>비밀번호재입력</label>";
 			str3 += "<div class='col-lg-9'><input class='form-control' type='password' id='editPwdVerify' value='' required='' data-bvStrict='same:editPwd'></div></div></br>";
 			str3 += "<div class='flex-w flex-m m-r-20 m-tb-5'>";
 			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' id='submit' name='submit'";
-			str3 += "onclick='CheckLeave(document.form2.editId,document.form2.editPwd,document.form2.editPwdVerify,document.form2.oldPwd)'>Leave</div>";
+			str3 += "onclick='CheckLeave(document.form2.editId,document.form2.editPwd,document.form2.editPwdVerify,document.form2.oldPwd)'>회원탈퇴</div>";
 			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5' style='opacity:0; pointer-events:none'></div>";
 			str3 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit2' name='submit2'";
 			str3 += "onclick='CheckEditProfile(document.form2.editEmail,document.form2.editPnum,document.form2.editPwd,document.form2.oldPwd,document.form2.editPwdVerify)'>";
-			str3 += "Save</div>&emsp;<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit3' name='submit3' onclick='EditCancel()'>";
-			str3 += "Cancel</div></div></form></div></div></div></div>";
+			str3 += "저장</div>&emsp;<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit3' name='submit3' onclick='EditCancel()'>";
+			str3 += "취소</div></div></form></div></div></div></div>";
 				
 		document.getElementById("contentchange").innerHTML = str3;
 	}
@@ -205,20 +212,20 @@
 	function pwdfunc() {
 		var str4 = "";
 			str4 += "<div class='row'><div class='m-l-25 m-r--38 m-lr-0-xl' style='margin-left:100px;margin-top:20px'></br></br>";
-			str4 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>Password Change</h3></div>";
+			str4 += "<div class='table-shopping-cart'><div class='card-header'><h3 class='mb-0'>비밀번호 변경</h3></div>";
 			str4 += "<div class='card-body'><form class='form' name='form' role='form' autocomplete='off'>";
-			str4 += "<div class='form-group'><label for='inputPasswordOld'>Current Password</label>";
+			str4 += "<div class='form-group'><label for='inputPasswordOld'>현재 비밀번호</label>";
 			str4 += "<input type='password' class='form-control' id='oldPwd' required=''>";
 			str4 += "<input type='hidden' class='form-control' id='oldPwdVerify' value='${user.upwd}'></div>";
-			str4 += "<div class='form-group'><label for='inputPasswordNew'>New Password</label>";
+			str4 += "<div class='form-group'><label for='inputPasswordNew'>새 비밀번호</label>";
 			str4 += "<input type='password' class='form-control' id='newPwd' required=''><span class='form-text small text-muted'>";
-			str4 += "The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.</span></div>";
-			str4 += "<div class='form-group'><label for='inputPasswordNewVerify'>Verify</label>";
+			str4 += "The password must be 7-16 characters, contain only characters, numbers and must <em>not</em> contain spaces.</br>공백 없는 8~17자의 문자만 비밀번호로 가능</span></div>";
+			str4 += "<div class='form-group'><label for='inputPasswordNewVerify'>비밀번호 재입력</label>";
 			str4 += "<input type='password' class='form-control' id='newPwdVerify' required=''>";
-			str4 += "<span class='form-text small text-muted'>To confirm, type the new password again.</span></div>";
+			str4 += "<span class='form-text small text-muted'>To confirm, type the new password again.</br>바꿀 비밀번호 재입력</span></div>";
 			str4 += "<div class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10' id='submit' name='submit'";
 			str4 += "onclick='CheckPassword(document.form.oldPwd,document.form.oldPwdVerify,document.form.newPwd,document.form.newPwdVerify)'>";
-			str4 += "Save</div></form></div></div></div></div>";
+			str4 += "저장</div></form></div></div></div></div>";
 			
 		document.getElementById("contentchange").innerHTML = str4;
 	}
@@ -418,31 +425,31 @@
 
 						<div class="p-t-55">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Categories
+								마이페이지 목록
 							</h4>
 
 							<ul id="accordion" class="accordion">
 								<li class="bor18">
-									<span class="link dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">Myboard</span>
+									<span class="link dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">나의 게시판</span>
 								    <ul class="submenu">
 								      <li id="finditem">
 								      		<a href="#" onclick="findfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-								      		&emsp;Finditem</a></li>
+								      		&emsp;습득물</a></li>
 								      <li id="lostitem">
 								      		<a href="#" onclick="lostfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-								      		&emsp;Lostitem</a></li>
+								      		&emsp;분실물</a></li>
 								    </ul>
 								</li>
 
 								<li class="bor18">
 									<a href="#" onclick="profilefunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Profile
+										프로필 수정
 									</a>
 								</li>
 								
 								<li class="bor18">
 									<a href="#" onclick="pwdfunc()" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										Password Change
+										비밀번호 변경
 									</a>
 								</li>
 							</ul>

@@ -58,7 +58,7 @@
 							Login
 						</span>
 						<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid id is required">
-							<input class="input100" type="text" name="userid" id="userid" placeholder="Enter your ID">
+							<input class="input100" type="text" name="userid" id="userid" placeholder="아이디">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<span class="lnr lnr-envelope"></span>
@@ -66,7 +66,7 @@
 						</div>
 	
 						<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-							<input class="input100" type="password" name="upwd" id="upwd" placeholder="Password">
+							<input class="input100" type="password" name="upwd" id="upwd" placeholder="비밀번호">
 							<span class="focus-input100"></span>
 							<span class="symbol-input100">
 								<span class="lnr lnr-lock"></span>
@@ -75,7 +75,7 @@
 						
 						<div class="container-login100-form-btn p-t-25">
 							<button type="submit" class="login100-form-btn" onclick="CheckLogin()">
-								Login
+								로그인
 							</button>
 						</div>
 	
@@ -98,11 +98,11 @@
 						
 						<div class="text-center w-full p-t-115">
 							<span class="txt1">
-								Not a member?
+								회원이 아니신가요?
 							</span>
 	
 							<a class="txt1 bo1 hov1" href="signupform.do">
-								Sign up now							
+								지금회원가입					
 							</a>
 						</div>
 					</form>

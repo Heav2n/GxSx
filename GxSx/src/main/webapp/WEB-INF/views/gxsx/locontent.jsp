@@ -351,13 +351,13 @@
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
 										<label id="reply_to"></label>
-											<label class="stext-102 cl3" for="review">Write comment</label>
+											<label class="stext-102 cl3" for="review">댓글쓰기</label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
 											type="button" onclick="commentInsert('${locontent[0].lono}');">
-										Submit
+										등록
 									</button>
 								</form>
 							</div>

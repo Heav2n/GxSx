@@ -97,37 +97,37 @@
 				
 			<form action="tempsignup.do" name="form2" id="form-row" method="post">
 				<div class="row form-group type-btn">
-					<label for="input0">ID</label>
+					<label for="input0">아이디</label>
 					<input type="text" value="${kakaouser.userid}" disabled>
 					<input type="hidden" name="userid" value="${kakaouser.userid}">
 					<button type="button" id="IdConfirm" name="IdConfirm" 
-						class="btn btn-default" disabled>Confirm</button>
+						class="btn btn-default" disabled>ID확인</button>
 				</div>
 
 				<div class="row form-group">
-					<label for="input3">Password</label>
+					<label for="input3">비밀번호</label>
 					<input class="form-control" id="upwd" name="upwd" type="password" data-bvStrict="reg:^[A-Za-z]\w{7,14}$">
-					<span class="help-block error-message">Password must have at least 8 letters</span>
+					<span class="help-block error-message">8글자이상의 문자만 가능합니다</span>
 				</div>
 				<div class="row form-group">
-					<label for="input4">Password again</label>
+					<label for="input4">비밀번호 확인</label>
 					<input class="form-control" type="password" data-bvStrict="same:upwd" >
-					<span class="help-block error-message" style ="color:red">Password does not match</span>
+					<span class="help-block error-message" style ="color:red">비밀번호 불일치</span>
 				</div>
 				
 				<div class="row form-group">
-					<label for=-"input0">Name</label>
+					<label for=-"input0">이름</label>
 					<input class="form-control" id="uname" name="uname" type="text" data-bvStrict="notEmpty" data-bvSwitch="Your Name" value="${kakaouser.uname}">
-					<div class="help-block error-message">This must be a string</div>
+					<div class="help-block error-message">문자만 가능</div>
 				</div>
 				
 				<div class="row form-group type-btn">
-					<label for="input1">E-mail address</label>
+					<label for="input1">이메일</label>
 					<c:if test="${ kakaouser.uemail.equals('temp')}">
 						<input class="form-control" id="uemail" name="uemail" type="text" data-bvStrict="email" data-bvEmpty="@" >
 						<button type="button" id="EmailSend" name="EmailSend" 
-							class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">Send</button>
-						<div class="help-block error-message">Fill valid e-mail address</div>
+							class="btn btn-default" onclick="CheckEmail(document.form2.uemail,document.form2.random)">번호전송</button>
+						<div class="help-block error-message">사용 가능한 이메일을 입력해주세요</div>
 					</c:if>
 					<c:if test="${ !kakaouser.uemail.equals('temp')}">
 						<input type="text" name="uemail" value="${kakaouser.uemail}" disabled>
@@ -140,27 +140,27 @@
 						<input type="hidden" path="random" name="random" id="random" value="${random}" />
 						<input type="hidden" name="authconfirm" id="authconfirm" value="" />
 						<button type="button" id="EmailConfirm" name="EmailConfirm" 
-							class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">Confirm</button>
+							class="btn btn-default" onclick="CheckEmailAuth(document.form2.uemailauth,document.form2.random)">번호확인</button>
 					</div>
 				</c:if>
 				<div class="row form-group">
-					<label for="input2">Phone Number</label>
+					<label for="input2">연락처</label>
 					<input class="form-control" id="upnum" name="upnum" type="text" data-bvStrict="phone" data-bvSwitch="000-0000-0000">
 					<div class="help-block error-message">(-)를 포함한 다음의 형태로 입력해주세요(000-0000-0000)</div>
 				</div>
 				
 				<div class="row checkbox">
 					<label for="cond">
-						<input type="checkbox" name="cond" required> I agree to the <a href="#" data-toggle="modal" data-target="#Modal-1">terms and conditions</a>
-						<span class="help-block error-message">You have to check this</span>
+						<input type="checkbox" name="cond" required> 다음약관을 동의합니다 <a href="#" data-toggle="modal" data-target="#Modal-1">이용약관</a>
+						<span class="help-block error-message">동의 필요</span>
 					</label>
 				</div>
 				
 				<div class="btn-wrap">
 					<button type="submit" id="signupSubmit" name="signupSubmit" 
-						class="btn btn-default" onclick="CheckForm(document.form2.authconfirm)">Submit</button>
+						class="btn btn-default" onclick="CheckForm(document.form2.authconfirm)">전송</button>
 					<button type="button" id="signupCancel" name="signupCancel" 
-						class="btn btn-default" onclick="FormCancel()">Cancel</button>
+						class="btn btn-default" onclick="FormCancel()">취소</button>
 				</div>
 			</form>
 			
@@ -178,7 +178,7 @@
 							<jsp:include page='signuppolicy.jsp'></jsp:include>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						</div>
 					</div>
 				</div>

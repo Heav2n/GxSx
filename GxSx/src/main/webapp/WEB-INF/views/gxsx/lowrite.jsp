@@ -168,17 +168,17 @@
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Finditem
+				분실물
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				write
+				글쓰기
 			</span>
 		</div>
 	</div>
@@ -193,14 +193,14 @@
 							</br>
 							<div class='table-shopping-cart fs-12'>
 								<div class='card-header'>
-									<h3 class='mb-0'>Finditem Write</h3>
+									<h3 class='mb-0'>분실물 글작성</h3>
 								</div>
 								<div class='card-body fs-12'>
 									<form class='form2 fs-12' method='post'  name='input' id='form2' role='form2' enctype='multipart/form-data'
 										autocomplete='off' action='write.do'>
 										<div class='form-group row'>
 											<label for='noinputId'
-												class='col-lg-2 col-form-label form-control-label'>ID</label>
+												class='col-lg-2 col-form-label form-control-label'>작성자</label>
 											<div class='col-lg-10'>
 												<input type='text' class='form-control fs-12' id='editId'
 													name='userid' value='${loginuser.userid}' readonly='readonly'>
@@ -209,7 +209,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputSub'
-												class='col-lg-2 col-form-label form-control-label'>SUB</label>
+												class='col-lg-2 col-form-label form-control-label'>제목</label>
 											<div class='col-lg-10'>
 											<input class='form-control fs-12' type='text' id='editSub'
 													name='losub' value='${user.uemail}' required=''>
@@ -219,7 +219,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputDate'
-												class='col-lg-2 col-form-label form-control-label'>Date</label>
+												class='col-lg-2 col-form-label form-control-label'>날짜</label>
 											<div class='col-lg-10'>
 												
 												<input class='form-control fs-12' type='date' id='editDate'
@@ -229,7 +229,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Area</label>
+												class='col-lg-2 col-form-label form-control-label'>지역</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="loano" id="ano">
 											        	   <option value="02">서울</option>
@@ -253,7 +253,7 @@
 											      </select>
 											</div>
 											<label for='inputPlace'
-												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Place</label>
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">분실장소</label>
 											<div class='col-lg-5'>
 												<input class='form-control fs-12' type='text' id='editPlace'
 													name='loplace' value='${user.uemail}' required=''>
@@ -262,10 +262,9 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Category</label>
+												class='col-lg-2 col-form-label form-control-label'>물품종류</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="locname">
-											        <option value="">물품종류</option>
 												       <option value="가방">가방</option>
 											           <option value="귀금속">귀금속</option>
 											           <option value="도서용품">도서용품</option>
@@ -286,16 +285,18 @@
 											      </select>
 											</div>
 											<label for='inputPlace'
-												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Gift</label>
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">보상여부</label>
 											<div class='col-lg-5'>
-												<input class='form-control fs-12' type='text' id='editPlace'
-													name='logift' value='${user.uemail}' required=''>
+												<select name="logift">
+										          	<option value="0">없음</option>
+										          	<option value="1">있음</option>
+										   	  	  </select>
 											</div>
 										</div>
 										
 										<div class='form-group row'>
 											<label for='inputPnum'
-												class='col-lg-2 col-form-label form-control-label'>Content</label>
+												class='col-lg-2 col-form-label form-control-label'>내용</label>
 											<div class='col-lg-10'>
 												<textarea rows="2" class='form-control csisize fs-12' type='text' id='editCon'
 													name='locon' value='${user.upnum}' required=''></textarea>
@@ -314,12 +315,12 @@
 											<button
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 												id='submit2' name='submit2' type='submit'>
-												Save</button>
+												등록</button>
 											&emsp;
 											<div
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 												id='submit3' name='submit3' onclick='EditCancel()'>
-												Cancel</div>
+												취소</div>
 										</div>
 									</form>
 						</div>

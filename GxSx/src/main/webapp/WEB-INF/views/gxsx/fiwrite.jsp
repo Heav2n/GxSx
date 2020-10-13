@@ -610,12 +610,12 @@ table, tr, td {
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
+			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04"> 홈 <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a> <a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Finditem <i class="fa fa-angle-right m-l-9 m-r-10"
+				습득물 <i class="fa fa-angle-right m-l-9 m-r-10"
 				aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> write </span>
+			</a> <span class="stext-109 cl4"> 글쓰기 </span>
 		</div>
 	</div>
 
@@ -629,7 +629,7 @@ table, tr, td {
 					<br/> <br/>
 					<div class='table-shopping-cart fs-12'>
 						<div class='card-header'>
-							<h3 class='mb-0'>Finditem Write</h3>
+							<h3 class='mb-0'>습득물 글작성</h3>
 						</div>
 						<div class='card-body fs-12'>
 							<form class='form2 fs-12' name='input' id='form2' role='form2' method='post' enctype="multipart/form-data"
@@ -766,12 +766,12 @@ table, tr, td {
 										class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 										id='submit2' name='submit2'
 										type='submit'>
-										Save</button>
+										등록</button>
 										&emsp;
 									<div
 										class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 										id='submit3' name='submit3' onclick='EditCancel()'>
-										Cancel</div>
+										취소</div>
 								</div>
 							</form>
 						</div>

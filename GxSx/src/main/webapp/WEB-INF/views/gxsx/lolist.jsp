@@ -247,10 +247,12 @@
 			<div id="changing-list">
 			</div>
 			
-			<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter" 
-				style="width:94px;height:40px;float:right;margin-top:-100px">
-					<a href="../lostitem/write.do" class="cl6 hov-btn3">글쓰기</a>
-			</div>
+			<a href="../lostitem/write.do" class="cl6 hov-btn3">
+				<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" 
+					style="width:94px;height:40px;float:right;margin-top:-100px">
+						글쓰기
+				</div>
+			</a>
 			
 		</div>
 	</section>
