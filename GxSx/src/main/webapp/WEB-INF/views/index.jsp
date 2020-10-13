@@ -17,7 +17,7 @@
 	    <form action="finditem/list.do" method="get">
 	      <div id="f-element">
 	        <div id="inp-cover">
-	        	<input type="text" name="query" id="query" placeholder="search your AXE" autocomplete="off">
+	        	<input type="text" name="query" id="query" placeholder="분실물 검색" autocomplete="off">
 	        	<a href="gxsx/domain.do"><img src="images/arrow2.png" alt="#" style="position:fixed; right:150px; top:46%"></a>
 	        </div>
 	        

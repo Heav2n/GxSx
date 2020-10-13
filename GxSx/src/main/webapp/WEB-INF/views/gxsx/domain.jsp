@@ -35,6 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
+	
 	</style>
 	
 </head>
@@ -209,13 +210,21 @@
 
 			<div class="row">
 				<c:if test="${empty findResult}">
-					분실물 없음
+					습득물 없음
 				</c:if>
 				<c:forEach items="${findResult}" var="finditem" varStatus="status">
 					<div class="col-sm-6 col-md-4 p-b-40">
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<a href="blog-detail.html">
+								<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+									<a href="login.do">
+								</c:if>
+								<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+									<a href="../finditem/content.do?fino=${finditem.fino}">
+								</c:if>
+								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+									<a href="tempsignupform.do">
+								</c:if>
 									<img src="../images/finditem/${findpicResult[status.index].fipicname}" alt="IMG-FIND">
 								</a>
 							</div>
@@ -227,7 +236,7 @@
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${finditem.fisub}</a>
 										</c:if>
 										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-											<a class="mtext-101 cl2 hov-cl1 trans-04" href="#">${finditem.fisub}</a>
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="../finditem/content.do?fino=${finditem.fino}">${finditem.fisub}</a>
 										</c:if>
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${finditem.fisub}</a>
@@ -267,7 +276,15 @@
 					<div class="col-sm-6 col-md-4 p-b-40">
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<a href="blog-detail.html">
+								<c:if test="${empty loginuser && empty usercheck}"> <!-- 로그인 안되어있을때 로그인창으로-->
+									<a href="login.do">
+								</c:if>
+								<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
+									<a href="../lostitem/locontent.do?lono=${lostitem.lono}">
+								</c:if>
+								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
+									<a href="tempsignupform.do">
+								</c:if>
 									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
 								</a>
 							</div>
@@ -279,7 +296,7 @@
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="login.do">${lostitem.losub}</a>
 										</c:if>
 										<c:if test="${!empty loginuser && empty usercheck}"> <!-- 로그인 되어있을때 상세페이지 이동 가능-->
-											<a class="mtext-101 cl2 hov-cl1 trans-04" href="#">${lostitem.losub}</a>
+											<a class="mtext-101 cl2 hov-cl1 trans-04" href="../lostitem/locontent.do?lono=${lostitem.lono}">${lostitem.losub}</a>
 										</c:if>
 										<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 											<a class="mtext-101 cl2 hov-cl1 trans-04" href="tempsignupform.do">${lostitem.losub}</a>

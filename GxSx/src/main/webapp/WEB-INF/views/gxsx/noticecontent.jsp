@@ -335,7 +335,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -346,7 +346,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
@@ -374,29 +374,30 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							           	<c:if test="${messageResult!='[]'}">
-								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px">
-								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
-									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-									            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
-									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-									            		<p class="time">답변완료</p></div>
-									            	</li>
-									            	</div>
-							          			</ul>
-								            </c:forEach>
-							            </c:if>
-							             
-							             <c:if test="${messageResult=='[]'}">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
 										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
 										            		알람 없음</div></center>
 										            	</li>
 									            	</div>
 									            </ul>
-							             </c:if>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
 						            </li>
 							    </li>
 						    </c:if>
@@ -543,7 +544,7 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
 	
 					</div>
