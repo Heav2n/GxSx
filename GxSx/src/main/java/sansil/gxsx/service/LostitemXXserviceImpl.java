@@ -105,7 +105,7 @@ public class LostitemXXserviceImpl implements LostitemXXservice {
                 if(ofname.length() != 0) {
                 	lostitem.setLopicname(ofname);
                 	lostitemxxMapper.insert1(lostitem);
-                    String url = fileuploadsevice.saveStore(file);
+                    String url = fileuploadsevice.saveStore2(file);
                 }
             }
         }

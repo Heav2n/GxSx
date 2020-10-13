@@ -104,7 +104,7 @@ public class LostitemXXController {
 	}
 	
 	@RequestMapping("/locontent.do")
-	public ModelAndView content(int lono) {
+	public ModelAndView content(int lono, HttpSession session) {
 		List<LostItemPicVo> lostitem = service.ContentS(lono);
 		List<LostItemPicVo> related = service.getLostRelated();
 
@@ -117,9 +117,12 @@ public class LostitemXXController {
 		mv.addObject("locontent", lostitem);
 		mv.addObject("locomment", locomment);
 		mv.addObject("related", related);
-
 		mv.addObject("area", area);
-		log.info("xxxxxxxxxx"+ lostitem + "sadasdsadsadasdsadqwdsadasda" + area);
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
+		String userid = user.getUserid();
+		mv.addObject("userid", userid);
 		return mv;
 	}
 	
@@ -136,13 +139,13 @@ public class LostitemXXController {
 	public ModelAndView updatef(int lono,HttpServletRequest request, HttpSession session) {
 		List<LostItemPicVo> lostitem = service.UpdatefS(lono);
 		
-		Users user = (Users)session.getAttribute("loginuser");
-		String userid = user.getUserid();
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/updatef");
 		mv.addObject("updatef", lostitem);
-		mv.addObject("userid", userid);
+		
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
 		
 		return mv;
 	}

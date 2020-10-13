@@ -169,15 +169,16 @@ public class FindItemController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/ficontent");
-		if(session.getAttribute("loginuser")!=null) { //메세지확인용
-			Users user = (Users)session.getAttribute("loginuser");
-			List<Question> messageResult = messageService.messageList(user.getUserid());			
-			mv.addObject("messageResult", messageResult);
-		}
+		
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
+
 		mv.addObject("content", findItPic);		 
 		mv.addObject("ficomment", ficomment);
 		mv.addObject("area", area);
 		mv.addObject("related", related);
+		mv.addObject("userid", user.getUserid());
 		
 		return mv;
 	}

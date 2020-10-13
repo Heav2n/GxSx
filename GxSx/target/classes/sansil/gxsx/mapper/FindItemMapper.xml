@@ -22,7 +22,7 @@
 	
 	<insert id="insertBoard" parameterType="FindItem">
 		<selectKey keyProperty="fino" resultType="long" order="BEFORE">
-			select FINDITEM_SEQ_PK.nextval from DUAL
+			select FINO_SEQ_PK.nextval from DUAL
 		</selectKey>
 		INSERT INTO FINDITEM 
 		(	
@@ -38,7 +38,7 @@
 			FIFIN
 			
 		) VALUES (
-			FINDITEM_SEQ_PK.nextval,
+			#{fino},
 			#{fiuid},
 			#{fisub},
 			#{ficon},
@@ -71,7 +71,7 @@
 	</select>
 	
 	<update id="Update" parameterType="FindItPIc">
-		update FINDITEM set FIUID=null, FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FISTOR=#{fistor} ,FIFIN=0, FIDATE=#{fidate} where FINO=#{fino}
+		update FINDITEM set FIUID=#{fiuid}, FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FISTOR=#{fistor} ,FIFIN=0, FIDATE=#{fidate} where FINO=#{fino}
 	</update>
 	
 	<delete id="delete" parameterType="long">

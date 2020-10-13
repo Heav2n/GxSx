@@ -203,7 +203,7 @@
 												class='col-lg-2 col-form-label form-control-label'>작성자</label>
 											<div class='col-lg-10'>
 												<input type='text' class='form-control fs-12' id='editId'
-													name='userid' value='${loginuser.userid}' readonly='readonly'>
+													name='louid' value='${loginuser.userid}' readonly='readonly'>
 											</div>
 										</div>
 										
@@ -223,7 +223,7 @@
 											<div class='col-lg-10'>
 												
 												<input class='form-control fs-12' type='date' id='editDate'
-													name='lodate' value='${user.uemail}' required=''>
+													name='lodate'  required=''>
 											</div>
 										</div>
 										
@@ -231,7 +231,8 @@
 											<label for='inputArea'
 												class='col-lg-2 col-form-label form-control-label'>지역</label>
 											<div class='col-lg-3'>
-											      <select class="ui fluid dropdown" name="loano" id="ano">
+												<div class="select-box">
+											      <select class="ui fluid dropdown" name="loano" id="ano" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
 											        	   <option value="02">서울</option>
 												           <option value="051">부산</option>
 												           <option value="053">대구</option>
@@ -252,11 +253,12 @@
 												           <option value="0">기타</option>
 											      </select>
 											</div>
+											</div>
 											<label for='inputPlace'
 												class='col-lg-2 col-form-label form-control-label' style="text-align:right">분실장소</label>
 											<div class='col-lg-5'>
 												<input class='form-control fs-12' type='text' id='editPlace'
-													name='loplace' value='${user.uemail}' required=''>
+													name='loplace' required=''>
 											</div>
 										</div>
 										
@@ -264,7 +266,8 @@
 											<label for='inputArea'
 												class='col-lg-2 col-form-label form-control-label'>물품종류</label>
 											<div class='col-lg-3'>
-											      <select class="ui fluid dropdown" name="locname">
+												<div class="select-box">
+											      <select class="ui fluid dropdown" name="locname" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
 												       <option value="가방">가방</option>
 											           <option value="귀금속">귀금속</option>
 											           <option value="도서용품">도서용품</option>
@@ -284,13 +287,16 @@
 											           <option value="기타">기타</option>
 											      </select>
 											</div>
+											</div>
 											<label for='inputPlace'
 												class='col-lg-2 col-form-label form-control-label' style="text-align:right">보상여부</label>
-											<div class='col-lg-5'>
-												<select name="logift">
-										          	<option value="0">없음</option>
-										          	<option value="1">있음</option>
-										   	  	  </select>
+											<div class='col-lg-3'>
+												<div class="select-box">
+													<select name="logift" class="ui fluid dropdown" id="giftname" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
+											          	<option value="0">없음</option>
+											          	<option value="1">있음</option>
+											   	  	  </select>
+											   	</div>
 											</div>
 										</div>
 										
@@ -317,10 +323,10 @@
 												id='submit2' name='submit2' type='submit'>
 												등록</button>
 											&emsp;
-											<div
+											<button
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
-												id='submit3' name='submit3' onclick='EditCancel()'>
-												취소</div>
+												id='submit3' name='submit3' onclick="location.href='list.do'">
+												취소</button>
 										</div>
 									</form>
 						</div>
@@ -344,31 +350,34 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
-				</div>
+	
+					</div>
 				
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						CATEGORIES
-					</h4>					
+					</h4>
+					
 						<ul>
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
-								</a></li>
+								</a>
+							</li>
+	
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Shoes
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Watches
-								</a></li>
+								</a>
+							</li>	
 						</ul> 
 				</div>
 
@@ -378,20 +387,29 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor</p>
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125</p>
+						<i class="fa fa-phone"></i> 02-707-1480
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com</p>
+						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
+						
+					</p>
 
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i></a>
+							<i class="fa fa-facebook"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i></a>
+							<i class="fa fa-instagram"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i></a>
+							<i class="fa fa-pinterest-p"></i>
+						</a>
 					</div>
 				</div>
 
@@ -402,20 +420,23 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
-						<span>9am to 8pm</span></p>
+						<span>9am to 8pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
-						<span>9am to 2pm</span></p>
+						<span>9am to 2pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
-						<span>Closed</span></p>
+						<span>Closed</span>
+					</p>
 				</div>
 			</div>
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<p class="stext-107 cl6 txt-center">
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>

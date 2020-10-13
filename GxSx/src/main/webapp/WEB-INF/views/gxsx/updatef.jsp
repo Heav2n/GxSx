@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 		.form-control{
 			height:30px;
 		}
@@ -69,7 +58,7 @@
 				<nav class="limiter-menu-desktop container">
 					
 					<!-- Logo desktop -->		
-					<a href="domain.do" class="logo">
+					<a href="../gxsx/domain.do" class="logo">
 						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
@@ -81,7 +70,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
@@ -91,9 +80,8 @@
 							<li class="label1" data-label1="분실물">
 								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
-
 							<li>
-								<a href="../Question/list.do">Contact</a>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	
@@ -108,43 +96,57 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top">
-							           		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-								            		<a href="">${messageResult.qsub}</a>
-								            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-								            		<p class="time">답변완료</p></div>
-								            	</li>
-							            	</c:forEach>
-							             </div>
-						          	</ul>
-						        </li>
-							</li>
-						</c:if>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
 					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="../Users/mypage.do">Myboard</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="../Question/list.do">Contact</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -191,7 +193,7 @@
 							</br>
 							<div class='table-shopping-cart fs-12'>
 								<div class='card-header'>
-									<h3 class='mb-0'>Finditem Write</h3>
+									<h3 class='mb-0'>분실물 수정</h3>
 								</div>
 								<div class='card-body fs-12'>
 									<form class='form2 fs-12' method='post'  name='input' id='form2' role='form2' enctype='multipart/form-data'
@@ -202,7 +204,7 @@
 										
 										<div class='form-group row'>
 											<label for='noinputId'
-												class='col-lg-2 col-form-label form-control-label'>ID</label>
+												class='col-lg-2 col-form-label form-control-label'>아이디</label>
 											<div class='col-lg-10'>
 												<input type='text' class='form-control fs-12' id='editId'
 													name='userid' value='${loginuser.userid}' readonly='readonly'>
@@ -211,7 +213,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputSub'
-												class='col-lg-2 col-form-label form-control-label'>SUB</label>
+												class='col-lg-2 col-form-label form-control-label'>제목</label>
 											<div class='col-lg-10'>
 											<input class='form-control fs-12' type='text' id='editSub'
 													name='losub' value='${updatef[0].losub}' required=''>
@@ -221,7 +223,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputDate'
-												class='col-lg-2 col-form-label form-control-label'>Date</label>
+												class='col-lg-2 col-form-label form-control-label'>날짜</label>
 											<div class='col-lg-10'>
 												
 												<input class='form-control fs-12' type='date' id='editDate'
@@ -231,31 +233,31 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Area</label>
+												class='col-lg-2 col-form-label form-control-label'>지역</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="loano" id="ano">
-											        	   <option value="02">서울</option>
-												           <option value="051">부산</option>
-												           <option value="053">대구</option>
-												           <option value="032">인천</option>
-												           <option value="062">광주</option>
-												           <option value="042">대전</option>
-												           <option value="052">울산</option>
-												           <option value="044">세종</option>
-												           <option value="031">경기</option>
-												           <option value="033">강원</option>
-												           <option value="043">충북</option>
-												           <option value="041">충남</option>
-												           <option value="063">전북</option>
-												           <option value="061">전남</option>
-												           <option value="054">경북</option>
-												           <option value="055">경남</option>
-												           <option value="064">제주</option>
-												           <option value="0">기타</option>
+											        	   <option <c:if test="${(updatef[0].loano) == 02}">selected='selected'</c:if> value="02">서울</option>
+												        	<option <c:if test="${(updatef[0].loano) == 051}">selected='selected'</c:if> value="051">부산</option>
+												        	<option <c:if test="${(updatef[0].loano) == 053}">selected='selected'</c:if> value="053">대구</option>
+												        	<option <c:if test="${(updatef[0].loano) == 032}">selected='selected'</c:if> value="032">인천</option>
+												        	<option <c:if test="${(updatef[0].loano) == 062}">selected='selected'</c:if> value="062">광주</option>
+												        	<option <c:if test="${(updatef[0].loano) == 042}">selected='selected'</c:if> value="042">대전</option>
+												      		<option <c:if test="${(updatef[0].loano) == 052}">selected='selected'</c:if> value="052">울산</option>
+												        	<option <c:if test="${(updatef[0].loano) == 044}">selected='selected'</c:if> value="044">세종</option>
+												        	<option <c:if test="${(updatef[0].loano) == 031}">selected='selected'</c:if> value="031">경기</option>
+												        	<option <c:if test="${(updatef[0].loano) == 033}">selected='selected'</c:if> value="033">강원</option>
+												        	<option <c:if test="${(updatef[0].loano) == 043}">selected='selected'</c:if> value="043">충북</option>
+												        	<option <c:if test="${(updatef[0].loano) == 041}">selected='selected'</c:if> value="041">충남</option>
+												        	<option <c:if test="${(updatef[0].loano) == 063}">selected='selected'</c:if> value="063">전북</option>
+												        	<option <c:if test="${(updatef[0].loano) == 061}">selected='selected'</c:if> value="061">전남</option>
+												        	<option <c:if test="${(updatef[0].loano) == 054}">selected='selected'</c:if> value="054">경북</option>
+												        	<option <c:if test="${(updatef[0].loano) == 055}">selected='selected'</c:if> value="055">경남</option>
+												        	<option <c:if test="${(updatef[0].loano) == 064}">selected='selected'</c:if> value="064">제주</option>
+												        	<option <c:if test="${(updatef[0].loano) == 0}">selected='selected'</c:if> value="0">기타</option>
 											      </select>
 											</div>
 											<label for='inputPlace'
-												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Place</label>
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">분실장소</label>
 											<div class='col-lg-5'>
 												<input class='form-control fs-12' type='text' id='editPlace'
 													name='loplace' value='${updatef[0].loplace}' required=''>
@@ -264,40 +266,43 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Category</label>
+												class='col-lg-2 col-form-label form-control-label'>물품종류</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="locname">
-											        <option value="">물품종류</option>
-												       <option value="가방">가방</option>
-											           <option value="귀금속">귀금속</option>
-											           <option value="도서용품">도서용품</option>
-											           <option value="서류">서류</option>
-											           <option value="산업용품">산업용품</option>
-											           <option value="핸드폰">핸드폰</option>
-											           <option value="현금">현금</option>
-											           <option value="카드">카드</option>
-											           <option value="노트북">노트북</option>
-											           <option value="악기">악기</option>
-											           <option value="지갑">지갑</option>
-											           <option value="증명서">증명서</option>
-											           <option value="스포츠용품">스포츠용품</option>
-											           <option value="전자기기">전자기기</option>
-											           <option value="자동차">자동차</option>
-											           <option value="의류">의류</option>
-											           <option value="기타">기타</option>
+											        	<option <c:if test="${(updatef[0].locname) == '가방'}">selected='selected'</c:if> value="가방">가방</option>
+														<option <c:if test="${(updatef[0].locname) == '귀금속'}">selected='selected'</c:if> value="귀금속">귀금속</option>
+														<option <c:if test="${(updatef[0].locname) == '도서용품'}">selected='selected'</c:if> value="도서용품">도서용품</option>
+														<option <c:if test="${(updatef[0].locname) == '서류'}">selected='selected'</c:if> value="서류">서류</option>
+														<option <c:if test="${(updatef[0].locname) == '산업용품'}">selected='selected'</c:if> value="산업용품">산업용품</option>
+														<option <c:if test="${(updatef[0].locname) == '핸드폰'}">selected='selected'</c:if> value="핸드폰">핸드폰</option>
+														<option <c:if test="${(updatef[0].locname) == '현금'}">selected='selected'</c:if> value="현금">현금</option>
+														<option <c:if test="${(updatef[0].locname) == '카드'}">selected='selected'</c:if> value="카드">카드</option>
+														<option <c:if test="${(updatef[0].locname) == '노트북'}">selected='selected'</c:if> value="노트북">노트북</option>
+														<option <c:if test="${(updatef[0].locname) == '악기'}">selected='selected'</c:if> value="악기">악기</option>
+														<option <c:if test="${(updatef[0].locname) == '지갑'}">selected='selected'</c:if> value="지갑">지갑</option>
+														<option <c:if test="${(updatef[0].locname) == '증명서'}">selected='selected'</c:if> value="증명서">증명서</option>
+														<option <c:if test="${(updatef[0].locname) == '스포츠용품'}">selected='selected'</c:if> value="스포츠용품">스포츠용품</option>
+														<option <c:if test="${(updatef[0].locname) == '전자기기'}">selected='selected'</c:if> value="전자기기">전자기기</option>
+														<option <c:if test="${(updatef[0].locname) == '자동차'}">selected='selected'</c:if> value="자동차">자동차</option>
+														<option <c:if test="${(updatef[0].locname) == '의류'}">selected='selected'</c:if> value="의류">의류</option>
+														<option <c:if test="${(updatef[0].locname) == '기타'}">selected='selected'</c:if> value="기타">기타</option>
 											      </select>
 											</div>
 											<label for='inputPlace'
-												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Gift</label>
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">보상여부</label>
 											<div class='col-lg-5'>
-												<input class='form-control fs-12' type='text' id='editPlace'
-													name='logift' value='${user.uemail}' required=''>
+												<div class="select-box">
+													<select name="logift" class="ui fluid dropdown" id="giftname">
+											          	<option value="0">없음</option>
+											          	<option value="1">있음</option>
+											   	  	</select>
+											   	</div>
 											</div>
 										</div>
 										
 										<div class='form-group row'>
 											<label for='inputPnum'
-												class='col-lg-2 col-form-label form-control-label'>Content</label>
+												class='col-lg-2 col-form-label form-control-label'>내용</label>
 											<div class='col-lg-10'>
 												<textarea rows="2" class='form-control csisize fs-12' type='text' id='editCon'
 													name='locon' value='${updatef[0].locon}' required=''></textarea>
@@ -316,12 +321,12 @@
 											<button
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 												id='submit2' name='submit2' type='submit'>
-												Save</button>
+												수정</button>
 											&emsp;
 											<div
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
-												id='submit3' name='submit3' onclick='EditCancel()'>
-												Cancel</div>
+												id='submit3' name='submit3' onclick="location.href='list.do'">
+												취소</div>
 										</div>
 									</form>
 						</div>
@@ -447,160 +452,6 @@
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
-	</div>
-
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
-												<i class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-								Lightweight Jacket
-							</h4>
-
-							<span class="mtext-106 cl2">
-								$58.79
-							</span>
-
-							<p class="stext-102 cl3 p-t-23">
-								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-							</p>
-							
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Size
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">
-										Color
-									</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
-										</button>
-									</div>
-								</div>	
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-									<i class="fa fa-facebook"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-									<i class="fa fa-twitter"></i>
-								</a>
-
-								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-									<i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 	
 <!--===============================================================================================-->	

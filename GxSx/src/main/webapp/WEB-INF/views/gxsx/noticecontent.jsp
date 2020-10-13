@@ -494,11 +494,12 @@
                            <!-- notice ul str -->
                            <ul>
                                <!--게시물 Loop : Str-->
-                                   <li style="margin-top:6px">
-										<p class="fs-12">                        
-											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_up.png">
-											이전글
-                                            <span>&emsp;${noticeup.nosub}</span>
+                                   <li style="margin-top:6px;min-height: 40px;">
+										<p class="fs-12"> 
+											<a href="../gxsx/noticeCon.do?nono=${noticeup.nono}" style="float:center;line-height:30px">                       
+												<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_up.png">
+												이전글
+	                                           &emsp;${noticeup.nosub}</a>
 										</p>
                                        <div class="heart_date">
                                            <dl>
@@ -507,11 +508,12 @@
                                            </dl>
                                        </div>
                                    </li>
-                                   <li style="margin-top:6px">
+                                   <li style="margin-top:6px;min-height: 40px;">
 										<p class="fs-12">                                           
-											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_down.png">
-											다음글
-                                            <span>&emsp;${noticedown.nosub}</span>
+											<a href="../gxsx/noticeCon.do?nono=${noticedown.nono}" style="float:center;line-height:30px">
+												<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_down.png">
+												다음글
+	                                           &emsp;${noticedown.nosub}</a>
 										</p>
                                        <div class="heart_date">
                                            <dl>

@@ -193,7 +193,7 @@
 							</br>
 							<div class='table-shopping-cart fs-12'>
 								<div class='card-header'>
-									<h3 class='mb-0'>Finditem Update</h3>
+									<h3 class='mb-0'>습득물 수정</h3>
 								</div>
 								<div class='card-body fs-12'>
 									<form class='form2 fs-12' method='post'  name='input' id='form2' role='form2' enctype='multipart/form-data'
@@ -204,7 +204,7 @@
 										
 										<div class='form-group row'>
 											<label for='noinputId'
-												class='col-lg-2 col-form-label form-control-label'>ID</label>
+												class='col-lg-2 col-form-label form-control-label'>아이디</label>
 											<div class='col-lg-10'>
 												<input type='text' class='form-control fs-12' id='editId'
 													name='userid' value='${loginuser.userid}' readonly='readonly'>
@@ -213,7 +213,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputSub'
-												class='col-lg-2 col-form-label form-control-label'>SUB</label>
+												class='col-lg-2 col-form-label form-control-label'>제목</label>
 											<div class='col-lg-10'>
 											<input class='form-control fs-12' type='text' id='editSub'
 													name='fisub' value='${fiupdate[0].fisub}' required=''>
@@ -223,7 +223,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputDate'
-												class='col-lg-2 col-form-label form-control-label'>Date</label>
+												class='col-lg-2 col-form-label form-control-label'>날짜</label>
 											<div class='col-lg-10'>
 											<input class='form-control fs-12' type='text' id='editDate'
 													name='fidate' value='${fiupdate[0].fidate}' required='' readonly='readonly'>
@@ -235,10 +235,9 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Area</label>
+												class='col-lg-2 col-form-label form-control-label'>지역</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="fiano" id="fiano" >
-															<option value="">지역&emsp;</option>
 											        		<option <c:if test="${(fiupdate[0].fiano) == 02}">selected='selected'</c:if> value="02">서울</option>
 												        	<option <c:if test="${(fiupdate[0].fiano) == 051}">selected='selected'</c:if> value="051">부산</option>
 												        	<option <c:if test="${(fiupdate[0].fiano) == 053}">selected='selected'</c:if> value="053">대구</option>
@@ -260,7 +259,7 @@
 											      </select>
 											</div>
 											<label for='inputPlace'
-												class='col-lg-2 col-form-label form-control-label' style="text-align:right">Place</label>
+												class='col-lg-2 col-form-label form-control-label' style="text-align:right">습득장소</label>
 											<div class='col-lg-5'>
 												<input class='form-control fs-12' type='text' id='editPlace'
 													name='fiplace' value='${fiupdate[0].fiplace}' required=''>
@@ -269,10 +268,9 @@
 										
 										<div class='form-group row'>
 											<label for='inputArea'
-												class='col-lg-2 col-form-label form-control-label'>Category</label>
+												class='col-lg-2 col-form-label form-control-label'>물품종류</label>
 											<div class='col-lg-3'>
 											      <select class="ui fluid dropdown" name="ficname" value='${fiupdate[0].ficname}'>
-														<option value="">종류</option>
 														<option <c:if test="${(fiupdate[0].ficname) == '가방'}">selected='selected'</c:if> value="가방">가방</option>
 														<option <c:if test="${(fiupdate[0].ficname) == '귀금속'}">selected='selected'</c:if> value="귀금속">귀금속</option>
 														<option <c:if test="${(fiupdate[0].ficname) == '도서용품'}">selected='selected'</c:if> value="도서용품">도서용품</option>
@@ -294,7 +292,7 @@
 											</div>
  												<label for='inputPlace'
 												class='col-lg-2 col-form-label form-control-label'
-												style="text-align: right">Store</label>
+												style="text-align: right">보관장소</label>
 												<div class='col-lg-5'>
 													<input class='form-control fs-12' type='text' id='editStor'
 														name='fistor' value='${fiupdate[0].fistor}' required=''>
@@ -303,7 +301,7 @@
 										
 										<div class='form-group row'>
 											<label for='inputPnum'
-												class='col-lg-2 col-form-label form-control-label'>Content</label>
+												class='col-lg-2 col-form-label form-control-label'>내용</label>
 											<div class='col-lg-10'>
 												<textarea rows="2" class='form-control csisize fs-12' type='text' id='editCon'
 													name='ficon' required=''>${fiupdate[0].ficon}</textarea>
@@ -322,12 +320,12 @@
 											<button
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 												id='submit2' name='submit2' type='submit'>
-												Save</button>
+												수정</button>
 											&emsp;
 											<div
 												class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
-												id='submit3' name='submit3' onclick='EditCancel()'>
-												Cancel</div>
+												id='submit3' name='submit3' onclick="location.href='list.do'">
+												취소</div>
 										</div>
 									</form>
 						</div>

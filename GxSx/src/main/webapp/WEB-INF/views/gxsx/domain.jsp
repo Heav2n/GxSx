@@ -170,10 +170,10 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="../images/slide_6.png" class="d-block w-100" alt="...">
+				<img src="../images/slide_5.png" class="d-block w-100" alt="...">
 			</div>
 			<div class="carousel-item">
-				<img src="../images/slide_5.png" class="d-block w-100" alt="...">
+				<img src="../images/slide_6.png" class="d-block w-100" alt="...">
 			</div>
 			<div class="carousel-item">
 				<img src="../images/slide_4.png" class="d-block w-100" alt="...">

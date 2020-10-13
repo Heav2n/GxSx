@@ -259,17 +259,22 @@
 						<!-- botton -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<c:if test="${(userid == locontent[0].louid) && userid != sansillyung}">
-									<a href="../finditem/update.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+								<c:if test="${(userid == content[0].fiuid) && !userid.equals('sansillyung')}">
+									<a href="../finditem/update.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" >
 										수정
 									</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</c:if>
-								<c:if test="${(userid == locontent[0].louid) || userid == sansillyung}">
-									<a href="../finditem/del.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+								<c:if test="${userid == content[0].fiuid}">
+									<a href="../finditem/del.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										삭제
 									</button></a>
 								</c:if>
-							</div>	
+								<c:if test="${userid.equals('sansillyung')}">
+									<a href="../finditem/del.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+										삭제
+									</button></a>
+								</c:if>
+							</div>
 						</div>
 						
 					</div>
@@ -301,14 +306,14 @@
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
 										<label id="reply_to"></label>
-											<label class="stext-102 cl3" for="review">Write comment</label>
+											<label class="stext-102 cl3" for="review">댓글 작성</label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
 
 									<button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10"
 											type="button" onclick="commentInsert('${content[0].fino}');">
-										Submit
+										등록
 									</button>
 								</form>
 							</div>

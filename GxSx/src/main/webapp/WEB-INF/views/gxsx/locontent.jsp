@@ -265,13 +265,18 @@
 						<!-- botton -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<c:if test="${(userid == locontent[0].louid) && userid != sansillyung}">
-									<a href="../lostitem/updatef.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+								<c:if test="${(userid eq locontent[0].louid) && !userid.equals('sansillyung')}">
+									<a href="../lostitem/updatef.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" >
 										수정
 									</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</c:if>
-								<c:if test="${(userid == locontent[0].louid) || userid == sansillyung}">
-									<a href="../lostitem/del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+								<c:if test="${userid eq locontent[0].louid}">
+									<a href="../lostitem/del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+										삭제
+									</button></a>
+								</c:if>
+								<c:if test="${userid.equals('sansillyung')}">
+									<a href="../lostitem/del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
 										삭제
 									</button></a>
 								</c:if>
@@ -351,7 +356,7 @@
 									<div class="row p-b-25">
 										<div class="col-12 p-b-5">
 										<label id="reply_to"></label>
-											<label class="stext-102 cl3" for="review">댓글쓰기</label>
+											<label class="stext-102 cl3" for="review">댓글 작성</label>
 											<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
 										</div>
 									</div>
@@ -390,7 +395,7 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<a href="../lostitem/content.do?lono=${related.lono}" >
+									<a href="../lostitem/locontent.do?lono=${related.lono}" >
 									<img src="../images/Lostimgs/${related.lopicname}" alt="IMG-PRODUCT"></a>
 								</div>
 	
@@ -401,7 +406,7 @@
 										</a>
 	
 										<span class="stext-105 cl3">
-											<a href="../lostitem/content.do?lono=${related.lono}" class="cl3" >${related.losub}</a>
+											<a href="../lostitem/locontent.do?lono=${related.lono}" class="cl3" >${related.losub}</a>
 										</span>
 									</div>
 								</div>
@@ -425,31 +430,34 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
-				</div>
+	
+					</div>
 				
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						CATEGORIES
-					</h4>					
+					</h4>
+					
 						<ul>
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
-								</a></li>
+								</a>
+							</li>
+	
 							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Shoes
-								</a></li>
-							<li class="p-b-10">
-								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-									Watches
-								</a></li>
+								</a>
+							</li>	
 						</ul> 
 				</div>
 
@@ -459,20 +467,29 @@
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor</p>
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125</p>
+						<i class="fa fa-phone"></i> 02-707-1480
+					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com</p>
+						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
+						
+					</p>
 
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i></a>
+							<i class="fa fa-facebook"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i></a>
+							<i class="fa fa-instagram"></i>
+						</a>
+
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i></a>
+							<i class="fa fa-pinterest-p"></i>
+						</a>
 					</div>
 				</div>
 
@@ -483,20 +500,23 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
-						<span>9am to 8pm</span></p>
+						<span>9am to 8pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
-						<span>9am to 2pm</span></p>
+						<span>9am to 2pm</span>
+					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
-						<span>Closed</span></p>
+						<span>Closed</span>
+					</p>
 				</div>
 			</div>
 
-				<p class="stext-107 cl6 txt-center">
-					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<p class="stext-107 cl6 txt-center">
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
 				</p>
 			</div>
