@@ -162,17 +162,17 @@
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Finditem
+				습득물
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Content
+				${content[0].fisub}
 			</span>
 		</div>
 	</div>
@@ -216,7 +216,7 @@
 						<ul class="p-lr-28 p-lr-15-sm">
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Date
+									날짜
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -226,7 +226,7 @@
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Place
+									습득지역
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -236,7 +236,7 @@
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Store
+									보관장소
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -246,7 +246,7 @@
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Content
+									글내용
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -259,12 +259,16 @@
 						<!-- botton -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<a href="update.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
-									Modify
-								</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="del.do"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-									Delete
-								</button></a>
+								<c:if test="${(userid == locontent[0].louid) && userid != sansillyung}">
+									<a href="../finditem/update.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+										수정
+									</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${(userid == locontent[0].louid) || userid == sansillyung}">
+									<a href="../finditem/del.do?fino=${content[0].fino}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										삭제
+									</button></a>
+								</c:if>
 							</div>	
 						</div>
 						
@@ -315,13 +319,7 @@
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
-
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
+			
 		</div>
 	</section>
 
@@ -358,13 +356,6 @@
 											<a href="../finditem/content.do?fino=${related.fino}" class="cl3" >${related.fisub}</a>
 										</span>
 									</div>
-	
-<!-- 									<div class="block2-txt-child2 flex-r p-t-3"> -->
-<!-- 										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> -->
-<!-- 											<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON"> -->
-<!-- 											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON"> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
 								</div>
 							</div>
 						</div>

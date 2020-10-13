@@ -171,31 +171,7 @@
 			</div>
 
 			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
-					</button>
-					
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".핸드폰">
-						핸드폰
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".전자기기">
-						전자기기
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".지갑">
-						지갑
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".가방">
-						가방
-					</button>
-
-					<a href="../finditem/write2.do" type="button" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-						글쓰기
-					</a>
-				</div>
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10"></div>
 
 				<div class="flex-w flex-c-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
@@ -210,43 +186,26 @@
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Sort By
+								달력
 							</div>
 
-				<div id="examples" class="mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <p id="result-2" name="result-2">&nbsp;</p>
-                                    <input type="text" id="demo-2" class="form-control form-control-sm" autocomplete="off"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-				</div>
+							<div id="examples" class="mt-5">
+	                            <div class="row">
+	                                <div class="col-md-5">
+	                                    <p id="result-2" name="result-2" style="opacity: 0">&nbsp;</p>
+	                                    <input type="text" id="demo-2" class="form-control form-control-sm" autocomplete="off" style="width:250px"/>
+	                                </div>
+	                            </div>
+							</div>
 						</div>
 
-						<div class="filter-col2 p-r-15 p-b-27">
+						<div class="filter-col2 p-r-15 p-b-27" style="width: 33%;">
 							<div class="mtext-102 cl2 p-b-15">
 								지역
 							</div>
-							
-<!-- 							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$150.00 - $200.00</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">$200.00+</a>
-								</li>
-							</ul> -->
 							<div class="flex-w p-t-4 m-r--5">
 								<a id="area--1" href="#" onclick="selectArea(this, -1);" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									All</a>
+									전체</a>
 							</div>
 							<div class="flex-w p-t-4 m-r--5">
 								<c:forEach items="${ area }" var="area">
@@ -256,30 +215,27 @@
 							</div>
 						</div>
 
-						<div class="filter-col4 p-b-27">
+						<div class="filter-col4 p-b-27" style="width: 40%;">
 							<div class="mtext-102 cl2 p-b-15">
-								Tags
+								종류
 							</div>
-							
-							
 							<div class="flex-w p-t-4 m-r--5">
 								<c:forEach items="${ category }" var="category" varStatus="index">
-								<a id="category-${ index.index }" href="#" onclick="selectTag('${index.index}', this);" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									${ category.cname }</a>
+									<a id="category-${ index.index }" href="#" onclick="selectTag('${index.index}', this);" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+										${ category.cname }</a>
 								</c:forEach>
 							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white" >
-							<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" onclick="searchAction(1, true);" type="button">
-								<i class="zmdi zmdi-search"></i>
-							</button>
-							<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" value="${ query }" 
-								onkeyup="selectSub();" onkeypress="enterkey()" placeholder="Search" autocomplete="off">
 						</div>
 						
 						<div class="w-full">
+							<!-- Search product -->
+							<div class="bor8 dis-flex p-l-15" style="background-color:white" >
+								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" onclick="searchAction(1, true);" type="button">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" value="${ query }" 
+									onkeyup="selectSub();" onkeypress="enterkey()" placeholder="검색" autocomplete="off">
+							</div>
 							</br>
 						</div>
 											
@@ -290,6 +246,12 @@
 		<!-- AJAX-SEARCH -->
 		<div id="changing-list">
 		</div>
+		
+		<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter" 
+			style="width:94px;height:40px;float:right;margin-top:-100px">
+				<a href="../finditem/write2.do" class="cl6 hov-btn3">글쓰기</a>
+		</div>
+			
 	</section>
 	<!-- /////////////////////////////////////// 컨텐츠 종료  /////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->

@@ -6,15 +6,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LostItemVo {
-	String keyword; //for 검색
-	
-	private int page;
-	private int pageSize;
+	String keyword;
+	private int page; 
+	private int pageSize; 
 	
 	public int getStartRow() {
 		return (page-1)*pageSize;
+		
 	}
 	public int getEndRow() {
-		return page*pageSize;
+		return page*pageSize; 
 	}
 }

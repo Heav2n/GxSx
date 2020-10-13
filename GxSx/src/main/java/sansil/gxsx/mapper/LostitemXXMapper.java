@@ -9,9 +9,14 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import sansil.gxsx.domain.Area;
+import sansil.gxsx.domain.Category;
 import sansil.gxsx.domain.FindItPic;
+import sansil.gxsx.domain.FindItemVo;
+import sansil.gxsx.domain.FindPic;
 import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostItemPicVo;
+import sansil.gxsx.domain.LostItemVo;
 import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Pagination;
 
@@ -46,6 +51,26 @@ public interface LostitemXXMapper {
 	List<LostItemPicVo> getLostRelated();
 	List<LostItemPicVo> getpic();
 
+	List<LostItemPicVo> selectByName(String losub);
 
+	long selectCount();
+	long selectCount2(String losub);
+
+	List<LostItemPicVo> selectPerPage2(LostItemVo lostitemVo);
+	List<LostPic> selectLostPic(long lopno);
+
+	long selectCountByCondition(Map<String, String> paramMap);
+	List<LostItemPicVo> selectPerPageByCondition(Map<String, Object> paramMap);
+
+	long selectListCount(Map<String, Object> query);
+	List<LostItemPicVo> selectList(Map<String, Object> query);
+
+
+	//八祸 可记 孽府
+	List<Category> selectCategory();
+	List<Area> selectArea();
+	//八祸 孽府
+	long selectCountSearch(HashMap<String, Object> query);
+	List<LostItemPicVo> selectSearch(HashMap<String, Object> query);
     
 }

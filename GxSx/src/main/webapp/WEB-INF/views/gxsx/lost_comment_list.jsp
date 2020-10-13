@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%pageContext.setAttribute("LF", "\n");%>
-<%-- 
+
 	<input type="hidden" id="comment_num" value="${ comment.size() }">
 	<input type="hidden" id="global-lono" value="${ comment[0].lono }">
 	<c:forEach items="${ comment }" var="comment">
@@ -64,4 +64,4 @@
 			</div>
 		</c:otherwise>
 	</c:choose>
-</c:forEach> --%>
+</c:forEach>

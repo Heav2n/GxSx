@@ -21,7 +21,7 @@
 	</insert>
 	
 	<insert id="insertBoard" parameterType="FindItem">
-		<selectKey keyProperty="fino" resultType="int" order="BEFORE">
+		<selectKey keyProperty="fino" resultType="long" order="BEFORE">
 			select FINDITEM_SEQ_PK.nextval from DUAL
 		</selectKey>
 		INSERT INTO FINDITEM 
@@ -38,7 +38,7 @@
 			FIFIN
 			
 		) VALUES (
-			#{fino},
+			FINDITEM_SEQ_PK.nextval,
 			#{fiuid},
 			#{fisub},
 			#{ficon},

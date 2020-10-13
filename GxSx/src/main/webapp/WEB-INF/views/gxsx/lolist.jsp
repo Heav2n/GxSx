@@ -34,18 +34,10 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/util.css">
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/lightpick.css">
+	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 	</style>
 </head>
 
@@ -63,39 +55,35 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
 							<li>
-								<a href="notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
-								<a href="../finditem/list.do">Finditem</a>
+								<a href="../finditem/list.do?cp=1">Finditem</a>
 							</li>
 
-							<li class="label1" data-label1="분실물" class="active-menu">
-								<a href="../lostitem/list.do">Lostitem</a>
+							<li class="label1" data-label1="분실물">
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
-
 							<li>
-								<a href="contact.html">Contact</a>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-<!-- 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> -->
-<!-- 							<i class="zmdi zmdi-favorite-outline"></i> -->
-<!-- 						</a> -->
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
@@ -104,68 +92,57 @@
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
-							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-							           		
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							             </div>
-						          	</ul>
-						        </li>
-							</li>
-						</c:if>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
-					            		</div></li>
-					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -194,37 +171,8 @@
 			</div>
 
 			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All LostItem
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-						Men
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-						Bag
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Shoes
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-						Watches
-					</button>
-				</div>
-				
-				<div>
-				<a href='write.do'>write</a><br/>
-						
-				</div>
-				
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10"></div>
+								
 				<div class="flex-w flex-c-m m-tb-10">
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
@@ -238,148 +186,56 @@
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
-								Sort By
+								달력
 							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Default</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Popularity</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Average rating</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Newness</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: Low to High</a>
-								</li>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">Price: High to Low</a>
-								</li>
-							</ul>
+							
+							<div id="examples" class="mt-5">
+		                       <div class="row">
+	                                <div class="col-md-5">
+	                                    <p id="result-2" name="result-2" style="opacity: 0">&nbsp;</p>
+	                                    <input type="text" id="demo-2" class="form-control form-control-sm" autocomplete="off" style="width:250px"/>
+	                           		</div>
+	                     		</div>
+							</div>
 						</div>
 
-						<div class="filter-col2 p-r-15 p-b-27">
+						<div class="filter-col2 p-r-15 p-b-27" style="width: 33%;">
 							<div class="mtext-102 cl2 p-b-15">
-								기간
+								지역
 							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-										All</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">1주일</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">2주일</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">1개월</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">3개월</a>
-								</li>
-
-								<li class="p-b-6">
-									<a href="#" class="filter-link stext-106 trans-04">3개월+</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col3 p-r-15 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Color
+						<div class="flex-w p-t-4 m-r--5">
+								<a id="area--1" href="#" onclick="selectArea(this, -1);" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									전체</a>
 							</div>
-
-							<ul>
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Black</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04 filter-link-active">Blue</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Grey</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Green</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">Red</a>
-								</li>
-
-								<li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
-									<a href="#" class="filter-link stext-106 trans-04">White</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="filter-col4 p-b-27">
-							<div class="mtext-102 cl2 p-b-15">
-								Tags
-							</div>
-
 							<div class="flex-w p-t-4 m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts</a>
+								<c:forEach items="${ area }" var="area">
+								<a id="area-${ area.ano }" href="#" onclick="selectArea(this, '${area.ano}');" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+									${ area.acity }</a>
+								</c:forEach>
 							</div>
-						</div>	
-						
-					<!-- Search product -->
-						<div class="bor8 dis-flex p-l-15" style="background-color:white">
-							<form method="post" action="slist.do?">
-								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" type="button">
-									<i class="zmdi zmdi-search"></i>
-								</button>
-								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" placeholder="Search" autocomplete="off">
-							</form>
+						</div>
+
+						<div class="filter-col4 p-b-27" style="width: 40%;">
+							<div class="mtext-102 cl2 p-b-15">
+								종류
+							</div>
+							<div class="flex-w p-t-4 m-r--5">
+								<c:forEach items="${ category }" var="category" varStatus="index">
+									<a id="category-${ index.index }" href="#" onclick="selectTag('${index.index}', this);" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+										${ category.cname }</a>
+								</c:forEach>
+							</div>
 						</div>
 						
 						<div class="w-full">
+							<!-- Search product -->
+							<div class="bor8 dis-flex p-l-15" style="background-color:white" >
+								<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" id="btnsearch" onclick="searchAction(1, true);" type="button">
+									<i class="zmdi zmdi-search"></i>
+								</button>
+								<input class="mtext-107 cl2 size-114 plh2 p-r-15 w-full" type="text" name="query" id="query" value="${ query }" 
+									onkeyup="selectSub();" onkeypress="enterkey()" placeholder="검색" autocomplete="off">
+							</div>
 							</br>
 						</div>
 											
@@ -387,92 +243,13 @@
 				</div>
 			</div>
 
-			<div class="row isotope-grid">
+			<!-- AJAX-SEARCH -->
+			<div id="changing-list">
+			</div>
 			
-			  <c:if test="${empty lostResult}">
-				  <center>데이터가 하나도 없음</center>
-			  </c:if>
-				
-			  <c:forEach items="${lostResult}" var="lostitem">
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<a href="../lostitem/locontent.do?lono=${lostitem.lono}"><img src="../images/Lostimgs/${lostitem.lopicname}" alt="IMG-PRODUCT"></a>
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<span class="m-r-3">
-									<a href="../lostitem/locontent.do"><span class="cl5">${lostitem.losub}</span></a>
-								</span>
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6"></a>
-
-								<span class="stext-105 cl3">
-									<i class="zmdi zmdi-calendar"></i>&nbsp;${lostitem.lodate}
-								</span>
-								<span class="cl4"><i class="zmdi zmdi-pin"></i>&nbsp;${lostitem.loplace}</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-								<c:if test="${lostitem.logift!=0}">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON">
-								</c:if>
-								<c:if test="${lostitem.logift==0}">
-									<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-01.png" alt="ICON">
-								</c:if>
-								</a>
-							</div>
-							
-						</div>						
-					</div>
-				</div>
-			  </c:forEach>
-			  
-			</div>
-
-			<div class="btn-nextprev">
-				<button class="arrow-slick3 prev-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-left" aria-hidden="true"></i></button>
-				<button class="arrow-slick3 next-slick3 slick-arrow" style="">
-				<i class="fa fa-angle-right" aria-hidden="true"></i></button>
-			</div>
-
-			<!-- Pagination -->
-			<div class="flex-c-m flex-w w-full p-t-38" id="paging">
-				<c:if test="${listpage.rangeCount>10}">
-					<p class="flex-c-m how-pagination1 trans-04 m-all-7" 
-				    	onclick="selectlostitemPage(${listpage.startPage-1})">
-				    		Previous</p>
-				 </c:if>
-				<c:forEach begin="1" end="10" var="i">
-			        <a href="list.do?cp=${i}">
-			   			<c:choose>
-			   			    <c:when test="${i==listpage.currentPage && i<=listpage.pageCount}">
-			                	<p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">${i}</p>
-			                </c:when>
-			                <c:when test="${i!=listpage.currentPage && i<=listpage.pageCount}">
-			                    <p class="flex-c-m how-pagination1 trans-04 m-all-7">${i}</p>
-			                </c:when>
-			                <c:otherwise>
-			                    <p></p>
-			                </c:otherwise>
-						</c:choose>
-			    	</a>&nbsp;
-			    </c:forEach>
-			    
-			    <c:if test="${listpage.pageCount>10}">
-				    <p class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1"
-				    	onclick="selectlostitemPage(${listpage.endPage+1})">
-				      		Next</p>
-			    </c:if>
+			<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter" 
+				style="width:94px;height:40px;float:right;margin-top:-100px">
+					<a href="../lostitem/write.do" class="cl6 hov-btn3">글쓰기</a>
 			</div>
 			
 		</div>
@@ -832,6 +609,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="../js/coza/main.js"></script>
-
+	<script async src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://unpkg.com/lightpick@latest/lightpick.js"></script>
+    <script src="../js/demo.js"></script>
+    <script src="../js/losearch.js"></script>
+    <script>
+    	$(document).ready(function (){
+    		searchAction(1, false);
+        })
+    </script>
 </body>
 </html>

@@ -35,17 +35,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 	
 	<style>
-		#tophr {
-		  width:68%;
-		  margin-left:300px;
-		  opacity:10%;
-		  height: 1px;
-		  background: #bbb;
-		  background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-		  background-image: -o-linear-gradient(left, #eee, #777, #eee);
-		}
 	</style>
 	
 </head>
@@ -64,109 +53,94 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li>
+							<li class="active-menu">
 								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
 							<li>
-								<a href="notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
-							<li class="label1" data-label1="습득물" class="active-menu">
-								<a href="../finditem/list.do">Finditem</a>
+							<li class="label1" data-label1="습득물">
+								<a href="../finditem/list.do?cp=1">Finditem</a>
 							</li>
 
 							<li class="label1" data-label1="분실물">
-								<a href="../lostitem/list.do">Lostitem</a>
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
 							</li>
-
 							<li>
-								<a href="../gxsx/contact.do">Contact</a>
+								 <a href="../gxsx/contact.do">Contact</a>								 
 							</li>
 						</ul>
 					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-<!-- 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0"> -->
-<!-- 							<i class="zmdi zmdi-favorite-outline"></i> -->
-<!-- 						</a> -->
 						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
 									<li><i class="zmdi zmdi-account-circle"></i>
-										<a href="login.do">Login</a></li>
+										<a href="../gxsx/login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
 							        <li class="dropdown">
-							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-bell"></i>(<b>2</b>)</a>
-							          <ul class="dropdown-menu notify-drop" style="right:350px">
-							            <div class="drop-content" data-tooltip="tooltip" data-placement="top" >
-							           		
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							            	<li>
-							            		<div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px">
-								            		<a href="">Ahmet</a> yorumladı. <a href="">Çicek bahçeleri...</a>
-								            		<p>Lorem ipsum sit dolor amet consilium.</p>
-								            		<p class="time">1 Saat önce</p>
-							            		</div>
-							            	</li>
-							             </div>
-						          	</ul>
-						        </li>
-							</li>
-						</c:if>
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
 								
-						<c:if test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
+						<c:if test="${ !empty loginuser || !empty klogin }">
 							<li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
 					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
-					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:100px;overflow:hidden;font-family: Poppins-Medium">							            
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-bookmark-alt"></i>&nbsp;<a href="">Myboard</a>
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-id-badge"></i>&nbsp;<a href="">Modify</a>
-					            		</div></li>
-					            	<li><div>&nbsp;&nbsp;
-						            		<i class="ti-headphone-alt"></i>&nbsp;<a href="">Contact</a>
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
 					            		</div></li>
 					            	<li><div>&nbsp;&nbsp;
 						            		<i class="ti-power-off"></i>
 						            		<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
+						            			&nbsp;<a href="">로그아웃</a>
 						            		</c:if>
 						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="logout.do">Logout</a>
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
 											</c:if>
 											<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
 											</c:if>
 					            		</div></li>
 					             </div>
@@ -188,17 +162,17 @@
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
+				홈
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Lostitem
+				분실물
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-			${locontent[0].losub}
+				${locontent[0].losub}
 			</span>
 		</div>
 	</div>
@@ -225,25 +199,7 @@
 									</div>
 								</div>
 							</c:forEach>
-<!-- 								<div class="item-slick3" data-thumb="../images/coza/product-detail-02.jpg"> -->
-<!-- 									<div class="wrap-pic-w pos-relative"> -->
-<!-- 										<img src="images/product-detail-02.jpg" alt="IMG-PRODUCT"> -->
-
-<!-- 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg"> -->
-<!-- 											<i class="fa fa-expand"></i> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-
-<!-- 								<div class="item-slick3" data-thumb="../images/coza/product-detail-03.jpg"> -->
-<!-- 									<div class="wrap-pic-w pos-relative"> -->
-<!-- 										<img src="images/product-detail-03.jpg" alt="IMG-PRODUCT"> -->
-
-<!-- 										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg"> -->
-<!-- 											<i class="fa fa-expand"></i> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+							
 							</div>
 						</div>
 					</div>
@@ -257,7 +213,7 @@
 						<ul class="p-lr-28 p-lr-15-sm">
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Date
+									날짜
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -267,7 +223,7 @@
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Place
+									분실장소
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -277,17 +233,26 @@
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Store
+									보상여부
 								</span>
 
 								<span class="stext-102 cl6 size-206">
-									${locontent[0].lofin}
+									<c:if test="${locontent[0].logift==0}">
+										<span class="stext-102 cl6 size-206">
+											없음
+										</span>
+									</c:if>
+									<c:if test="${locontent[0].logift==1}">
+										<span class="stext-102 cl6 size-206">
+											있음
+										</span>
+									</c:if>
 								</span>
 							</li>
 
 							<li class="flex-w flex-t p-b-7">
 								<span class="stext-102 cl3 size-205">
-									Content
+									글내용
 								</span>
 
 								<span class="stext-102 cl6 size-206">
@@ -300,12 +265,16 @@
 						<!-- botton -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
-								<a href="updatef.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
-									Modify
-								</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<a href="del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-									Delete
-								</button></a>
+								<c:if test="${(userid == locontent[0].louid) && userid != sansillyung}">
+									<a href="../lostitem/updatef.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" >
+										수정
+									</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								</c:if>
+								<c:if test="${(userid == locontent[0].louid) || userid == sansillyung}">
+									<a href="../lostitem/del.do?lono=${locontent[0].lono}"><button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+										삭제
+									</button></a>
+								</c:if>
 							</div>	
 						</div>
 						
@@ -399,13 +368,7 @@
 		</div>
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-			<span class="stext-107 cl6 p-lr-25">
-				SKU: JAK-01
-			</span>
-
-			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men
-			</span>
+			
 		</div>
 	</section>
 
@@ -415,7 +378,7 @@
 		<div class="container">
 			<div class="p-b-45">
 				<h3 class="ltext-106 cl5 txt-center">
-					Related Items
+					<img src="../images/최근게시물.png">
 				</h3>
 			</div>
 
@@ -427,11 +390,8 @@
 							<!-- Block2 -->
 							<div class="block2">
 								<div class="block2-pic hov-img0">
-									<img src="../images/Lostimgs/${related.lopicname}" alt="IMG-PRODUCT">
-	
-									<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-										Quick View
-									</a>
+									<a href="../lostitem/content.do?lono=${related.lono}" >
+									<img src="../images/Lostimgs/${related.lopicname}" alt="IMG-PRODUCT"></a>
 								</div>
 	
 								<div class="block2-txt flex-w flex-t p-t-14">
@@ -441,16 +401,9 @@
 										</a>
 	
 										<span class="stext-105 cl3">
-											${related.losub}
+											<a href="../lostitem/content.do?lono=${related.lono}" class="cl3" >${related.losub}</a>
 										</span>
 									</div>
-	
-<!-- 									<div class="block2-txt-child2 flex-r p-t-3"> -->
-<!-- 										<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2"> -->
-<!-- 											<img class="icon-heart1 dis-block trans-04" src="../images/coza/icons/icon-heart-01.png" alt="ICON"> -->
-<!-- 											<img class="icon-heart2 dis-block trans-04 ab-t-l" src="../images/coza/icons/icon-heart-02.png" alt="ICON"> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
 								</div>
 							</div>
 						</div>
@@ -474,38 +427,29 @@
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
 							GxSx
 						</h4>
-	
-					</div>
+				</div>
 				
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
 						CATEGORIES
-					</h4>
-					
+					</h4>					
 						<ul>
 							<li class="p-b-10">
 								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Finditem
-								</a>
-							</li>
-	
+								</a></li>
 							<li class="p-b-10">
 								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Lostitem
-								</a>
-							</li>
-	
+								</a></li>
 							<li class="p-b-10">
 								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Shoes
-								</a>
-							</li>
-	
+								</a></li>
 							<li class="p-b-10">
 								<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
 									Watches
-								</a>
-							</li>
+								</a></li>
 						</ul> 
 				</div>
 
@@ -516,27 +460,19 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-home"></i> 3422 Street, Barcelona 432, Spain, 
-						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor
-					</p>
+						<br/>&nbsp;&nbsp;&nbsp; New Building North, 15th Floor</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-phone"></i> +101 377 655 22125
-					</p>
+						<i class="fa fa-phone"></i> +101 377 655 22125</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-envelope"></i> mail@yourcompany.com
-					</p>
+						<i class="fa fa-envelope"></i> mail@yourcompany.com</p>
 
 					<div class="p-t-27">
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-facebook"></i>
-						</a>
-
+							<i class="fa fa-facebook"></i></a>
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-instagram"></i>
-						</a>
-
+							<i class="fa fa-instagram"></i></a>
 						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-							<i class="fa fa-pinterest-p"></i>
-						</a>
+							<i class="fa fa-pinterest-p"></i></a>
 					</div>
 				</div>
 
@@ -547,20 +483,15 @@
 
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
-						<span>9am to 8pm</span>
-					</p>
+						<span>9am to 8pm</span></p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
-						<span>9am to 2pm</span>
-					</p>
+						<span>9am to 2pm</span></p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
-						<span>Closed</span>
-					</p>
+						<span>Closed</span></p>
 				</div>
 			</div>
-			
-			
 
 				<p class="stext-107 cl6 txt-center">
 					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
