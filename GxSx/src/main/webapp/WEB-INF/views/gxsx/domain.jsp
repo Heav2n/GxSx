@@ -225,7 +225,7 @@
 								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 									<a href="tempsignupform.do">
 								</c:if>
-									<img src="../images/finditem/${findpicResult[status.index].fipicname}" alt="IMG-FIND">
+									<img src="../images/Findimgs/${findpicResult[status.index].fipicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	
@@ -285,7 +285,7 @@
 								<c:if test="${empty loginuser && !empty usercheck}"> <!-- 카카오로 로그인했는데 개인정보 등록 전일때 추가페이지 이동-->
 									<a href="tempsignupform.do">
 								</c:if>
-									<img src="../images/lostitem/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
+									<img src="../images/Lostimgs/${lostpicResult[status.index].lopicname}" alt="IMG-FIND">
 								</a>
 							</div>
 	

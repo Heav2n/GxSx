@@ -135,9 +135,11 @@
 		
 	<select id="getFindRelated" resultType="FindItPic">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on 
-		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)
-		where ROWNUM <=8
+		select * from (select aa.*, ROWNUM rnum from (
+    select finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin , 
+		(select fipicname from findpic where findpic.fipno = finditem.fino AND ROWNUM= 1) as fipicname
+  	from finditem left join findpic on finditem.fino = findpic.fipno GROUP BY finditem.fino , finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin order by fino desc)
+    aa) where ROWNUM <=8
 		]]>	
 	</select>
 	

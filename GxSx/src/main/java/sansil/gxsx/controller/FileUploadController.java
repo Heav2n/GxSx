@@ -29,7 +29,7 @@ public class FileUploadController {
 	
 	@GetMapping("list")
 	public ModelAndView fileList() {
-		File fStore = new File(Path.FILE_STORE);
+		File fStore = new File(Path.FILE_STORE2);
 		if(!fStore.exists()) fStore.mkdirs();
 		File files[] = fStore.listFiles();
 		
@@ -41,7 +41,7 @@ public class FileUploadController {
 	}
 	@GetMapping("/download")
 	public ModelAndView download(@RequestParam String fname) {
-		File file = new File(Path.FILE_STORE, fname);
+		File file = new File(Path.FILE_STORE2, fname);
 		if(file.exists()) {
 			return new ModelAndView("fileDownloadView", "downloadFile", file);
 		}else {
@@ -65,7 +65,7 @@ public class FileUploadController {
 	}
 	@GetMapping("/del")
 	public String del(@RequestParam String fname) {
-		File file = new File(Path.FILE_STORE, fname);
+		File file = new File(Path.FILE_STORE2, fname);
 		if(file.exists()) {
 			file.delete();
 		}

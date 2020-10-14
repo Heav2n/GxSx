@@ -207,7 +207,7 @@
 												class='col-lg-2 col-form-label form-control-label'>아이디</label>
 											<div class='col-lg-10'>
 												<input type='text' class='form-control fs-12' id='editId'
-													name='userid' value='${loginuser.userid}' readonly='readonly'>
+													name='fiuid' value='${loginuser.userid}' readonly='readonly'>
 											</div>
 										</div>
 										
