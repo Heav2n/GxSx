@@ -18,6 +18,7 @@ import lombok.extern.log4j.Log4j;
 import sansil.gxsx.domain.FiComments;
 import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItPicListResult;
+import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.Pagination;
 import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.Users;
@@ -37,13 +38,17 @@ public class FindItemController {
 	private MessageService messageService;
 	
 	@GetMapping("write2.do")
-	public String write(HttpServletRequest request, HttpSession session) {
-		
+	public ModelAndView write(HttpServletRequest request, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
 		if(session.getAttribute("loginuser")==null) { //로그인 안되었을 때
-			return "redirect:../gxsx/login.do";
+			return DomainController.login(session);
 		}
 		else {
-			return "gxsx/fiwrite";
+			mv.setViewName("gxsx/fiwrite");
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+			return mv;
 		}
 	}
 	
@@ -55,23 +60,45 @@ public class FindItemController {
 		return "redirect:list.do";
 	}
 	
-	@GetMapping("update.do")
-	public ModelAndView update(FiComments ficomments) {
-		FindItPic findItPic = service.UpdatefS(ficomments);
-		findCommentService.FindCommentUpdate(ficomments);
-		ModelAndView mv = new ModelAndView("findItPic/update", "update", findItPic);
-		mv.setViewName("findItPic/content");
-		mv.addObject("ficomments", ficomments);
-		mv.addObject("content", findItPic);
+//	@GetMapping("update.do")
+//	public ModelAndView fiupdate(int lono,HttpServletRequest request, HttpSession session) {
+//		FindItPic findItPic = service.UpdatefS(ficomments);
+//		findCommentService.FindCommentUpdate(ficomments);
+//		ModelAndView mv = new ModelAndView("findItPic/update", "update", findItPic);
+//		mv.setViewName("findItPic/content");
+//		mv.addObject("ficomments", ficomments);
+//		mv.addObject("content", findItPic);
+//		
+//		
+//		return mv;
+//	}
+//	@PostMapping("update.do")
+//	public String update(FindItPic findItPic) {
+//		service.UpdateS(findItPic);
+//		return "redirect:list.do";
+//	}
+	
+	@RequestMapping("/update.do")
+	public ModelAndView updatef(long fino, HttpServletRequest request, HttpSession session) {
+		List<FindItPic> finditem = service.UpdatefS(fino);
 		
+		Users user = (Users)session.getAttribute("loginuser");
+		String userid = user.getUserid();
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("gxsx/fiupdate");
+		mv.addObject("fiupdate", finditem);
+		mv.addObject("userid", userid);
 		
 		return mv;
 	}
-	@PostMapping("update.do")
-	public String update(FindItPic findItPic) {
-		service.UpdateS(findItPic);
+	@PostMapping("/update.do")
+	public String update(FindItPic finditem) {
+		service.UpdateS(finditem);
 		return "redirect:list.do";
 	}
+	
+	
 	@GetMapping("del.do")
 	public String delete(long fino) {
 		service.remove(fino);
@@ -90,7 +117,7 @@ public class FindItemController {
 	}	
 	
 	@RequestMapping("list.do")
-	public ModelAndView list(HttpServletRequest request, HttpSession session) {
+	public ModelAndView list(HttpServletRequest request, HttpSession session, String query) {
 		ModelAndView mv = service.getSearchOptions();
 		mv.setViewName("gxsx/filist");
 		if(session.getAttribute("loginuser")!=null) {
@@ -98,9 +125,23 @@ public class FindItemController {
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
+		mv.addObject("query", query);
 		return mv;
 	}
 	
+	// 테스트중
+	@RequestMapping("list2.do")
+	public ModelAndView list2(HttpServletRequest request, HttpSession session, String query) {
+		ModelAndView mv = service.getSearchOptions();
+		mv.setViewName("gxsx/filist");
+		if(session.getAttribute("loginuser")!=null) {
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
+//		mv.addObject("query", query);
+		return mv;
+	}
 	
 	@RequestMapping("slist.do")
 	public ModelAndView slist(String nextPage, String query, FindItPic requestData, String isSearch, HttpServletRequest request, HttpSession session) {
@@ -109,17 +150,17 @@ public class FindItemController {
 		System.out.println("requestData:" + requestData);
 		
 		ModelAndView mv = new ModelAndView();
+		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		if(session.getAttribute("loginuser")!=null) { 
 			Users user = (Users)session.getAttribute("loginuser");
 			List<Question> messageResult = messageService.messageList(user.getUserid());			
 			mv.addObject("messageResult", messageResult);
 		}
-		mv = service.searchFindItem(nextPage, query, requestData, isSearch, mv);
 		return mv;
 	}
 	
 	@GetMapping("content.do")
-	public ModelAndView content(long fino) {
+	public ModelAndView content(long fino, HttpSession session) {
 		List<FindItPic> findItPic = service.getFindItPic(fino);
 		String area = service.areaS(fino);
 		int finoInt = (int)fino;
@@ -128,10 +169,16 @@ public class FindItemController {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/ficontent");
+		
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
+
 		mv.addObject("content", findItPic);		 
 		mv.addObject("ficomment", ficomment);
 		mv.addObject("area", area);
 		mv.addObject("related", related);
+		mv.addObject("userid", user.getUserid());
 		
 		return mv;
 	}

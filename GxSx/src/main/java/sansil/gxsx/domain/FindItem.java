@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FindItem {
-	private int fino;
+	private long fino;
 	private String fiuid;
 	private String fisub;
 	private String ficon;

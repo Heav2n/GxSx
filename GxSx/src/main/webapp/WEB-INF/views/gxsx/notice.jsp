@@ -252,9 +252,21 @@
 	<script type="text/javascript" language="javascript" 
 		     src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<script type="text/javascript">	
-
+			$(function() {
+				$("#searchicons").on("click", function(){
+					$.ajax({
+					   url: "../gxsx/noticeSearch.json", 
+					   type: "GET",
+					   dataType: "HTML",
+					   data: { query: $("#query").val()},				
+					   success: function(responseData){						
+	  					 $("#news_board").html(responseData);
+					   }
+				   });
+			   });
+			})//start-end
 	</script>
-
+	
 </head>
 
 <body class="animsition">
@@ -271,7 +283,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -380,7 +392,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-02.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Notice
+			<img src="../images/공지사항-w.png">
 		</h2>
 	</section>
 
@@ -388,21 +400,18 @@
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container" style="padding-left:110px">
 			<!-- d -->
-			<div class="contents_wrap" >
+			<div class="contents_wrap">
                 <h1 class="con_title">공지사항
-                    <div style="float:right;">
+                    <div style="float:right;" class="searchquery">
                         <span class="word_input" style="margin-top:0;">
-                            <input type="text" name="search_text" value="">
-                            <span class="btn2"><a href="#a" onmouseover="ch_png_on(this)" onmouseout="ch_png_off(this)"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/board_top_search_btn_off.png" alt=""></a></span>
-                        </span>
-                        <span class="sort_wrap fix_sort" style="margin-top:0;">
-                            <a href="#a" class="cus_sel_a">제목</a>
+                            <input type="text" name="query" id="query" value="">
+                            <span class="btn2"><a href="#" id="searchicons"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/board_top_search_btn_off.png" alt=""></a></span>
                         </span>
                     </div>
                 </h1>
                     	<div></div><div></div>
 
-                       <div class="news_board">
+                       <div class="news_board" name="news_board" id="news_board">
                            <!-- notice ul str -->
                            <ul>
                                <!--게시물 Loop : Str-->
@@ -431,20 +440,33 @@
                            </ul>
                            
                            
-                           <!-- notice ul end -->
+                           <!-- Pagination -->
 
 							<div class="page_numb">
-							    <span class="cm_prev">
-							            <a><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
-							    </span>
-					                <a class="active">1</a>
-					                <a href="/News/Notice/All?page=2">2</a>
-					                <a href="/News/Notice/All?page=3">3</a>
-					                <a href="/News/Notice/All?page=4">4</a>
-					                <a href="/News/Notice/All?page=5">5</a>
-							    <span class="cm_next">
-							            <a href="/News/Notice/All?page=2"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
-							    </span>
+								<c:if test="${listpage.rangeCount>5}">
+								    <span class="cm_prev">
+								    	<a href="notice.do?cp=${listpage.startPage-1}"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_prev.png" alt="이전"></a>
+								    </span>
+							    </c:if>
+							    <c:forEach begin="1" end="5" var="i">
+							    	
+							    	<c:choose>
+						   			    <c:when test="${i==listpage.currentPage && i<=listpage.pageCount}">
+						                	<a class="active" href="notice.do?cp=${i}">${i}</a>
+						                </c:when>
+						                <c:when test="${i!=listpage.currentPage && i<=listpage.pageCount}">
+						                    <a href="notice.do?cp=${i}">${i}</a>
+						                </c:when>
+						                <c:otherwise>
+						                    <p></p></a>
+						                </c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${listpage.pageCount>5}">
+								    <span class="cm_next">
+								    	<a href="notice.do?cp=${listpage.endPage+1}"><img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/cm_next.png" alt="다음"></a>
+								    </span>
+							    </c:if>
 							</div>
                             
 						</div>
@@ -466,7 +488,7 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
 	
 					</div>

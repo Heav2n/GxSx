@@ -12,24 +12,24 @@
 		
 		
 		<c:forEach items="${ vo.list }" var="list">
-		<tr class='table_row'>
-			<th class='stext-108'>&emsp;${ list.rnum }</th>
-		<td class="stext-109">
-			${list.quid}
-		</td>
-		<td>	
-		<a class="stext-109 cl3" href="../Question/questionco.do?qno=${list.qno}">
-		    ${list.qsub}
-		 </a>
-		</td>	                                   
-			
-			<c:if test="${ list.qreply == null }">
-				<td class='stext-109'>미완료</td>
-			</c:if>
-			<c:if test="${ list.qreply != null }">
-				<td class='stext-109'>완료</td>
-			</c:if>
-		</tr>
+			<tr class='column-1 table_row'>
+				<th class='stext-108' style="width:100px">&emsp;${ list.rnum }</th>
+			<td class="column-2 stext-109">
+				${list.quid}
+			</td>
+			<td>	
+				<a class=" column-3 stext-109 cl3" href="../Question/questionco.do?qno=${list.qno}">
+				    ${list.qsub}
+				 </a>
+			</td>	                                   
+				
+				<c:if test="${ list.qreply == null }">
+					<td class='stext-109'>미완료</td>
+				</c:if>
+				<c:if test="${ list.qreply != null }">
+					<td class='stext-109'>완료</td>
+				</c:if>
+			</tr>
 		</c:forEach>
 	</table>
 </div>

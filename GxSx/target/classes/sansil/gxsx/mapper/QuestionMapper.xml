@@ -35,7 +35,7 @@
 	</select>
 	
 	<update id="update">
-		update QUESTION set QREPLY = #{qreply} where QNO = #{qno}
+		update QUESTION set QREPLY = #{qreply}, QREAD=1 where QNO = #{qno}
 	</update>
 	
 	<delete id="commentDelete" parameterType="int">
@@ -43,7 +43,7 @@
 	</delete>
 	
 	<insert id="Questioninsert" parameterType="Question">
-		insert into QUESTION values(QUESTION_SEQ_PK.nextval, #{quid}, #{qsub}, #{qcon}, null)
+		insert into QUESTION values(QUESTION_SEQ_PK.nextval, #{quid}, #{qsub}, #{qcon}, null, 0)
 	</insert>
 	
 	<update id="Questionupdate" parameterType="Question">
@@ -55,10 +55,10 @@
 	</delete>
 	
 	<select id="messageQuestion" resultType="Question" parameterType="String">
-		select * from QUESTION where QUID = #{userid} and QREPLY is NOT NULL and QREAD = 0 order by QNO desc
+		select * from QUESTION where QUID = #{userid} and QREPLY is NOT NULL and QREAD = 1 order by QNO desc
 	</select>
 	
 	<update id="contentread" parameterType="long">
-		update QUESTION set QREAD=1 where QNO=#{qno}
+		update QUESTION set QREAD=0 where QNO=#{qno}
 	</update>
 </mapper>

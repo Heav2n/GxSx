@@ -20,8 +20,11 @@ import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.LostItemResult;
 import sansil.gxsx.domain.Pagination;
+import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
+import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.LostItemService;
+import sansil.gxsx.service.MessageService;
 
 @RequestMapping("/lostitem2/")
 @Controller
@@ -29,6 +32,8 @@ import sansil.gxsx.service.LostItemService;
 public class LostItemController {
 	@Resource(name="LostItem")
 	private LostItemService service;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	
 //////////////////////////////////////////////////////////////////////////////////////////	
 	@RequestMapping("list.do")
@@ -39,7 +44,12 @@ public class LostItemController {
 		mv.setViewName("gxsx/lolist");
 		mv.addObject("lostResult", list);
 		mv.addObject("listpage", listpage);
-
+		
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		return mv;
 	}
 	
@@ -53,13 +63,19 @@ public class LostItemController {
 	}
 	
 	@RequestMapping("/locontent.do")
-	public ModelAndView content(int lono) {
+	public ModelAndView content(int lono, HttpSession session) {
 		LostItemPicVo lostitem = service.ContentS(lono);
 		String area = service.areaS(lono);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("lostitem/locontent");
 		mv.addObject("locontent", lostitem);
 		mv.addObject("area", area);
+		if(session.getAttribute("loginuser")!=null) { //메세지확인용
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+			mv.addObject("userid", user.getUserid());
+		}
 		return mv;
 	}
 	

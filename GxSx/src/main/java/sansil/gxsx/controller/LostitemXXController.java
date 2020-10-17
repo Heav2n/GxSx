@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +29,14 @@ import sansil.gxsx.domain.LostItem;
 import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.LostPic;
 import sansil.gxsx.domain.Pagination;
+import sansil.gxsx.domain.Question;
 import sansil.gxsx.domain.ResponseListVo;
 import sansil.gxsx.domain.Users;
 import sansil.gxsx.service.FileUploadservice;
 import sansil.gxsx.service.LostCommentService;
 import sansil.gxsx.service.LostPicService;
 import sansil.gxsx.service.LostitemXXservice;
+import sansil.gxsx.service.MessageService;
 
 @RequestMapping("/lostitem/")
 @Controller
@@ -44,71 +47,64 @@ public class LostitemXXController {
 	private LostitemXXservice service;
 	@Resource(name="LostCommentService")
 	private LostCommentService lostCommentService;
-//	@Resource(name="LostPic")
-//	private LostPicService lostpicS;
+	@Resource(name="MessageService")
+	private MessageService messageService;
 	
 	private FileUploadservice fservice;
 	
-	
-	
 	@RequestMapping("list.do")
 	public ModelAndView list(HttpServletRequest request, HttpSession session) {
-		
-		Pagination listpage = service.getPagination(request, session);
-		List<LostItemPicVo> list = service.getlist(listpage);
-		log.info("#> pic size : "+list.size());
-		log.info("@#@#@#@#@#@#@#@#" + list);
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = service.getSearchOptions();
 		mv.setViewName("gxsx/lolist");
-		mv.addObject("lostResult", list);
-		mv.addObject("listpage", listpage);
-		log.info("xxxxxxxxXX" + list);
+		if(session.getAttribute("loginuser")!=null) {
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());			
+			mv.addObject("messageResult", messageResult);
+		}
 		return mv;
 	}
-	@RequestMapping(value="paging",method = RequestMethod.GET)
+	
 	@ResponseBody
-	private ResponseListVo paging(int selectedPage, HttpSession session,
-			HttpServletRequest request) {
-		Pagination page = service.getAjaxPagination(selectedPage, request, session);
-		List<LostItemPicVo> list = service.getlist(page);
-		
-		log.info("이게 맞는건가?");
-		return new ResponseListVo(list, page);
+	@PostMapping(value="search02", produces = {MediaType.APPLICATION_JSON_UTF8_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public List<LostItemPicVo> search02(String losub) {
+		List<LostItemPicVo> list = service.selectByNameS(losub);
+		return list;
 	}
-	@GetMapping("/write.do")
-	public ModelAndView write(HttpServletRequest request, HttpSession session) {
-		
-		Users user = (Users)session.getAttribute("loginuser");
-		String userid = user.getUserid();
-		
+	
+	@RequestMapping("loslist.do")
+	public ModelAndView slist(String nextPage, String query, LostItemPicVo requestData, String isSearch, HttpServletRequest request, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("gxsx/lowrite");
-		mv.addObject("userid", userid);
-		
+		if(session.getAttribute("loginuser")!=null) { 
+			Users user = (Users)session.getAttribute("loginuser");
+			List<Question> messageResult = messageService.messageList(user.getUserid());
+			mv.addObject("messageResult", messageResult);
+		}
+		mv = service.searchLostItem(nextPage, query, requestData, isSearch, mv);
 		return mv;
 	}
+	
+	@GetMapping("/write.do")
+	public String write(HttpServletRequest request, HttpSession session) {
+		
+		if(session.getAttribute("loginuser")==null) { //로그인 안되었을 때
+			return "redirect:../gxsx/login.do";
+		}
+		else {
+			return "gxsx/lowrite";
+		}
+	}
+	
 	@PostMapping("/write.do")
-	public String write(LostItemPicVo lostitem, ArrayList<MultipartFile> files
-						) {
-		log.info("%%%%%%%%%%%%" + files);
-		log.info("@@@@@@@@LOSTITEMPICVO@@@@@@@@@" + lostitem);
+	public String write(LostItemPicVo lostitem, ArrayList<MultipartFile> files) {
 		// 잃어버린 물품 - DB 에 저장
-//		service.insetS(lostitem);
-
-		
-		
 		service.insertP(lostitem, files);
-		
 		// 잃어버린 물품의 DB에서 code값 ai => 값을가지고
-		
 		// 잃어버린 물품 사진 => code값을 넣고 사진들을 넣는다.
-		
-		 
-		
 		return "redirect:list.do";
 	}
+	
 	@RequestMapping("/locontent.do")
-	public ModelAndView content(int lono) {
+	public ModelAndView content(int lono, HttpSession session) {
 		List<LostItemPicVo> lostitem = service.ContentS(lono);
 		List<LostItemPicVo> related = service.getLostRelated();
 
@@ -121,11 +117,15 @@ public class LostitemXXController {
 		mv.addObject("locontent", lostitem);
 		mv.addObject("locomment", locomment);
 		mv.addObject("related", related);
-
 		mv.addObject("area", area);
-		log.info("xxxxxxxxxx"+ lostitem + "sadasdsadsadasdsadqwdsadasda" + area);
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
+		String userid = user.getUserid();
+		mv.addObject("userid", userid);
 		return mv;
 	}
+	
 	@GetMapping("/del.do")
 	public String delete(@RequestParam int lono,
 			HttpSession session, HttpServletRequest request, Object page) {
@@ -134,20 +134,22 @@ public class LostitemXXController {
 		service.deleteS(lono);
 		return "redirect:list.do";
 	}
+	
 	@RequestMapping("/updatef.do")
 	public ModelAndView updatef(int lono,HttpServletRequest request, HttpSession session) {
 		List<LostItemPicVo> lostitem = service.UpdatefS(lono);
 		
-		Users user = (Users)session.getAttribute("loginuser");
-		String userid = user.getUserid();
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/updatef");
 		mv.addObject("updatef", lostitem);
-		mv.addObject("userid", userid);
+		
+		Users user = (Users)session.getAttribute("loginuser");
+		List<Question> messageResult = messageService.messageList(user.getUserid());			
+		mv.addObject("messageResult", messageResult);
 		
 		return mv;
 	}
+	
 	@PostMapping("/update")
 	public String update(LostItemPicVo lostitem) {
 		service.UpdateS(lostitem);

@@ -11,9 +11,20 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+body, input, div, section{ /*마우스 커서*/
+    cursor: url(../../images/c11.png) 9 18, auto;
+    cursor: -webkit-image-set(url(../images/c11.png) 1x,url(../../images/c11.png) 2x) 9 18, auto;
+}
+
+body:active, input:active, div:active, section:active{
+    cursor: url(../../images/c12.png) 9 18, auto;
+    cursor: -webkit-image-set( url(../images/c12.png) 1x, url(../../images/c12.png) 2x ) 9 18, auto;
+}
 
 body, html {
 	font-family: 'Noto Sans KR', Arial, sans-serif;
+	
+	
 	font-size: 15px;
 	color: #666666;
 
@@ -3692,7 +3703,7 @@ iframe {border: none;}
 .select-box > select option { height:32px; padding:5px 10px; }
 
 .main-menu a {
-	color: #0b52bb;
+	color: #073d8e;
 }
 
 .parallax100 {

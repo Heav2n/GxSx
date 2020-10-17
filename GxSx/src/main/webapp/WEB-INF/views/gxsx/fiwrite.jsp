@@ -48,17 +48,6 @@
 <link rel="stylesheet" type="text/css" href="../css/coza/main.css">
 
 <style>
-#tophr {
-	width: 68%;
-	margin-left: 300px;
-	opacity: 10%;
-	height: 1px;
-	background: #bbb;
-	background-image: -webkit-linear-gradient(left, #eee, #777, #eee);
-	background-image: -moz-linear-gradient(left, #eee, #777, #eee);
-	background-image: -ms-linear-gradient(left, #eee, #777, #eee);
-	background-image: -o-linear-gradient(left, #eee, #777, #eee);
-}
 
 .form-control {
 	height: 30px;
@@ -210,24 +199,19 @@ table, tr, td {
 
         $('input[type=file]').on('change', function(e) {
             var files = e.originalEvent.target.files;
-            handleFileUpload(files,objDragAndDrop); //아 여기서 그 프로세스바가 여기서타니까? 웅 잠시만 얘가 아닐수도 있어 
+            handleFileUpload(files,objDragAndDrop);
         });
         
         function handleFileUpload(files,obj)
         {
-        	//요기 호출해서 파일 담구 --> 지금 얘가 이벤트로 되서 실행되잖아?웅 근데 이 이벤트를 submit할때로 바꾸면 될것 같긴 해
-        	//음..근데 얘도 한개씩보내는데...파일리스트를 담아서 리스트를 보내는걸 만들어야하지않아? 그렇지
-        			//전체데이터 아까 오빠가 카톡으로 보내준 거 불러오려면 뭐써야해 펑션 이썽? 그거 이소스가 아니야 ㅋㅋㅋ다른 예제 참조해서 해보다가
-        					//아 오키 그럼 대충..
            for (var i = 0; i < files.length; i++) 
            {
                 var fd = new FormData();
                 fd.append('file', files[i]);
          
-                var status = new createStatusbar(obj); //Using this we can set progress.
+                var status = new createStatusbar(obj);
                 status.setFileNameSize(files[i].name,files[i].size);
                 sendFileToServer(fd,status);
-//들어옴       		alert(555555555555);
          		uploadFileList.push(fd);
            }
         }
@@ -279,9 +263,9 @@ table, tr, td {
             }
         }
         
-        function sendFileToServer(formData,status) //formData를 리스트로받아서
+        function sendFileToServer(formData,status) 
         {
-            var uploadURL = "/GxSx/src/main/webapp/resources/images/finditem"; //Upload URL ㅇㅒ어디랫지
+            var uploadURL = "/GxSx/src/main/webapp/resources/images/finditem"; 
             var extraData ={}; //Extra Data.
             var jqXHR=$.ajax({
                     xhr: function() {
@@ -308,12 +292,10 @@ table, tr, td {
                 data: formData,
                 success: function(data){
                     status.setProgress(100);
-                    alert(111);
          
                     //$("#status1").append("File upload Done<br>");           
                 },
                 error : function(data) {
-                	alert(222);
                 }
             }); 
          
@@ -334,10 +316,7 @@ table, tr, td {
 	var map = new Map();
 	//submit 버튼을 눌렀을 때 
 	var uploadFileList = [];
-// 	function submitFile(){//요기서 파일리스트를 받아오면? 버튼 눌렀을때?웅  그럼 전체 데이터 다 입력하고 전송 시점에 프로그래스바랑 이게 작동되는거지
-// 			//그럼 여기서 받아서 저장하는것만 하면되지않으?
-// 		// 응 그럼 돼지 sumitfile누를때 파일리스트 어케 받아와?고것만하면될거같은디ㅑ
-// 				//아그롬 글로벌로 리스트하나빼서 드래그드랍할때 그그 리스트에 담고 그걸 여기서 불러오면?
+// 	function submitFile(){
 // 		//추가적으로 보낼 파라미터가 있으면 formData에 넣어준다. 
 // 		//예를들어 , 게시판의 경우 게시글 제목 , 게시글 내용 등등
 // // 		fd.append('temp',$('#temp').val());  
@@ -346,19 +325,16 @@ table, tr, td {
 //         console.log("uploadFileList");
 //         console.log(uploadFileList);
 //         AllData.put('filelist',uploadFileList);
-//         //요기서 에런데 저 status 를 걍 success로 박아볼게잠만
-// //         sendFileToServer2(AllData);//일단 이렇게 해보쟙 근데 저 fino여기 뭐하나 넣어줘바 실제 데이터 ㅋㅋㅋ 우웅
+// //         sendFileToServer2(AllData);
 				
 // 		//ajax로 이루어진 파일 전송 함수를 수행시킨다.
 // 		//sendFileToServer();
-// 		//여기부터 수정해야곘당 알겠슴미닷  요기가 전송 버튼 누르면 자바단 으로 넘기는 부분이니까 요쪽 한번 해보고 있어보셈 알겠어유
 // 	}
 
-    //왜 얘를 못찾아..
     function sendFileToServer2(formData) //formData를 리스트로받아서
     {
     	console.log(formData);
-        var uploadURL = "/GxSx/src/main/webapp/resources/imgs"; //Upload URL ㅇㅒ어디랫지
+        var uploadURL = "/GxSx/src/main/webapp/resources/imgs"; //Upload URL 
         $.ajax({
             url: uploadURL,
             type: "POST",
@@ -397,7 +373,7 @@ table, tr, td {
 // 			}
 // 		});
 // 	} 
-	function handleFileUpload(files) { //갠얜데 
+	function handleFileUpload(files) { 
 		//파일의 길이만큼 반복하며 formData에 셋팅해준다.
 		var megaByte = 1024*1024;
 		for (var i = 0; i < files.length; i++) {
@@ -473,7 +449,6 @@ table, tr, td {
 				$(this).css('border', '2px solid red');
 		});
 		// 해당 파일 드랍시 호출 이벤트
-		// 요기도 있지롱~ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ많네...음 잠시만그럼
 		
 		$(".dragDropDiv").on("drop", function(e) {
 			$(this).css('border', '2px solid green');
@@ -510,96 +485,107 @@ table, tr, td {
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-
-					<!-- Logo desktop -->
-					<a href="domain.do" class="logo"> <img
-						src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+					
+					<!-- Logo desktop -->		
+					<a href="../gxsx/domain.do" class="logo">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu">
-							<li class="active-menu"><a href="../gxsx/domain.do">Home</a>
+							<li>
+								<a href="../gxsx/domain.do">Home</a>
 							</li>
 
-							<li><a href="../gxsx/notice.do">Notice</a></li>
+							<li>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
+							</li>
 
-							<li class="label1" data-label1="습득물"><a
-								href="../finditem/list.do?cp=1">Finditem</a></li>
+							<li class="label1 active-menu" data-label1="습득물">
+								<a href="../finditem/list.do?cp=1">Finditem</a>
+							</li>
 
-							<li class="label1" data-label1="분실물"><a
-								href="../lostitem/list.do?cp=1">Lostitem</a></li>
-
-							<li><a href="../Question/list.do">Contact</a></li>
+							<li class="label1" data-label1="분실물">
+								<a href="../lostitem/list.do?cp=1">Lostitem</a>
+							</li>
+							<li>
+								 <a href="../gxsx/contact.do">Contact</a>								 
+							</li>
 						</ul>
-					</div>
+					</div>	
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
-						<ul class="main-menu">
+						<ul class="main-menu">					
 							<c:if test="${ empty loginuser && empty klogin}">
-								<li><i class="zmdi zmdi-account-circle"></i> <a
-									href="../gxsx/login.do">Login</a></li>
+									<li><i class="zmdi zmdi-account-circle"></i>
+										<a href="../gxsx/login.do">Login</a></li>
 							</c:if>
 							<c:if test="${ !empty loginuser }">
 								<li class="dropdown">
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-haspopup="true"
-									aria-expanded="false"><i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-									<ul class="dropdown-menu notify-drop" style="right: 350px">
-										<div class="drop-content" data-tooltip="tooltip"
-											data-placement="top">
-											<c:forEach items="${messageResult}" var="messageResult"
-												varStatus="status" begin="0" end="4">
-												<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0"
-														style="margin-left: 15px; min-width: 250px">
-														<a href="">${messageResult.qsub}</a>
-														<p
-															style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 250px">${messageResult.qcon}</p>
-														<p class="time">답변완료</p>
-													</div></li>
-											</c:forEach>
-										</div>
-									</ul></li>
-								</li>
-							</c:if>
-
-							<c:if
-								test="${ !empty loginuser || (!empty klogin && !empty kakaologout_url) }">
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									data-toggle="dropdown" role="button" aria-haspopup="true"
-									aria-expanded="false"><i class="ti-user"></i></a>
-									<ul class="dropdown-menu notify-drop" style="min-width: 150px">
-										<div class="drop-content" data-tooltip="tooltip"
-											data-placement="top"
-											style="min-height: 50px; overflow: hidden">
-											<li><div>
-													&nbsp;&nbsp; <i class="ti-bookmark-alt"></i>&nbsp;<a
-														href="../Users/mypage.do">Myboard</a>
-												</div></li>
-											<li><div>
-													&nbsp;&nbsp; <i class="ti-headphone-alt"></i>&nbsp;<a
-														href="../Question/list.do">Contact</a>
-												</div></li>
-											<li><div>
-													&nbsp;&nbsp; <i class="ti-power-off"></i>
-													<c:if test="${ empty loginuser && empty klogin}">
-						            			&nbsp;<a href="">Logout</a>
-													</c:if>
-													<c:if test="${ !empty loginuser && empty kakaologout_url}">
-												&nbsp;<a href="../gxsx/logout.do">Logout</a>
-													</c:if>
-													<c:if test="${!empty klogin && !empty kakaologout_url}">
-												&nbsp;<a href="${kakaologout_url}">Logout</a>
-													</c:if>
-												</div></li>
-										</div>
-									</ul></li>
-							</c:if>
-						</ul>
+							        <li class="dropdown">
+							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
+										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
+										            		알람 없음</div></center>
+										            	</li>
+									            	</div>
+									            </ul>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
+						            </li>
+							    </li>
+						    </c:if>
+								
+						<c:if test="${ !empty loginuser || !empty klogin }">
+							<li class="dropdown">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="ti-user"></i></a>
+					          <ul class="dropdown-menu notify-drop" style="min-width:150px">
+					            <div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:50px; overflow:hidden">							            
+					            	<li><div>&nbsp;&nbsp;
+											<i class="ti-bookmark-alt"></i>&nbsp;&nbsp;<a href="../Users/mypage.do">마이페이지</a>
+					            		</div></li>
+					            	<li><div>&nbsp;&nbsp;
+					            			<i class="ti-headphone-alt"></i>&nbsp;&nbsp;<a href="../gxsx/contact.do">고객센터</a>
+					            		</div></li>
+					            	<li><div>&nbsp;&nbsp;
+						            		<i class="ti-power-off"></i>
+						            		<c:if test="${ empty loginuser && empty klogin}">
+						            			&nbsp;<a href="">로그아웃</a>
+						            		</c:if>
+						            		<c:if test="${ !empty loginuser && empty kakaologout_url}">
+												&nbsp;<a href="../gxsx/logout.do">로그아웃</a>
+											</c:if>
+											<c:if test="${!empty klogin && !empty kakaologout_url}">
+												&nbsp;<a href="${kakaologout_url}">로그아웃</a>
+											</c:if>
+					            		</div></li>
+					             </div>
+						      </ul>
+							</li>
+						</c:if>	
+						</ul>			
 					</div>
 				</nav>
-			</div>
+			</div>	
 		</div>
 	</header>
 	<!-- ////////////////////////////////////// 맨 위 메뉴 종료 ////////////////////////////////////// -->
@@ -610,12 +596,12 @@ table, tr, td {
 	<!-- breadcrumb -->
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
+			<a href="index.do" class="stext-109 cl8 hov-cl1 trans-04"> 홈 <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a> <a href="list.do" class="stext-109 cl8 hov-cl1 trans-04">
-				Finditem <i class="fa fa-angle-right m-l-9 m-r-10"
+				습득물 <i class="fa fa-angle-right m-l-9 m-r-10"
 				aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> write </span>
+			</a> <span class="stext-109 cl4"> 글쓰기 </span>
 		</div>
 	</div>
 
@@ -629,14 +615,14 @@ table, tr, td {
 					<br/> <br/>
 					<div class='table-shopping-cart fs-12'>
 						<div class='card-header'>
-							<h3 class='mb-0'>Finditem Write</h3>
+							<h3 class='mb-0'>습득물 글작성</h3>
 						</div>
 						<div class='card-body fs-12'>
 							<form class='form2 fs-12' name='input' id='form2' role='form2' method='post' enctype="multipart/form-data"
 								autocomplete='off' action='../file/fileUpload/post2.do'>
 								<div class='form-group row'>
 									<label for='noinputId'
-										class='col-lg-2 col-form-label form-control-label'>ID</label>
+										class='col-lg-2 col-form-label form-control-label'>작성자</label>
 									<div class='col-lg-10'>
 										<input type='text' class='form-control fs-12' id='editId'
 											name='fiuid' value='${loginuser.userid}' readonly='readonly'>
@@ -645,7 +631,7 @@ table, tr, td {
 								
 								<div class='form-group row'>
 									<label for='noinputId'
-										class='col-lg-2 col-form-label form-control-label'>SUB</label>
+										class='col-lg-2 col-form-label form-control-label'>제목</label>
 									<div class='col-lg-10'>
 										<input type='text' class='form-control fs-12' id='editId'
 											name='fisub'>
@@ -654,7 +640,7 @@ table, tr, td {
 
 								<div class='form-group row'>
 									<label for='inputDate'
-										class='col-lg-2 col-form-label form-control-label'>Date</label>
+										class='col-lg-2 col-form-label form-control-label'>날짜</label>
 									<div class='col-lg-10'>
 
 										<input class='form-control fs-12' type='date' id='editDate'
@@ -664,11 +650,10 @@ table, tr, td {
 
 								<div class='form-group row'>
 									<label for='inputArea'
-										class='col-lg-2 col-form-label form-control-label'>Area</label>
+										class='col-lg-2 col-form-label form-control-label'>지역</label>
 									<div class='col-lg-3' >
 										<div class="select-box">
 											<select class="ui fluid dropdown" name="fiano" id="ano" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
-												<option value="">지역&emsp;</option>
 												<option value="02">서울</option>
 												<option value="051">부산</option>
 												<option value="053">대구</option>
@@ -693,7 +678,7 @@ table, tr, td {
 									</div>
 									<label for='inputPlace'
 										class='col-lg-2 col-form-label form-control-label'
-										style="text-align: right">Place</label>
+										style="text-align: right">습득장소</label>
 									<div class='col-lg-5'>
 										<input class='form-control fs-12' type='text' id='editPlace'
 											name='fiplace' required=''>
@@ -702,11 +687,10 @@ table, tr, td {
 
 								<div class='form-group row'>
 									<label for='inputArea'
-										class='col-lg-2 col-form-label form-control-label'>Category</label>
+										class='col-lg-2 col-form-label form-control-label'>물품종류</label>
 									<div class='col-lg-3'>
 										<div class="select-box">
 										<select class="ui fluid dropdown" name="ficname" id="cname" onmousedown="if(this.options.length>5){this.size=5;}" onchange='this.size=0;' onblur="this.size=0;">
-											<option value="">종류</option>
 											<option value="가방">가방</option>
 											<option value="귀금속">귀금속</option>
 											<option value="도서용품">도서용품</option>
@@ -729,7 +713,7 @@ table, tr, td {
 									</div>
 									<label for='inputPlace'
 										class='col-lg-2 col-form-label form-control-label'
-										style="text-align: right">Store</label>
+										style="text-align: right">보관장소</label>
 									<div class='col-lg-5'>
 										<input class='form-control fs-12' type='text' id='editPlace'
 											name='fistor' required=''>
@@ -738,7 +722,7 @@ table, tr, td {
 
 								<div class='form-group row'>
 									<label for='inputPnum'
-										class='col-lg-2 col-form-label form-control-label'>Content</label>
+										class='col-lg-2 col-form-label form-control-label'>내용</label>
 									<div class='col-lg-10'>
 										<textarea rows="2" class='form-control csisize fs-12'
 											type='text' id='editCon' name='ficon'
@@ -748,10 +732,10 @@ table, tr, td {
 
 								<div class='form-group row'>
 									<label for='inputPnum'
-										class='col-lg-2 col-form-label form-control-label'>File</label>
+										class='col-lg-2 col-form-label form-control-label'>첨부파일</label>
 									<div class='col-lg-10'>
 										<div id="fileUpload" class="dragAndDropDiv">Drag & Drop
-										Files Here or Browse Files</div>
+										파일을 첨부하거나 드래그해 올려주세요</div>
 									</div>
 									<input type="file" name="fileUpload" id="fileUpload"  
 										style="display: none;" multiple />
@@ -766,12 +750,12 @@ table, tr, td {
 										class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
 										id='submit2' name='submit2'
 										type='submit'>
-										Save</button>
+										등록</button>
 										&emsp;
-									<div
+									<button
 										class='flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10'
-										id='submit3' name='submit3' onclick='EditCancel()'>
-										Cancel</div>
+										id='submit3' name='submit3' onclick="location.href='../finditem/list.do'">
+										취소</button>
 								</div>
 							</form>
 						</div>
@@ -792,84 +776,102 @@ table, tr, td {
 	<footer class="bg3 p-t-75 p-b-32">
 		<div class="container">
 			<div class="row">
-
+			
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30" style="font-size: 100px">
-						GxSx</h4>
-
+						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
+							<img src="../images/003-w.png" >
+						</h4>
+	
+					</div>
+				
+				<div class="col-sm-6 col-lg-3 p-b-50">
+					<h4 class="stext-301 cl0 p-b-30">
+						CATEGORIES
+					</h4>
+					
+						<ul>
+							<li class="p-b-10">
+								<a href="../gxsx/notice.do" class="stext-107 cl7 hov-cl1 trans-04">
+									Notice
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../finditem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
+									Finditem
+								</a>
+							</li>
+	
+							<li class="p-b-10">
+								<a href="../lostitem/list.do?cp=1" class="stext-107 cl7 hov-cl1 trans-04">
+									Lostitem
+								</a>
+							</li>	
+						</ul> 
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">CATEGORIES</h4>
-
-					<ul>
-						<li class="p-b-10"><a href="../gxsx/notice.do"
-							class="stext-107 cl7 hov-cl1 trans-04"> Notice </a></li>
-
-						<li class="p-b-10"><a href="../finditem/list.do?cp=1"
-							class="stext-107 cl7 hov-cl1 trans-04"> Finditem </a></li>
-
-						<li class="p-b-10"><a href="../lostitem/list.do?cp=1"
-							class="stext-107 cl7 hov-cl1 trans-04"> Lostitem </a></li>
-					</ul>
-				</div>
-
-				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">CONTACT US</h4>
+					<h4 class="stext-301 cl0 p-b-30">
+						CONTACT US
+					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, <br />&nbsp;&nbsp;&nbsp;
-						(지번)신수동 63-14 구프라자 3층
+						<i class="fa fa-home"></i> 서울 마포구 백범로 23 구프라자 3층, 
+						<br/>&nbsp;&nbsp;&nbsp; (지번)신수동 63-14 구프라자 3층
 					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-phone"></i> 02-707-1480
 					</p>
 					<p class="stext-107 cl7 size-201">
 						<i class="fa fa-envelope"></i> javaoneteam@gmail.com
-
+						
 					</p>
 
 					<div class="p-t-27">
-						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-facebook"></i>
-						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-instagram"></i>
-						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
-							class="fa fa-pinterest-p"></i>
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-facebook"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-instagram"></i>
+						</a>
+
+						<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+							<i class="fa fa-pinterest-p"></i>
 						</a>
 					</div>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">BUSINESS HOURS</h4>
+					<h4 class="stext-301 cl0 p-b-30">
+						BUSINESS HOURS
+					</h4>
 
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-clock-o"></i> <span class="day">Weekdays :
-						</span> <span>9am to 8pm</span>
+						<i class="fa fa-clock-o"></i> <span class="day">Weekdays : </span>
+						<span>9am to 8pm</span>
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-clock-o"></i> <span class="day">Saturday
-							&nbsp; : </span> <span>9am to 2pm</span>
+						<i class="fa fa-clock-o"></i> <span class="day">Saturday &nbsp; : </span>
+						<span>9am to 2pm</span>
 					</p>
 					<p class="stext-107 cl7 size-201">
-						<i class="fa fa-clock-o"></i> <span class="day">Sunday
-							&nbsp; &nbsp; : </span> <span>Closed</span>
+						<i class="fa fa-clock-o"></i> <span class="day">Sunday &nbsp; &nbsp; : </span>
+						<span>Closed</span>
 					</p>
 				</div>
 			</div>
 
 			<p class="stext-107 cl6 txt-center">
-				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				Copyright &copy;
-				<script>document.write(new Date().getFullYear());</script>
-				All rights reserved | by Sansillyung <i class="fa fa-heart-o"
-					aria-hidden="true"></i>
-				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by Sansillyung <i class="fa fa-heart-o" aria-hidden="true"></i> 
+			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-			</p>
-		</div>
+				</p>
+			</div>
 		</div>
 	</footer>
+	
 
 	<!-- ////////////////////////////////////// footer 종료 ////////////////////////////////////// -->
 	<!-- *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-* -->
@@ -880,163 +882,6 @@ table, tr, td {
 		<span class="symbol-btn-back-to-top"> <i
 			class="zmdi zmdi-chevron-up"></i>
 		</span>
-	</div>
-
-	<!-- Modal1 -->
-	<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
-		<div class="overlay-modal1 js-hide-modal1"></div>
-
-		<div class="container">
-			<div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="images/icons/icon-close.png" alt="CLOSE">
-				</button>
-
-				<div class="row">
-					<div class="col-md-6 col-lg-7 p-b-30">
-						<div class="p-l-25 p-r-30 p-lr-0-lg">
-							<div class="wrap-slick3 flex-sb flex-w">
-								<div class="wrap-slick3-dots"></div>
-								<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
-								<div class="slick3 gallery-lb">
-									<div class="item-slick3"
-										data-thumb="images/product-detail-01.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-01.jpg"
-												alt="IMG-PRODUCT"> <a
-												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-01.jpg"> <i
-												class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3"
-										data-thumb="images/product-detail-02.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-02.jpg"
-												alt="IMG-PRODUCT"> <a
-												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-02.jpg"> <i
-												class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-
-									<div class="item-slick3"
-										data-thumb="images/product-detail-03.jpg">
-										<div class="wrap-pic-w pos-relative">
-											<img src="../images/coza/product-detail-03.jpg"
-												alt="IMG-PRODUCT"> <a
-												class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-												href="images/product-detail-03.jpg"> <i
-												class="fa fa-expand"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6 col-lg-5 p-b-30">
-						<div class="p-r-50 p-t-5 p-lr-0-lg">
-							<h4 class="mtext-105 cl2 js-name-detail p-b-14">Lightweight
-								Jacket</h4>
-
-							<span class="mtext-106 cl2"> $58.79 </span>
-
-							<p class="stext-102 cl3 p-t-23">Nulla eget sem vitae eros
-								pharetra viverra. Nam vitae luctus ligula. Mauris consequat
-								ornare feugiat.</p>
-
-							<!--  -->
-							<div class="p-t-33">
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">Size</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Size S</option>
-												<option>Size M</option>
-												<option>Size L</option>
-												<option>Size XL</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-203 flex-c-m respon6">Color</div>
-
-									<div class="size-204 respon6-next">
-										<div class="rs1-select2 bor8 bg0">
-											<select class="js-select2" name="time">
-												<option>Choose an option</option>
-												<option>Red</option>
-												<option>Blue</option>
-												<option>White</option>
-												<option>Grey</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-									</div>
-								</div>
-
-								<div class="flex-w flex-r-m p-b-10">
-									<div class="size-204 flex-w flex-m respon6-next">
-										<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-											<div
-												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product"
-												type="number" name="num-product" value="1">
-
-											<div
-												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
-										</div>
-
-										<button
-											class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart</button>
-									</div>
-								</div>
-							</div>
-
-							<!--  -->
-							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#"
-										class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-										data-tooltip="Add to Wishlist"> <i
-										class="zmdi zmdi-favorite"></i>
-									</a>
-								</div>
-
-								<a href="#"
-									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-									data-tooltip="Facebook"> <i class="fa fa-facebook"></i>
-								</a> <a href="#"
-									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-									data-tooltip="Twitter"> <i class="fa fa-twitter"></i>
-								</a> <a href="#"
-									class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-									data-tooltip="Google Plus"> <i class="fa fa-google-plus"></i>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<!--===============================================================================================-->
@@ -1116,7 +961,7 @@ table, tr, td {
 		$('.js-addcart-detail').each(function(){
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "완료 !", "success");
 			});
 		});
 	</script>

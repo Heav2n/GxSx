@@ -29,4 +29,8 @@ public class LostItemPicVo {
 	private int ano;
 	private String acity;
 	private Pagination paging;
+	
+	//검색 조건 변수
+	private String startDate;
+	private String endDate;
 }

@@ -51,7 +51,6 @@ public class UsersController {
 	@RequestMapping("mypage.do")
 	public ModelAndView mypage(HttpServletRequest request, HttpSession session) { // 구현
 		Users user = (Users)session.getAttribute("loginuser");
-		System.out.println("????:"+user);
 		if(user == null && session.getAttribute("kakaouser") != null) { //카카오로그인인데 회원정보없음
 			return new ModelAndView("redirect:../gxsx/tempsignupform.do");
 		}

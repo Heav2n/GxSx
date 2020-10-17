@@ -16,14 +16,14 @@ body
 
 body, input
 {
-    cursor: url(http://k003.kiwi6.com/hotlink/vp054ir5gt/c1.png) 32 32, auto;
-    cursor: -webkit-image-set(url(http://k003.kiwi6.com/hotlink/vp054ir5gt/c1.png) 1x,url(http://k003.kiwi6.com/hotlink/z6fy599487/c2.png) 2x) 32 32, auto;
+    cursor: url(../images/c11.png) 9 18, auto;
+    cursor: -webkit-image-set(url(../images/c11.png) 1x,url(../images/c11.png) 2x) 9 18, auto;
 }
 
 body:active, input:active
 {
-    cursor: url(http://k003.kiwi6.com/hotlink/3p6w4icbzt/c1a.png) 32 32, auto;
-    cursor: -webkit-image-set( url(http://k003.kiwi6.com/hotlink/3p6w4icbzt/c1a.png) 1x, url(http://k003.kiwi6.com/hotlink/6ma7828al1/c2a.png) 2x ) 32 32, auto;
+    cursor: url(../images/c12.png) 9 18, auto;
+    cursor: -webkit-image-set( url(../images/c12.png) 1x, url(../images/c12.png) 2x ) 9 18, auto;
 }
 
 #app-cover

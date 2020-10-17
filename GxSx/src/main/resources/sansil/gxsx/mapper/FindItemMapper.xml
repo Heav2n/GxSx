@@ -21,8 +21,8 @@
 	</insert>
 	
 	<insert id="insertBoard" parameterType="FindItem">
-		<selectKey keyProperty="fino" resultType="int" order="BEFORE">
-			select FINDITEM_SEQ_PK.nextval from DUAL
+		<selectKey keyProperty="fino" resultType="long" order="BEFORE">
+			select FINO_SEQ_PK.nextval from DUAL
 		</selectKey>
 		INSERT INTO FINDITEM 
 		(	
@@ -66,8 +66,12 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="FindItem">
-		update FindItem set FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FIFIN=#{fifin} where FINO=#{fino}
+	<select id="Updatef" resultType="FindItPIc" parameterType="FindItPIc">
+		select *from FINDITEM,FINDPIC where FINO=#{fino} and FIPNO=#{fipno}
+	</select>
+	
+	<update id="Update" parameterType="FindItPIc">
+		update FINDITEM set FIUID=#{fiuid}, FICNAME=#{ficname}, FISUB=#{fisub}, FICON=#{ficon}, FIANO=#{fiano}, FIPLACE=#{fiplace}, FISTOR=#{fistor} ,FIFIN=0, FIDATE=#{fidate} where FINO=#{fino}
 	</update>
 	
 	<delete id="delete" parameterType="long">
@@ -131,9 +135,11 @@
 		
 	<select id="getFindRelated" resultType="FindItPic">
 		<![CDATA[
-		select * from (select ROWNUM rnum, aa.* from (select * from finditem left outer join findpic on 
-		finditem.fino = findpic.fipno join area on finditem.fiano = area.ano order by FINO desc)aa)
-		where ROWNUM <=8
+		select * from (select aa.*, ROWNUM rnum from (
+    select finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin , 
+		(select fipicname from findpic where findpic.fipno = finditem.fino AND ROWNUM= 1) as fipicname
+  	from finditem left join findpic on finditem.fino = findpic.fipno GROUP BY finditem.fino , finditem.fisub, finditem.fiuid , finditem.fino , finditem.fidate , finditem.ficon , finditem.fiano , finditem.fiplace , finditem.ficname , finditem.fifin order by fino desc)
+    aa) where ROWNUM <=8
 		]]>	
 	</select>
 	

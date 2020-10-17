@@ -14,15 +14,16 @@
 <!-- partial:index.partial.html -->
 	<div id="app-cover">
 	  <div id="app">
-	    <form method="get" action="finditem/slist.do">
+	    <form action="finditem/list.do" method="get">
 	      <div id="f-element">
 	        <div id="inp-cover">
-	        	<input type="text" name="query" placeholder="search your AXE" autocomplete="off">
+	        	<input type="text" name="query" id="query" placeholder="분실물 검색" autocomplete="off">
 	        	<a href="gxsx/domain.do"><img src="images/arrow2.png" alt="#" style="position:fixed; right:150px; top:46%"></a>
 	        </div>
 	        
 	      </div>
-	      <button type="submit" class="shadow"><i class="fas fa-search"></i></button>	      
+	      <!-- 	      <button onclick="indexSearchAction(1, true);" id="btnsearch" type="button" class="shadow"><i class="fas fa-search"></i></button>	       -->
+	       <button id="btnsearch" type="submit" class="shadow"><i class="fas fa-search"></i></button>	      
 	    </form>	    
 
 	  </div>
@@ -34,6 +35,7 @@
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
   <script src='js/indexpage.js'></script>
+  <script src='js/search.js'></script>
  
 </body>
 </html>

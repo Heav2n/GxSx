@@ -11,6 +11,7 @@ import sansil.gxsx.domain.FindItPic;
 import sansil.gxsx.domain.FindItem;
 import sansil.gxsx.domain.FindItemVo;
 import sansil.gxsx.domain.FindPic;
+import sansil.gxsx.domain.LostItemPicVo;
 import sansil.gxsx.domain.Pagination;
 
 public interface FindItemMapper {
@@ -19,9 +20,9 @@ public interface FindItemMapper {
 	List<FindItPic> selectByWriter(FindItem findItPicVo);
 //	List<FindItPic> selectBySeq(FindItPic findItPic);
 	void insert(FindItPic findItPic);
-	boolean update(FindItPic findItPic);
-	FindItPic updatef(long fino);
+	boolean Update(FindItPic findItPic);
 	void delete(long fino);
+	List<FindItPic> Updatef(long fino);
 	
 	///////////////////////////////////////////////////////////////
 	List<FindItPic> selectByName(String fisub);
@@ -55,4 +56,3 @@ public interface FindItemMapper {
 	long selectCountSearch(HashMap<String, Object> query);
 	List<FindItPic> selectSearch(HashMap<String, Object> query);
 }
-

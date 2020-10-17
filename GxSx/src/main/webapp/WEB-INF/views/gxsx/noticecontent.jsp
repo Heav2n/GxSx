@@ -335,7 +335,7 @@
 					
 					<!-- Logo desktop -->		
 					<a href="../gxsx/domain.do" class="logo">
-						<img src="../images/coza/icons/logo-01.png" alt="IMG-LOGO">
+						<img src="../images/003-.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -346,7 +346,7 @@
 							</li>
 
 							<li>
-								<a href="../gxsx/notice.do">Notice</a>
+								<a href="../gxsx/notice.do?cp=1">Notice</a>
 							</li>
 
 							<li class="label1" data-label1="습득물">
@@ -374,29 +374,30 @@
 							        <li class="dropdown">
 							          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							          <i class="ti-bell"></i>(<b>${messageResult.size()}</b>)</a>
-							           	<c:if test="${messageResult!='[]'}">
-								           	<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px">
-								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top">
-									            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
-									            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
-									            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
-									            		<p class="time">답변완료</p></div>
-									            	</li>
-									            	</div>
-							          			</ul>
-								            </c:forEach>
-							            </c:if>
-							             
-							             <c:if test="${messageResult=='[]'}">
-								           		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
+							          <c:choose>
+							          	<c:when test="${messageResult=='[]'}">
+							          		<ul class="dropdown-menu notify-drop" style="right:350px;min-width:100px;max-height:30px">
 								            		<div class="drop-content" data-tooltip="tooltip" data-placement="top" style="min-height:10px">
 										            	<li><center><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;">
 										            		알람 없음</div></center>
 										            	</li>
 									            	</div>
 									            </ul>
-							             </c:if>
+							          	</c:when>
+							          	<c:otherwise>
+								          	<ul class="dropdown-menu notify-drop" style="right:350px">
+									          	<div class="drop-content" data-tooltip="tooltip" data-placement="top">
+									          		<c:forEach items="${messageResult}" var="messageResult" varStatus="status" begin="0" end="4">
+										            	<li><div class="col-md-9 col-sm-9 col-xs-9 pd-l0" style="margin-left:15px;min-width:250px">
+										            		<a href="../Question/questionco.do?qno=${messageResult.qno}">${messageResult.qsub}</a>
+										            		<p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 250px">${messageResult.qcon}</p>
+										            		<p class="time">답변완료</p></div>
+										            	</li>
+										            </c:forEach>
+									            </div>
+								            </ul>
+							          	</c:otherwise>
+							          </c:choose>
 						            </li>
 							    </li>
 						    </c:if>
@@ -443,7 +444,7 @@
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/coza/bg-02.jpg');margin-top:-40px">
 		<h2 class="ltext-105 cl0 txt-center">
-			Notice
+			<img src="../images/공지사항-w.png">
 		</h2>
 	</section>
 
@@ -456,7 +457,7 @@
                     <div style="float:right;">
                         <span class="word_input" style="margin-top:0;">
                             <span class="con_title_btn fs-13">
-                            <a href="https://maplestory.nexon.com/Community/Free" class="back_btn" style="width:56px; text-align:center;">목록</a></span>
+                            <a href="../gxsx/notice.do" class="back_btn" style="width:56px; text-align:center;">목록</a></span>
                     </div>
                 </h1>
                     	<div></div><div></div>
@@ -493,11 +494,12 @@
                            <!-- notice ul str -->
                            <ul>
                                <!--게시물 Loop : Str-->
-                                   <li style="margin-top:6px">
-										<p class="fs-12">                        
-											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_up.png">
-											이전글
-                                            <span>&emsp;${noticeup.nosub}</span>
+                                   <li style="margin-top:6px;min-height: 40px;">
+										<p class="fs-12"> 
+											<a href="../gxsx/noticeCon.do?nono=${noticeup.nono}" style="float:center;line-height:30px">                       
+												<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_up.png">
+												이전글
+	                                           &emsp;${noticeup.nosub}</a>
 										</p>
                                        <div class="heart_date">
                                            <dl>
@@ -506,11 +508,12 @@
                                            </dl>
                                        </div>
                                    </li>
-                                   <li style="margin-top:6px">
+                                   <li style="margin-top:6px;min-height: 40px;">
 										<p class="fs-12">                                           
-											<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_down.png">
-											다음글
-                                            <span>&emsp;${noticedown.nosub}</span>
+											<a href="../gxsx/noticeCon.do?nono=${noticedown.nono}" style="float:center;line-height:30px">
+												<img src="https://ssl.nx.com/s2/game/maplestory/renewal/common/page_down.png">
+												다음글
+	                                           &emsp;${noticedown.nosub}</a>
 										</p>
                                        <div class="heart_date">
                                            <dl>
@@ -543,7 +546,7 @@
 			
 				<div class="col-sm-6 col-lg-3 p-b-50">
 						<h4 class="stext-301 cl0 p-b-30" style="font-size:100px">
-							GxSx
+							<img src="../images/003-w.png" >
 						</h4>
 	
 					</div>

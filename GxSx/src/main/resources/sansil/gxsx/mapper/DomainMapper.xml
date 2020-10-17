@@ -16,12 +16,12 @@
 	</select>
 	<select id="listlopic" resultType="LostPic">
 		<![CDATA[
-			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3)
+			select * from LostPic where LOPNO IN (select LONO from (select * from LostItem order by LONO desc) where ROWNUM <=3) order by LOPNO desc
 		]]>
 	</select>	
 	<select id="listfipic" resultType="FindPic">
 		<![CDATA[
-			select * from FINDPIC where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3)
+			select * from FINDPIC where FIPNO IN (select FINO from (select * from FindItem order by FINO desc) where ROWNUM <=3) order by FIPNO desc
 		]]>
 	</select>
 	
@@ -45,8 +45,24 @@
 		select count(userid) from USERS where userid = #{userid}
 	</select>
 	
-	<select id="noticelist" resultType="Notice">
-		select * from NOTICE order by nono desc
+	<select id="noticelist" resultType="NoticeVo" parameterType="Pagination">
+		<![CDATA[
+			select * from (select ROWNUM as RNUM, Z.* from (select * from NOTICE order by NONO desc) Z where ROWNUM <= #{endRow} ) WHERE RNUM >= #{startRow}
+		]]>
+	</select>
+	
+	<select id="noticesearch" resultType="NoticeVo" parameterType="HashMap">
+		<![CDATA[
+			select * from (select ROWNUM as RNUM, Z.* from (select * from NOTICE where NOSUB like '%'||#{query}||'%' order by NONO desc) Z where ROWNUM <= #{paging.endRow} ) WHERE RNUM >= #{paging.startRow}
+		]]>
+	</select>
+	
+	<select id="noticecount" resultType="long">
+		select count(*) from NOTICE
+	</select>
+	
+	<select id="noticeScount" resultType="long" parameterType="String">
+		select count(*) from NOTICE where NOSUB like '%'||#{query}||'%'
 	</select>
 	
 	<select id="noticecon" resultType="Notice" parameterType="int">

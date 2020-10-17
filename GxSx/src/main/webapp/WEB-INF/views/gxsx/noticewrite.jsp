@@ -401,26 +401,8 @@
 												<div class="select-box">
 												      <select class="ui fluid dropdown" name='nocate' onmousedown="if(this.options.length>8){this.size=8;}" onchange='this.size=0;' onblur="this.size=0;">
 													    <option value="notice_icon01">공지</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
-													    <option value="notice_icon02">점검</option>
-													    <option value="notice_icon03">GM</option>
+													    <option value="notice_icon03">점검</option>
+													    <option value="notice_icon02">GM</option>
 												      </select>
 											      </div>
 											</div>

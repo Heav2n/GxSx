@@ -67,7 +67,9 @@ public class QuestionController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gxsx/questionform");
 		mv.addObject("question", service.contentS(qno));
-		service.contentReadS(qno);
+		if(session.getAttribute("admin") == null) { //일반회원
+			service.contentReadS(qno);
+		}
 		
 		if(session.getAttribute("loginuser")!=null) { //메세지확인용
 			Users user = (Users)session.getAttribute("loginuser");

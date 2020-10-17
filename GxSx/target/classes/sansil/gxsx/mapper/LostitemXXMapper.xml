@@ -15,16 +15,7 @@
 	</select>
 	
 	<select id="selectPerPage" resultType="LostItemPicVo" parameterType="Pagination">
-<!-- 			
-			select distinct * from (select ROWNUM rnum, aa.* from (select * from lostitem order by LONO desc 
-        		) aa) where rnum between #{startRow} and #{endRow}  
-			 -->
-		
-<!--   		select * from (select ROWNUM rnum, aa.* from (select * from lostitem join area on lostitem.loano = area.ano order by LONO asc -->
-<!--   		 ) aa) where rnum between #{startRow} and #{endRow}   -->
-		  
-<!-- 		select distinct lostitem.losub, lostitem.louid , lostitem.lono , lostitem.lodate , (select lopicname from lostpic, lostitem where lostpic.lopno = lostitem.lono AND rownum = 1 )  -->
-<!--     	from lostitem, lostpic -->
+
 		<![CDATA[
 		select * from (select aa.*, ROWNUM rnum from (
         select lostitem.losub, lostitem.louid , lostitem.lono , lostitem.lodate , lostitem.locon , lostitem.loano , lostitem.loplace , lostitem.locname , lostitem.lofin , 
@@ -34,15 +25,12 @@
 		]]>
 	</select>
 	
-<!-- 	<insert id="insert" parameterType="LostItemPicVo"> -->
-<!-- 		insert into LOSTITEM values(LOSTITEM_SEQ_PK.nextval, #{louid}, #{losub}, #{locon}, SYSDATE, #{loano}, #{loplace}, #{locname}, #{logift}, 0) -->
-<!-- 	</insert> -->
 
 	<insert id="insert" parameterType="LostItemPicVo">
 		<selectKey keyProperty="lono" resultType="int" order="BEFORE">
-			select LOSTITEM_SEQ_PK.nextval from DUAL
+			select LONO_SEQ_PK.nextval from DUAL
 		</selectKey>
-		insert into LOSTITEM values(#{lono}, null, #{losub}, #{locon}, SYSDATE, #{loano}, #{loplace}, #{locname}, #{logift}, 0)
+		insert into LOSTITEM values(#{lono}, #{louid}, #{losub}, #{locon}, SYSDATE, #{loano}, #{loplace}, #{locname}, #{logift}, 0)
 	</insert>
 	
 	<insert id="insert1" parameterType="LostItemPicVo">
@@ -87,7 +75,7 @@
 		select *from LOSTITEM,LOSTPIC where LONO=#{lono} and LOPNO=#{lopno}
 	</select>
 	<update id="Update" parameterType="LostItemPicVo">
-		update LOSTITEM set LOUID=null, LOCNAME=#{locname}, LOSUB=#{losub}, LOCON=#{locon}, LOANO=#{loano}, LOPLACE=#{loplace}, LOGIFT=#{logift},LOFIN=0 where LONO=#{lono}
+		update LOSTITEM set LOUID=#{louid}, LOCNAME=#{locname}, LOSUB=#{losub}, LOCON=#{locon}, LOANO=#{loano}, LOPLACE=#{loplace}, LOGIFT=#{logift},LOFIN=0 where LONO=#{lono}
 	</update> 
 	<update id="Update1" parameterType="LostItemPicVo">
 		update LOSTPIC set LOPICNAME=#{lopicname} where LOPNO=#{lopno}
@@ -95,4 +83,94 @@
 	<insert id="uploadpic" parameterType="Map">
 		insert into LOSTPIC values(LOSTPIC_SEQ_PK.nextval, #{lopno}, #{lopicname})
 	</insert>
+	
+	<select id="selectByName" resultType="LostItemPicVo" parameterType="String">
+	     select * from LOSTITEM join LOSTPIC on lostitem.lono = lostpic.lopno join area on lostitem.loano = area.ano
+		 where lostitem.LOSUB like '%'||#{losub}||'%' and lostitem.LODATE like '%'||#{lodate}||'%' lostitem.LOCON like '%'||#{locon}||'%' order by LONO desc
+	</select>
+
+
+
+	<select id="selectCount2" resultType="long" parameterType="String">
+		select COUNT(LONO) from LOSTITEM where LOSUB like '%'||#{losub}||'%' order by LONO desc
+	</select>
+
+	<select id="selectPerPage2" resultType="LostItemPicVo" parameterType="FindListVo">
+		<![CDATA[
+		select * from (select ROWNUM rnum, aa.* from (select * from lostitem left outer join lostpic on 
+		lostitem.lono = lostpic.lopno join area on lostitem.loano = area.ano where losub like '%'||#{keyword}||'%' order by LONO desc)aa)
+		where rnum>#{startRow} and rnum<=#{endRow}
+		]]>
+	</select>
+
+	<select id="selectCountSearch" resultType="long" parameterType="hashmap">
+	<choose>
+		<when test="date != null">
+		    select count(*) from LOSTITEM join area on lostitem.loano = area.ano
+		    where lostitem.LOSUB like '%'||#{lostitem.losub}||'%' and lostitem.LOCNAME like'%'||#{lostitem.locname}||'%'
+		    <if test="area != null">
+	    		and lostitem.loano = #{area}
+	    	</if>
+		    order by LOSTITEM.LODATE desc
+		</when>
+		<otherwise>
+		    select count(*) from LOSTITEM join area on lostitem.loano = area.ano
+		    where lostitem.LOSUB like '%'||#{lostitem.losub}||'%' and lostitem.LOCNAME like'%'||#{lostitem.locname}||'%' 
+		    <if test="area != null">
+	    		and lostitem.loano = #{area}
+	    	</if> 		   
+		    and lostitem.LODATE BETWEEN TO_DATE (#{lostitem.startDate}, 'YY/MM/DD')
+		    AND TO_DATE(#{lostitem.endDate}, 'YY/MM/DD')  order by LOSTITEM.LODATE desc
+		</otherwise>
+	</choose>
+	</select>
+
+	<!-- START 검색옵션 쿼리 -->
+	<select id="selectCategory" resultType="sansil.gxsx.domain.Category">
+		select * from CATEGORY
+	</select>
+	<select id="selectArea" resultType="sansil.gxsx.domain.Area">
+		select * from AREA
+	</select>
+	<!-- END 검색옵션 쿼리 -->
+
+	<!-- START 검색 쿼리 -->
+	<select id="selectSearch" resultType="LostItemPicVo" parameterType="hashmap">
+		<choose>
+			<when test="date != null">
+		 		select * from (
+		 		select ROWNUM rnum, aa.* from (
+				    select * from LOSTITEM join area on lostitem.loano = area.ano
+				    where lostitem.LOSUB like '%'||#{lostitem.losub}||'%' and lostitem.LOCNAME like'%'||#{lostitem.locname}||'%'
+			    	<if test="area != null">
+			    		and lostitem.loano = #{area}
+			    	</if>
+				<![CDATA[
+				    order by LOSTITEM.LODATE desc
+		 		)aa)
+		 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+				]]>	
+			</when>
+			<otherwise>
+		 		select * from (
+		 		select ROWNUM rnum, aa.* from (
+				    select * from LOSTITEM join area on lostitem.loano = area.ano
+				    where lostitem.LOSUB like '%'||#{lostitem.losub}||'%' and lostitem.LOCNAME like'%'||#{lostitem.locname}||'%' 
+				    and lostitem.LODATE BETWEEN TO_DATE (#{lostitem.startDate}, 'YY/MM/DD') 
+			    	<if test="area != null">
+			    		and lostitem.loano = #{area}
+			    	</if>
+				<![CDATA[
+				    AND TO_DATE(#{lostitem.endDate}, 'YY/MM/DD')  order by LOSTITEM.LODATE desc
+		 		)aa)
+		 		where rnum>=#{page.startRow} and rnum<=#{page.endRow} 
+				]]>	
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectLostPic" resultType="LostPic" parameterType="long">
+		select * from LOSTPIC where lopno = #{lono}
+	</select>
+	<!-- END 검색 쿼리 -->
 </mapper>
